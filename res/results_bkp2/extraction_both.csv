@@ -1,0 +1,19 @@
+text,recognized_entities,training_time,recall,precision,f1_score
+"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@traffic,@operation,@protocol,@target,@service,",55.00674605369568,1.0,1.0,1.0
+Add intrusion detection and address translation for servers network,"@operation,@target,@middlebox,",55.00674605369568,1.0,1.0,1.0
+The ResNet cap is currently 200 gigabytes per each 7 day period of combined incoming and outgoing traffic,,55.00674605369568,0.0,0.0,0.0
+Block streaming traffic on UFRGS,"@operation,@traffic,@target,",55.00674605369568,1.0,1.0,1.0
+From gateway to network add middlebox firewall,"@origin,@operation,@destination,@middlebox,",55.00674605369568,1.0,1.0,1.0
+Please allow social media for the HR department,"@operation,@traffic,@target,",55.00674605369568,1.0,1.0,1.0
+Dismiss all middleboxes from UFRGS to PUCRS,"@origin,@operation,@destination,@middlebox,",55.00674605369568,1.0,1.0,1.0
+"Please Lumi, block streaming traffic for students and set a Mbps bandwidth limit","@qos_unit,@qos_metric,@operation,@traffic,@target,",55.00674605369568,1.0,1.0,1.0
+Prioritize Netflix traffic from 18:00 to midnight,"@start,@end,@target,@middlebox,",55.00674605369568,1.0,0.75,0.8571428571428571
+Block traffic from netflix to my house,"@origin,@operation,@destination,",55.00674605369568,1.0,1.0,1.0
+Dorms traffic to internet must pass through a firewall,"@origin,@operation,@destination,@middlebox,",55.00674605369568,1.0,1.0,1.0
+Guests' network is rate-limited to 5 Mb/s per user,"@qos_unit,@qos_metric,@qos_value,@target,",55.00674605369568,1.0,1.0,1.0
+Add inspection for the university from 22:00 to 12:00,"@start,@operation,@end,@target,@middlebox,",55.00674605369568,1.0,0.8,0.888888888888889
+We provide a quota to all students of 1 GB/wk of usage.,"@qos_unit,@operation,@qos_value,@target,@middlebox,",55.00674605369568,0.75,0.6,0.6666666666666665
+Students have a quota of 5 GB per day. The quota is reset at 6am,"@qos_unit,@qos_constraint,@qos_value,@target,",55.00674605369568,0.8333333333333334,1.0,0.9090909090909091
+From dorms to internet add nat,"@origin,@operation,@destination,@middlebox,",55.00674605369568,1.0,1.0,1.0
+Internet is limited to 3 Mbps per host,"@qos_unit,@qos_metric,@qos_value,@target,",55.00674605369568,1.0,1.0,1.0
+Set users bandwidth to 500 kbps when the 100 Gb per month quota is reached,"@qos_unit,@qos_metric,@operation,@qos_value,@target,",55.00674605369568,1.0,1.0,1.0

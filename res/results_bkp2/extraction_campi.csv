@@ -1,0 +1,8 @@
+text,recognized_entities,training_time,recall,precision,f1_score
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@target,@qos_value,@qos_unit,@start,@qos_metric,@qos_constraint,",19.05611086,1,1,1
+University Housing monitors only the amount of traffic,"@target,@middlebox,",19.05611086,1,1,1
+"No individual service or system running on the wired/wireless network should use more than 10 gigabytes of per day, regardless of whether it is inbound or outbound over the commodity network link","@qos_unit,@qos_metric,@qos_value,@target,@qos_constraint,",19.05611086,1,1,1
+Students have a quota of 5 GB per day. The quota is reset at 6am,"@qos_unit,@qos_constraint,@qos_value,@target,",19.05611086,0.833333333,1,0.909090909
+Guests cannot run any file sharing/downloading program,"@operation,@protocol,@target,",19.05611086,0.5,0.666666667,0.571428571
+Students data limit is 100 GB per week,"@qos_unit,@qos_metric,@qos_value,@target,",19.05611086,1,1,1
+,,,0.888888889,0.944444444,0.915824916

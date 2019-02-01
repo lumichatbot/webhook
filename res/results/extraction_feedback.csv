@@ -1,0 +1,25 @@
+feedback_round,text,recognized_entities,training_time,tp,tn,fp,fn,recall,precision,f1_score
+0,The ResNet cap is currently 200 gigabytes per each 7 day period of combined incoming and outgoing traffic,,87.88291001319885,0,-10,0,10,0.0,0.0,0.0
+1,Internet is limited to 3 Mbps per host,"@qos_unit,@operation,@qos_value,",87.88291001319885,2,-5,1,5,0.2857142857142857,0.6666666666666666,0.4
+2,Guests' network is rate-limited to 5 Mb/s per user,"@qos_unit,@qos_metric,@qos_value,@protocol,@target,",87.88291001319885,4,0,1,0,1.0,0.8,0.888888888888889
+3,The system passively monitors the network throughput when traffic is light,,87.88291001319885,0,-3,0,3,0.0,0.0,0.0
+4,CounterStrike server is blocked by the University firewall,"@operation,@target,@service,@middlebox,",87.88291001319885,4,0,0,0,1.0,1.0,1.0
+5,"If a students is in obvious violations of copyright law by using a room's wired connection (i.e. ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs",,87.88291001319885,0,-3,0,3,0.0,0.0,0.0
+6,University Housing monitors only the amount of traffic,"@origin,@middlebox,",87.88291001319885,1,-2,1,2,0.3333333333333333,0.5,0.4
+7,Students have a quota of 5 GB per day. The quota is reset at 6am,"@qos_unit,@qos_metric,@qos_value,",87.88291001319885,4,-3,2,3,0.5714285714285714,0.6666666666666666,0.6153846153846153
+8,"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@origin,@destination,@qos_value,@qos_unit,@qos_metric,@qos_constraint,@operation,",87.88291001319885,5,-6,3,6,0.45454545454545453,0.625,0.5263157894736842
+9,"When a total of 18 gigabytes of data is reached, the individual's bandwidth rate limit is set to 2 Mbps","@qos_unit,@qos_metric,@operation,@qos_value,",87.88291001319885,7,-2,0,2,0.7777777777777778,1.0,0.8750000000000001
+10,Students data limit is 100 GB per week,"@qos_unit,@qos_value,@middlebox,",87.88291001319885,2,-3,1,3,0.4,0.6666666666666666,0.5
+11,Students have 200 GB of Free monthly usage,"@qos_unit,@qos_value,@target,",87.88291001319885,3,0,0,0,1.0,1.0,1.0
+12,"Currently, the University of Illinois does not have any rate limits set in place","@operation,@qos_metric,@target,",87.88291001319885,4,0,0,0,1.0,1.0,1.0
+13,Quotas for students are 5000 Megabyte per hr download and 2000 Megabyte per hr upload,,87.88291001319885,0,-8,0,8,0.0,0.0,0.0
+14,"No individual service or system running on the wired/wireless network should use more than 10 gigabytes of per day, regardless of whether it is inbound or outbound over the commodity network link","@origin,@target,@qos_value,@qos_unit,@qos_metric,@qos_constraint,@middlebox,",87.88291001319885,8,0,2,0,1.0,0.8,0.888888888888889
+15,The system will trigger an overuse notification if the  average for either inbound or outbound usage exceeds 10 GB per week,"@qos_unit,@qos_constraint,@operation,@qos_value,@middlebox,",87.88291001319885,4,-3,3,3,0.5714285714285714,0.5714285714285714,0.5714285714285714
+16,Faculty members have 500 Gb per week of free network use,"@qos_unit,@qos_metric,@qos_value,@target,",87.88291001319885,4,0,1,0,1.0,0.8,0.888888888888889
+17,P2P application is separately capped at 30 Mbps for the entire campus,"@qos_unit,@qos_metric,@qos_value,@target,@traffic,",87.88291001319885,5,0,0,0,1.0,1.0,1.0
+18,"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@origin,@protocol,@service,@qos_metric,@traffic,@operation,",87.88291001319885,6,-3,3,3,0.6666666666666666,0.6666666666666666,0.6666666666666666
+19,Students 10 GB a day download quotas are on 10 AM to Midnight,"@qos_unit,@qos_value,@end,@qos_constraint,@start,",87.88291001319885,4,-2,1,2,0.6666666666666666,0.8,0.7272727272727272
+20,The individual will have a 4 Mbps bandwidth rate limit,"@qos_unit,@qos_value,@operation,@qos_metric,@target,",87.88291001319885,5,0,0,0,1.0,1.0,1.0
+21,Guests cannot run any file sharing/downloading program,"@operation,@target,@service,",87.88291001319885,4,0,0,0,1.0,1.0,1.0
+22,FTP and SFTP traffic is allowed for all students,"@operation,@protocol,@target,",87.88291001319885,4,0,0,0,1.0,1.0,1.0
+23,FTP server is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,",87.88291001319885,4,0,0,0,1.0,1.0,1.0
