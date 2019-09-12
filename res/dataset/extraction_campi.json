@@ -10,7 +10,7 @@
           "text": "If "
         },
         {
-          "text": "a students",
+          "text": "a student",
           "alias": "target",
           "entity_type": "@target",
           "value": "students"

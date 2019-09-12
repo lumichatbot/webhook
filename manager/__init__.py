@@ -1,2 +1,0 @@
-""" module init """
-import topology
