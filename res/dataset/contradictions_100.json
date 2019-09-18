@@ -1,629 +1,630 @@
 {
     "content": [
         {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('dorm') remove middlebox('load-balancer'), middlebox('ids'), middlebox('firewall'), middlebox('dpi') set bandwidth('max', '20', 'mbps') block traffic('torrent'), service('bittorrent')", 
-            "sentence": "define intent stnIntent: for group('dorms') add middlebox('load-balancer'), middlebox('dpi'), middlebox('ids'), middlebox('parental-control') set bandwidth('min', '80', 'mbps') allow service('stremio'), traffic('streaming')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('students') set quota('9', 'gb/wk')", 
-            "sentence": "define intent stnIntent: for group('students') unset quota('9', 'gb/wk')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.87') remove middlebox('ids'), middlebox('firewall'), middlebox('parental-control') set quota('2', 'gb/wk') block protocol('sftp'), traffic('streaming')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.82') add middlebox('firewall'), middlebox('dpi'), middlebox('load-balancer'), middlebox('ids') set quota('1', 'gb/wk') allow service('amazon-prime'), service('netflix')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('firewall'), middlebox('dpi'), middlebox('ids'), middlebox('parental-control') set bandwidth('max', '50', 'mbps') block service('vimeo'), service('stremio')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.44') add middlebox('dpi'), middlebox('parental-control'), middlebox('ids'), middlebox('firewall'), middlebox('load-balancer') set bandwidth('min', '70', 'mbps') allow service('stremio'), service('netflix')", 
-            "type": "domain"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.110') remove middlebox('parental-control'), middlebox('dpi'), middlebox('firewall'), middlebox('ids'), middlebox('load-balancer') set quota('9', 'gb/wk') block service('instagram'), protocol('udp')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.106') add middlebox('firewall') set quota('4', 'gb/wk') allow service('stremio'), traffic('torrent')", 
-            "type": "negation"
-        }, 
-        {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.169') add middlebox('dpi'), middlebox('parental-control') set bandwidth('max', '20', 'mbps') allow service('instagram'), service('bittorrent')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.163') add middlebox('dpi'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('ids'), middlebox('firewall') set quota('5', 'gb/wk') block service('vimeo'), protocol('telnet')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('faculty') remove middlebox('firewall'), middlebox('dpi') set bandwidth('min', '90', 'mbps') block service('amazon-prime'), protocol('https')", 
-            "sentence": "define intent stnIntent: for group('staff') add middlebox('ids'), middlebox('dpi'), middlebox('load-balancer') set bandwidth('min', '80', 'mbps') allow service('vimeo'), protocol('quic')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('dorms') add middlebox('load-balancer'), middlebox('dpi'), middlebox('ids'), middlebox('firewall'), middlebox('parental-control') block service('bittorrent'), service('netflix') start timestamp('2019-01-25 21:16:57.856289') end timestamp('2019-01-26 03:32:57.856294')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.37') add middlebox('load-balancer'), middlebox('firewall') allow service('stremio'), service('netflix') start timestamp('2019-01-25 15:55:57.856231') end timestamp('2019-01-25 20:39:57.856280')", 
-            "type": "time"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.12.56') remove middlebox('firewall'), middlebox('dpi'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('ids') set quota('1', 'gb/wk') block protocol('http'), traffic('streaming')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.12.50') add middlebox('parental-control'), middlebox('load-balancer') set quota('5', 'gb/wk') allow service('youtube')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('dorms') add middlebox('firewall'), middlebox('ids') set quota('1', 'gb/wk')", 
-            "sentence": "define intent stnIntent: for group('dorms') remove middlebox('load-balancer') set quota('1', 'gb/wk')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('firewall') block service('facebook'), service('bittorrent') start timestamp('2019-01-25 22:49:58.700086') end timestamp('2019-01-26 03:26:58.700091')", 
-            "sentence": "define intent stnIntent: for group('professors') add middlebox('load-balancer'), middlebox('ids'), middlebox('firewall'), middlebox('parental-control'), middlebox('dpi') allow service('facebook'), service('popcorn-time') start timestamp('2019-01-25 15:31:58.700076') end timestamp('2019-01-25 21:24:58.700080')", 
-            "type": "time"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.128') add middlebox('parental-control'), middlebox('load-balancer') set quota('8', 'gb/wk') allow service('youtube') start timestamp('2019-01-25 17:51:58.943296') end timestamp('2019-01-26 03:37:58.943300')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.135') remove middlebox('firewall') unset quota('6', 'gb/wk') allow service('stremio'), traffic('torrent') start timestamp('2019-01-25 18:17:58.943269') end timestamp('2019-01-26 03:42:58.943289')", 
-            "type": "time"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('staff') set quota('8', 'gb/wk') block protocol('tcp'), service('bittorrent')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.134') set quota('6', 'gb/wk') allow service('amazon-prime'), service('youtube')", 
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('load-balancer') set bandwidth('max', '50', 'mbps') block traffic('peer2peer'), traffic('streaming')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.181') add middlebox('firewall'), middlebox('load-balancer'), middlebox('ids'), middlebox('parental-control'), middlebox('dpi') set bandwidth('min', '40', 'mbps') allow service('instagram'), service('popcorn-time')", 
             "type": "domain"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') add middlebox('dpi'), middlebox('firewall') set bandwidth('min', '30', 'mbps') block traffic('torrent'), service('netflix')", 
-            "sentence": "define intent stnIntent: for group('students') add middlebox('parental-control') set quota('1', 'gb/wk') block service('vimeo'), protocol('https')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('staff') remove middlebox('firewall'), middlebox('load-balancer') unset bandwidth('min', '30', 'mbps') block protocol('sftp'), traffic('streaming') start timestamp('2019-01-25 19:05:59.269071') end timestamp('2019-01-26 02:21:59.269076')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.15') add middlebox('parental-control') unset quota('7', 'gb/wk') allow service('amazon-prime'), traffic('streaming') start timestamp('2019-01-25 18:26:59.269047') end timestamp('2019-01-26 02:23:59.269065')", 
-            "type": "time"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.27.126') remove middlebox('parental-control') set quota('5', 'gb/wk') block traffic('peer2peer'), service('netflix')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.27.117') add middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi'), middlebox('ids') set quota('3', 'gb/wk') allow service('amazon-prime'), service('netflix')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.113') set bandwidth('min', '90', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.108') set bandwidth('min', '50', 'mbps')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('faculty') remove middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('ids') set quota('6', 'gb/wk') block traffic('peer2peer'), traffic('social-media')", 
-            "sentence": "define intent stnIntent: for group('staff') add middlebox('firewall') set quota('8', 'gb/wk') allow traffic('social-media'), service('popcorn-time')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control') set bandwidth('max', '20', 'mbps') block protocol('http'), service('instagram') start timestamp('2019-01-25 18:52:59.693428') end timestamp('2019-01-26 02:13:59.693432')", 
-            "sentence": "define intent stnIntent: for group('professors') remove middlebox('load-balancer'), middlebox('ids') set quota('9', 'gb/wk') block service('amazon-prime'), protocol('ftp') start timestamp('2019-01-25 17:12:59.693393') end timestamp('2019-01-26 02:11:59.693421')", 
-            "type": "time"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('bookman') remove middlebox('dpi') set quota('2', 'gb/wk')", 
-            "sentence": "define intent stnIntent: for group('students') add middlebox('firewall'), middlebox('load-balancer') set bandwidth('max', '60', 'mbps')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') unset bandwidth('max', '40', 'mbps')", 
-            "sentence": "define intent stnIntent: for group('students') set quota('2', 'gb/wk')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.102') set quota('3', 'gb/wk')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.95') set quota('7', 'gb/wk')", 
+            "hypothesis": "define intent hypIntent: for group('students') unset quota('5', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.13') unset bandwidth('max', '60', 'mbps')", 
             "type": "qos"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('dpi'), middlebox('ids') set bandwidth('min', '20', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.29') add middlebox('load-balancer'), middlebox('parental-control') set bandwidth('min', '80', 'mbps')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('staff') unset quota('6', 'gb/wk')", 
-            "sentence": "define intent stnIntent: for group('staff') unset quota('2', 'gb/wk')", 
+            "hypothesis": "define intent hypIntent: for group('professors') set quota('3', 'gb/wk')", 
+            "sentence": "define intent stnIntent: for group('professors') set quota('3', 'gb/wk')", 
             "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('parental-control'), middlebox('firewall'), middlebox('dpi') set bandwidth('max', '40', 'mbps') allow service('youtube'), traffic('streaming') start timestamp('2019-01-25 21:47:00.583771') end timestamp('2019-01-26 02:50:00.583775')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.106') add middlebox('ids'), middlebox('firewall') set bandwidth('min', '10', 'mbps') allow service('stremio'), traffic('social-media') start timestamp('2019-01-25 15:40:00.583741') end timestamp('2019-01-25 20:24:00.583764')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.27.127') set quota('9', 'gb/wk')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.27.123') unset bandwidth('min', '40', 'mbps')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('parental-control'), middlebox('ids'), middlebox('dpi') block service('netflix'), service('bittorrent') start timestamp('2019-01-25 22:52:00.889187') end timestamp('2019-01-26 03:25:00.889192')", 
-            "sentence": "define intent stnIntent: for group('dorms') add middlebox('firewall') allow service('vimeo'), service('bittorrent') start timestamp('2019-01-25 16:54:00.889161') end timestamp('2019-01-25 21:32:00.889178')", 
-            "type": "time"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.85') remove middlebox('parental-control') set bandwidth('min', '60', 'mbps') block service('youtube'), service('bittorrent')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.82') add middlebox('dpi'), middlebox('load-balancer'), middlebox('ids') set quota('2', 'gb/wk') allow service('amazon-prime'), service('popcorn-time')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('staff') remove middlebox('ids'), middlebox('dpi'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('firewall') start timestamp('2019-01-25 23:05:00.906900') end timestamp('2019-01-26 03:35:00.906905')", 
-            "sentence": "define intent stnIntent: for group('staff') add middlebox('dpi') start timestamp('2019-01-25 16:55:00.906828') end timestamp('2019-01-25 21:52:00.906887')", 
-            "type": "time"
         }, 
         {
             "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.116') remove middlebox('firewall'), middlebox('ids'), middlebox('parental-control'), middlebox('dpi'), middlebox('load-balancer') set bandwidth('max', '80', 'mbps') block protocol('tcp'), service('youtube')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.106') add middlebox('dpi'), middlebox('parental-control'), middlebox('firewall') set bandwidth('min', '20', 'mbps') allow service('vimeo'), traffic('torrent')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('dorms') add middlebox('firewall') set bandwidth('min', '50', 'mbps') start timestamp('2019-01-25 22:44:01.314187') end timestamp('2019-01-26 03:57:01.314192')", 
-            "sentence": "define intent stnIntent: for group('students') remove middlebox('ids') set bandwidth('max', '60', 'mbps') start timestamp('2019-01-25 16:40:01.314163') end timestamp('2019-01-25 20:14:01.314180')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('staff') remove middlebox('load-balancer'), middlebox('parental-control'), middlebox('firewall'), middlebox('dpi') set bandwidth('min', '40', 'mbps') allow protocol('sftp'), protocol('tcp')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.21') remove middlebox('firewall'), middlebox('ids'), middlebox('dpi'), middlebox('load-balancer') set quota('3', 'gb/wk') allow service('instagram'), service('popcorn-time')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.72') add middlebox('firewall'), middlebox('parental-control'), middlebox('dpi') set bandwidth('max', '60', 'mbps') allow protocol('sftp')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.71') add middlebox('dpi'), middlebox('ids'), middlebox('firewall'), middlebox('load-balancer') set quota('9', 'gb/wk') block service('facebook'), service('netflix')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.47') set bandwidth('min', '90', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.44') set bandwidth('min', '90', 'mbps')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('dpi'), middlebox('ids'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('firewall') set bandwidth('min', '30', 'mbps') block traffic('peer2peer'), protocol('udp')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.64') add middlebox('firewall') set bandwidth('max', '30', 'mbps') allow service('youtube'), service('bittorrent')", 
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('ids'), middlebox('firewall') set quota('4', 'gb/wk') block protocol('sftp'), traffic('peer2peer')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.5') add middlebox('firewall'), middlebox('parental-control') set quota('9', 'gb/wk') allow service('instagram'), service('bittorrent')", 
             "type": "domain"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.112') add middlebox('dpi'), middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer') set bandwidth('max', '80', 'mbps') block service('amazon-prime'), service('vimeo')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.106') add middlebox('ids'), middlebox('load-balancer'), middlebox('parental-control') set quota('9', 'gb/wk') allow protocol('ftp'), traffic('streaming')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('staff') remove middlebox('parental-control') unset bandwidth('min', '90', 'mbps') allow service('vimeo'), service('instagram') start timestamp('2019-01-25 18:14:02.873341') end timestamp('2019-01-26 03:40:02.873346')", 
-            "sentence": "define intent stnIntent: for group('staff') add middlebox('dpi'), middlebox('firewall') unset bandwidth('max', '80', 'mbps') block protocol('http'), protocol('icmp') start timestamp('2019-01-25 18:34:02.873306') end timestamp('2019-01-26 02:53:02.873335')", 
+            "hypothesis": "define intent hypIntent: for group('dorms') add middlebox('parental-control') block service('amazon-prime'), traffic('social-media') start hour('21:33') end hour('3:3')", 
+            "sentence": "define intent stnIntent: for group('dorms') remove middlebox('firewall'), middlebox('ids') allow protocol('tcp'), traffic('social-media') start hour('16:45') end hour('21:20')", 
             "type": "time"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('educatee') add middlebox('load-balancer'), middlebox('firewall') set bandwidth('min', '10', 'mbps')", 
-            "sentence": "define intent stnIntent: for group('students') remove middlebox('dpi') set quota('3', 'gb/wk')", 
+            "hypothesis": "define intent hypIntent: for group('professor') add middlebox('ids'), middlebox('load-balancer'), middlebox('dpi') set bandwidth('min', '30', 'mbps') block service('vimeo'), traffic('peer2peer')", 
+            "sentence": "define intent stnIntent: for group('professors') add middlebox('load-balancer') set quota('5', 'gb/wk') allow protocol('https'), traffic('torrent')", 
             "type": "synonym"
         }, 
         {
             "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('staff') unset quota('7', 'gb/wk')", 
-            "sentence": "define intent stnIntent: for group('staff') set quota('8', 'gb/wk')", 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.150') set quota('7', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.151') set quota('4', 'gb/wk')", 
             "type": "qos"
         }, 
         {
             "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('dorms') unset quota('5', 'gb/wk')", 
-            "sentence": "define intent stnIntent: for group('dorms') set quota('7', 'gb/wk')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('load-balancer'), middlebox('dpi'), middlebox('ids'), middlebox('parental-control'), middlebox('firewall') set bandwidth('min', '90', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.173') add middlebox('parental-control'), middlebox('ids'), middlebox('load-balancer') set bandwidth('max', '30', 'mbps')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.80') set bandwidth('max', '10', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.71') set bandwidth('min', '90', 'mbps')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('pupil') remove middlebox('firewall'), middlebox('ids') set quota('5', 'gb/wk') allow service('amazon-prime'), service('youtube')", 
-            "sentence": "define intent stnIntent: for group('students') remove middlebox('firewall'), middlebox('dpi'), middlebox('load-balancer') set bandwidth('max', '10', 'mbps') block service('instagram'), protocol('icmp')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.47') add middlebox('ids'), middlebox('parental-control'), middlebox('dpi'), middlebox('firewall') set bandwidth('max', '10', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.37') remove middlebox('load-balancer') set quota('1', 'gb/wk')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.26') add middlebox('dpi'), middlebox('parental-control'), middlebox('firewall') set bandwidth('max', '90', 'mbps') block protocol('quic'), protocol('http')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.12.51') add middlebox('ids'), middlebox('dpi'), middlebox('load-balancer'), middlebox('firewall') set quota('3', 'gb/wk') allow service('facebook'), service('youtube')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.32.149') remove middlebox('dpi'), middlebox('parental-control'), middlebox('ids') block service('facebook'), service('bittorrent')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.32.140') add middlebox('firewall'), middlebox('ids'), middlebox('dpi'), middlebox('load-balancer'), middlebox('parental-control') allow service('facebook'), protocol('ftp')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.76') remove middlebox('ids') set quota('2', 'gb/wk') block protocol('https'), service('bittorrent') start timestamp('2019-01-25 22:26:03.867015') end timestamp('2019-01-26 02:43:03.867020')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.173') add middlebox('dpi'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('ids'), middlebox('firewall') set bandwidth('min', '60', 'mbps') allow service('instagram'), protocol('ftp') start timestamp('2019-01-25 15:14:03.866986') end timestamp('2019-01-25 22:05:03.867009')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('scholarly_person') remove middlebox('ids'), middlebox('firewall') set bandwidth('max', '60', 'mbps') block service('amazon-prime'), protocol('sftp')", 
-            "sentence": "define intent stnIntent: for group('students') add middlebox('ids'), middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi') set bandwidth('min', '70', 'mbps') allow protocol('sftp'), service('instagram')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('students') set quota('1', 'gb/wk') block service('amazon-prime'), service('youtube')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.8') set quota('6', 'gb/wk') allow protocol('quic'), service('youtube')", 
-            "type": "domain"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') add middlebox('load-balancer'), middlebox('ids'), middlebox('firewall'), middlebox('parental-control') set quota('4', 'gb/wk') allow service('amazon-prime')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.14') add middlebox('firewall'), middlebox('ids') set bandwidth('min', '80', 'mbps') block protocol('udp'), service('bittorrent')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.11') set quota('9', 'gb/wk') block service('amazon-prime'), protocol('http')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') set quota('5', 'gb/wk') allow protocol('http'), traffic('streaming')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') add middlebox('ids'), middlebox('dpi'), middlebox('parental-control'), middlebox('firewall'), middlebox('load-balancer') unset quota('8', 'gb/wk') block service('stremio'), protocol('smtp')", 
-            "sentence": "define intent stnIntent: for group('professors') add middlebox('parental-control'), middlebox('firewall'), middlebox('dpi'), middlebox('load-balancer'), middlebox('ids') unset quota('4', 'gb/wk') block traffic('torrent'), protocol('icmp')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('load-balancer'), middlebox('dpi') set bandwidth('min', '60', 'mbps') block service('amazon-prime'), protocol('telnet')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.151') add middlebox('parental-control'), middlebox('load-balancer'), middlebox('dpi'), middlebox('firewall'), middlebox('ids') set bandwidth('max', '90', 'mbps') allow service('amazon-prime'), service('netflix')", 
-            "type": "domain"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('educatee') set quota('7', 'gb/wk') block service('amazon-prime'), service('stremio')", 
-            "sentence": "define intent stnIntent: for group('students') set quota('2', 'gb/wk') allow service('vimeo'), service('stremio')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('residence_hall') remove middlebox('load-balancer'), middlebox('ids'), middlebox('dpi'), middlebox('firewall'), middlebox('parental-control') set quota('3', 'gb/wk') block service('vimeo'), service('popcorn-time')", 
-            "sentence": "define intent stnIntent: for group('dorms') add middlebox('ids') set quota('2', 'gb/wk') allow traffic('peer2peer'), service('popcorn-time')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('parental-control'), middlebox('dpi'), middlebox('load-balancer') set quota('8', 'gb/wk')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.11') add middlebox('ids'), middlebox('firewall') set quota('8', 'gb/wk')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('dpi'), middlebox('parental-control') set quota('5', 'gb/wk') block service('amazon-prime'), traffic('peer2peer')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.43') add middlebox('firewall'), middlebox('parental-control'), middlebox('dpi'), middlebox('ids'), middlebox('load-balancer') set quota('3', 'gb/wk') allow service('amazon-prime'), service('bittorrent')", 
-            "type": "domain"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('dorm') remove middlebox('dpi'), middlebox('parental-control'), middlebox('ids') set bandwidth('max', '50', 'mbps') block traffic('peer2peer'), traffic('social-media')", 
-            "sentence": "define intent stnIntent: for group('dorms') add middlebox('firewall'), middlebox('dpi'), middlebox('ids'), middlebox('load-balancer'), middlebox('parental-control') set bandwidth('max', '30', 'mbps') allow protocol('http'), service('bittorrent')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('student_residence') remove middlebox('ids'), middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer') set bandwidth('max', '60', 'mbps')", 
-            "sentence": "define intent stnIntent: for group('dorms') remove middlebox('parental-control'), middlebox('dpi'), middlebox('firewall'), middlebox('ids') set quota('8', 'gb/wk')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.32.145') remove middlebox('parental-control') set bandwidth('max', '60', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.32.140') remove middlebox('load-balancer'), middlebox('ids'), middlebox('firewall') set quota('2', 'gb/wk')", 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.174') remove middlebox('load-balancer'), middlebox('dpi'), middlebox('ids'), middlebox('firewall'), middlebox('parental-control') set bandwidth('max', '40', 'mbps') block traffic('peer2peer'), protocol('quic')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.166') add middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi'), middlebox('ids') set bandwidth('max', '40', 'mbps') allow traffic('streaming'), service('netflix')", 
             "type": "hierarchical"
         }, 
         {
             "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.15') remove middlebox('dpi') set bandwidth('max', '10', 'mbps') block service('instagram'), service('popcorn-time') start timestamp('2019-01-25 17:27:07.090760') end timestamp('2019-01-26 03:06:07.090765')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.21') remove middlebox('ids') unset quota('7', 'gb/wk') allow service('instagram'), service('popcorn-time') start timestamp('2019-01-25 18:43:07.090734') end timestamp('2019-01-26 03:24:07.090754')", 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('parental-control'), middlebox('firewall'), middlebox('dpi'), middlebox('load-balancer') set quota('8', 'gb/wk') block protocol('https'), traffic('social-media') start hour('18:40') end hour('2:10')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('load-balancer'), middlebox('ids') set quota('8', 'gb/wk') allow service('facebook'), service('netflix') start hour('18:44') end hour('3:19')", 
             "type": "time"
         }, 
         {
             "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('dpi'), middlebox('firewall') set quota('3', 'gb/wk')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') add middlebox('ids'), middlebox('load-balancer'), middlebox('dpi') set quota('2', 'gb/wk')", 
-            "type": "domain"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.160') unset bandwidth('min', '70', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.151') unset bandwidth('max', '40', 'mbps')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') unset bandwidth('max', '10', 'mbps')", 
-            "sentence": "define intent stnIntent: for group('students') unset quota('1', 'gb/wk')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.83') add middlebox('firewall'), middlebox('dpi'), middlebox('ids') set bandwidth('max', '90', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.82') add middlebox('load-balancer'), middlebox('ids'), middlebox('dpi'), middlebox('parental-control') set quota('5', 'gb/wk')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') add middlebox('firewall'), middlebox('load-balancer'), middlebox('dpi'), middlebox('parental-control') unset quota('5', 'gb/wk') block service('amazon-prime'), service('youtube') start timestamp('2019-01-25 21:44:07.752518') end timestamp('2019-01-26 02:43:07.752523')", 
-            "sentence": "define intent stnIntent: for group('students') remove middlebox('ids') unset bandwidth('max', '20', 'mbps') allow protocol('http'), service('youtube') start timestamp('2019-01-25 15:27:07.752480') end timestamp('2019-01-25 20:19:07.752510')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.44') remove middlebox('load-balancer'), middlebox('firewall'), middlebox('ids'), middlebox('parental-control') set bandwidth('min', '90', 'mbps') block traffic('torrent'), service('youtube')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.37') add middlebox('parental-control') set bandwidth('min', '90', 'mbps') allow traffic('peer2peer'), service('youtube')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('dorms') set bandwidth('max', '50', 'mbps')", 
-            "sentence": "define intent stnIntent: for group('dorms') unset bandwidth('min', '50', 'mbps')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.61') remove middlebox('load-balancer'), middlebox('firewall') set bandwidth('min', '50', 'mbps') block traffic('peer2peer'), protocol('quic')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.60') add middlebox('ids'), middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control') set bandwidth('min', '90', 'mbps') allow service('amazon-prime'), service('stremio')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.98') remove middlebox('parental-control') unset quota('5', 'gb/wk') start timestamp('2019-01-25 22:08:08.042727') end timestamp('2019-01-26 02:32:08.042732')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.183') add middlebox('parental-control'), middlebox('ids'), middlebox('dpi'), middlebox('load-balancer') unset bandwidth('max', '40', 'mbps') start timestamp('2019-01-25 15:48:08.042696') end timestamp('2019-01-25 20:56:08.042720')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') add middlebox('parental-control') set bandwidth('min', '40', 'mbps') block traffic('streaming'), service('bittorrent')", 
-            "sentence": "define intent stnIntent: for group('professors') remove middlebox('load-balancer') set quota('2', 'gb/wk') allow protocol('icmp'), service('popcorn-time')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('prof') remove middlebox('parental-control'), middlebox('load-balancer') block service('stremio'), traffic('social-media')", 
-            "sentence": "define intent stnIntent: for group('professors') add middlebox('dpi'), middlebox('parental-control'), middlebox('ids') allow service('stremio'), service('bittorrent')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.76') set bandwidth('min', '80', 'mbps') block service('amazon-prime'), traffic('torrent')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.71') set bandwidth('max', '20', 'mbps') allow traffic('torrent'), service('netflix')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.152') remove middlebox('firewall'), middlebox('ids'), middlebox('dpi'), middlebox('load-balancer') block traffic('torrent'), traffic('social-media')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.151') add middlebox('load-balancer') allow protocol('ftp'), service('bittorrent')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('parental-control'), middlebox('firewall'), middlebox('dpi'), middlebox('ids'), middlebox('load-balancer') set bandwidth('min', '20', 'mbps') block traffic('peer2peer'), protocol('ftp')", 
-            "sentence": "define intent stnIntent: for group('dorms') add middlebox('load-balancer'), middlebox('firewall'), middlebox('ids'), middlebox('dpi') set bandwidth('max', '40', 'mbps') allow service('stremio'), service('bittorrent')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.27.126') add middlebox('ids') set bandwidth('max', '80', 'mbps') allow protocol('sftp'), protocol('telnet')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.27.117') remove middlebox('firewall') set quota('9', 'gb/wk') block service('amazon-prime'), traffic('streaming')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('faculty') remove middlebox('dpi'), middlebox('ids'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('firewall') set bandwidth('max', '60', 'mbps')", 
-            "sentence": "define intent stnIntent: for group('staff') add middlebox('load-balancer'), middlebox('firewall'), middlebox('ids'), middlebox('dpi') set bandwidth('min', '50', 'mbps')", 
-            "type": "synonym"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.26') set quota('4', 'gb/wk')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.27') set quota('5', 'gb/wk')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('staff') remove middlebox('parental-control'), middlebox('load-balancer') set quota('1', 'gb/wk') block service('instagram'), protocol('udp')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.45') remove middlebox('firewall') set quota('4', 'gb/wk') allow traffic('peer2peer'), traffic('streaming')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.85') set bandwidth('max', '30', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.82') set bandwidth('min', '90', 'mbps')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('load-balancer'), middlebox('dpi') block service('amazon-prime'), service('popcorn-time')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.86') add middlebox('load-balancer'), middlebox('ids'), middlebox('dpi'), middlebox('firewall') allow service('amazon-prime'), protocol('http')", 
-            "type": "domain"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') add middlebox('dpi'), middlebox('parental-control'), middlebox('firewall'), middlebox('load-balancer') block protocol('https'), service('facebook') start timestamp('2019-01-25 21:40:09.550959') end timestamp('2019-01-26 02:16:09.550965')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.34') add middlebox('load-balancer') allow service('amazon-prime'), service('bittorrent') start timestamp('2019-01-25 15:10:09.550896') end timestamp('2019-01-25 21:26:09.550950')", 
-            "type": "time"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') add middlebox('dpi'), middlebox('load-balancer'), middlebox('firewall') set quota('8', 'gb/wk')", 
-            "sentence": "define intent stnIntent: for group('professors') remove middlebox('parental-control'), middlebox('ids') set bandwidth('max', '30', 'mbps')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('staff') set quota('4', 'gb/wk')", 
-            "sentence": "define intent stnIntent: for group('staff') set quota('8', 'gb/wk')", 
-            "type": "qos"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('professors') add middlebox('parental-control'), middlebox('ids'), middlebox('firewall') set quota('9', 'gb/wk') block traffic('social-media')", 
-            "sentence": "define intent stnIntent: for group('staff') add middlebox('firewall') set quota('1', 'gb/wk') allow service('facebook'), service('youtube')", 
-            "type": "non_coreferent"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.13') remove middlebox('dpi'), middlebox('load-balancer') set bandwidth('min', '10', 'mbps') block traffic('social-media'), traffic('streaming')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') add middlebox('ids'), middlebox('load-balancer'), middlebox('dpi'), middlebox('parental-control') set bandwidth('max', '30', 'mbps') allow service('netflix')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.61') remove middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer') set quota('8', 'gb/wk')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.60') remove middlebox('ids'), middlebox('load-balancer') set bandwidth('min', '30', 'mbps')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('student') remove middlebox('dpi'), middlebox('load-balancer'), middlebox('ids'), middlebox('firewall'), middlebox('parental-control') set bandwidth('max', '90', 'mbps') block service('vimeo'), traffic('social-media')", 
-            "sentence": "define intent stnIntent: for group('students') add middlebox('firewall'), middlebox('parental-control') set bandwidth('max', '50', 'mbps') allow service('facebook'), service('youtube')", 
+            "hypothesis": "define intent hypIntent: for group('hall') remove middlebox('firewall'), middlebox('ids') set bandwidth('max', '70', 'mbps')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('firewall') set bandwidth('max', '40', 'mbps')", 
             "type": "synonym"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.63') add middlebox('ids'), middlebox('firewall') start timestamp('2019-01-25 21:59:10.043918') end timestamp('2019-01-26 03:04:10.043923')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.61') add middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi') start timestamp('2019-01-25 15:47:10.043890') end timestamp('2019-01-25 21:55:10.043911')", 
-            "type": "time"
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('parental-control') set bandwidth('min', '40', 'mbps')", 
+            "sentence": "define intent stnIntent: for group('students') remove middlebox('firewall'), middlebox('dpi') set bandwidth('min', '90', 'mbps')", 
+            "type": "path"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('ids'), middlebox('dpi') set bandwidth('max', '60', 'mbps')", 
-            "sentence": "define intent stnIntent: for group('students') add middlebox('firewall') set quota('3', 'gb/wk')", 
-            "type": "negation"
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('dpi'), middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer') set bandwidth('min', '20', 'mbps') start hour('22:5') end hour('2:45')", 
+            "sentence": "define intent stnIntent: for group('professors') add middlebox('load-balancer') unset bandwidth('min', '80', 'mbps') start hour('15:17') end hour('20:46')", 
+            "type": "path"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.63') remove middlebox('ids') start timestamp('2019-01-25 23:04:10.211667') end timestamp('2019-01-26 03:07:10.211673')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.70') add middlebox('parental-control'), middlebox('firewall'), middlebox('ids') start timestamp('2019-01-25 16:06:10.211641') end timestamp('2019-01-25 21:40:10.211659')", 
-            "type": "time"
+            "hypothesis": "define intent hypIntent: for group('students') add middlebox('ids'), middlebox('load-balancer'), middlebox('dpi') unset bandwidth('min', '10', 'mbps') allow protocol('telnet'), service('instagram') start hour('22:48') end hour('2:53')", 
+            "sentence": "define intent stnIntent: for group('dorms') remove middlebox('firewall'), middlebox('parental-control') set quota('2', 'gb/wk') allow traffic('torrent'), protocol('icmp') start hour('15:29') end hour('20:24')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('dpi'), middlebox('firewall'), middlebox('ids'), middlebox('parental-control') block protocol('https'), service('netflix')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.21') add middlebox('ids') allow traffic('streaming')", 
+            "type": "domain"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.110') add middlebox('load-balancer'), middlebox('firewall') allow protocol('icmp'), service('instagram')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.24.106') remove middlebox('parental-control'), middlebox('dpi') block traffic('social-media'), service('netflix')", 
-            "type": "hierarchical"
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.166') unset bandwidth('max', '50', 'mbps')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.166') unset bandwidth('min', '40', 'mbps')", 
+            "type": "qos"
         }, 
         {
             "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('ids') unset bandwidth('max', '90', 'mbps') block traffic('social-media'), protocol('udp') start timestamp('2019-01-25 19:04:10.423193') end timestamp('2019-01-26 02:56:10.423198')", 
-            "sentence": "define intent stnIntent: for group('students') add middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer') unset quota('7', 'gb/wk') allow protocol('quic'), service('instagram') start timestamp('2019-01-25 17:09:10.423164') end timestamp('2019-01-26 02:15:10.423186')", 
-            "type": "time"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.44') remove middlebox('dpi'), middlebox('load-balancer'), middlebox('ids') set quota('2', 'gb/wk') block protocol('https'), protocol('udp')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.37') add middlebox('ids'), middlebox('dpi'), middlebox('firewall'), middlebox('parental-control') set quota('5', 'gb/wk') allow service('amazon-prime'), traffic('peer2peer')", 
-            "type": "hierarchical"
-        }, 
-        {
-            "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('staff') add middlebox('parental-control') set bandwidth('min', '30', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.19') add middlebox('firewall') set quota('1', 'gb/wk')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('parental-control'), middlebox('load-balancer'), middlebox('firewall'), middlebox('ids') block service('netflix'), traffic('streaming')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.37') add middlebox('ids'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('dpi'), middlebox('firewall') allow service('vimeo'), service('instagram')", 
-            "type": "negation"
-        }, 
-        {
-            "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.172') set bandwidth('max', '60', 'mbps')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.170') set bandwidth('min', '60', 'mbps')", 
+            "hypothesis": "define intent hypIntent: for group('students') set bandwidth('min', '80', 'mbps')", 
+            "sentence": "define intent stnIntent: for group('students') unset bandwidth('min', '70', 'mbps')", 
             "type": "qos"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('dpi'), middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('ids') set bandwidth('min', '70', 'mbps') block service('vimeo'), traffic('social-media')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.162') add middlebox('ids'), middlebox('parental-control'), middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer') set bandwidth('max', '40', 'mbps') allow service('vimeo'), protocol('http')", 
+            "hypothesis": "define intent hypIntent: for group('labs') remove middlebox('parental-control'), middlebox('load-balancer'), middlebox('dpi'), middlebox('firewall') unset bandwidth('max', '50', 'mbps') block service('bittorrent'), service('netflix') start hour('22:15') end hour('2:40')", 
+            "sentence": "define intent stnIntent: for group('professors') add middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer') unset quota('8', 'gb/wk') allow protocol('udp'), traffic('streaming') start hour('16:5') end hour('20:44')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('load-balancer'), middlebox('parental-control'), middlebox('ids'), middlebox('dpi') unset quota('7', 'gb/wk') block protocol('https'), protocol('http') start hour('21:53') end hour('3:51')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.18') add middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi'), middlebox('ids') unset quota('5', 'gb/wk') allow protocol('smtp'), service('facebook') start hour('16:32') end hour('21:3')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('professors') add middlebox('ids'), middlebox('parental-control') set bandwidth('max', '70', 'mbps') allow service('amazon-prime'), service('bittorrent')", 
+            "sentence": "define intent stnIntent: for group('professors') remove middlebox('firewall') set quota('2', 'gb/wk') block service('popcorn-time'), service('netflix')", 
+            "type": "negation"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.112') add middlebox('load-balancer'), middlebox('parental-control'), middlebox('firewall'), middlebox('ids') allow traffic('torrent'), service('instagram') start hour('22:23') end hour('2:40')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.114') add middlebox('dpi'), middlebox('ids'), middlebox('firewall'), middlebox('load-balancer') block traffic('peer2peer'), service('vimeo') start hour('16:58') end hour('21:20')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('load-balancer'), middlebox('dpi'), middlebox('ids') block protocol('tcp'), traffic('social-media')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.72') add middlebox('load-balancer'), middlebox('firewall'), middlebox('ids') allow service('vimeo'), protocol('http')", 
             "type": "domain"
         }, 
         {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.191') unset bandwidth('min', '50', 'mbps')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.203') unset quota('9', 'gb/wk')", 
+            "type": "qos"
+        }, 
+        {
             "contradiction": 1, 
-            "hypothesis": "define intent hypIntent: for group('students') unset quota('9', 'gb/wk')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') set quota('2', 'gb/wk')", 
+            "hypothesis": "define intent hypIntent: for group('students') add middlebox('load-balancer'), middlebox('dpi'), middlebox('parental-control'), middlebox('firewall') set bandwidth('max', '20', 'mbps') block protocol('udp'), service('bittorrent') start hour('18:22') end hour('2:14')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.13') remove middlebox('ids') unset quota('7', 'gb/wk') allow protocol('smtp'), service('youtube') start hour('18:39') end hour('3:14')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('labs') add middlebox('parental-control') set quota('4', 'gb/wk') block traffic('social-media'), protocol('ftp') start hour('18:57') end hour('3:31')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.47') remove middlebox('load-balancer'), middlebox('dpi'), middlebox('ids') set quota('2', 'gb/wk') allow service('instagram'), service('youtube') start hour('17:6') end hour('2:45')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.139') set quota('7', 'gb/wk') allow protocol('quic'), traffic('streaming')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.138') set bandwidth('max', '80', 'mbps') allow service('instagram')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.189') remove middlebox('parental-control'), middlebox('dpi') set quota('3', 'gb/wk') block protocol('sftp'), protocol('quic')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.188') add middlebox('load-balancer'), middlebox('firewall'), middlebox('dpi') set quota('2', 'gb/wk') allow traffic('streaming'), service('popcorn-time')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.68') remove middlebox('parental-control'), middlebox('ids'), middlebox('firewall'), middlebox('load-balancer') set quota('2', 'gb/wk') block traffic('peer2peer'), traffic('streaming')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.65') add middlebox('firewall') set quota('5', 'gb/wk') allow traffic('social-media'), service('bittorrent')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorm') remove middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi') set quota('3', 'gb/wk') block protocol('udp'), service('facebook')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('ids'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('firewall'), middlebox('dpi') set quota('2', 'gb/wk') allow protocol('https'), service('youtube')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.140') remove middlebox('load-balancer'), middlebox('parental-control') set quota('2', 'gb/wk') block protocol('http'), traffic('social-media')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.138') add middlebox('ids') set bandwidth('min', '10', 'mbps') block traffic('peer2peer'), service('netflix')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('labs') remove middlebox('firewall'), middlebox('dpi') set bandwidth('max', '80', 'mbps') block traffic('peer2peer'), traffic('streaming')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.42') add middlebox('ids'), middlebox('firewall') set bandwidth('max', '40', 'mbps') allow service('vimeo'), protocol('telnet')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.14.70') add middlebox('parental-control'), middlebox('load-balancer'), middlebox('ids'), middlebox('dpi'), middlebox('firewall') set bandwidth('max', '50', 'mbps') block service('facebook'), service('bittorrent')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.34.166') add middlebox('parental-control'), middlebox('dpi'), middlebox('load-balancer') set bandwidth('max', '30', 'mbps') block service('instagram'), service('facebook')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('dpi'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('firewall'), middlebox('ids') start hour('21:3') end hour('3:1')", 
+            "sentence": "define intent stnIntent: for group('dorms') remove middlebox('firewall'), middlebox('load-balancer'), middlebox('ids'), middlebox('parental-control') start hour('15:21') end hour('20:32')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorms') add middlebox('parental-control'), middlebox('firewall'), middlebox('dpi'), middlebox('ids'), middlebox('load-balancer') set quota('7', 'gb/wk') block traffic('torrent'), traffic('streaming') start hour('18:23') end hour('2:35')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.26') add middlebox('ids') unset quota('8', 'gb/wk') allow service('instagram'), service('popcorn-time') start hour('18:9') end hour('3:14')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.14') remove middlebox('load-balancer'), middlebox('ids'), middlebox('dpi'), middlebox('firewall') set bandwidth('min', '40', 'mbps') block protocol('tcp'), service('facebook')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') add middlebox('dpi'), middlebox('firewall'), middlebox('ids'), middlebox('parental-control') set bandwidth('max', '70', 'mbps') allow service('youtube'), traffic('streaming')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('dpi'), middlebox('load-balancer') set quota('1', 'gb/wk') block traffic('torrent'), traffic('streaming')", 
+            "sentence": "define intent stnIntent: for group('students') add middlebox('load-balancer'), middlebox('dpi'), middlebox('ids') set quota('7', 'gb/wk') allow service('amazon-prime'), traffic('torrent')", 
+            "type": "negation"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('professors') unset quota('3', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.23') unset quota('7', 'gb/wk')", 
             "type": "qos"
         }, 
         {
             "contradiction": 0, 
-            "hypothesis": "define intent hypIntent: for group('dorms') set bandwidth('max', '30', 'mbps') block traffic('social-media'), service('popcorn-time')", 
-            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.7') set bandwidth('min', '60', 'mbps') allow service('instagram'), service('popcorn-time')", 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.12.60') add middlebox('ids'), middlebox('dpi'), middlebox('load-balancer'), middlebox('firewall') set bandwidth('max', '20', 'mbps') allow service('stremio')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.12.54') add middlebox('parental-control') set quota('8', 'gb/wk') allow protocol('icmp'), service('facebook')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.76') remove middlebox('dpi'), middlebox('firewall'), middlebox('parental-control') set quota('2', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.78') add middlebox('dpi'), middlebox('firewall'), middlebox('parental-control') set quota('9', 'gb/wk')", 
+            "type": "negation"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('educatee') set bandwidth('max', '90', 'mbps') block traffic('streaming'), service('popcorn-time')", 
+            "sentence": "define intent stnIntent: for group('students') set bandwidth('max', '10', 'mbps') allow traffic('peer2peer'), service('youtube')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('firewall'), middlebox('dpi'), middlebox('ids') set quota('6', 'gb/wk') block service('stremio'), traffic('torrent')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.13') add middlebox('firewall') set quota('4', 'gb/wk') allow service('amazon-prime'), service('popcorn-time')", 
             "type": "domain"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('parental-control') unset quota('3', 'gb/wk') block service('facebook'), protocol('udp') start hour('17:52') end hour('2:56')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('firewall'), middlebox('dpi'), middlebox('parental-control'), middlebox('ids') unset quota('5', 'gb/wk') allow service('stremio'), protocol('ftp') start hour('17:39') end hour('2:7')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.22') remove middlebox('load-balancer'), middlebox('parental-control'), middlebox('firewall'), middlebox('dpi') set quota('2', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.21') add middlebox('ids') set bandwidth('min', '80', 'mbps')", 
+            "type": "negation"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.201') add middlebox('parental-control'), middlebox('load-balancer') set quota('4', 'gb/wk') allow traffic('torrent'), service('youtube')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.188') add middlebox('dpi'), middlebox('load-balancer'), middlebox('firewall') set bandwidth('min', '80', 'mbps') block protocol('http'), service('facebook')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('dpi'), middlebox('load-balancer') set quota('4', 'gb/wk') start hour('21:35') end hour('3:21')", 
+            "sentence": "define intent stnIntent: for group('professors') add middlebox('load-balancer'), middlebox('dpi'), middlebox('ids'), middlebox('parental-control'), middlebox('firewall') unset quota('3', 'gb/wk') start hour('16:3') end hour('20:4')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('load-balancer') set quota('7', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.10') add middlebox('load-balancer'), middlebox('parental-control'), middlebox('ids'), middlebox('firewall') set quota('4', 'gb/wk')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.86') remove middlebox('ids'), middlebox('load-balancer') set quota('7', 'gb/wk') start hour('17:51') end hour('2:44')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.85') add middlebox('parental-control'), middlebox('load-balancer'), middlebox('dpi'), middlebox('firewall') set quota('2', 'gb/wk') start hour('18:46') end hour('3:25')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('students') add middlebox('parental-control') set quota('9', 'gb/wk')", 
+            "sentence": "define intent stnIntent: for group('students') remove middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer') set bandwidth('min', '50', 'mbps')", 
+            "type": "negation"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('labs') add middlebox('dpi'), middlebox('load-balancer'), middlebox('firewall') set quota('4', 'gb/wk') block service('youtube'), service('netflix') start hour('18:36') end hour('2:47')", 
+            "sentence": "define intent stnIntent: for group('labs') remove middlebox('ids') unset quota('7', 'gb/wk') allow service('youtube'), traffic('social-media') start hour('17:40') end hour('3:29')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.12.58') remove middlebox('dpi'), middlebox('ids'), middlebox('load-balancer'), middlebox('parental-control') set quota('2', 'gb/wk') start hour('17:58') end hour('3:19')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.12.54') add middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control') set quota('7', 'gb/wk') start hour('17:14') end hour('2:18')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('labs') unset quota('9', 'gb/wk')", 
+            "sentence": "define intent stnIntent: for group('labs') set quota('4', 'gb/wk')", 
+            "type": "qos"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('dpi'), middlebox('firewall'), middlebox('parental-control') set quota('4', 'gb/wk') block traffic('torrent'), service('netflix')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('firewall'), middlebox('load-balancer'), middlebox('ids') unset quota('7', 'gb/wk') allow protocol('udp'), service('popcorn-time')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('labs') add middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control') set quota('4', 'gb/wk')", 
+            "sentence": "define intent stnIntent: for group('labs') add middlebox('firewall'), middlebox('ids'), middlebox('load-balancer') set bandwidth('min', '40', 'mbps')", 
+            "type": "negation"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.76') add middlebox('parental-control') block protocol('quic'), traffic('streaming') start hour('22:47') end hour('2:12')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.17.78') add middlebox('dpi'), middlebox('firewall') allow traffic('peer2peer'), service('netflix') start hour('16:4') end hour('21:18')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('students') add middlebox('load-balancer') start hour('21:26') end hour('2:46')", 
+            "sentence": "define intent stnIntent: for group('students') remove middlebox('dpi'), middlebox('firewall'), middlebox('parental-control') start hour('16:45') end hour('20:48')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.189') remove middlebox('ids'), middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi') set quota('7', 'gb/wk') block protocol('udp'), service('netflix') start hour('18:24') end hour('2:21')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.41.198') add middlebox('load-balancer'), middlebox('dpi'), middlebox('parental-control'), middlebox('firewall'), middlebox('ids') unset quota('8', 'gb/wk') allow protocol('sftp'), traffic('torrent') start hour('17:4') end hour('3:32')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('dpi'), middlebox('firewall') start hour('22:21') end hour('2:33')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.34') add middlebox('load-balancer'), middlebox('ids'), middlebox('firewall') start hour('15:59') end hour('21:32')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dormitory') add middlebox('ids'), middlebox('load-balancer'), middlebox('firewall'), middlebox('dpi') allow service('bittorrent'), service('netflix')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('ids') block protocol('http'), service('facebook')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('ids') unset bandwidth('min', '10', 'mbps') block service('vimeo'), traffic('social-media') start hour('18:3') end hour('3:19')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('firewall'), middlebox('parental-control'), middlebox('dpi') unset bandwidth('max', '50', 'mbps') allow service('youtube'), service('facebook') start hour('17:33') end hour('2:23')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('labs') remove middlebox('parental-control') block service('vimeo'), protocol('quic') start hour('21:34') end hour('3:13')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.42') add middlebox('parental-control'), middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer'), middlebox('ids') allow service('stremio'), traffic('streaming') start hour('15:29') end hour('20:56')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('labs') remove middlebox('load-balancer'), middlebox('parental-control') set quota('9', 'gb/wk') block traffic('peer2peer'), traffic('torrent')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.110') add middlebox('parental-control'), middlebox('dpi') set quota('3', 'gb/wk') allow traffic('peer2peer'), service('bittorrent')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.9') add middlebox('ids'), middlebox('firewall'), middlebox('dpi'), middlebox('parental-control') set quota('9', 'gb/wk') block traffic('peer2peer'), protocol('smtp')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') add middlebox('parental-control'), middlebox('firewall'), middlebox('load-balancer'), middlebox('dpi'), middlebox('ids') set bandwidth('max', '10', 'mbps') allow protocol('quic'), service('instagram')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('load-balancer'), middlebox('dpi'), middlebox('firewall'), middlebox('parental-control'), middlebox('ids') start hour('21:57') end hour('2:32')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('ids'), middlebox('parental-control'), middlebox('firewall'), middlebox('load-balancer'), middlebox('dpi') start hour('16:57') end hour('21:38')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.112') set quota('5', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.105') unset quota('7', 'gb/wk')", 
+            "type": "qos"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('labs') remove middlebox('load-balancer'), middlebox('parental-control') set bandwidth('min', '60', 'mbps') block protocol('https'), traffic('torrent')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.39') add middlebox('firewall'), middlebox('ids'), middlebox('dpi'), middlebox('parental-control') set bandwidth('max', '40', 'mbps') allow service('vimeo'), protocol('ftp')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('students') add middlebox('dpi'), middlebox('ids') unset bandwidth('max', '40', 'mbps') block traffic('peer2peer'), service('bittorrent') start hour('17:55') end hour('3:55')", 
+            "sentence": "define intent stnIntent: for group('students') remove middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer') unset quota('1', 'gb/wk') allow service('stremio'), protocol('ftp') start hour('17:12') end hour('2:15')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('load-balancer') unset bandwidth('min', '10', 'mbps') block service('amazon-prime'), traffic('streaming') start hour('17:30') end hour('3:27')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.30') add middlebox('dpi'), middlebox('ids') set quota('7', 'gb/wk') allow service('vimeo'), traffic('peer2peer') start hour('18:17') end hour('2:53')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.33') remove middlebox('dpi'), middlebox('ids'), middlebox('parental-control') unset quota('5', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.26') add middlebox('dpi'), middlebox('ids'), middlebox('parental-control'), middlebox('firewall') unset bandwidth('min', '40', 'mbps')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('hall') remove middlebox('ids'), middlebox('dpi'), middlebox('load-balancer') set quota('3', 'gb/wk') block service('vimeo'), traffic('streaming')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi'), middlebox('ids'), middlebox('firewall') set quota('8', 'gb/wk') allow service('popcorn-time'), service('netflix')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('labs') remove middlebox('dpi'), middlebox('parental-control'), middlebox('ids') set bandwidth('max', '70', 'mbps') block traffic('peer2peer'), traffic('streaming')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.40') add middlebox('parental-control'), middlebox('dpi'), middlebox('load-balancer'), middlebox('firewall'), middlebox('ids') set bandwidth('max', '90', 'mbps') allow service('amazon-prime'), service('facebook')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('load-balancer'), middlebox('parental-control'), middlebox('ids'), middlebox('dpi') set quota('7', 'gb/wk') start hour('18:16') end hour('2:25')", 
+            "sentence": "define intent stnIntent: for group('students') add middlebox('parental-control'), middlebox('firewall'), middlebox('dpi'), middlebox('load-balancer'), middlebox('ids') set quota('3', 'gb/wk') start hour('17:56') end hour('3:38')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('firewall') set bandwidth('min', '10', 'mbps') start hour('18:40') end hour('3:28')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('dpi') unset bandwidth('max', '80', 'mbps') start hour('18:51') end hour('2:31')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('load-balancer'), middlebox('ids'), middlebox('dpi') set bandwidth('min', '90', 'mbps')", 
+            "sentence": "define intent stnIntent: for group('professors') add middlebox('firewall') set quota('9', 'gb/wk')", 
+            "type": "negation"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('load-balancer'), middlebox('ids'), middlebox('parental-control') set bandwidth('min', '20', 'mbps') allow service('facebook') start hour('21:45') end hour('2:26')", 
+            "sentence": "define intent stnIntent: for group('professors') remove middlebox('load-balancer'), middlebox('firewall'), middlebox('ids') unset bandwidth('max', '90', 'mbps') block service('amazon-prime'), service('netflix') start hour('17:0') end hour('21:35')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('ids'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('dpi') start hour('21:24') end hour('2:11')", 
+            "sentence": "define intent stnIntent: for group('dorms') remove middlebox('ids') start hour('16:7') end hour('20:48')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('labs') remove middlebox('ids'), middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer'), middlebox('dpi') start hour('21:47') end hour('2:12')", 
+            "sentence": "define intent stnIntent: for group('labs') add middlebox('load-balancer'), middlebox('parental-control'), middlebox('firewall') start hour('15:24') end hour('21:15')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.87') remove middlebox('load-balancer'), middlebox('ids') set quota('9', 'gb/wk') block service('vimeo'), traffic('streaming') start hour('18:26') end hour('2:13')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.21.91') remove middlebox('parental-control'), middlebox('firewall'), middlebox('dpi'), middlebox('load-balancer') unset bandwidth('max', '80', 'mbps') allow service('vimeo'), service('facebook') start hour('17:22') end hour('2:29')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('professors') set quota('3', 'gb/wk')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.23') set quota('5', 'gb/wk')", 
+            "type": "qos"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('parental-control'), middlebox('firewall'), middlebox('ids') set bandwidth('max', '10', 'mbps') block traffic('social-media'), service('netflix')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.26') add middlebox('parental-control'), middlebox('ids'), middlebox('load-balancer') set bandwidth('max', '10', 'mbps') allow protocol('tcp'), service('facebook')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('professors') set bandwidth('max', '30', 'mbps')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.24') set bandwidth('max', '70', 'mbps')", 
+            "type": "qos"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('dpi') set quota('2', 'gb/wk') block traffic('torrent'), service('netflix')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.20') add middlebox('dpi'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('firewall') set quota('3', 'gb/wk') allow service('stremio'), traffic('torrent')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('dpi'), middlebox('parental-control') set quota('9', 'gb/wk') block service('amazon-prime'), protocol('udp')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.115') add middlebox('dpi') set quota('7', 'gb/wk') allow service('popcorn-time'), service('bittorrent')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('residence_hall') remove middlebox('firewall'), middlebox('ids'), middlebox('load-balancer'), middlebox('parental-control'), middlebox('dpi') block traffic('peer2peer'), protocol('https')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('parental-control'), middlebox('ids'), middlebox('load-balancer'), middlebox('dpi') allow service('vimeo'), service('netflix')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('scholar') add middlebox('ids'), middlebox('firewall'), middlebox('load-balancer') set quota('5', 'gb/wk')", 
+            "sentence": "define intent stnIntent: for group('students') add middlebox('firewall'), middlebox('ids') set bandwidth('min', '40', 'mbps')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('prof') remove middlebox('firewall'), middlebox('load-balancer') set bandwidth('max', '40', 'mbps') block service('facebook'), protocol('udp')", 
+            "sentence": "define intent stnIntent: for group('professors') add middlebox('dpi'), middlebox('parental-control'), middlebox('firewall'), middlebox('ids'), middlebox('load-balancer') set bandwidth('max', '90', 'mbps') allow service('youtube'), service('facebook')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorms') unset quota('4', 'gb/wk')", 
+            "sentence": "define intent stnIntent: for group('dorms') set quota('5', 'gb/wk')", 
+            "type": "qos"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('ids'), middlebox('load-balancer'), middlebox('dpi') set bandwidth('max', '70', 'mbps') start hour('22:22') end hour('2:4')", 
+            "sentence": "define intent stnIntent: for group('students') add middlebox('parental-control'), middlebox('dpi'), middlebox('ids'), middlebox('firewall') unset bandwidth('min', '30', 'mbps') start hour('15:4') end hour('20:25')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('professors') set bandwidth('min', '60', 'mbps')", 
+            "sentence": "define intent stnIntent: for group('professors') unset bandwidth('max', '30', 'mbps')", 
+            "type": "qos"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('dorms') remove middlebox('parental-control'), middlebox('ids') block service('amazon-prime'), traffic('peer2peer')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.27') add middlebox('ids'), middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer'), middlebox('parental-control') allow service('amazon-prime'), service('instagram')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.139') remove middlebox('parental-control'), middlebox('dpi'), middlebox('load-balancer') set bandwidth('max', '90', 'mbps')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.31.138') add middlebox('firewall'), middlebox('dpi') set bandwidth('min', '30', 'mbps')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('parental-control'), middlebox('ids'), middlebox('dpi'), middlebox('load-balancer'), middlebox('firewall') set bandwidth('max', '90', 'mbps') start hour('22:37') end hour('3:35')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('parental-control'), middlebox('dpi'), middlebox('load-balancer') set bandwidth('max', '70', 'mbps') start hour('15:37') end hour('20:16')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.31') set quota('2', 'gb/wk') block traffic('peer2peer'), service('instagram')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.26') set quota('6', 'gb/wk') allow traffic('torrent'), service('instagram')", 
+            "type": "negation"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.181') add middlebox('ids') set quota('8', 'gb/wk') allow protocol('telnet'), service('popcorn-time')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.177') remove middlebox('dpi'), middlebox('load-balancer') set bandwidth('min', '40', 'mbps') block service('amazon-prime'), service('facebook')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('student_residence') remove middlebox('parental-control'), middlebox('ids'), middlebox('load-balancer'), middlebox('dpi') set quota('3', 'gb/wk') block protocol('https'), service('bittorrent')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('parental-control'), middlebox('ids'), middlebox('dpi') set quota('1', 'gb/wk') allow service('instagram'), service('netflix')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('professors') remove middlebox('parental-control'), middlebox('ids') set bandwidth('min', '60', 'mbps') block traffic('torrent'), protocol('udp')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.7') add middlebox('ids'), middlebox('parental-control'), middlebox('dpi'), middlebox('firewall'), middlebox('load-balancer') set bandwidth('max', '80', 'mbps') allow traffic('peer2peer'), traffic('social-media')", 
+            "type": "domain"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('dpi') unset quota('9', 'gb/wk') block traffic('peer2peer'), service('popcorn-time') start hour('17:22') end hour('2:43')", 
+            "sentence": "define intent stnIntent: for group('students') add middlebox('parental-control') set quota('7', 'gb/wk') allow traffic('peer2peer'), protocol('sftp') start hour('18:14') end hour('2:38')", 
+            "type": "time"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.5') add middlebox('parental-control') set bandwidth('max', '60', 'mbps') block service('vimeo'), protocol('ftp')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') remove middlebox('ids'), middlebox('firewall'), middlebox('dpi'), middlebox('load-balancer') set quota('6', 'gb/wk') allow service('bittorrent'), service('netflix')", 
+            "type": "hierarchical"
+        }, 
+        {
+            "contradiction": 1, 
+            "hypothesis": "define intent hypIntent: for group('residence_hall') remove middlebox('firewall'), middlebox('ids') block traffic('torrent'), service('instagram')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('firewall'), middlebox('ids') allow service('stremio'), service('bittorrent')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('parental-control'), middlebox('load-balancer'), middlebox('ids') unset quota('7', 'gb/wk') start hour('22:51') end hour('3:17')", 
+            "sentence": "define intent stnIntent: for group('students') add middlebox('load-balancer'), middlebox('parental-control'), middlebox('ids'), middlebox('firewall') unset bandwidth('max', '30', 'mbps') start hour('16:4') end hour('21:48')", 
+            "type": "path"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('residence_hall') add middlebox('firewall'), middlebox('parental-control'), middlebox('load-balancer') set quota('8', 'gb/wk')", 
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('dpi'), middlebox('parental-control'), middlebox('ids'), middlebox('load-balancer'), middlebox('firewall') set bandwidth('min', '40', 'mbps')", 
+            "type": "synonym"
+        }, 
+        {
+            "contradiction": 0, 
+            "hypothesis": "define intent hypIntent: for group('labs') remove middlebox('ids'), middlebox('load-balancer'), middlebox('firewall') set quota('1', 'gb/wk') block protocol('https'), traffic('streaming') start hour('22:38') end hour('3:52')", 
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.45') add middlebox('load-balancer'), middlebox('ids'), middlebox('parental-control'), middlebox('dpi') unset quota('8', 'gb/wk') allow traffic('peer2peer'), service('instagram') start hour('16:6') end hour('21:42')", 
+            "type": "path"
         }
     ], 
     "summary": {
         "contradiction": {
             "byType": {
-                "domain": 4, 
-                "hierarchical": 11, 
-                "negation": 4, 
-                "qos": 13, 
-                "synonym": 10, 
-                "time": 6
+                "domain": 8, 
+                "hierarchical": 5, 
+                "negation": 3, 
+                "path": 0, 
+                "qos": 7, 
+                "synonym": 8, 
+                "time": 16
             }, 
-            "count": 48
+            "count": 47
         }, 
         "entailment": {
             "byType": {
-                "domain": 6, 
-                "hierarchical": 8, 
-                "negation": 12, 
-                "non_coreferent": 10, 
-                "qos": 5, 
+                "domain": 7, 
+                "hierarchical": 7, 
+                "negation": 5, 
+                "path": 14, 
+                "qos": 6, 
                 "synonym": 4, 
-                "time": 7
+                "time": 10
             }, 
-            "count": 52
+            "count": 53
         }
     }
 }
