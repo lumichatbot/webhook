@@ -1,7 +1,10 @@
 """ Network Wizard Webhook actions """
 
+import requests
 
 from nile import interpreter
+from contradictions import inspector
+from utils import config
 
 from parser import parse_intent, parse_feedback
 from api import Dialogflow
@@ -33,7 +36,18 @@ def build_accepted(request):
     """ Webhook action to deploy Nile intent after user confirmation """
 
     print("accepted", request)
-    return make_simple_response("Okay! Intent compiled and deployed!")
+    nile_intent = training_feedback['nile_intent']
+    contradiction = inspector.check(nile_intent)
+    if contradiction:
+        text = "The intent you described probably contradictions a previosu one. Do you want to deploy it anyway or remove the old one?"
+        return make_card_response("Possible contradiction", text, text, beautify_intent(contradiction))
+
+    # deploy
+    res = requests.post(config.DEPLOY_URL, {"intent": nile_intent})
+    if res.status['code'] == 200:
+        return make_simple_response("Okay! Intent compiled and deployed!")
+
+    return make_simple_response("Something went wrong. ;(")
 
 
 def build_feedback(request):
@@ -69,7 +83,8 @@ def feedback_confirm(request):
 
     response_text += "  \nIs that right?"
 
-    response = make_card_response("Feedback confirmation", response_text, "Can you confirm your feedback then?", beautify(response_text, words_to_highlight))
+    response = make_card_response("Feedback confirmation", response_text, "Can you confirm your feedback then?",
+                                  beautify(response_text, words_to_highlight))
     return response
 
 

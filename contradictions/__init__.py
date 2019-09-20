@@ -1,2 +1,4 @@
-from features import get_features
-from contradictons import identify
+""" Contradictions module """
+import contradictions.features
+import contradictions.inspector
+import contradictions.model

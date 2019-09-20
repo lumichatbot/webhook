@@ -16,6 +16,7 @@ matplotlib = "*"
 joblib = "*"
 numpy = "==1.16.0"
 lumi-webhook = {path = "."}
+requests = "*"
 
 [dev-packages]
 pylint = "*"

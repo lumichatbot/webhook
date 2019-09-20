@@ -414,23 +414,48 @@ def make_path_contradiction():
     }
 
     sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities)
-    if randint(0, 10) % 2 == 0:
-        _, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
-    else:
-        sentence_entities, _ = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
+    option = randint(0, 7)
+    # if randint(0, 10) % 2 == 0:
+    #     _, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
+    # else:
+    #     sentence_entities, _ = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
+    #
+    # if randint(0, 10) % 2 == 0:
+    #     sentence_entities, _ = sample_contradicting_rules(sentence_entities, hypothesis_entities)
+    # else:
+    #     _, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
+    #
+    # if randint(0, 10) % 2 == 0:
+    #     sentence_entities, hypothesis_entities = sample_entailing_qos(sentence_entities, hypothesis_entities)
+    # else:
+    #     sentence_entities, hypothesis_entities = sample_contradicting_qos(sentence_entities, hypothesis_entities)
+    #
+    # if randint(0, 10) % 2 == 0:
+    #     sentence_entities, hypothesis_entities = sample_entailing_timeranges(sentence_entities, hypothesis_entities)
 
-    if randint(0, 10) % 2 == 0:
-        sentence_entities, _ = sample_contradicting_rules(sentence_entities, hypothesis_entities)
+    if option == 0:
+        sentence_entities, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
+    elif option == 1:
+        sentence_entities, hypothesis_entities = sample_contradicting_rules(sentence_entities, hypothesis_entities)
+    elif option == 2:
+        sentence_entities, hypothesis_entities = sample_contradicting_qos(
+            sentence_entities, hypothesis_entities, stn_action='set', hyp_action='unset')
+    if option == 3:
+        sentence_entities, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
+        sentence_entities, hypothesis_entities = sample_contradicting_rules(sentence_entities, hypothesis_entities)
+    elif option == 4:
+        sentence_entities, hypothesis_entities = sample_contradicting_rules(sentence_entities, hypothesis_entities)
+        sentence_entities, hypothesis_entities = sample_contradicting_qos(
+            sentence_entities, hypothesis_entities, stn_action='set', hyp_action='unset')
+    elif option == 5:
+        sentence_entities, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
+        sentence_entities, hypothesis_entities = sample_contradicting_qos(
+            sentence_entities, hypothesis_entities, stn_action='set', hyp_action='unset')
     else:
-        _, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
-
-    if randint(0, 10) % 2 == 0:
-        sentence_entities, hypothesis_entities = sample_entailing_qos(sentence_entities, hypothesis_entities)
-    else:
-        sentence_entities, hypothesis_entities = sample_contradicting_qos(sentence_entities, hypothesis_entities)
-
-    if randint(0, 10) % 2 == 0:
-        sentence_entities, hypothesis_entities = sample_entailing_timeranges(sentence_entities, hypothesis_entities)
+        sentence_entities, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
+        sentence_entities, hypothesis_entities = sample_contradicting_rules(sentence_entities, hypothesis_entities)
+        sentence_entities, hypothesis_entities = sample_contradicting_qos(
+            sentence_entities, hypothesis_entities, stn_action='set', hyp_action='unset')
 
     entailment = {
         'type': 'path',

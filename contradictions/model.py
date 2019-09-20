@@ -35,7 +35,7 @@ class ClassificationModel(object):
     def load(self, dataset_size):
         """ loads previously trained weights into the model """
         print "LOADING"
-        return self.load(dataset_size)
+        return self.load_model(dataset_size)
 
     def train(self, features, targets, dataset_size):
         """ trains the model with given features and expected targets """

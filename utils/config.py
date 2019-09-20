@@ -1,5 +1,9 @@
 """ Configurations and constansts for webhook module """
 
+########## DEPLOYER ##########
+DEPLOY_URL = "http://localhost:5000/deploy"
+
+
 ########## PATH ###########
 MODEL_WEIGHTS_PATH = "../res/weights/{}_{}.joblib"
 

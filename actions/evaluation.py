@@ -87,6 +87,7 @@ def feedback():
     results = []
     shuffle(campi_intents)
     for idx, feedback_case in enumerate(campi_intents):
+        print "intent", idx
         result = diag.detect_intent_texts([feedback_case])[0]
         rec = recall(result)
         prec = precision(result)
@@ -170,7 +171,7 @@ def run(dtype):
 
 
 if __name__ == '__main__':
-    run('alpha')
+    # run('alpha')
     # run('campi')
     # run('both')
-    # feedback()
+    feedback()

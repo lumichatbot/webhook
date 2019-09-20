@@ -1,18 +1,18 @@
 text,recognized_entities,training_time,recall,precision,f1_score
-Students should not use more than five gigabytes of bandwidth per week,"@qos_unit,@qos_metric,@target,",55.34402799606323,0.75,1.0,0.8571428571428571
-Set users bandwidth to 500 kbps when the 100 Gb per month quota is reached,"@qos_unit,@qos_metric,@operation,@qos_value,@target,",55.34402799606323,1.0,1.0,1.0
-Dismiss rate limiting for faculty members,"@operation,@qos_metric,@target,",55.34402799606323,1.0,1.0,1.0
-Balance traffic coming from gateway to application servers,"@origin,@destination,@middlebox,",55.34402799606323,1.0,1.0,1.0
-Let students access Facebook,"@operation,@target,@service,",55.34402799606323,1.0,1.0,1.0
-"Lumi, block SIP traffic from 19:00 to 08:00 for dorms","@protocol,@operation,@end,@target,@start,",55.34402799606323,1.0,0.8,0.888888888888889
-Increase the bandwidth consumption limit for professors to 100 Mbps,"@qos_unit,@qos_metric,@operation,@qos_value,@target,",55.34402799606323,1.0,1.0,1.0
-We provide a quota to all students of 1 GB/wk of usage.,"@qos_unit,@qos_metric,@qos_value,@target,",55.34402799606323,1.0,1.0,1.0
-Prioritize VoIP traffic on the meeting room 23from 13:30 to 14:30,"@traffic,@end,@middlebox,",55.34402799606323,0.5625,0.9,0.6923076923076923
-"Lumi, prohibit access to internal campus computers from the internet","@origin,@operation,@destination,",55.34402799606323,1.0,1.0,1.0
-Allow RTSP traffic in the LAN,"@operation,@protocol,@target,",55.34402799606323,1.0,1.0,1.0
-From my house to PUCRS add middlebox dpi,"@origin,@operation,@destination,@middlebox,",55.34402799606323,1.0,1.0,1.0
-"Please, block netflix traffic  on PUC","@origin,@operation,@destination,",55.34402799606323,1.0,1.0,1.0
-Prioritize Netflix traffic from 18:00 to midnight,,55.34402799606323,0.0,0.0,0.0
-Dismiss all rate limits and quotas for all hosts,"@operation,@qos_metric,@target,",55.34402799606323,1.0,1.0,1.0
-Please add traffic shaper between the internet and the dorms,"@origin,@destination,@middlebox,",55.34402799606323,1.0,1.0,1.0
-Remove load balancing from gateway  to database,"@origin,@operation,@destination,@middlebox,",55.34402799606323,1.0,1.0,1.0
+Block torrent traffic for all students,"@operation,@traffic,@target,",13.821089029312134,1.0,1.0,1.0
+Lumi monitors the network traffic,"@target,@middlebox,",13.821089029312134,1.0,1.0,1.0
+We provide a quota to all students of 1 GB/wk of usage.,"@qos_unit,@qos_metric,@qos_value,@target,",13.821089029312134,1.0,1.0,1.0
+"Lumi, set to 10 kbps the upload rate for faculty","@qos_unit,@qos_metric,@operation,@qos_value,@target,",13.821089029312134,1.0,1.0,1.0
+"Lumi, block VoIP traffic from 23:59 to 06:00","@traffic,@start,@operation,@end,",13.821089029312134,1.0,0.75,0.8571428571428571
+Balance traffic coming from gateway to application servers,"@origin,@destination,@middlebox,",13.821089029312134,1.0,1.0,1.0
+Dismiss all middleboxes from UFRGS to PUCRS,"@origin,@operation,@destination,@middlebox,",13.821089029312134,1.0,1.0,1.0
+Include parental control for PlayStation,"@operation,@target,@middlebox,",13.821089029312134,1.0,1.0,1.0
+Set users bandwidth to 500 kbps when the 100 Gb per month quota is reached,"@qos_unit,@qos_metric,@operation,@qos_value,@target,",13.821089029312134,1.0,1.0,1.0
+From my house to PUCRS add middlebox dpi,"@origin,@operation,@destination,@middlebox,",13.821089029312134,1.0,1.0,1.0
+Setup a packet filterfor guests traffic,"@operation,@target,@middlebox,",13.821089029312134,1.0,1.0,1.0
+Grant SFTP access to all students from 08:00 to 17:00,"@protocol,@operation,@end,@target,@start,",13.821089029312134,1.0,0.8,0.888888888888889
+add shaping for gateway everyday from 18:00 to midnight,"@start,@operation,@end,@target,@middlebox,",13.821089029312134,1.0,0.6,0.7499999999999999
+Add monitor for the university from 04:00 to 22:00,"@start,@end,@target,@middlebox,",13.821089029312134,1.0,0.75,0.8571428571428571
+Allow RTSP traffic in the LAN,"@operation,@protocol,@target,",13.821089029312134,1.0,1.0,1.0
+Allow access from computers to DMZ,"@origin,@operation,@destination,",13.821089029312134,1.0,1.0,1.0
+Grant SSH access to professors,"@operation,@protocol,@target,",13.821089029312134,1.0,1.0,1.0

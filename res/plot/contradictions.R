@@ -7,7 +7,7 @@ library(reshape2)
 library(precrec)
 library(caret)
 
-data <- read.csv("/home/asjacobs/workspace/lumi-webhook/res/results/contradictions_summary_0.csv")
+data <- read.csv("/home/asjacobs/workspace/webhook/res/results/contradictions_summary_0.csv")
 data$id <- as.character(data$dataset)
 data$num_id <- as.numeric(data$dataset)
 data[with(data, order(num_id)), ]
@@ -138,11 +138,7 @@ m +
 
 
 
-data <- read.csv("/home/asjacobs/workspace/lumi-webhook/res/results/contradictions_10000_forest.csv")
-
-sscurves <- evalmod(scores = data$prediction, labels = data$contradiction)
-plot(sscurves)
-
+data <- read.csv("/home/asjacobs/workspace/webhook/res/results/contradictions_10000_forest.csv")
 
 negation = data[data$type == 'negation',]
 qos = data[data$type == 'qos',]
@@ -150,7 +146,7 @@ hierarchy = data[data$type == 'hierarchical',]
 time = data[data$type == 'time',]
 domain = data[data$type == 'domain',]
 synonym = data[data$type == 'synonym',]
-non_coreferent = data[data$type == 'non_coreferent',]
+path = data[data$type == 'path',]
 
 precision(data = factor(data$prediction), reference = factor(data$contradiction))
 
@@ -160,7 +156,7 @@ precision(data = factor(hierarchy$prediction), reference = factor(hierarchy$cont
 precision(data = factor(time$prediction), reference = factor(time$contradiction))
 precision(data = factor(domain$prediction), reference = factor(domain$contradiction))
 precision(data = factor(synonym$prediction), reference = factor(synonym$contradiction))
-precision(data = factor(non_coreferent$prediction), reference = factor(non_coreferent$contradiction))
+precision(data = factor(path$prediction), reference = factor(path$contradiction))
 
 recall(data = factor(data$prediction), reference = factor(data$contradiction))
 
@@ -171,7 +167,7 @@ recall(data = factor(hierarchy$prediction), reference = factor(hierarchy$contrad
 recall(data = factor(time$prediction), reference = factor(time$contradiction))
 recall(data = factor(domain$prediction), reference = factor(domain$contradiction))
 recall(data = factor(synonym$prediction), reference = factor(synonym$contradiction))
-recall(data = factor(non_coreferent$prediction), reference = factor(non_coreferent$contradiction))
+recall(data = factor(path$prediction), reference = factor(path$contradiction))
 
 F_meas(data = factor(data$prediction), reference = factor(data$contradiction))
 
@@ -182,7 +178,7 @@ F_meas(data = factor(hierarchy$prediction), reference = factor(hierarchy$contrad
 F_meas(data = factor(time$prediction), reference = factor(time$contradiction))
 F_meas(data = factor(domain$prediction), reference = factor(domain$contradiction))
 F_meas(data = factor(synonym$prediction), reference = factor(synonym$contradiction))
-F_meas(data = factor(non_coreferent$prediction), reference = factor(non_coreferent$contradiction))
+F_meas(data = factor(path$prediction), reference = factor(path$contradiction))
 
 
 
@@ -404,7 +400,7 @@ m +
 
 
 
-data <- read.csv("/home/asjacobs/workspace/lumi-webhook/res/results/extraction_feedback.csv")
+data <- read.csv("/home/asjacobs/workspace/webhook/res/results/extraction_feedback.csv")
 
 
 m <- ggplot(data, aes(x=feedback_round)) 
@@ -442,7 +438,7 @@ m +
       title.hjust = 0.5
     ))+
   #scale_fill_manual("Colour", values = c("mean_test_mse" = , "mean_train_mse" = ), labels = c("SVM", "LogReg")) +
-  theme(text = element_text(colour="#343f3e", size=28, family="Roboto Light"),
+  theme(text = element_text(colour="#343f3e", size=28, family="Times New Roman"),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         panel.background = element_blank(), 

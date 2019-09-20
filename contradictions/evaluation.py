@@ -164,5 +164,6 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    test(10000, 'forest')
+    # run()
     # analyze_campus_policies()

@@ -159,7 +159,7 @@ class Dialogflow(object):
         return training_phrase_parts
 
     def update_intent(self, intent_id, training_phrases_parts, keep_phrases=True):
-        print 'Updating intent...'
+        print 'Updating intents...'
         client = dialogflow.IntentsClient()
         intent_name = client.intent_path(self.project_id, intent_id)
         intent_view = None

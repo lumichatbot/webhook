@@ -1,4 +1,3 @@
-
 {
   "intents": [
     {
@@ -1861,14 +1860,14 @@
     },
     {
       "university": "University of Illinois - Urbana Champaign",
-      "nile": "define intent uniIntent: add middlebox('copyright-monitoring') for group('students')",
-      "text": "If a student is in obvious violations of copyright  law by using a room's wired connection (i.e. ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs",
+      "nile": "define intent uniIntent: add middlebox('copyright monitoring') for group('students')",
+      "text": "If a student is in obvious violations of copyright law by using a room's wired connection (ie ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs",
       "parts": [
         {
           "text": "If "
         },
         {
-          "text": "a students",
+          "text": "a student",
           "alias": "target",
           "entity_type": "@target",
           "value": "students"
@@ -1880,10 +1879,10 @@
           "text": "copyright",
           "alias": "middlebox",
           "entity_type": "@middlebox",
-          "value": "copyright-monitoring"
+          "value": "copyright monitoring"
         },
         {
-          "text": " law by using a room's wired connection (i.e. ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs"
+          "text": " law by using a room's wired connection (ie ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs"
         }
       ]
     },
@@ -1925,40 +1924,6 @@
       ]
     },
     {
-      "university": "University of Illinois - Chicago",
-      "nile": "define intent uniIntent: for endpoint('hosts') block service('file sharing')",
-      "text": "Guests cannot run any file sharing/downloading program",
-      "parts": [
-        {
-          "text": "Guests",
-          "alias": "target",
-          "entity_type": "@target",
-          "value": "hosts"
-        },
-        {
-          "text": " "
-        },
-        {
-          "text": "cannot run",
-          "alias": "operation",
-          "entity_type": "@operation",
-          "value": "block"
-        },
-        {
-          "text": " any "
-        },
-        {
-          "text": "file sharing",
-          "alias": "service",
-          "entity_type": "@service",
-          "value": "file sharing"
-        },
-        {
-          "text": "/downloading program"
-        }
-      ]
-    },
-    {
       "university": "University of Illinois - Urbana Champaign",
       "nile": "define intent uniIntent: for endpoint('University Housing') add middlebox('traffic monitor')",
       "text": "University Housing monitors only the amount of traffic of each user",
@@ -1985,13 +1950,14 @@
     },
     {
       "university": "University of Illinois - Urbana Champaign",
-      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') block servive('CounterStrike server')",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') block service('CounterStrike server')",
       "text": "CounterStrike server is blocked by the University firewall",
       "parts": [
         {
           "text": "CounterStrike server",
           "alias": "service",
-          "entity_type": "@service"
+          "entity_type": "@service",
+          "value": "CounterStrike server"
         },
         {
           "text": " is "
@@ -1999,7 +1965,8 @@
         {
           "text": "blocked",
           "alias": "operation",
-          "entity_type": "@operation"
+          "entity_type": "@operation",
+          "value": "block"
         },
         {
           "text": " "
@@ -2016,27 +1983,159 @@
         {
           "text": "firewall",
           "alias": "middlebox",
-          "entity_type": "@middlebox"
+          "entity_type": "@middlebox",
+          "value": "firewall"
         }
       ]
     },
     {
       "university": "University of Illinois - Urbana Champaign",
-      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow protocol('FTP')",
-      "text": "FTP server is allowed by the University firewall",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow service('AIM chat'), service('file transfer')",
+      "text": "AIM chat and file transfering is allowed by the mostly-closed University firewall",
       "parts": [
         {
-          "text": "FTP",
-          "alias": "protocol",
-          "entity_type": "@protocol"
+          "text": "AIM chat",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "AIM chat"
         },
         {
-          "text": " server is "
+          "text": " and "
+        },
+        {
+          "text": "file transfering",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "file transfer"
+        },
+        {
+          "text": " is "
         },
         {
           "text": "allowed",
           "alias": "operation",
-          "entity_type": "@operation"
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow service('Battlenet')",
+      "text": "Battlenet is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "Battlenet",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "Battlenet"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow service('H323 video conferencing')",
+      "text": "H323 video conferencing is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "H323 video conferencing",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "H323 video conferencing"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') block service('Everquest')",
+      "text": "Everquest is blocked by the University firewall",
+      "parts": [
+        {
+          "text": "Everquest",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "Everquest"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "blocked",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "block"
         },
         {
           "text": " "
@@ -2053,7 +2152,569 @@
         {
           "text": "firewall",
           "alias": "middlebox",
-          "entity_type": "@middlebox"
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow protocol('HTTP'), protocol('HTTPS')",
+      "text": "HTTP and HTTPS are allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "HTTP",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "http"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "HTTPS",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "https"
+        },
+        {
+          "text": " are "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow protocol('IMAP'), protocol('secure IMAP')",
+      "text": "IMAP and secure IMAP are allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "IMAP",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "imap"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "secure IMAP",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "secure imap"
+        },
+        {
+          "text": " are "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') block service('MSN video'), service('MSN audio') allow service('MSN chat'), service('MSN application sharing')",
+      "text": "MSN audio and video communications are not allowed by the University firewall, but the MSN chat, application sharing and file transferring are not blocked",
+      "parts": [
+        {
+          "text": "MSN audio",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "MSN audio"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "video",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "MSN video"
+        },
+        {
+          "text": " are "
+        },
+        {
+          "text": "not allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "block"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        },
+        {
+          "text": ", but the "
+        },
+        {
+          "text": "MSN chat",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "MSN chat"
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "application sharing",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "MSN application sharing"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "file transferring",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "MSN file transferring"
+        },
+        {
+          "text": " are "
+        },
+        {
+          "text": "not blocked",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow service('Net2Phone')",
+      "text": "Net2Phone is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "Net2Phone",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "Net2Phone"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow service('PC Telephone')",
+      "text": "PC-Telephone is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "PC-Telephone",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "PC Telephone"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow protocol('POP3'), protocol('secure POP')",
+      "text": "POP3 and secure POP are allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "POP3",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "pop3"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "secure POP",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "secure pop"
+        },
+        {
+          "text": " are "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow protocol('SMTP')",
+      "text": "SMTP is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "SMTP",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "smtp"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow service('Sony Playstation 2')",
+      "text": "Sony Playstation 2 is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "Sony Playstation 2",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "Sony Playstation 2"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow protocol('SSH')",
+      "text": "SSH is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "SSH",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "ssh"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow protocol('Telnet')",
+      "text": "Telnet is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "Telnet",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "telnet"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow service('Sorenson Videophone 200')",
+      "text": "Sorenson Videophone 200 is allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "Sorenson Videophone 200",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "Sorenson Videophone 200"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of Illinois - Urbana Champaign",
+      "nile": "define intent uniIntent: for endpoint('University') add middlebox('firewall') allow protocol('ftp'), protocol('sftp')",
+      "text": "FTP and SFTP servers are allowed by the mostly-closed University firewall",
+      "parts": [
+        {
+          "text": "FTP",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "ftp"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "SFTP",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "sftp"
+        },
+        {
+          "text": " servers are "
+        },
+        {
+          "text": "allowed",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "allow"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "by the mostly-closed University",
+          "entity_type": "@target",
+          "alias": "target",
+          "value": "University"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "firewall",
+          "alias": "middlebox",
+          "entity_type": "@middlebox",
+          "value": "firewall"
         }
       ]
     },
@@ -2074,7 +2735,8 @@
         {
           "text": "data limit",
           "alias": "qos_metric",
-          "entity_type": "@qos_metric"
+          "entity_type": "@qos_metric",
+          "value": "quota"
         },
         {
           "text": " is "
@@ -2082,7 +2744,8 @@
         {
           "text": "100",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "100"
         },
         {
           "text": " "
@@ -2112,7 +2775,8 @@
         {
           "text": "10",
           "entity_type": "@qos_value",
-          "alias": "qos_value"
+          "alias": "qos_value",
+          "value": "10"
         },
         {
           "text": " "
@@ -2147,7 +2811,8 @@
         {
           "text": "on 10 AM",
           "alias": "start",
-          "entity_type": "@start"
+          "entity_type": "@start",
+          "value": "10:00"
         },
         {
           "text": " "
@@ -2163,7 +2828,7 @@
     {
       "university": "Rutgers University",
       "nile": "define intent uniIntent: for endpoint('network') add middlebox('traffic monitor')",
-      "text": "The system passively monitors network throughput when traffic is light",
+      "text": "The system passively monitors the network throughput when traffic is light",
       "parts": [
         {
           "text": "The system passively "
@@ -2172,7 +2837,10 @@
           "text": "monitors",
           "alias": "middlebox",
           "entity_type": "@middlebox",
-          "value": "monitor"
+          "value": "traffic monitor"
+        },
+        {
+          "text": " "
         },
         {
           "text": "the network",
@@ -2196,7 +2864,8 @@
         {
           "text": "6",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "6"
         },
         {
           "text": " "
@@ -2261,6 +2930,40 @@
       ]
     },
     {
+      "university": "University of Illinois - Chicago",
+      "nile": "define intent uniIntent: for endpoint('hosts') block service('file sharing')",
+      "text": "Guests cannot run any file sharing/downloading program",
+      "parts": [
+        {
+          "text": "Guests",
+          "alias": "target",
+          "entity_type": "@target",
+          "value": "hosts"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "cannot run",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "block"
+        },
+        {
+          "text": " any "
+        },
+        {
+          "text": "file sharing",
+          "alias": "service",
+          "entity_type": "@service",
+          "value": "file sharing"
+        },
+        {
+          "text": "/downloading program"
+        }
+      ]
+    },
+    {
       "university": "Carnegie Mellon University",
       "nile": "define intent uniIntent: for endpoint('network') set quota('10', 'gb/d')",
       "text": "No individual service or system running on the wired/wireless network should use more than 10 gigabytes of bandwidth per day, regardless of whether it is in inbound or outbound over the commodity network link",
@@ -2289,7 +2992,8 @@
         {
           "text": "10",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "10"
         },
         {
           "text": " "
@@ -2340,13 +3044,11 @@
         {
           "text": "overuse notification",
           "alias": "middlebox",
-          "entity_type": "@middlebox"
+          "entity_type": "@middlebox",
+          "value": "overuse notification"
         },
         {
-          "text": " if the "
-        },
-        {
-          "text": " average for either "
+          "text": " if the average for either "
         },
         {
           "text": "inbound",
@@ -2369,7 +3071,8 @@
         {
           "text": "10",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "10"
         },
         {
           "text": " "
@@ -2377,7 +3080,8 @@
         {
           "text": "GB per week",
           "alias": "qos_unit",
-          "entity_type": "@qos_unit"
+          "entity_type": "@qos_unit",
+          "value": "gb/wk"
         }
       ]
     },
@@ -2393,12 +3097,21 @@
           "value": "quota"
         },
         {
+          "text": " "
+        },
+        {
+          "text": "for students",
+          "entity_type": "@target",
+          "value": "students"
+        },
+        {
           "text": " are "
         },
         {
           "text": "5000",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "5000"
         },
         {
           "text": " "
@@ -2415,7 +3128,8 @@
         {
           "text": "download",
           "alias": "qos_constraint",
-          "entity_type": "@qos_constraint"
+          "entity_type": "@qos_constraint",
+          "value": "download"
         },
         {
           "text": " and "
@@ -2423,7 +3137,8 @@
         {
           "text": "2000",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "2000"
         },
         {
           "text": " "
@@ -2440,7 +3155,45 @@
         {
           "text": "upload",
           "alias": "qos_constraint",
-          "entity_type": "@qos_constraint"
+          "entity_type": "@qos_constraint",
+          "value": "upload"
+        }
+      ]
+    },
+    {
+      "university": "Massachusetts Institute of Technology",
+      "nile": "define intent uniIntent: for endpoint('dorms') block protocol('nat')",
+      "text": "Routers or anything else that does routing or NAT are prohibited from MITNet as they interfere with the operation of the network",
+      "parts": [
+        {
+          "text": "Routers or anything else that does routing or "
+        },
+        {
+          "text": "NAT",
+          "alias": "protocol",
+          "entity_type": "@protocol",
+          "value": "nat"
+        },
+        {
+          "text": " are "
+        },
+        {
+          "text": "prohibited",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "block"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "from MITNet",
+          "alias": "target",
+          "entity_type": "@target",
+          "value": "MITnet"
+        },
+        {
+          "text": " as they interfere with the operation of the network"
         }
       ]
     },
@@ -2455,7 +3208,8 @@
         {
           "text": "18",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "18"
         },
         {
           "text": " "
@@ -2467,7 +3221,7 @@
           "value": "gb"
         },
         {
-          "text": " of data is"
+          "text": " of data is "
         },
         {
           "text": "reached",
@@ -2508,7 +3262,8 @@
         {
           "text": "2",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "2"
         },
         {
           "text": " "
@@ -2547,7 +3302,8 @@
         {
           "text": "4",
           "alias": "qos_value",
-          "entity_type": "@qos_value"
+          "entity_type": "@qos_value",
+          "value": "4"
         },
         {
           "text": " "
@@ -2566,6 +3322,55 @@
           "alias": "qos_metric",
           "entity_type": "@qos_metric",
           "value": "bandwidth"
+        }
+      ]
+    },
+    {
+      "university": "Rose-Hulman Institute of Technology",
+      "nile": "define intent uniIntent: from endpoint('RHIT-OPEN') to endpoint('internal network') for group('hosts') block traffic('any')",
+      "text": "RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network",
+      "parts": [
+        {
+          "text": "RHIT-OPEN",
+          "alias": "origin",
+          "entity_type": "@origin",
+          "value": "RHIT-OPEN"
+        },
+        {
+          "text": " will work in labs, classrooms and residence halls but "
+        },
+        {
+          "text": "does not allow",
+          "alias": "operation",
+          "entity_type": "@operation",
+          "value": "block"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "the user",
+          "alias": "target",
+          "entity_type": "@target",
+          "value": "hosts"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "to access",
+          "alias": "traffic",
+          "entity_type": "@traffic",
+          "value": "any"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "the internal Rose-Hulman network",
+          "alias": "destination",
+          "entity_type": "@destination",
+          "value": "internal network"
         }
       ]
     },
@@ -2670,44 +3475,8 @@
       ]
     },
     {
-      "university": "University of Illinois - Urbana Champaign",
-      "nile": "define intent uniIntent: for group('Students') allow protocol('ftp'), protocol('sftp')",
-      "text": "FTP and SFTP traffic is allowed for all students",
-      "parts": [
-        {
-          "text": "FTP",
-          "entity_type": "@protocol",
-          "value": "ftp"
-        },
-        {
-          "text": " and "
-        },
-        {
-          "text": "SFTP",
-          "entity_type": "@protocol",
-          "value": "sftp"
-        },
-        {
-          "text": " traffic "
-        },
-        {
-          "text": "is allowed",
-          "entity_type": "@operation",
-          "value": "allow"
-        },
-        {
-          "text": " "
-        },
-        {
-          "text": "for all students",
-          "entity_type": "@target",
-          "value": "students"
-        }
-      ]
-    },
-    {
-      "university": "Cornell",
-      "nile": "define intent uniIntent: for group ('students') set quota('200', 'gb/mth')",
+      "university": "Cornell University",
+      "nile": "define intent uniIntent: for group('students') set quota('200', 'gb/mth')",
       "text": "Students have 200 GB of Free monthly usage",
       "parts": [
         {
@@ -2727,7 +3496,7 @@
           "text": " "
         },
         {
-          "text": "GB of Free monthly usageB",
+          "text": "GB of Free monthly usage",
           "entity_type": "@qos_unit",
           "value": "gb/mth"
         }
@@ -2767,7 +3536,7 @@
     {
       "university": "North Dakota State University",
       "nile": "define intent uniIntent: for group('students') set quota('5','gb/d') start hour(06:00)",
-      "text": "Students have a quota of 5 GB per day. The quota is reset at 6am",
+      "text": "Students have a quota of 5 GB per day The quota is reset at 6am",
       "parts": [
         {
           "text": "Students",
@@ -2799,7 +3568,7 @@
           "value": "gb/d"
         },
         {
-          "text": ". The "
+          "text": " The "
         },
         {
           "text": "quota",
@@ -2890,10 +3659,10 @@
           "value": "mbps"
         },
         {
-          "text": " for the entire "
+          "text": " "
         },
         {
-          "text": "campus",
+          "text": "for the entire campus",
           "entity_type": "@target",
           "value": "campus"
         }
@@ -2901,16 +3670,16 @@
     },
     {
       "university": "Rose-Hulman Institute of Technology",
-      "nile": "define intent uniIntent: for group('guests') set bandwidth('max', '5', 'mbps')",
+      "nile": "define intent uniIntent: for group('hosts') set bandwidth('max', '5', 'mbps')",
       "text": "Guests' network is rate-limited to 5 Mb/s per user",
       "parts": [
         {
-          "text": "Guests' network",
+          "text": "Guests'",
           "entity_type": "@target",
-          "value": "guests"
+          "value": "hosts"
         },
         {
-          "text": " "
+          "text": " network "
         },
         {
           "text": "is rate-limited to",
@@ -2993,6 +3762,354 @@
         },
         {
           "text": " traffic"
+        }
+      ]
+    },
+    {
+      "university": "University of Washington",
+      "nile": "define intent uniIntent: from endpoint('internet') to endpoint('UW network') block protocol('ftp') ",
+      "text": "These network security changes include blocking traffic from the Internet into the UW network over FTP",
+      "parts": [
+        {
+          "text": "These network security changes include "
+        },
+        {
+          "text": "blocking",
+          "entity_type": "@operation",
+          "value": "block"
+        },
+        {
+          "text": " traffic "
+        },
+        {
+          "text": "from the Internet",
+          "entity_type": "@origin",
+          "value": "internet"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "into the UW network",
+          "entity_type": "@destination",
+          "value": "UW network"
+        },
+        {
+          "text": " over "
+        },
+        {
+          "text": "FTP",
+          "entity_type": "@protocol",
+          "value": "ftp"
+        }
+      ]
+    },
+    {
+      "university": "University of Michigan - Ann Harbor",
+      "nile": "define intent uniIntent: for endpoint('network') add middlebox('network border system'), middlebox('intrusion prevention'), middlebox('firewall'), middlebox('unit firewall') ",
+      "text": "Elements of network security currently include the following four solutions: Network Border Infrastructure System, Intrusion Prevention System, Firewalls, and Custom Unit Firewalls",
+      "parts": [
+        {
+          "text": "Elements of "
+        },
+        {
+          "text": "network",
+          "entity_type": "@target",
+          "value": "network"
+        },
+        {
+          "text": " security currently "
+        },
+        {
+          "text": "include",
+          "entity_type": "@operation",
+          "value": "add"
+        },
+        {
+          "text": " the following four solutions: "
+        },
+        {
+          "text": "Network Border Infrastructure System",
+          "entity_type": "@middlebox",
+          "value": "network border system"
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Intrusion Prevention System",
+          "entity_type": "@middlebox",
+          "value": "intrusion prevention"
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Firewalls",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Custom Unit Firewalls",
+          "entity_type": "@middlebox",
+          "value": "unit firewall"
+        }
+      ]
+    },
+    {
+      "university": "University of California - San Diego",
+      "nile": "define intent uniIntent: for endpoint('network') add middlebox('traffic monitor') ",
+      "text": "ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function",
+      "parts": [
+        {
+          "text": "ACT/IT Infrastructure "
+        },
+        {
+          "text": "monitors traffic",
+          "entity_type": "@middlebox",
+          "value": "traffic monitor"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "on the network",
+          "entity_type": "@target",
+          "value": "network"
+        },
+        {
+          "text": " for the purpose of maintaining proper network function"
+        }
+      ]
+    },
+    {
+      "university": "Brown University",
+      "nile": "define intent uniIntent: for endpoint('network') add middlebox('traffic monitor') ",
+      "text": "CIS restricts traffic that is known to cause damage to the network or hosts on it, such as NETBIOS",
+      "parts": [
+        {
+          "text": "CIS "
+        },
+        {
+          "text": "restricts",
+          "entity_type": "@operation",
+          "value": "block"
+        },
+        {
+          "text": " traffic that is known to cause damage "
+        },
+        {
+          "text": "to the network",
+          "entity_type": "@target",
+          "value": "network"
+        },
+        {
+          "text": " or hosts on it, such as "
+        },
+        {
+          "text": "NETBIOS",
+          "entity_type": "@service",
+          "value": "netbios"
+        }
+      ]
+    },
+    {
+      "university": "Brown University",
+      "nile": "define intent uniIntent: for endpoint('network') add middlebox('traffic monitor') ",
+      "text": "All network traffic passing in or out of Brown's network is monitored by an intrusion detection system for signs of compromises",
+      "parts": [
+        {
+          "text": "All network traffic passing in or out "
+        },
+        {
+          "text": "of Brown's network",
+          "entity_type": "@target",
+          "value": "network"
+        },
+        {
+          "text": " is monitored by "
+        },
+        {
+          "text": "intrusion detection system",
+          "entity_type": "@middlebox",
+          "value": "intrusion detection"
+        },
+        {
+          "text": " for signs of compromises"
+        }
+      ]
+    },
+    {
+      "university": "New York University",
+      "nile": "define intent uniIntent: for endpoint('ResNet'), endpoint('NYURoam') block protocol('ftp'), service('listserver'), traffic('peer2peer')",
+      "text": "You may not run any services (e.g., FTP services, listservers, P2P file sharing servers, publishing files via generic file services, etc.) via NYU's ResNet or NYURoam wireless networks",
+      "parts": [
+        {
+          "text": "You "
+        },
+        {
+          "text": "may not run",
+          "entity_type": "@operation",
+          "value": "block"
+        },
+        {
+          "text": " any services (e.g., "
+        },
+        {
+          "text": "FTP services",
+          "entity_type": "@protocol",
+          "value": "ftp"
+        },
+        {
+          "text": ","
+        },
+        {
+          "text": "listservers",
+          "entity_type": "@service",
+          "value": "listserver"
+        },
+        {
+          "text": ","
+        },
+        {
+          "text": "P2P file sharing servers",
+          "entity_type": "@traffic",
+          "value": "peer2peer"
+        },
+        {
+          "text": ", publishing files via generic file services, etc.) "
+        },
+        {
+          "text": "via ResNet",
+          "entity_type": "@target",
+          "value": "ResNet"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "or NYURoam wireless networks",
+          "entity_type": "@target",
+          "value": "NYURoam"
+        }
+      ]
+    },
+    {
+      "university": "Penn State University - University Park",
+      "nile": "define intent uniIntent: for endpoint('dorms') unset bandwidth()",
+      "text": "Housing does not normally limit the amount of bandwidth",
+      "parts": [
+        {
+          "text": "Housing",
+          "entity_type": "@target",
+          "value": "dorms"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "does not normally limit",
+          "entity_type": "@operation",
+          "value": "unset"
+        },
+        {
+          "text": " the amount of "
+        },
+        {
+          "text": "bandwidth",
+          "entity_type": "@qos_metric",
+          "value": "bandwidth"
+        }
+      ]
+    },
+    {
+      "university": "Univeristy of Virginia",
+      "nile": "define intent uniIntent: for endpoint('network') add middlebox('firewall')",
+      "text": "The UVA More Secure Network uses a firewall, a network security device designed to help protect your computer from hackers and other malicious people on the Internet.",
+      "parts": [
+        {
+          "text": "The UVA More Secure "
+        },
+        {
+          "text": "Network",
+          "entity_type": "@target",
+          "value": "network"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "uses",
+          "entity_type": "@operation",
+          "value": "add"
+        },
+        {
+          "text": " a "
+        },
+        {
+          "text": "firewall",
+          "entity_type": "@middlebox",
+          "value": "firewall"
+        },
+        {
+          "text": ", a network security device designed to help protect your computer from hackers and other malicious people on the Internet."
+        }
+      ]
+    },
+    {
+      "university": "Univeristy of Virginia",
+      "nile": "define intent uniIntent: for endpoint('network') block service('H323 video conferencing')",
+      "text": "The network firewall does prevent some applications from working in their normal manner, for example, video and audio conferencing products that use the H.323",
+      "parts": [
+        {
+          "text": "The network",
+          "entity_type": "@target",
+          "value": "network"
+        },
+        {
+          "text": " firewall does "
+        },
+        {
+          "text": "prevent",
+          "entity_type": "@operation",
+          "value": "block"
+        },
+        {
+          "text": " some applications from working in their normal manner, for example, "
+        },
+        {
+          "text": "video and audio conferencing products that use the H.323",
+          "entity_type": "@service",
+          "value": "H323 video conferencing"
+        }
+      ]
+    },
+    {
+      "university": "Univeristy of California - Davis",
+      "nile": "define intent uniIntent: for endpoint('network') add middlebox('traffic monitor')",
+      "text": "The UC Davis network is continually scanned for prohibited activities and network threats.",
+      "parts": [
+        {
+          "text": "The UC Davis "
+        },
+        {
+          "text": "network",
+          "entity_type": "@target",
+          "value": "network"
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "continually scanned",
+          "entity_type": "@middlebox",
+          "value": "traffic monitor"
+        },
+        {
+          "text": " for prohibited activities and network threats."
         }
       ]
     }

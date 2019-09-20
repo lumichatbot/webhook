@@ -505,6 +505,7 @@ def groups(sentence, hypothesis):
 def get_features(sentence, hypothesis):
     """ Return array with contradiction features for the given sentence and hypothesis """
     features = [
+        coreference(sentence, hypothesis),
         path_similarity(sentence, hypothesis),
         qos(sentence, hypothesis),
         time(sentence, hypothesis),
