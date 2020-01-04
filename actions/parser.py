@@ -49,7 +49,8 @@ def parse_intent(request):
     if "qos_metric" in parameters and parameters["qos_metric"] and "qos_value" in parameters and parameters["qos_value"]:
         metric = {}
         metric["name"] = to_camel_case(parameters["qos_metric"])
-        metric["value"] = parameters["qos_value"] if isinstance(parameters["qos_value"], basestring) else parameters["qos_value"]["number-integer"]
+        metric["value"] = parameters["qos_value"] if isinstance(
+            parameters["qos_value"], basestring) else parameters["qos_value"]["number-integer"]
         if "qos_constraint" in parameters and parameters["qos_constraint"]:
             metric["constraint"] = parameters["qos_constraint"]
         if "qos_unit" in parameters and parameters["qos_unit"]:

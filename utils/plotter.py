@@ -30,7 +30,6 @@ def plot_roc_curve(dataset_size, model_type, model, data, targets):
     mean_fpr = np.linspace(0, 1, 100)
 
     for i, (train, test) in enumerate(cross_val.split(data, targets)):
-        print i, train, test, data
         model.train([data[j] for j in train], [targets[j] for j in train], dataset_size)
         probabilities = model.predict_proba([data[j] for j in test])
         # Compute ROC curve and area the curve

@@ -1,15 +1,33 @@
 """ Nile interpreter """
 
 
+def check_syntax(entities):
+    """
+        Check if entities extracted have the minimum syntax requirements to build a Nile intent.
+        Returns any error encoutered.
+    """
+    if "destination" not in entities:
+        if "group" not in entities and "targets" not in entities:
+            return "The intent needs a clear target."
+
+    return None
+
+
 def translate(entities):
     """ Translates extracted entities into a Nile intent """
+
+    print(entities)
+
+    error = check_syntax(entities)
+    if error:
+        raise ValueError(error)
 
     intent = "define intent {}Intent:".format(entities["id"])
 
     if "origin" in entities and "destination" in entities:
-        if isinstance(entities["origin"], basestring):
+        if isinstance(entities["origin"], str):
             intent += " from endpoint('{}')".format(entities["origin"])
-        if isinstance(entities["destination"], basestring):
+        if isinstance(entities["destination"], str):
             intent += " to endpoint('{}')".format(entities["destination"])
 
         if "service" in entities["origin"]:
@@ -29,8 +47,8 @@ def translate(entities):
         intent += " for group('{}')".format(entities['group'])
 
     if "middleboxes" in entities:
-        if "actions" in entities and 'add' in entities["actions"] or 'remove' in entities["actions"]:
-            intent += " {}".format(next((x for x in entities["actions"] if x == 'add' or x == 'remove'), "add"))
+        if "operation" in entities and ('add' in entities["operation"] or 'remove' in entities["operation"]):
+            intent += " {}".format(next((x for x in entities["operation"] if x == 'add' or x == 'remove'), "add"))
         else:
             intent += " add"
         for middlebox in entities["middleboxes"]:
@@ -38,14 +56,15 @@ def translate(entities):
         intent = intent.rstrip(',')
 
     if "qos" in entities:
-        if "actions" in entities and 'set' in entities["actions"] or 'unset' in entities['actions']:
-            intent += " {}".format(next((x for x in entities["actions"] if x == 'set' or x == 'unset'), "add"))
+        if "operation" in entities and ('set' in entities["operation"] or 'unset' in entities['operation']):
+            intent += " {}".format(next((x for x in entities["operation"] if x == 'set' or x == 'unset'), "add"))
         else:
             intent += " set"
         for metric in entities["qos"]:
-            if "name" in metric and "constraint" in metric and "value" in metric and "unit" in metric:
+            if "name" in metric and ("constraint" in metric and "value" in metric and "unit" in metric):
                 if metric['constraint']:
-                    intent += " {}('{}', '{}', '{}'),".format(metric['name'], metric['constraint'], metric['value'], metric['unit'])
+                    intent += " {}('{}', '{}', '{}'),".format(metric['name'],
+                                                              metric['constraint'], metric['value'], metric['unit'])
                 else:
                     intent += " {}('{}', '{}'),".format(metric['name'], metric['value'], metric['unit'])
             elif "name" in metric and "value" in metric and metric['value'] == 'none':
@@ -56,13 +75,13 @@ def translate(entities):
         intent = intent.rstrip(',')
 
     if "targets" in entities:
-        if "actions" in entities and 'allow' in entities["actions"] or 'block' in entities['actions']:
-            intent += " {}".format(next((x for x in entities["actions"] if x == 'allow' or x == 'block'), "add"))
+        if "operation" in entities and ('allow' in entities["operation"] or 'block' in entities['operation']):
+            intent += " {}".format(next((x for x in entities["operation"] if x == 'allow' or x == 'block'), "add"))
         else:
             intent += " for"
 
         for target in entities["targets"]:
-            if isinstance(target, basestring):
+            if isinstance(target, str):
                 intent += " service('{}'),".format(target)
             elif "service" in target:
                 intent += " service('{}'),".format(target['service'])

@@ -44,18 +44,18 @@ class Dialogflow(object):
         clietn = dialogflow.SessionsClient()
 
         session_path = clietn.session_path(self.project_id, session_id)
-        print 'Session path: {}\n'.format(session_path)
+        print('Session path: {}\n'.format(session_path))
 
         text_input = dialogflow.types.TextInput(text=text, language_code=self.language_code)
 
         query_input = dialogflow.types.QueryInput(text=text_input)
         response = clietn.detect_intent(session=session_path, query_input=query_input)
 
-        print '=' * 20
-        print 'Query text: {}'.format(response.query_result.query_text)
-        print 'Detected intent: {} \n'.format(response.query_result.intent.display_name)
-        print 'Fulfillment text: {}\n'.format(response.query_result.fulfillment_text)
-        print 'Query result: {}\n'.format(response.query_result)
+        print('=' * 20)
+        print('Query text: {}'.format(response.query_result.query_text))
+        print('Detected intent: {} \n'.format(response.query_result.intent.display_name))
+        print('Fulfillment text: {}\n'.format(response.query_result.fulfillment_text))
+        print('Query result: {}\n'.format(response.query_result))
 
     def update_intent(self, display_name, training_phrases_parts):
         """Updates an intent with the given training phrases."""
@@ -65,13 +65,13 @@ class Dialogflow(object):
         intent = self.get_intent(intent_id)
         training_phrases = self.get_training_phrases(training_phrases_parts)
 
-        print "intent", intent, training_phrases
+        print("intent", intent, training_phrases)
 
         intent.training_phrases.extend(training_phrases)
         update_mask = field_mask_pb2.FieldMask(paths=['training_phrases'])
         response = client.update_intent(intent, self.language_code, update_mask)
 
-        print "Intent updated: {}".format(response)
+        print("Intent updated: {}".format(response))
 
     def get_intent_id(self, display_name):
         """ Get entity type id """
@@ -131,7 +131,7 @@ class Dialogflow(object):
 
         response = client.create_entity_type(parent, entity_type)
 
-        print "Entity type created:\n{}".format(response)
+        print("Entity type created:\n{}".format(response))
 
     """
         ENTITIES
@@ -150,7 +150,7 @@ class Dialogflow(object):
         entity.synonyms.extend(synonyms)
 
         response = client.batch_create_entities(entity_type_path, [entity])
-        print "Entity created: \n{}".format(response)
+        print("Entity created: \n{}".format(response))
 
     def tag_entities(self, training_phrase):
         """ Receives text training phrase and returns traning phrase parts tagged with entities """
@@ -159,7 +159,7 @@ class Dialogflow(object):
         return training_phrase_parts
 
     def update_intent(self, intent_id, training_phrases_parts, keep_phrases=True):
-        print 'Updating intents...'
+        print('Updating intents...')
         client = dialogflow.IntentsClient()
         intent_name = client.intent_path(self.project_id, intent_id)
         intent_view = None
@@ -183,9 +183,10 @@ class Dialogflow(object):
             training_phrases.append(training_phrase)
 
         intent.training_phrases.extend(training_phrases)
-        response = client.update_intent(intent, language_code='en', update_mask=dialogflow.types.FieldMask(paths=['training_phrases']))
+        response = client.update_intent(intent, language_code='en',
+                                        update_mask=dialogflow.types.FieldMask(paths=['training_phrases']))
 
-        print 'Intent {} updated'.format(intent_name)
+        print('Intent {} updated'.format(intent_name))
 
     def create_intent(self, display_name, training_phrases_parts, message_texts):
         """Create an intent of the given intent type."""
@@ -219,13 +220,13 @@ class Dialogflow(object):
 
         response = intents_client.create_intent(parent, intent)
 
-        print 'Intent created: {}'.format(response)
+        print('Intent created: {}'.format(response))
 
     def train_agent(self, callback):
         intents_client = dialogflow.AgentsClient()
         parent = intents_client.project_path(self.project_id)
 
-        print 'Training agent {}...'.format(self.project_id)
+        print('Training agent {}...'.format(self.project_id))
 
         begin_training = time.time()
         response = intents_client.train_agent(parent)
@@ -311,8 +312,8 @@ class Dialogflow(object):
                 'recognized_entities': ''.join(['@{},'.format(ent) for ent in recognized_entities.keys()])
             })
 
-            # print 'Query text: {}'.format(response.query_result.query_text)
-            # print 'Detected intent: {} (confidence: {})\n'.format
+            # print('Query text: {}'.format(response.query_result.query_text))
+            # print('Detected intent: {} (confidence: {})\n'.format)
             #     response.query_result.intent.display_name,
             #     response.query_result.intent_detection_confidence))
 

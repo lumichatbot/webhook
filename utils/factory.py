@@ -22,11 +22,11 @@ def make_sfc_intent():
     """ Creates a Nile intent with chaining"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, _ = sample_entailing_endpoints(sentence_entities, hypothesis_entities)
     sentence_entities, _ = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
@@ -42,11 +42,11 @@ def make_qos_intent():
     """ Creates a Nile intent with qos"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, _ = sample_entailing_endpoints(sentence_entities, hypothesis_entities)
     sentence_entities, _ = sample_entailing_qos(
@@ -63,11 +63,11 @@ def make_acl_intent():
     """ Creates a Nile intent with acl"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, _ = sample_entailing_endpoints(sentence_entities, hypothesis_entities)
     sentence_entities, _ = sample_contradicting_rules(sentence_entities, hypothesis_entities)
@@ -83,11 +83,11 @@ def make_temporal_intent():
     """ Creates a Nile intent with time"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, _ = sample_entailing_endpoints(sentence_entities, hypothesis_entities)
     sentence_entities, _ = sample_entailing_timeranges(sentence_entities, hypothesis_entities)
@@ -103,11 +103,11 @@ def make_mixed_intent():
     """ Creates a Nile intent with mixed intents"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, _ = sample_entailing_endpoints(sentence_entities, hypothesis_entities)
     option = randint(0, 7)
@@ -146,11 +146,11 @@ def make_path_entailment():
     """ Creates two Nile intents that entail each other due to non coference"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_entailing_endpoints(sentence_entities, hypothesis_entities)
 
@@ -185,11 +185,11 @@ def make_time_entailment():
     """ Creates two Nile intents that entail each other with time constraints"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities)
     # middleboxes
@@ -219,11 +219,11 @@ def make_qos_entailment():
     """ Creates two Nile intents that entail each other with qos constraints """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities)
     sentence_entities, hypothesis_entities = sample_entailing_qos(sentence_entities, hypothesis_entities)
@@ -242,11 +242,11 @@ def make_negation_entailment():
 
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities)
     # middleboxes
@@ -254,7 +254,8 @@ def make_negation_entailment():
     # allow/block
     sentence_entities, hypothesis_entities = sample_entailing_rules(sentence_entities, hypothesis_entities)
     # set/unset
-    sentence_entities, hypothesis_entities = sample_entailing_qos(sentence_entities, hypothesis_entities, stn_action='set', hyp_action='unset')
+    sentence_entities, hypothesis_entities = sample_entailing_qos(
+        sentence_entities, hypothesis_entities, stn_action='set', hyp_action='unset')
 
     entailment = {
         'type': 'negation',
@@ -269,11 +270,11 @@ def make_synonym_entailment():
     """ Creates two Nile intents that entail each other with synonyms use """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_synonyms_endpoints(sentence_entities, hypothesis_entities)
     option = randint(0, 7)
@@ -315,11 +316,11 @@ def make_hierarchical_entailment():
     """ Creates two Nile intents that entail each other with group hierarchy """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_hierarchical_endpoints(sentence_entities, hypothesis_entities)
 
@@ -361,13 +362,14 @@ def make_domain_entailment():
     """ Creates two Nile intents that entail each other with domains """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
-    sentence_entities, hypothesis_entities = sample_entailing_endpoints(sentence_entities, hypothesis_entities, mixed=True)
+    sentence_entities, hypothesis_entities = sample_entailing_endpoints(
+        sentence_entities, hypothesis_entities, mixed=True)
     option = randint(0, 7)
     if option == 0:
         sentence_entities, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)
@@ -406,11 +408,11 @@ def make_path_contradiction():
     """ Creates two Nile intents that contradict each other due to path overlap"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
 
     sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities)
@@ -470,11 +472,11 @@ def make_time_contradiction():
     """ Creates two Nile intents that contradict each other due to time constraints"""
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities)
     # middleboxes
@@ -510,11 +512,11 @@ def make_qos_contradiction():
     """ Creates two Nile intents that contradict each other due to qos constraints """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
 
     sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities)
@@ -533,11 +535,11 @@ def make_negation_contradiction():
     """ Creates two Nile intents that contradict each other due to negation """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities)
     option = randint(0, 7)
@@ -578,11 +580,11 @@ def make_synonym_contradiction():
     """ Creates two Nile intents that contradict each other due to synonyms use """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_synonyms_endpoints(sentence_entities, hypothesis_entities)
     option = randint(0, 7)
@@ -623,11 +625,11 @@ def make_hierarchical_contradiction():
     """ Creates two Nile intents that contradict each other due to group hierarchy """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
     sentence_entities, hypothesis_entities = sample_hierarchical_endpoints(sentence_entities, hypothesis_entities)
     option = randint(0, 7)
@@ -668,13 +670,14 @@ def make_domain_contradiction():
     """ Creates two Nile intents that contradict each other due to domains """
     sentence_entities = {
         "id": "stn",
-        "actions": []
+        "operation": []
     }
     hypothesis_entities = {
         "id": "hyp",
-        "actions": []
+        "operation": []
     }
-    sentence_entities, hypothesis_entities = sample_contradicting_endpoints(sentence_entities, hypothesis_entities, mixed=True)
+    sentence_entities, hypothesis_entities = sample_contradicting_endpoints(
+        sentence_entities, hypothesis_entities, mixed=True)
     option = randint(0, 7)
     if option == 0:
         sentence_entities, hypothesis_entities = sample_contradicting_chaining(sentence_entities, hypothesis_entities)

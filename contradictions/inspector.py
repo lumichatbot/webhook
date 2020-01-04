@@ -12,12 +12,12 @@ def check(new_intent):
     if model.load_model(10000):
         for old_intent in storage.get_all():
             res = model.predict([get_features(new_intent, old_intent)])
-            print res
+            print(res)
             if res:
                 contradictory = old_intent
                 break
     else:
-        print "Failure loading contradiction model. Will continue without it."
+        print("Failure loading contradiction model. Will continue without it.")
 
     return contradictory
 

@@ -5,21 +5,20 @@ from random import sample, randint, randrange, choice
 
 from datetime import datetime, timedelta
 
-import topology
-
-from config import (DATASET_ACTIONS_MBS,
-                    DATASET_ACTIONS_ACL,
-                    DATASET_ACTIONS_QOS,
-                    DATASET_GROUPS,
-                    DATASET_SYNONYMS,
-                    DATASET_MIDDLEBOXES,
-                    DATASET_SERVICES,
-                    DATASET_TRAFFIC,
-                    DATASET_PROTOCOLS,
-                    DATASET_QOS_METRICS,
-                    DATASET_QOS_CONSTRAINTS,
-                    DATASET_SERVICE_ASSOCIATIONS,
-                    DATASET_TRAFFIC_ASSOCIATIONS)
+from .topology import *
+from .config import (DATASET_ACTIONS_MBS,
+                     DATASET_ACTIONS_ACL,
+                     DATASET_ACTIONS_QOS,
+                     DATASET_GROUPS,
+                     DATASET_SYNONYMS,
+                     DATASET_MIDDLEBOXES,
+                     DATASET_SERVICES,
+                     DATASET_TRAFFIC,
+                     DATASET_PROTOCOLS,
+                     DATASET_QOS_METRICS,
+                     DATASET_QOS_CONSTRAINTS,
+                     DATASET_SERVICE_ASSOCIATIONS,
+                     DATASET_TRAFFIC_ASSOCIATIONS)
 
 
 def timerange_overlap(sentence_entities, hypothesis_entities):
@@ -66,16 +65,17 @@ def target_match(sentence_target, hypothesis_target, sentece_action, hypothesis_
 
 def is_bandwidth_available(source, target, bandwidth, constraint):
     """ checks if given bandwidth is available in given path """
-    path_capacity = topology.get_path_capacity(source, target)
+    path_capacity = get_path_capacity(source, target)
     return path_capacity >= bandwidth if constraint == 'min' else bandwidth >= path_capacity
 
 
 def fetch_group_path(group):
     """ given a group, finds the path in the Network that corresponds to it """
     # check synonym
-    group_key = group if group in DATASET_SYNONYMS else next((key for (key, synonyms) in DATASET_SYNONYMS.items() if group in synonyms), group)
+    group_key = group if group in DATASET_SYNONYMS else next(
+        (key for (key, synonyms) in DATASET_SYNONYMS.items() if group in synonyms), group)
 
-    return topology.get_node_tree().id, topology.get_group_ip(group_key)
+    return get_node_tree().id, get_group_ip(group_key)
 
 
 def qos_path_embedding(sentence_entities, hypothesis_entities):
@@ -93,8 +93,8 @@ def qos_path_embedding(sentence_entities, hypothesis_entities):
     sentence_path = (stn_origin, stn_destination)
     hypothesis_path = (hyp_origin, hyp_destination)
 
-    sentence_action = sentence_entities['actions'][0]
-    hypothesis_action = hypothesis_entities['actions'][0]
+    sentence_action = sentence_entities['operation'][0]
+    hypothesis_action = hypothesis_entities['operation'][0]
     sentence_qos = sentence_entities['qos'][0]
     hypothesis_qos = hypothesis_entities['qos'][0]
 
@@ -109,7 +109,7 @@ def qos_path_embedding(sentence_entities, hypothesis_entities):
 
             # check combined
             if sentence_qos['constraint'] == hypothesis_qos['constraint']:
-                common_path_src, common_path_tgt = topology.get_common_path(sentence_path, hypothesis_path)
+                common_path_src, common_path_tgt = get_common_path(sentence_path, hypothesis_path)
                 if not common_path_src or not common_path_tgt:
                     return True
                 return is_bandwidth_available(common_path_src, common_path_tgt, sentence_qos['value'] + hypothesis_qos['value'], hypothesis_qos['constraint'])
@@ -131,7 +131,7 @@ def qos_path_embedding(sentence_entities, hypothesis_entities):
 
 def sample_path():
     """ sample origin and destination from topology """
-    node_tree = topology.get_node_tree()
+    node_tree = get_node_tree()
     core_switches = node_tree.children
     aggr_switches = choice(core_switches).children
     edge_switches = choice(aggr_switches).children
@@ -145,7 +145,7 @@ def sample_path():
 
 def sample_hierarchy():
     """ sample origin and destination from topology """
-    node_tree = topology.get_node_tree()
+    node_tree = get_node_tree()
     core_switches = node_tree.children
     aggr_switches = choice(core_switches).children
     edge_switches = choice(aggr_switches).children
@@ -224,8 +224,9 @@ def sample_entailing_endpoints(sentence_entities, hypothesis_entities, mixed=Fal
         sentence_entities['origin'], sentence_entities['destination'] = sample_path()
         group = sample_group()
         hypothesis_entities['group'] = group
-        group_key = group if group in DATASET_SYNONYMS else next((key for (key, synonyms) in DATASET_SYNONYMS.items() if group in synonyms), group)
-        group_destination = topology.get_group_ip(group_key)
+        group_key = group if group in DATASET_SYNONYMS else next(
+            (key for (key, synonyms) in DATASET_SYNONYMS.items() if group in synonyms), group)
+        group_destination = get_group_ip(group_key)
 
         while sentence_entities['destination'].rsplit('.', 1)[0] == group_destination.rsplit('.', 1)[0]:
             sentence_entities['origin'], sentence_entities['destination'] = sample_path()
@@ -233,7 +234,7 @@ def sample_entailing_endpoints(sentence_entities, hypothesis_entities, mixed=Fal
             hypothesis_entities['group'] = group
             group_key = group if group in DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in DATASET_SYNONYMS.items() if group in synonyms), group)
-            group_destination = topology.get_group_ip(group_key)
+            group_destination = get_group_ip(group_key)
     elif option == 1:
         sentence_entities['origin'], sentence_entities['destination'] = sample_path()
         hypothesis_entities['origin'], hypothesis_entities['destination'] = sample_path()
@@ -257,8 +258,9 @@ def sample_contradicting_endpoints(sentence_entities, hypothesis_entities, mixed
         sentence_entities['origin'], sentence_entities['destination'] = sample_path()
         group = sample_group()
         hypothesis_entities['group'] = group
-        group_key = group if group in DATASET_SYNONYMS else next((key for (key, synonyms) in DATASET_SYNONYMS.items() if group in synonyms), group)
-        group_destination = topology.get_group_ip(group_key)
+        group_key = group if group in DATASET_SYNONYMS else next(
+            (key for (key, synonyms) in DATASET_SYNONYMS.items() if group in synonyms), group)
+        group_destination = get_group_ip(group_key)
 
         while sentence_entities['destination'].rsplit('.', 1)[0] != group_destination.rsplit('.', 1)[0]:
             sentence_entities['origin'], sentence_entities['destination'] = sample_path()
@@ -266,7 +268,7 @@ def sample_contradicting_endpoints(sentence_entities, hypothesis_entities, mixed
             hypothesis_entities['group'] = group
             group_key = group if group in DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in DATASET_SYNONYMS.items() if group in synonyms), group)
-            group_destination = topology.get_group_ip(group_key)
+            group_destination = get_group_ip(group_key)
     elif option == 1:
         sentence_entities['origin'], sentence_entities['destination'] = sample_path()
         hypothesis_entities['origin'], hypothesis_entities['destination'] = sample_path()
@@ -286,7 +288,7 @@ def sample_contradicting_endpoints(sentence_entities, hypothesis_entities, mixed
 def sample_hierarchical_endpoints(sentence_entities, hypothesis_entities):
     """ samples target entities from topology for intent that may contradict each other """
 
-    origin = topology.get_node_tree().id
+    origin = get_node_tree().id
     stn_destination, hyp_destination = sample_hierarchy()
     sentence_entities['origin'], sentence_entities['destination'] = origin, stn_destination
     hypothesis_entities['origin'], hypothesis_entities['destination'] = origin, hyp_destination
@@ -305,9 +307,9 @@ def sample_synonyms_endpoints(sentence_entities, hypothesis_entities):
 
 def sample_entailing_chaining(sentence_entities, hypothesis_entities):
     """ return chaining commands that do not contradict each other """
-    sentence_entities['actions'] = [choice(DATASET_ACTIONS_MBS)] + sentence_entities['actions']
-    hypothesis_entities['actions'] = [choice(DATASET_ACTIONS_MBS)] + hypothesis_entities['actions']
-    if sentence_entities['actions'][0] == hypothesis_entities['actions'][0]:
+    sentence_entities['operation'] = [choice(DATASET_ACTIONS_MBS)] + sentence_entities['operation']
+    hypothesis_entities['operation'] = [choice(DATASET_ACTIONS_MBS)] + hypothesis_entities['operation']
+    if sentence_entities['operation'][0] == hypothesis_entities['operation'][0]:
         sentence_entities['middleboxes'] = sample(DATASET_MIDDLEBOXES, randint(1, len(DATASET_MIDDLEBOXES)))
         hypothesis_entities['middleboxes'] = sample(DATASET_MIDDLEBOXES, randint(1, len(DATASET_MIDDLEBOXES)))
     else:
@@ -322,8 +324,8 @@ def sample_entailing_chaining(sentence_entities, hypothesis_entities):
 
 def sample_contradicting_chaining(sentence_entities, hypothesis_entities):
     """ return chaining commands that do not contradict each other """
-    sentence_entities['actions'] = ["add"] + sentence_entities['actions']
-    hypothesis_entities['actions'] = ["remove"] + hypothesis_entities['actions']
+    sentence_entities['operation'] = ["add"] + sentence_entities['operation']
+    hypothesis_entities['operation'] = ["remove"] + hypothesis_entities['operation']
     sentence_entities['middleboxes'] = sample(DATASET_MIDDLEBOXES, randint(1, len(DATASET_MIDDLEBOXES)))
     hypothesis_entities['middleboxes'] = sample(DATASET_MIDDLEBOXES, randint(1, len(DATASET_MIDDLEBOXES)))
     while not bool(set(sentence_entities['middleboxes']) & set(hypothesis_entities['middleboxes'])):
@@ -336,16 +338,20 @@ def sample_contradicting_chaining(sentence_entities, hypothesis_entities):
 def sample_entailing_rules(sentence_entities, hypothesis_entities):
     """ return chaining commands that do not contradict each other """
     if randint(0, 10) % 2 == 0:
-        sentence_entities['actions'] = [choice(DATASET_ACTIONS_ACL)] + sentence_entities['actions']
-        hypothesis_entities['actions'] = [choice(DATASET_ACTIONS_ACL)] + hypothesis_entities['actions']
+        sentence_entities['operation'] = [choice(DATASET_ACTIONS_ACL)] + sentence_entities['operation']
+        hypothesis_entities['operation'] = [choice(DATASET_ACTIONS_ACL)] + hypothesis_entities['operation']
 
         # allow - allow, block - block , any targets
-        sentence_entities['targets'] = [dict(y) for y in set({tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
-        hypothesis_entities['targets'] = [dict(y) for y in set({tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
-        while (sentence_entities['actions'] != hypothesis_entities['actions'] and
+        sentence_entities['targets'] = [dict(y) for y in set(
+            {tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
+        hypothesis_entities['targets'] = [dict(y) for y in set(
+            {tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
+        while (sentence_entities['operation'] != hypothesis_entities['operation'] and
                any(any(target_match(stn_target, hyp_target, 'allow', 'block') for stn_target in sentence_entities['targets']) for hyp_target in hypothesis_entities['targets'])):
-            sentence_entities['targets'] = [dict(y) for y in set({tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
-            hypothesis_entities['targets'] = [dict(y) for y in set({tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
+            sentence_entities['targets'] = [dict(y) for y in set(
+                {tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
+            hypothesis_entities['targets'] = [dict(y) for y in set(
+                {tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
 
     return sentence_entities, hypothesis_entities
 
@@ -353,13 +359,17 @@ def sample_entailing_rules(sentence_entities, hypothesis_entities):
 def sample_contradicting_rules(sentence_entities, hypothesis_entities):
     """ return chaining commands that do not contradict each other """
     # allow - block, but different targets
-    sentence_entities['actions'] = ['allow'] + sentence_entities['actions']
-    hypothesis_entities['actions'] = ['block'] + hypothesis_entities['actions']
-    sentence_entities['targets'] = [dict(y) for y in set({tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
-    hypothesis_entities['targets'] = [dict(y) for y in set({tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
+    sentence_entities['operation'] = ['allow'] + sentence_entities['operation']
+    hypothesis_entities['operation'] = ['block'] + hypothesis_entities['operation']
+    sentence_entities['targets'] = [dict(y) for y in set(
+        {tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
+    hypothesis_entities['targets'] = [dict(y) for y in set(
+        {tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
     while not any(any(target_match(stn_target, hyp_target, 'allow', 'block') for stn_target in sentence_entities['targets']) for hyp_target in hypothesis_entities['targets']):
-        sentence_entities['targets'] = [dict(y) for y in set({tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
-        hypothesis_entities['targets'] = [dict(y) for y in set({tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
+        sentence_entities['targets'] = [dict(y) for y in set(
+            {tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
+        hypothesis_entities['targets'] = [dict(y) for y in set(
+            {tuple(x.items()) for x in [sample_target() for _ in range(1, 3)]})]
 
     return sentence_entities, hypothesis_entities
 
@@ -393,15 +403,19 @@ def sample_entailing_qos(sentence_entities, hypothesis_entities, stn_action=None
     if ('origin' not in hypothesis_entities or 'destination' not in hypothesis_entities) and 'group' not in hypothesis_entities:
         raise ValueError("origin and destination or group in hypothesis intent must be provided")
 
-    sentence_entities['actions'] = [choice(DATASET_ACTIONS_QOS) if not stn_action else stn_action] + sentence_entities['actions']
-    hypothesis_entities['actions'] = [choice(DATASET_ACTIONS_QOS) if not hyp_action else stn_action] + hypothesis_entities['actions']
+    sentence_entities['operation'] = [
+        choice(DATASET_ACTIONS_QOS) if not stn_action else stn_action] + sentence_entities['operation']
+    hypothesis_entities['operation'] = [
+        choice(DATASET_ACTIONS_QOS) if not hyp_action else stn_action] + hypothesis_entities['operation']
 
     sentence_entities['qos'] = [sample_qos()]
     hypothesis_entities['qos'] = [sample_qos()]
 
     while not qos_path_embedding(sentence_entities, hypothesis_entities):
-        sentence_entities['actions'] = [choice(DATASET_ACTIONS_QOS) if not stn_action else stn_action] + sentence_entities['actions']
-        hypothesis_entities['actions'] = [choice(DATASET_ACTIONS_QOS) if not hyp_action else stn_action] + hypothesis_entities['actions']
+        sentence_entities['operation'] = [
+            choice(DATASET_ACTIONS_QOS) if not stn_action else stn_action] + sentence_entities['operation']
+        hypothesis_entities['operation'] = [
+            choice(DATASET_ACTIONS_QOS) if not hyp_action else stn_action] + hypothesis_entities['operation']
 
         sentence_entities['qos'] = [sample_qos()]
         hypothesis_entities['qos'] = [sample_qos()]
@@ -417,15 +431,19 @@ def sample_contradicting_qos(sentence_entities, hypothesis_entities, stn_action=
     if ('origin' not in hypothesis_entities or 'destination' not in hypothesis_entities) and 'group' not in hypothesis_entities:
         raise ValueError("origin and destination or group in hypothesis intent must be provided")
 
-    sentence_entities['actions'] = [choice(DATASET_ACTIONS_QOS) if not stn_action else stn_action] + sentence_entities['actions']
-    hypothesis_entities['actions'] = [choice(DATASET_ACTIONS_QOS) if not hyp_action else stn_action] + hypothesis_entities['actions']
+    sentence_entities['operation'] = [
+        choice(DATASET_ACTIONS_QOS) if not stn_action else stn_action] + sentence_entities['operation']
+    hypothesis_entities['operation'] = [
+        choice(DATASET_ACTIONS_QOS) if not hyp_action else stn_action] + hypothesis_entities['operation']
 
     sentence_entities['qos'] = [sample_qos()]
     hypothesis_entities['qos'] = [sample_qos()]
 
     while qos_path_embedding(sentence_entities, hypothesis_entities):
-        sentence_entities['actions'] = [choice(DATASET_ACTIONS_QOS) if not stn_action else stn_action] + sentence_entities['actions']
-        hypothesis_entities['actions'] = [choice(DATASET_ACTIONS_QOS) if not hyp_action else stn_action] + hypothesis_entities['actions']
+        sentence_entities['operation'] = [
+            choice(DATASET_ACTIONS_QOS) if not stn_action else stn_action] + sentence_entities['operation']
+        hypothesis_entities['operation'] = [
+            choice(DATASET_ACTIONS_QOS) if not hyp_action else stn_action] + hypothesis_entities['operation']
 
         sentence_entities['qos'] = [sample_qos()]
         hypothesis_entities['qos'] = [sample_qos()]

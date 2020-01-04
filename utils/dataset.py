@@ -3,8 +3,8 @@
 import json
 from random import randint
 
-from config import EXTRACTION_DATASET_PATH, CONTRADICTIONS_DATASET_PATH, COMPILATION_DATASET_PATH, DATASET_SIZES
-from factory import CONTRADICTION_FACTORY, ENTAILMENT_FACTORY, NILE_FACTORY
+from .config import EXTRACTION_DATASET_PATH, CONTRADICTIONS_DATASET_PATH, COMPILATION_DATASET_PATH, DATASET_SIZES
+from .factory import CONTRADICTION_FACTORY, ENTAILMENT_FACTORY, NILE_FACTORY
 
 
 def make_entailment():
@@ -22,7 +22,7 @@ def write_compilation():
     dataset = []
     for i in range(30):
         for nile_fact in NILE_FACTORY:
-            print "DATASET ENTRY #{}".format(i)
+            print("DATASET ENTRY #{}".format(i))
             value = nile_fact()
             dataset.append(value)
 
@@ -63,7 +63,7 @@ def write(dataset_size):
     }
 
     for i in range(dataset_size):
-        print "DATASET ENTRY #{}".format(i)
+        print("DATASET ENTRY #{}".format(i))
         value = make_contradiction() if randint(0, 100) % 2 == 0 else make_entailment()
         value_class = "contradiction" if value['contradiction'] else "entailment"
         dataset['summary'][value_class]['count'] += 1

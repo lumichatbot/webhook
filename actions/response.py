@@ -1,7 +1,7 @@
 """ Auxiliary functions """
 
 
-def make_card_response(title, text, speech, formatted_text):
+def make_card_response(title, text, speech, formatted_text, suggestions=""):
     """ Returns a response object with Basic Card """
 
     response = {
@@ -26,6 +26,10 @@ def make_card_response(title, text, speech, formatted_text):
                         {
                             "basicCard": {
                                 "title": title,
+                                "image": {
+                                    "url": "",
+                                    "accessibilityText": ""
+                                },
                                 "formattedText": formatted_text
                             }
                         }

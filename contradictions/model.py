@@ -19,7 +19,7 @@ class ClassificationModel(object):
     """ Model wrapper """
 
     def __init__(self, model_type):
-        print '[INFO] Creating model...'
+        print('[INFO] Creating model...')
 
         self.model_type = model_type
 
@@ -34,23 +34,23 @@ class ClassificationModel(object):
 
     def load(self, dataset_size):
         """ loads previously trained weights into the model """
-        print "LOADING"
+        print("LOADING")
         return self.load_model(dataset_size)
 
     def train(self, features, targets, dataset_size):
         """ trains the model with given features and expected targets """
-        print "BEGGINING TRAINING"
+        print("BEGGINING TRAINING")
         if not self.load(dataset_size):
             self.model.fit(features, targets)
 
         if self.model_type == 'svm' or self.model_type == 'log':
-            print "FEATURES", self.model_type, self.model.steps[2][1].coef_
+            print("FEATURES", self.model_type, self.model.steps[2][1].coef_)
         else:
-            print "FEATURES forest", self.model.steps[2][1].feature_importances_
+            print("FEATURES forest", self.model.steps[2][1].feature_importances_)
 
     def test(self, features):
         """ tests the model with given features and expected targets """
-        print "BEGGINING TESTING"
+        print("BEGGINING TESTING")
         predicted_targets = self.model.predict(features)
 
         return predicted_targets
@@ -67,7 +67,8 @@ class ClassificationModel(object):
 
     def learning_curve(self, features, targets):
         """ Cross validates the model """
-        train_sizes, train_scores, test_scores = learning_curve(self.model, features, targets, shuffle=True, cv=10, scoring='neg_mean_squared_error')
+        train_sizes, train_scores, test_scores = learning_curve(
+            self.model, features, targets, shuffle=True, cv=10, scoring='neg_mean_squared_error')
         return train_sizes, train_scores, test_scores
 
     def predict(self, features):
@@ -77,7 +78,7 @@ class ClassificationModel(object):
     def load_model(self, dataset_size):
         """ Loads model weights, if they exist """
         model_path = config.MODEL_WEIGHTS_PATH.format(self.model_type, dataset_size)
-        print "Model path", model_path
+        print("Model path", model_path)
         if os.path.isfile(model_path):
             self.model = load(model_path)
             return True

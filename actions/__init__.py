@@ -1,2 +1,2 @@
 """ module init """
-from actions import ACTIONS
+from .actions import ACTIONS

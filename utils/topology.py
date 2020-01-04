@@ -1,10 +1,10 @@
 """ Script to write topology file """
 
 import json
+from io import StringIO
 from anytree import AnyNode, find_by_attr, findall, RenderTree
-from cStringIO import StringIO
 
-import config
+from .config import *
 
 IP_COUNTER = 2
 SUBNET_ID = 1
@@ -98,7 +98,7 @@ def write_dot():
             for k in range(1, 5):
                 s += 1
                 SUBNET_ID += k
-                edge_switch = make_node("switch", "edge", k, config.DATASET_GROUPS[k - 1], s)
+                edge_switch = make_node("switch", "edge", k, DATASET_GROUPS[k - 1], s)
                 nodes[edge_switch['properties']['name']] = edge_switch
                 switches.append(edge_switch)
                 links.append(make_link(aggr_switch["id"], edge_switch["id"], 100, aggr_switch['properties']['name'],
@@ -108,7 +108,7 @@ def write_dot():
                 ports[aggr_switch['properties']['name']] += 1
                 ports[edge_switch['properties']['name']] += 1
                 for l in range(1, 11):
-                    host = make_node("host", "h", c, config.DATASET_GROUPS[k - 1], c)
+                    host = make_node("host", "h", c, DATASET_GROUPS[k - 1], c)
                     nodes[host['properties']['name']] = host
                     hosts.append(host)
                     links.append(make_link(edge_switch["id"], host["id"], 100, edge_switch['properties']
@@ -118,7 +118,7 @@ def write_dot():
                     ports[edge_switch['properties']['name']] += 1
                     c += 1
 
-    for middlebox in config.DATASET_MIDDLEBOXES:
+    for middlebox in DATASET_MIDDLEBOXES:
         MAC_MASK = '00:00:00:00:%02d:%02d'
         m = make_node("host", middlebox, 1, middlebox, c)
         mac = MAC_MASK % tuple(map(lambda x: int(x) % 100, m['id'].split('.')[-2:]))
@@ -145,11 +145,12 @@ def write_dot():
     for l in links:
         src_id = l['source_id']
         dst_id = l['target_id']
-        str_writer.write('\t{} -> {} [src_port={}, dst_port={}, cost=1];\n'.format(src_id, dst_id, l['source_port'], l['target_port']))
+        str_writer.write('\t{} -> {} [src_port={}, dst_port={}, cost=1];\n'.format(src_id,
+                                                                                   dst_id, l['source_port'], l['target_port']))
 
     str_writer.write('}')
 
-    with open(config.TOPOLOGY_DOT_PATH, 'w') as topology_file:
+    with open(TOPOLOGY_DOT_PATH, 'w') as topology_file:
         topology_file.write(str_writer.getvalue())
 
 
@@ -198,25 +199,25 @@ def write(format='json'):
 
             for k in range(1, 5):
                 SUBNET_ID += k
-                edge_switch = make_node("switch", "edge", k, config.DATASET_GROUPS[k - 1])
+                edge_switch = make_node("switch", "edge", k, DATASET_GROUPS[k - 1])
                 nodes.append(edge_switch)
                 links.append(make_link(aggr_switch["id"], edge_switch["id"], 100))
 
                 if k == 4:  # last switch
-                    for mb in config.DATASET_MIDDLEBOXES:
+                    for mb in DATASET_MIDDLEBOXES:
                         host = make_node("middlebox", mb, 1, mb)
                         nodes.append(host)
                         links.append(make_link(edge_switch["id"], host["id"], 100))
 
                 for l in range(1, 11):
-                    host = make_node("host", "physical", l, config.DATASET_GROUPS[k - 1])
+                    host = make_node("host", "physical", l, DATASET_GROUPS[k - 1])
                     nodes.append(host)
                     links.append(make_link(edge_switch["id"], host["id"], 100))
 
     topology["nodes"] = topology["nodes"] + nodes
     topology["links"] = links
 
-    with open(config.TOPOLOGY_PATH, 'w') as topology_file:
+    with open(TOPOLOGY_PATH, 'w') as topology_file:
         json.dump(topology, topology_file, indent=4, sort_keys=True)
 
 
@@ -227,7 +228,7 @@ def read():
         return TOPOLOGY
 
     TOPOLOGY = {}
-    with open(config.TOPOLOGY_PATH) as topology_file:
+    with open(TOPOLOGY_PATH) as topology_file:
         topology = json.load(topology_file)
     return topology
 
@@ -293,14 +294,14 @@ def get_group_ip(group):
 def get_service(service):
     """ given a service, get the ip of the group switch """
     # do something
-    print service
+    print(service)
     return (["34.234.59.120", "34.234.59.11"], 'tcp', '8080')
 
 
 def get_traffic_flow(traffic):
     """ given a traffic, get the ip of the group switch """
     # do something
-    print traffic
+    print(traffic)
     return ('tcp', '5060')
 
 
@@ -344,7 +345,8 @@ def get_node_tree():
         parent = next((x for x in tree_nodes if x.id == parent_ip), None)
         if not parent:
             parent_node = next((x for x in topology['nodes'] if x['id'] == parent_ip), None)
-            parent = AnyNode(id=parent_node['id'], label=parent_node['label'], properties=parent_node['properties'], capacity=float("inf"))
+            parent = AnyNode(id=parent_node['id'], label=parent_node['label'],
+                             properties=parent_node['properties'], capacity=float("inf"))
             tree_nodes.append(parent)
 
         child = next((x for x in tree_nodes if x.id == child_ip), None)
@@ -357,7 +359,7 @@ def get_node_tree():
 
     root = next((x for x in tree_nodes if x.parent is None), None)
 
-    # with open(config.TOPOLOGY_PATH + '.txt', 'w') as topology_file:
+    # with open(TOPOLOGY_PATH + '.txt', 'w') as topology_file:
     #     topology_file.write(u' '.join(RenderTree(root).by_attr('id')).encode('utf-8'))
 
     return root
