@@ -1,20 +1,27 @@
-import redis
-import configparser
+import pymongo
+import os
 
 
 class Database:
     """ Class to encapsule database operations, such as storing intents and feedback information """
 
-    client = None
+    db = None
 
     def __init__(self):
-        config = configparser.ConfigParser()
-        config.read('/etc/lumi/config.ini')
-        self.client = redis.Redis(
-            host=config['DATABASE']['hostname'],
-            port=config['DATABASE']['port'],
-            password=config['DATABASE']['password'])
+        db_user = os.getenv("DB_USERNAME")
+        db_pass = os.getenv("DB_PASSWORD")
 
-    def record_intent(self, intent):
-        self.client.lpush('Intents', intent)
+        client = pymongo.MongoClient(
+            "mongodb+srv://{}:{}@lumichatbot-nawdk.mongodb.net/test?retryWrites=true&w=majority"
+            .format(db_user, db_pass))
+        self.db = client.test
+
+    def insert_intent(self, uuid, intent, entities, nile):
+        data = {
+            'uuid': uuid,
+            'intent': intent,
+            'entities': entities,
+            'nile': nile
+        }
+        self.db.intents.insert_one(data)
         return True

@@ -22,13 +22,14 @@ def build_nile_intent(request):
     """ Webhook action to build Nile intent from Dialogflow request """
 
     db = client.Database()
+    uuid = request.get("responseId")
     text = request.get("queryResult").get("queryText")
     entities = parse_intent(request)
     response = {}
     try:
         intent = interpreter.translate(entities)
 
-        db.record_intent(text)
+        db.insert_intent(uuid, text, entities, intent)
 
         speech = "Is this what you want?"
 

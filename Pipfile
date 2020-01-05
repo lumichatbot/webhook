@@ -16,8 +16,9 @@ matplotlib = "*"
 joblib = "*"
 numpy = "==1.16.0"
 requests = "*"
-redis = "*"
 configparser = "*"
+pymongo = "*"
+dnspython = "*"
 
 [dev-packages]
 pylint = "*"
