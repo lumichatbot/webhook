@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
+import os
 import json
 import uuid
 import time
 
 import dialogflow_v2 as dialogflow
 
+from google.oauth2 import service_account
 from google.protobuf import field_mask_pb2
 from google.protobuf.json_format import MessageToDict
 
@@ -13,12 +15,35 @@ from google.protobuf.json_format import MessageToDict
 class Dialogflow(object):
     """ Client for Dialogflow API methods """
 
-    def __init__(self, session_id=None):
+    def __init__(self):
+        raw_credentials = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        service_account_info = json.loads(raw_credentials)
+        self.credentials = service_account.Credentials.from_service_account_info(service_account_info)
         self.project_id = "nira-68681"
         self.language_code = "en"
 
-        self.session_id = session_id
         self.entity_types_cache = []
+
+    """
+        AGENT
+    """
+
+    def get_agent(self):
+        client = dialogflow.AgentsClient(credentials=self.credentials)
+        parent = client.project_path(self.project_id)
+        return client.get_agent(parent)
+
+    def train_agent(self, callback):
+        client = dialogflow.AgentsClient(credentials=self.credentials)
+        parent = client.project_path(self.project_id)
+
+        print('Training agent {}...'.format(self.project_id))
+
+        begin_training = time.time()
+        response = client.train_agent(parent)
+        response.add_done_callback(callback)
+
+        return begin_training
 
     """
         TRAINING PHRASES
@@ -41,15 +66,15 @@ class Dialogflow(object):
     def detect_intent(self, text, session_id=str(uuid.uuid4())):
         """Returns the result of detect intent with texts as inputs.
         Using the same `session_id` between requests allows continuation of the conversaion."""
-        clietn = dialogflow.SessionsClient()
+        client = dialogflow.SessionsClient(credentials=self.credentials)
 
-        session_path = clietn.session_path(self.project_id, session_id)
+        session_path = client.session_path(self.project_id, session_id)
         print('Session path: {}\n'.format(session_path))
 
         text_input = dialogflow.types.TextInput(text=text, language_code=self.language_code)
 
         query_input = dialogflow.types.QueryInput(text=text_input)
-        response = clietn.detect_intent(session=session_path, query_input=query_input)
+        response = client.detect_intent(session=session_path, query_input=query_input)
 
         print('=' * 20)
         print('Query text: {}'.format(response.query_result.query_text))
@@ -57,10 +82,12 @@ class Dialogflow(object):
         print('Fulfillment text: {}\n'.format(response.query_result.fulfillment_text))
         print('Query result: {}\n'.format(response.query_result))
 
+        return response
+
     def update_intent(self, display_name, training_phrases_parts):
         """Updates an intent with the given training phrases."""
 
-        client = dialogflow.IntentsClient()
+        client = dialogflow.IntentsClient(credentials=self.credentials)
         intent_id = self.get_intent_id(display_name)
         intent = self.get_intent(intent_id)
         training_phrases = self.get_training_phrases(training_phrases_parts)
@@ -86,14 +113,14 @@ class Dialogflow(object):
     def get_intent(self, intent_id):
         """ Get intent by id """
 
-        client = dialogflow.IntentsClient()
+        client = dialogflow.IntentsClient(credentials=self.credentials)
         intent_path = client.intent_path(self.project_id, intent_id)
         return client.get_intent(intent_path, intent_view=dialogflow.enums.IntentView.INTENT_VIEW_FULL)
 
     def list_intents(self):
         """ List all intents from chatbot """
 
-        client = dialogflow.IntentsClient()
+        client = dialogflow.IntentsClient(credentials=self.credentials)
         parent = client.project_agent_path(self.project_id)
 
         return list(client.list_intents(parent))
@@ -160,7 +187,7 @@ class Dialogflow(object):
 
     def update_intent(self, intent_id, training_phrases_parts, keep_phrases=True):
         print('Updating intents...')
-        client = dialogflow.IntentsClient()
+        client = dialogflow.IntentsClient(credentials=self.credentials)
         intent_name = client.intent_path(self.project_id, intent_id)
         intent_view = None
         if keep_phrases:
@@ -190,7 +217,7 @@ class Dialogflow(object):
 
     def create_intent(self, display_name, training_phrases_parts, message_texts):
         """Create an intent of the given intent type."""
-        intents_client = dialogflow.IntentsClient()
+        intents_client = dialogflow.IntentsClient(credentials=self.credentials)
 
         parent = intents_client.project_agent_path(self.project_id)
         training_phrases = []
@@ -222,17 +249,9 @@ class Dialogflow(object):
 
         print('Intent created: {}'.format(response))
 
-    def train_agent(self, callback):
-        intents_client = dialogflow.AgentsClient()
-        parent = intents_client.project_path(self.project_id)
-
-        print('Training agent {}...'.format(self.project_id))
-
-        begin_training = time.time()
-        response = intents_client.train_agent(parent)
-        response.add_done_callback(callback)
-
-        return begin_training
+    """
+        EVALUATION
+    """
 
     def create_set(self, entity):
         result_set = set([])
@@ -266,16 +285,16 @@ class Dialogflow(object):
     def get_diff_len(self, diff_set):
         return sum([len(x) for x in diff_set.values()])
 
-    def detect_intent_texts(self, intents):
+    def detect_intent_texts(self, intents, session_id=str(uuid.uuid4())):
         """
             Returns the result of detect intent with texts as inputs.
 
             Using the same `session_id` between requests allows continuation of the conversation.
         """
 
-        session_client = dialogflow.SessionsClient()
+        session_client = dialogflow.SessionsClient(credentials=self.credentials)
 
-        session = session_client.session_path(self.project_id, self.session_id)
+        session = session_client.session_path(self.project_id, session_id)
 
         result = []
 

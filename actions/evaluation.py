@@ -1,6 +1,5 @@
 """ Information extraction evaluation """
 
-import uuid
 import time
 import csv
 
@@ -10,7 +9,6 @@ from math import ceil
 from api import Dialogflow
 from utils import dataset, config
 
-SESSION_ID = str(uuid.uuid4())
 INTENT_ID = '64cdfdeb-18dd-4c76-be0a-4b55021ad1eb'
 
 END_TRAINING = None
@@ -46,7 +44,7 @@ def feedback():
     print "FEEDBACK ",
     global END_TRAINING
 
-    diag = Dialogflow(SESSION_ID)
+    diag = Dialogflow()
     alpha_data = dataset.read('extraction', 'alpha')['intents']
     campi_data = dataset.read('extraction', 'campi')['intents']
 
@@ -96,7 +94,8 @@ def feedback():
         print 'recall: ', rec
         print 'precision: ', prec
         print 'f1_score: ', f1_sc
-        results.append((idx, result['text'], result['recognized_entities'], result['tp'], result['tn'], result['fp'], result['fn'], rec, prec, f1_sc))
+        results.append((idx, result['text'], result['recognized_entities'], result['tp'],
+                        result['tn'], result['fp'], result['fn'], rec, prec, f1_sc))
 
         if result['fp'] != 0 or result['fn'] != 0:
             alpha_intents.append(feedback_case)
@@ -141,7 +140,7 @@ def run(dtype):
     training = sample(intents, n_samples)
     validation = sample(intents, len(intents) - n_samples)
 
-    diag = Dialogflow(SESSION_ID)
+    diag = Dialogflow()
     diag.update_intent(INTENT_ID, training, False)
     training_begin = diag.train_agent(training_callback)
 

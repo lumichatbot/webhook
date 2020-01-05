@@ -16,9 +16,9 @@ matplotlib = "*"
 joblib = "*"
 numpy = "==1.16.0"
 requests = "*"
-configparser = "*"
 pymongo = "*"
 dnspython = "*"
+flask-cors = "*"
 
 [dev-packages]
 pylint = "*"
