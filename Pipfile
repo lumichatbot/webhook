@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [scripts]
-serve = "gunicorn -w 4 -b 0.0.0.0:9000 app:app
+serve = "gunicorn -w 4 -b 0.0.0.0:9000 app:app"
 
 [packages]
 flask = "*"
