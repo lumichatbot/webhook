@@ -80,6 +80,7 @@ class Dialogflow(object):
         print('Query text: {}'.format(response.query_result.query_text))
         print('Detected intent: {} \n'.format(response.query_result.intent.display_name))
         print('Fulfillment text: {}\n'.format(response.query_result.fulfillment_text))
+        print('Fulfillment messages: {}\n'.format(response.query_result.fulfillment_messages))
         print('Query result: {}\n'.format(response.query_result))
 
         return response

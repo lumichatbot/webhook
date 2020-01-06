@@ -26,7 +26,7 @@ def analyze_campus_policies():
 
     model = ClassificationModel('forest')
     results = []
-    if model.load_model(10000):
+    if model.load(10000):
         # for (uni, intents) in intents.items():
         for i in range(len(intents)):
             (uni_stn, text_stn, sentence) = intents[i]
@@ -38,7 +38,8 @@ def analyze_campus_policies():
 
         with open(config.CONTRADICTIONS_RESULTS_PATH.format('summary', 'campi'), 'wb') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',')
-            csv_writer.writerow(['university stn', 'university hyp', 'text stn', 'text hyp', 'sentence', 'hypothesis', 'prediction'])
+            csv_writer.writerow(['university stn', 'university hyp', 'text stn',
+                                 'text hyp', 'sentence', 'hypothesis', 'prediction'])
             for (uni_stn, uni_hyp, text_stn, text_hyp, sentence, hypothesis, prediction) in results:
                 csv_writer.writerow([uni_stn, uni_hyp, text_stn, text_hyp, sentence, hypothesis, prediction[0]])
     else:
@@ -56,7 +57,8 @@ def test(dataset_size, model_type):
         targets.append(case['contradiction'])
 
     fit_data, test_data = [], []
-    fit_cases, test_cases, fit_target, test_target = train_test_split(data, targets, test_size=0.25, shuffle=True, random_state=0)
+    fit_cases, test_cases, fit_target, test_target = train_test_split(
+        data, targets, test_size=0.25, shuffle=True, random_state=0)
     for fit_case in fit_cases:
         fit_data.append(get_features(fit_case['sentence'], fit_case['hypothesis']))
 
@@ -73,7 +75,8 @@ def test(dataset_size, model_type):
         csv_writer = csv.writer(csvfile, delimiter=',')
         csv_writer.writerow(['hypothesis', 'sentence', 'type', 'contradiction', 'prediction', 'features'])
         for (test_case, result, features) in zip(test_cases, test_results, test_data):
-            csv_writer.writerow([test_case['hypothesis'], test_case['sentence'], test_case['type'], test_case['contradiction'], result, features])
+            csv_writer.writerow([test_case['hypothesis'], test_case['sentence'],
+                                 test_case['type'], test_case['contradiction'], result, features])
 
     precision = metrics.precision_score(test_target, test_results)
     recall = metrics.recall_score(test_target, test_results)
@@ -160,7 +163,8 @@ def run():
                 print "DATASET VALIDATION", dataset_size, mtype
                 (training_times, score_times, precisions, recalls, f1_scores) = validate(dataset_size, mtype)
                 for k, (training_time, score_time, precision, recall, f1_score) in enumerate(zip(training_times, score_times, precisions, recalls, f1_scores)):
-                    csv_writer.writerow([dataset_size, mtype, k + 1, training_time, score_time, precision, recall, f1_score])
+                    csv_writer.writerow([dataset_size, mtype, k + 1, training_time,
+                                         score_time, precision, recall, f1_score])
 
 
 if __name__ == "__main__":

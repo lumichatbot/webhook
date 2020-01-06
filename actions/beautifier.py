@@ -25,5 +25,5 @@ def beautify(intent, words_to_highlight):
     regex = r"('[^'\\]*(?:\\.[^'\\]*)*')|\b{0}\b"
     for word in words_to_highlight:
         beautified = re.sub(regex.format(word), lambda m: m.group(
-            1) if m.group(1) else " **{}** ".format(word), beautified)
+            1) if m.group(1) else " <b>{}</b> ".format(word), beautified)
     return beautified

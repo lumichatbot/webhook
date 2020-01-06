@@ -9,7 +9,7 @@ def check(new_intent):
     """ Checks new intent for contradictions """
     model = ClassificationModel('forest')
     contradictory = None
-    if model.load_model(10000):
+    if model.load(10000):
         for old_intent in storage.get_all():
             res = model.predict([get_features(new_intent, old_intent)])
             print(res)

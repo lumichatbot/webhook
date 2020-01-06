@@ -1,6 +1,7 @@
 """ Classification Model """
 import os
 import numpy as np
+import traceback
 
 from joblib import dump, load
 from sklearn.svm import SVC, LinearSVC
@@ -31,11 +32,6 @@ class ClassificationModel(object):
             clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial')
 
         self.model = make_pipeline(StandardScaler(), SelectFromModel(LinearSVC(penalty="l1", dual=False)), clf)
-
-    def load(self, dataset_size):
-        """ loads previously trained weights into the model """
-        print("LOADING")
-        return self.load_model(dataset_size)
 
     def train(self, features, targets, dataset_size):
         """ trains the model with given features and expected targets """
@@ -75,13 +71,17 @@ class ClassificationModel(object):
         """ given an array of input features, predicts if case is a contradiction or not """
         return self.model.predict(features)
 
-    def load_model(self, dataset_size):
+    def load(self, dataset_size):
         """ Loads model weights, if they exist """
         model_path = config.MODEL_WEIGHTS_PATH.format(self.model_type, dataset_size)
         print("Model path", model_path)
         if os.path.isfile(model_path):
-            self.model = load(model_path)
-            return True
+            try:
+                self.model = load(model_path)
+                return True
+            except:
+                traceback.print_exc()
+                return False
         return False
 
     def save(self, dataset_size):

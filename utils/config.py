@@ -1,24 +1,34 @@
 """ Configurations and constansts for webhook module """
 
+from pathlib import Path
+
+
+def get_project_root():
+    """Returns project root folder."""
+    return str(Path(__file__).parent.parent)
+
+
 ########## DEPLOYER ##########
 DEPLOY_URL = "http://localhost:5000/deploy"
 
 
 ########## PATH ###########
-MODEL_WEIGHTS_PATH = "../res/weights/{}_{}.joblib"
+ROOT = get_project_root()
 
-TOPOLOGY_PATH = "../res/topology.json"
-TOPOLOGY_DOT_PATH = "../res/topology.dot"
-LEARNING_CURVE_PATH = "../res/results/learning_curve_{}_{}.csv"
+MODEL_WEIGHTS_PATH = ROOT + "/res/weights/{}_{}.joblib"
 
-COMPILATION_DATASET_PATH = "../res/dataset/compilation.json"
-COMPILATION_RESULTS_PATH = "../res/dataset/compilation.csv"
+TOPOLOGY_PATH = ROOT + "/res/topology.json"
+TOPOLOGY_DOT_PATH = ROOT + "/res/topology.dot"
+LEARNING_CURVE_PATH = ROOT + "/res/results/learning_curve_{}_{}.csv"
 
-EXTRACTION_DATASET_PATH = "../res/dataset/extraction_{}.json"
-EXTRACTION_RESULTS_PATH = "../res/results/extraction_{}.csv"
+COMPILATION_DATASET_PATH = ROOT + "/res/dataset/compilation.json"
+COMPILATION_RESULTS_PATH = ROOT + "/res/dataset/compilation.csv"
 
-CONTRADICTIONS_DATASET_PATH = "../res/dataset/contradictions_{}.json"
-CONTRADICTIONS_RESULTS_PATH = "../res/results/contradictions_{}_{}.csv"
+EXTRACTION_DATASET_PATH = ROOT + "/res/dataset/extraction_{}.json"
+EXTRACTION_RESULTS_PATH = ROOT + "/res/results/extraction_{}.csv"
+
+CONTRADICTIONS_DATASET_PATH = ROOT + "/res/dataset/contradictions_{}.json"
+CONTRADICTIONS_RESULTS_PATH = ROOT + "/res/results/contradictions_{}_{}.csv"
 
 
 ######### DATASET ########
@@ -29,7 +39,8 @@ DATASET_ACTIONS_ACL = ['allow', 'block']
 DATASET_ACTIONS_QOS = ['set', 'unset']
 DATASET_GROUPS = ['students', 'professors', 'dorms', 'labs']
 DATASET_MIDDLEBOXES = ['firewall', 'dpi', 'ids', 'load-balancer', 'parental-control']
-DATASET_SERVICES = ['netflix', 'youtube', 'facebook', 'vimeo', 'amazon-prime', 'instagram', 'popcorn-time', 'stremio', 'bittorrent']
+DATASET_SERVICES = ['netflix', 'youtube', 'facebook', 'vimeo',
+                    'amazon-prime', 'instagram', 'popcorn-time', 'stremio', 'bittorrent']
 DATASET_TRAFFIC = ['peer2peer', 'torrent', 'streaming', 'social-media']
 DATASET_PROTOCOLS = ['udp', 'tcp', 'https', 'http', 'smtp', 'icmp', 'telnet', 'snmp', 'sftp', 'ftp', 'quic']
 DATASET_QOS_METRICS = [('bandwidth', 'mbps'), ('quota', 'gb/wk')]
