@@ -15,7 +15,7 @@ WORKDIR /app
 
 RUN pipenv install --deploy --system
 RUN python -m spacy download en_core_web_sm
-RUN python -m ntlk.downloader wordnet
+RUN python -m nltk.downloader wordnet
 
 CMD gunicorn -w 2 app:app
 
