@@ -91,20 +91,20 @@ def time(sentence, hypothesis):
 
     if "start hour" in sentence and "end hour" in sentence:
         result = start_pattern.search(sentence)
-        time_start = result.group(1) if result else 0
+        time_start = result.group(1) if result else ""
         result = end_pattern.search(sentence)
-        time_end = result.group(1) if result else 0
-        if time_start > 0 and time_end > 0:
+        time_end = result.group(1) if result else ""
+        if time_start and time_end:
             sentence_range = (datetime.strptime(time_start, "%H:%M"), datetime.strptime(time_end, "%H:%M"))
         #sentence_range = (datetime.strptime(time_start, "%Y-%m-%d %H:%M:%S.%f"), datetime.strptime(time_end, "%Y-%m-%d %H:%M:%S.%f"))
 
     hypothesis_range = (0, 0)
     if "start hour" in hypothesis and "end hour" in hypothesis:
         result = start_pattern.search(hypothesis)
-        time_start = result.group(1) if result else 0
+        time_start = result.group(1) if result else ""
         result = end_pattern.search(hypothesis)
-        time_end = result.group(1) if result else 0
-        if time_start > 0 and time_end > 0:
+        time_end = result.group(1) if result else ""
+        if time_start and time_end:
             hypothesis_range = (datetime.strptime(time_start, "%H:%M"), datetime.strptime(time_end, "%H:%M"))
         #hypothesis_range = (datetime.strptime(time_start, "%Y-%m-%d %H:%M:%S.%f"), datetime.strptime(time_end, "%Y-%m-%d %H:%M:%S.%f"))
 
@@ -211,7 +211,7 @@ def qos(sentence, hypothesis):
         sentence_qos = {
             'name': 'bandwidth',
             'constraint': bandwidth.split(',')[0].replace("'", "") if bandwidth else "",
-            'value': bandwidth.split(',')[1].replace("'", "") if bandwidth else "",
+            'value': int(bandwidth.split(',')[1].replace("'", "")) if bandwidth else "",
             'unit': bandwidth.split(',')[2].replace("'", "") if bandwidth else ""
         }
     elif 'quota' in sentence:
@@ -220,7 +220,7 @@ def qos(sentence, hypothesis):
         sentence_qos = {
             'name': 'quota',
             'constraint': '',
-            'value': quota.split(',')[0].replace("'", "") if quota else "",
+            'value': int(quota.split(',')[0].replace("'", "")) if quota else "",
             'unit': quota.split(',')[1].replace("'", "") if quota else ""
         }
 
@@ -229,9 +229,9 @@ def qos(sentence, hypothesis):
         bandwidth = result.group(1) if result else ""
         hypothesis_qos = {
             'name': 'bandwidth',
-            'constraint': bandwidth.split(',')[0] if bandwidth else "",
-            'value': bandwidth.split(',')[1] if bandwidth else "",
-            'unit': bandwidth.split(',')[2] if bandwidth else ""
+            'constraint': bandwidth.split(',')[0].replace("'", "") if bandwidth else "",
+            'value': int(bandwidth.split(',')[1].replace("'", "")) if bandwidth else "",
+            'unit': bandwidth.split(',')[2].replace("'", "") if bandwidth else ""
         }
     elif 'quota' in hypothesis:
         result = quota_pattern.search(hypothesis)
@@ -239,8 +239,8 @@ def qos(sentence, hypothesis):
         hypothesis_qos = {
             'name': 'quota',
             'constraint': '',
-            'value': quota.split(',')[0] if quota else "",
-            'unit': quota.split(',')[1] if quota else ""
+            'value': int(quota.split(',')[0].replace("'", "")) if quota else "",
+            'unit': quota.split(',')[1].replace("'", "") if quota else ""
         }
 
     if not sentence_qos or not hypothesis_qos:
@@ -320,7 +320,8 @@ def hierarchy(sentence, hypothesis):
             hyp_origin = topology.get_node_tree().id
 
     ancestor = (topology.is_ancestor(stn_origin, hyp_origin) or topology.is_ancestor(stn_destination, hyp_destination))
-    descendent = (topology.is_descendent(stn_origin, hyp_origin) or topology.is_descendent(stn_destination, hyp_destination))
+    descendent = (topology.is_descendent(stn_origin, hyp_origin)
+                  or topology.is_descendent(stn_destination, hyp_destination))
 
     return 1 if ancestor or descendent else 0
 
@@ -388,8 +389,8 @@ def endpoints(sentence, hypothesis):
         result = from_pattern.search(hypothesis)
         hyp_origin = result.group(1) if result else 0
 
-    stn_origin_doc = nlp(stn_origin if isinstance(stn_origin, unicode) else unicode(stn_origin, 'utf-8'))
-    hyp_origin_doc = nlp(hyp_origin if isinstance(hyp_origin, unicode) else unicode(hyp_origin, 'utf-8'))
+    stn_origin_doc = nlp(stn_origin if isinstance(stn_origin, str) else stn_origin.decode('utf-8'))
+    hyp_origin_doc = nlp(hyp_origin if isinstance(hyp_origin, str) else hyp_origin.decode('utf-8'))
     sim = stn_origin_doc.similarity(hyp_origin_doc)
     return sim
 
@@ -496,8 +497,8 @@ def groups(sentence, hypothesis):
         result = group_pattern.search(hypothesis)
         hyp_group = result.group(1) if result else ""
 
-    stn_group_doc = nlp(stn_group if isinstance(stn_group, unicode) else unicode(stn_group, 'utf-8'))
-    hyp_group_doc = nlp(hyp_group if isinstance(hyp_group, unicode) else unicode(hyp_group, 'utf-8'))
+    stn_group_doc = nlp(stn_group if isinstance(stn_group, str) else stn_group.decode('utf-8'))
+    hyp_group_doc = nlp(hyp_group if isinstance(hyp_group, str) else hyp_group.decode('utf-8'))
     sim = stn_group_doc.similarity(hyp_group_doc)
     return sim
 
