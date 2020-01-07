@@ -16,6 +16,6 @@ WORKDIR /app
 RUN pipenv install --deploy --system
 RUN python -m spacy download en_core_web_sm
 
-CMD gunicorn -w 4 -b 0.0.0.0:80 app:app
+CMD gunicorn -w 4 -b 127.0.0.1:80 app:app
 
 EXPOSE 80
