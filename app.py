@@ -23,7 +23,7 @@ install_aliases()
 # Flask app should start in global layout
 app = Flask(__name__)
 CORS(app)
-# keep heroku deployment alive, # TODO: move this to github.io page
+# keep alive for herokuapp
 timer.set_interval(lambda: print(requests.get('https://lumi-webhook.herokuapp.com')), 60)
 
 
