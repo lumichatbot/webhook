@@ -24,7 +24,7 @@ install_aliases()
 app = Flask(__name__)
 CORS(app)
 # keep alive for herokuapp
-timer.set_interval(lambda: print(requests.get('https://lumi-webhook.herokuapp.com')), 60)
+timer.set_interval(lambda: print(requests.get('https://lumi-webhook.herokuapp.com')), 300)
 
 
 @app.route("/", methods=["GET"])

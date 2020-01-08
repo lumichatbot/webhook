@@ -20,7 +20,7 @@ class Database:
 
     def insert_session(self, uuid):
         """ Checks if session exists, otherwise creates it to record its messages """
-        session = self.db.session.find_one({'uuid': uuid})
+        session = self.db.session.find_one({"uuid": uuid})
         if not session:
             session = {
                 "uuid": uuid,
@@ -38,22 +38,30 @@ class Database:
             "response": response,
             "dfIntent": df_intent
         }
-        return self.db.session.update_one({"uuid": uuid}, {'$push': {'messages': data}})
+        return self.db.session.update_one({"uuid": uuid}, {"$push": {"messages": data}})
 
-    def insert_intent(self, uuid, intent, entities, nile):
+    def get_latest_intent(self, uuid):
+        return self.db.intents.find_one({"session": uuid}, sort=[("createdAt", pymongo.DESCENDING)])
+
+    def update_intent(self, id, new_values):
+        return self.db.intents.update_one({"_id": id}, {"$set": new_values})
+
+    def insert_intent(self, uuid, text, entities, nile):
         data = {
-            'uuid': uuid,
-            'intent': intent,
-            'entities': entities,
-            'nile': nile
+            "session": uuid,
+            "text": text,
+            "entities": entities,
+            "nile": nile,
+            "createdAt": datetime.now()
         }
         return self.db.intents.insert_one(data)
 
-    def insert_confirmed_intent(self, uuid, intent, entities, nile):
+    def insert_confirmed_intent(self, uuid, text, entities, nile):
         data = {
-            'uuid': uuid,
-            'intent': intent,
-            'entities': entities,
-            'nile': nile
+            "session": uuid,
+            "text": text,
+            "entities": entities,
+            "nile": nile,
+            "createdAt": datetime.now()
         }
         return self.db.confirmed_intents.insert_one(data)

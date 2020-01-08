@@ -138,21 +138,21 @@ class Dialogflow(object):
     def list_entity_types(self):
         """ List all entity types """
         if not self.entity_types_cache:
-            client = dialogflow.EntityTypesClient()
+            client = dialogflow.EntityTypesClient(credentials=self.credentials)
             parent = client.project_agent_path(self.project_id)
             self.entity_types_cache = list(client.list_entity_types(parent))
         return self.entity_types_cache
 
     def get_entity_type(self, entity_type_id):
         """ Get entity type by id """
-        client = dialogflow.EntityTypesClient()
+        client = dialogflow.EntityTypesClient(credentials=self.credentials)
         name = client.entity_type_path(self.project_id, entity_type_id)
 
         return client.get_entity_type(name)
 
     def create_entity_type(self, display_name, kind):
         """Create an entity type with the given display name."""
-        client = dialogflow.EntityTypesClient()
+        client = dialogflow.EntityTypesClient(credentials=self.credentials)
 
         parent = client.project_agent_path(self.project_id)
         entity_type = dialogflow.types.EntityType(display_name=display_name, kind=kind)
@@ -167,7 +167,7 @@ class Dialogflow(object):
 
     def create_entity(self, entity_type_id, entity_value, synonyms):
         """Create an entity of the given entity type."""
-        client = dialogflow.EntityTypesClient()
+        client = dialogflow.EntityTypesClient(credentials=self.credentials)
         # Note: synonyms must be exactly [entity_value] if the
         # entity_type"s kind is KIND_LIST
         synonyms = synonyms or [entity_value]

@@ -81,29 +81,12 @@ def parse_feedback(request):
 
     result = request["queryResult"]
     parameters = result["parameters"]
-    # build_output_context = parse_output_context(request, "build-followup")
-    # feedback_output_context = parse_output_context(request, "build-no-feedback")
 
-    feedback = {}
-    # feedback['entities'] = {}
-
+    missing_entity = {}
     if "entity" in parameters and "any" in parameters:
-        feedback[parameters["entity"]] = {}
-        feedback[parameters["entity"]][parameters["any"]] = True  # use dict to guarantee uniqueness of values
+        missing_entity = {
+            'entity': parameters["entity"],
+            'value': parameters["any"]
+        }
 
-    # if feedback_output_context:
-    #     feedback["original_intent"] = feedback_output_context["parameters"]["original_intent"]
-    #     feedback["nile_intent"] = feedback_output_context["parameters"]["nile_intent"]
-    #     previous_entities = feedback_output_context["parameters"]["entities"]
-    #     for entity, values in previous_entities.items():
-    #         for value in values.keys():
-    #             if entity not in feedback["entities"]:
-    #                 feedback["entities"][entity] = {}
-    #
-    #             feedback["entities"][entity][value] = True
-    #
-    # if build_output_context:
-    #     feedback["original_intent"] = build_output_context["parameters"]["original_intent"]
-    #     feedback["nile_intent"] = build_output_context["parameters"]["nile_intent"]
-
-    return feedback
+    return missing_entity

@@ -14,10 +14,6 @@ from .response import make_card_response, make_simple_response
 from .beautifier import beautify, beautify_intent
 
 
-# TODO: remove this to make service stateless, always fetching feedback from session
-training_feedback = {}
-
-
 def build_nile_intent(request):
     """ Webhook action to build Nile intent from Dialogflow request """
 
@@ -27,16 +23,7 @@ def build_nile_intent(request):
     response = {}
     try:
         intent = interpreter.translate(entities)
-
         speech = "Is this what you want?"
-
-        global training_feedback
-        training_feedback[uuid] = {}
-        training_feedback[uuid]["original_intent"] = text
-        training_feedback[uuid]["nile_intent"] = intent
-        training_feedback[uuid]["entities"] = entities
-        training_feedback[uuid]["missing_entities"] = {}
-
         response = make_card_response("Nile Intent", intent, speech, beautify_intent(intent))
 
         # tracking
@@ -53,24 +40,20 @@ def build_nile_intent(request):
 
 def build_accepted(request):
     """ Webhook action to deploy Nile intent after user confirmation """
-    global training_feedback
-
     uuid = request.get("session").split('/')[-1]
-    original_intent = training_feedback[uuid]['original_intent']
-    nile_intent = training_feedback[uuid]['nile_intent']
-    entities = training_feedback[uuid]["entities"]
 
-    # tracking
     db = client.Database()
-    db.insert_confirmed_intent(uuid, original_intent, entities, nile_intent)
+    intent = db.get_latest_intent(uuid)
+    # tracking
+    db.insert_confirmed_intent(uuid, intent['text'], intent['entities'], intent['nile'])
 
-    contradiction = inspector.check(nile_intent)
+    contradiction = inspector.check(intent['nile'])
     if contradiction:
         text = "The intent you described probably contradictions a previous one. Do you want to deploy it anyway or remove the old one?"
         return make_card_response("Possible contradiction", text, text, beautify_intent(contradiction))
 
     # deploy
-    # res = requests.post(config.DEPLOY_URL, {"intent": nile_intent})
+    # res = requests.post(config.DEPLOY_URL, {"intent": intent.nile})
     # if res.status['code'] == 200:
     #     return make_simple_response("Okay! Intent compiled and deployed!")
 
@@ -79,34 +62,41 @@ def build_accepted(request):
 
 def build_feedback(request):
     """ Webhook action to receive feedback from user after rejecting built intent """
-    global training_feedback
 
     uuid = request.get("session").split('/')[-1]
+    db = client.Database()
+    intent = db.get_latest_intent(uuid)
     feedback = parse_feedback(request)
-    for entity, values in feedback.items():
-        if entity not in training_feedback["entities"]:
-            training_feedback[uuid]["missing_entities"][entity] = {}
-        for value in values.keys():
-            training_feedback[uuid]["missing_entities"][entity][value] = True
 
-    print("training feedback", uuid, training_feedback[uuid])
+    missing_entities = {}
+    if 'missing_entities' in intent:
+        missing_entities = intent['missing_entities']
+
+    if feedback['entity'] not in missing_entities:
+        missing_entities[feedback['entity']] = {}
+    missing_entities[feedback['entity']][feedback['value']] = True
+
+    db.update_intent(intent['_id'], {'missing_entities': missing_entities})
+
+    print("training feedback", uuid, intent)
     return make_simple_response("Okay! And is there anything else I missed?")
 
 
 def feedback_confirm(request):
     """ Webhook action to confirm feedback received from the user """
-    global training_feedback
 
     uuid = request.get("session").split('/')[-1]
-    words_to_highlight = []
-    response_text = "In the phrase '<b>{}</b>', the words:  <br>&nbsp;&nbsp;&nbsp;&nbsp;".format(
-        training_feedback[uuid]['original_intent'])
+    db = client.Database()
+    intent = db.get_latest_intent(uuid)
 
-    for entity, values in training_feedback[uuid]["missing_entities"].items():
+    words_to_highlight = []
+    response_text = "In the phrase '<b>{}</b>':".format(intent['text'])
+
+    for entity, values in intent['missing_entities'].items():
+        response_text += "&nbsp;&nbsp;&nbsp;&nbsp;"
         response_text += ", and ".join(value for value in values.keys())
-        response_text += "  <br>must be considered {}(s);".format(entity)
+        response_text += "  <br>must be considered <b>{}</b>(s);<br>".format(entity)
         words_to_highlight = values.keys()
-        print('words', words_to_highlight)
 
     response_text += "  <br>Is that right?"
 
@@ -120,19 +110,19 @@ def feedback_train(request):
     global training_feedback
 
     uuid = request.get("session").split('/')[-1]
+    db = client.Database()
+    intent = db.get_latest_intent(uuid)
+
     dialogflow = Dialogflow()
-    for entity, values in training_feedback[uuid]["missing_entities"].items():
+    for entity, values in intent['missing_entities'].items():
         try:
             entity_type_id = dialogflow.get_entity_type_id(entity)
-            print("entity_type_id", entity_type_id)
             for value in values.keys():
                 dialogflow.create_entity(entity_type_id, value, [])
         except:
             traceback.print_exc()
-    #dialogflow.update_intent("build", [feedback['original_intent']])
 
-    response = make_simple_response("Okay! Feedback received. Please start over.")
-    return response
+    return make_simple_response("Okay! Feedback received. Please start over.")
 
 
 def error(request):
@@ -142,9 +132,9 @@ def error(request):
 
 ACTIONS = {
     "build.nile": build_nile_intent,
-    "build.build-accepted": build_accepted,
-    "build.build-rejected.feedback": build_feedback,
-    "build.build-rejected.feedback.confirm": feedback_confirm,
-    "build.build-rejected.feedback.train": feedback_train,
+    "build.accepted": build_accepted,
+    "build.rejected.feedback": build_feedback,
+    "build.rejected.feedback.confirm": feedback_confirm,
+    "build.rejected.feedback.train": feedback_train,
     "error": error,
 }
