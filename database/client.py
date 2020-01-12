@@ -24,26 +24,29 @@ class Database:
         if not session:
             session = {
                 "uuid": uuid,
+                "messages": [],
                 "createdAt": datetime.now(),
-                "messages": []
+                "updatedAt": datetime.now()
             }
-            return self.db.session.insert_one(session)
+            return self.db.sessions.insert_one(session)
         return True
 
     def insert_message(self, uuid, text, response, df_intent):
         """ Inserts new message, and generated reponse and triggered Dialogflow intent, for a given session """
         data = {
-            "createdAt": datetime.now(),
             "text": text,
             "response": response,
-            "dfIntent": df_intent
+            "dfIntent": df_intent,
+            "createdAt": datetime.now(),
+            "updatedAt": datetime.now()
         }
-        return self.db.session.update_one({"uuid": uuid}, {"$push": {"messages": data}})
+        return self.db.sessions.update_one({"uuid": uuid}, {"$push": {"messages": data}, "$set": {"updatedAt": datetime.now()}})
 
     def get_latest_intent(self, uuid):
         return self.db.intents.find_one({"session": uuid}, sort=[("createdAt", pymongo.DESCENDING)])
 
     def update_intent(self, id, new_values):
+        new_values['updatedAt'] = datetime.now()
         return self.db.intents.update_one({"_id": id}, {"$set": new_values})
 
     def insert_intent(self, uuid, text, entities, nile):
@@ -52,16 +55,23 @@ class Database:
             "text": text,
             "entities": entities,
             "nile": nile,
-            "createdAt": datetime.now()
+            "status": "pending",
+            "createdAt": datetime.now(),
+            "updatedAt": datetime.now()
         }
         return self.db.intents.insert_one(data)
 
-    def insert_confirmed_intent(self, uuid, text, entities, nile):
+    def get_confirmed_intents(self, uuid):
+        return self.db.intents.find({"session": uuid, "status": "confirmed"})
+
+    def insert_contradiction(self, uuid, old_intent, new_intent, features, result):
         data = {
             "session": uuid,
-            "text": text,
-            "entities": entities,
-            "nile": nile,
-            "createdAt": datetime.now()
+            "old_intent": old_intent,
+            "new_intent": new_intent,
+            "result": result,
+            "features": features,
+            "createdAt": datetime.now(),
+            "updatedAt": datetime.now()
         }
-        return self.db.confirmed_intents.insert_one(data)
+        return self.db.contradictions.insert_one(data)

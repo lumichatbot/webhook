@@ -2,7 +2,7 @@
 
 from random import randint
 
-from nile import interpreter
+from nile import builder
 from utils.sampler import (
     sample_entailing_qos,
     sample_contradicting_qos,
@@ -33,7 +33,7 @@ def make_sfc_intent():
 
     intent = {
         'type': 'sfc',
-        'nile': interpreter.translate(sentence_entities),
+        'nile': builder.build(sentence_entities),
     }
     return intent
 
@@ -54,7 +54,7 @@ def make_qos_intent():
 
     intent = {
         'type': 'qos',
-        'nile': interpreter.translate(sentence_entities),
+        'nile': builder.build(sentence_entities),
     }
     return intent
 
@@ -74,7 +74,7 @@ def make_acl_intent():
 
     intent = {
         'type': 'acl',
-        'nile': interpreter.translate(sentence_entities),
+        'nile': builder.build(sentence_entities),
     }
     return intent
 
@@ -94,7 +94,7 @@ def make_temporal_intent():
 
     intent = {
         'type': 'temporal',
-        'nile': interpreter.translate(sentence_entities),
+        'nile': builder.build(sentence_entities),
     }
     return intent
 
@@ -137,7 +137,7 @@ def make_mixed_intent():
 
     intent = {
         'type': 'mixed',
-        'nile': interpreter.translate(sentence_entities),
+        'nile': builder.build(sentence_entities),
     }
     return intent
 
@@ -174,8 +174,8 @@ def make_path_entailment():
 
     entailment = {
         'type': 'path',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 0
     }
     return entailment
@@ -208,8 +208,8 @@ def make_time_entailment():
 
     entailment = {
         'type': 'time',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 0
     }
     return entailment
@@ -230,8 +230,8 @@ def make_qos_entailment():
 
     entailment = {
         'type': 'qos',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 0
     }
     return entailment
@@ -259,8 +259,8 @@ def make_negation_entailment():
 
     entailment = {
         'type': 'negation',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 0
     }
     return entailment
@@ -304,8 +304,8 @@ def make_synonym_entailment():
 
     entailment = {
         'type': 'synonym',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 0
     }
 
@@ -351,8 +351,8 @@ def make_hierarchical_entailment():
 
     entailment = {
         'type': 'hierarchical',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 0
     }
     return entailment
@@ -397,8 +397,8 @@ def make_domain_entailment():
 
     entailment = {
         'type': 'domain',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 0
     }
     return entailment
@@ -461,8 +461,8 @@ def make_path_contradiction():
 
     entailment = {
         'type': 'path',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 0
     }
     return entailment
@@ -501,8 +501,8 @@ def make_time_contradiction():
 
     contradiction = {
         'type': 'time',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 1
     }
     return contradiction
@@ -524,8 +524,8 @@ def make_qos_contradiction():
 
     contradiction = {
         'type': 'qos',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 1
     }
     return contradiction
@@ -569,8 +569,8 @@ def make_negation_contradiction():
 
     contradiction = {
         'type': 'negation',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 1
     }
     return contradiction
@@ -614,8 +614,8 @@ def make_synonym_contradiction():
 
     contradiction = {
         'type': 'synonym',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 1
     }
     return contradiction
@@ -659,8 +659,8 @@ def make_hierarchical_contradiction():
 
     contradiction = {
         'type': 'hierarchical',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 1
     }
     return contradiction
@@ -705,8 +705,8 @@ def make_domain_contradiction():
 
     contradiction = {
         'type': 'domain',
-        'sentence': interpreter.translate(sentence_entities),
-        'hypothesis': interpreter.translate(hypothesis_entities),
+        'sentence': builder.build(sentence_entities),
+        'hypothesis': builder.build(hypothesis_entities),
         'contradiction': 1
     }
     return contradiction

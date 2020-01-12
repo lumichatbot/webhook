@@ -66,8 +66,11 @@ def coreference(sentence, hypothesis):
             hyp_origin = topology.get_node_tree().id
 
     # print "PATHS", (stn_origin, stn_destination), (hyp_origin, hyp_destination)
-    common_path = topology.get_common_path((stn_origin, stn_destination), (hyp_origin, hyp_destination))
-    coref = 1 if common_path[0] != common_path[1] else 0
+    coref = 0
+    if stn_origin and stn_destination and hyp_origin and hyp_destination:
+        print((stn_origin, stn_destination), (hyp_origin, hyp_destination))
+        common_path = topology.get_common_path((stn_origin, stn_destination), (hyp_origin, hyp_destination))
+        coref = 1 if common_path[0] != common_path[1] or stn_destination == hyp_destination else 0
 
     return coref
 
@@ -319,9 +322,12 @@ def hierarchy(sentence, hypothesis):
             hyp_destination = topology.get_group_ip(group_key)
             hyp_origin = topology.get_node_tree().id
 
-    ancestor = (topology.is_ancestor(stn_origin, hyp_origin) or topology.is_ancestor(stn_destination, hyp_destination))
-    descendent = (topology.is_descendent(stn_origin, hyp_origin)
-                  or topology.is_descendent(stn_destination, hyp_destination))
+    ancestor, descendent = False, False
+    if stn_origin and stn_destination and hyp_origin and hyp_destination:
+        ancestor = (topology.is_ancestor(stn_origin, hyp_origin)
+                    or topology.is_ancestor(stn_destination, hyp_destination))
+        descendent = (topology.is_descendent(stn_origin, hyp_origin)
+                      or topology.is_descendent(stn_destination, hyp_destination))
 
     return 1 if ancestor or descendent else 0
 
@@ -369,7 +375,9 @@ def path_similarity(sentence, hypothesis):
             hyp_origin = topology.get_node_tree().id
 
     # print "PATHS", (stn_origin, stn_destination), (hyp_origin, hyp_destination)
-    common_path = topology.get_common_path_list((stn_origin, stn_destination), (hyp_origin, hyp_destination))
+    common_path = []
+    if stn_origin and stn_destination and hyp_origin and hyp_destination:
+        common_path = topology.get_common_path_list((stn_origin, stn_destination), (hyp_origin, hyp_destination))
 
     return len(common_path)
 

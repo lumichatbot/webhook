@@ -1,4 +1,4 @@
-""" Dialogflow Webhook API server for Network Wizard """
+""" Dialogflow Webhook API server for Lumi """
 
 from __future__ import print_function
 

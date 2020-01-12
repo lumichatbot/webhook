@@ -1,3 +1,4 @@
 """ module init """
-import nile.interpreter
+import nile.builder
+import nile.compiler
 import nile.config

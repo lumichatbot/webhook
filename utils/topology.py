@@ -287,8 +287,8 @@ def get_common_path_list(path_a, path_b):
 def get_group_ip(group):
     """ given a group, get the ip of the group switch """
     root = get_node_tree()
-    group_node = findall(root, lambda node: next((True for x in node.properties['handles'] if x == group), False))[0]
-    return group_node.id if group_node else None
+    group_node = findall(root, lambda node: next((True for x in node.properties['handles'] if x == group), False))
+    return group_node[0].id if group_node else None
 
 
 def get_service(service):
