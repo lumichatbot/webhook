@@ -16,12 +16,7 @@ def parse_output_context(request, context_name):
     return None
 
 
-def parse_session(request):
-    """ Finds and returns the current session """
-    return request["session"]
-
-
-def parse_intent(request):
+def parse_entities(request):
     """ Parses extracted entities from Dialogflow build_intent request """
 
     result = request["queryResult"]
@@ -43,20 +38,41 @@ def parse_intent(request):
     if "target" in parameters and parameters["target"]:
         entities["targets"] = parameters["target"]
 
+    if "operation" in parameters and parameters["operation"]:
+        entities["operations"] = parameters["operation"]
+        if isinstance(entities["operations"], dict):
+            entities["operations"] = next(iter(parameters["operation"].values()), "").strip()
+
     if "middlebox" in parameters and parameters["middlebox"]:
         entities["middleboxes"] = parameters["middlebox"]
 
-    if "qos_metric" in parameters and parameters["qos_metric"] and "qos_value" in parameters and parameters["qos_value"]:
-        metric = {}
-        metric["name"] = to_camel_case(parameters["qos_metric"])
-        metric["value"] = parameters["qos_value"] if isinstance(
-            parameters["qos_value"], basestring) else parameters["qos_value"]["number-integer"]
-        if "qos_constraint" in parameters and parameters["qos_constraint"]:
-            metric["constraint"] = parameters["qos_constraint"]
-        if "qos_unit" in parameters and parameters["qos_unit"]:
-            metric["unit"] = parameters["qos_unit"]
+    if "service" in parameters and parameters["service"]:
+        entities["services"] = parameters["service"]
 
-        entities["qos"] = [metric]
+    if "traffic" in parameters and parameters["traffic"]:
+        entities["traffics"] = parameters["traffic"]
+
+    if "protocol" in parameters and parameters["protocol"]:
+        entities["protocols"] = parameters["protocol"]
+
+    if "qos_metric" in parameters and parameters["qos_metric"] and "qos_value" in parameters and parameters["qos_value"]:
+        entities["qos"] = []
+        for i, (metric, value) in enumerate(zip(parameters["qos_metric"], parameters["qos_value"])):
+            qos_metric = {}
+            qos_metric["name"] = to_camel_case(metric)
+            qos_metric["value"] = value
+            if isinstance(value, dict):
+                qos_metric["value"] = value["number-integer"]
+
+            if "qos_constraint" in parameters and parameters["qos_constraint"]:
+                if i < len(parameters["qos_constraint"]):
+                    qos_metric["constraint"] = parameters["qos_constraint"][i]
+
+            if "qos_unit" in parameters and parameters["qos_unit"]:
+                if i < len(parameters["qos_unit"]):
+                    qos_metric["unit"] = parameters["qos_unit"][i]
+
+            entities["qos"].append(qos_metric)
 
     if "start" in parameters and parameters["start"]:
         entities["start"] = parameters["start"]
@@ -67,11 +83,6 @@ def parse_intent(request):
         entities["end"] = parameters["end"]
         if isinstance(entities["end"], dict):
             entities["end"] = next(iter(parameters["end"].values()), "").strip()
-
-    if "operation" in parameters and parameters["operation"]:
-        entities["operation"] = parameters["operation"]
-        if isinstance(entities["operation"], dict):
-            entities["operation"] = next(iter(parameters["operation"].values()), "").strip()
 
     return entities
 

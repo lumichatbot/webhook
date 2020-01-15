@@ -1,7 +1,7 @@
 """ Auxiliary functions """
 
 
-def make_card_response(title, text, speech, formatted_text, suggestions=""):
+def make_card_response(title, text, speech, formatted_text, suggestions=[]):
     """ Returns a response object with Basic Card """
 
     response = {
@@ -33,7 +33,8 @@ def make_card_response(title, text, speech, formatted_text, suggestions=""):
                                 "formattedText": formatted_text
                             }
                         }
-                    ]
+                    ],
+                    "suggestions": [{"title": x} for x in suggestions]
                 }
             }
         }
@@ -42,7 +43,7 @@ def make_card_response(title, text, speech, formatted_text, suggestions=""):
     return response
 
 
-def make_simple_response(text):
+def make_simple_response(text, suggestions=[]):
     """ Returns a response object with simple text """
 
     response = {
@@ -64,7 +65,8 @@ def make_simple_response(text):
                                 "textToSpeech": text
                             }
                         }
-                    ]
+                    ],
+                    "suggestions": [{"title": x} for x in suggestions]
                 }
             }
         }

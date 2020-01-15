@@ -68,6 +68,7 @@ def gateway():
         Gateway for Dialogflow API
         request = {
             session: <uuid>,
+            live: <true/false>,
             queryInput: {
                 text: {
                     text: <text>,
@@ -82,13 +83,14 @@ def gateway():
     try:
         dialogflow = api.Dialogflow()
         session = req.get("session")
+        live = req.get("live")
         text = req.get("queryInput").get('text').get('text')
 
         res = dialogflow.detect_intent(text, session)
 
         # tracking
         db = client.Database()
-        db.insert_session(session)
+        db.insert_session(session, live)
 
         query_result_text = res.query_result.fulfillment_text
         if res.query_result.fulfillment_messages:

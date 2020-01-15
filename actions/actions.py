@@ -8,7 +8,7 @@ from contradictions import inspector
 from utils import config
 from database import client
 
-from .parser import parse_intent, parse_feedback
+from .parser import parse_entities, parse_feedback
 from .api import Dialogflow
 from .response import make_card_response, make_simple_response
 from .beautifier import beautify, beautify_intent
@@ -16,15 +16,16 @@ from .beautifier import beautify, beautify_intent
 
 def build_nile_intent(request):
     """ Webhook action to build Nile intent from Dialogflow request """
-
     uuid = request.get("session").split("/")[-1]
     text = request.get("queryResult").get("queryText")
-    entities = parse_intent(request)
+
     response = {}
     try:
+        entities = parse_entities(request)
         intent = builder.build(entities)
         speech = "Is this what you want?"
-        response = make_card_response("Nile Intent", intent, speech, beautify_intent(intent))
+        response = make_card_response("Nile Intent", intent, speech, beautify_intent(intent),
+                                      suggestions=["Yes", "No"])
 
         # tracking
         db = client.Database()
@@ -48,7 +49,8 @@ def build_accepted(request):
     contradiction = inspector.check(intent, uuid)
     if contradiction:
         text = "The intent you described probably contradictions a previous one. Do you want to deploy it anyway or remove the old one?"
-        return make_card_response("Possible contradiction", text, text, beautify_intent(contradiction["nile"]))
+        return make_card_response("Possible contradiction", text, text, beautify_intent(contradiction["nile"]),
+                                  suggestions=["Deploy it anyway", "Remove old one and deploy new", "Keep old one"])
 
     merlin_program, compilation_time = compiler.compile(intent["nile"])
     if merlin_program:
@@ -83,7 +85,7 @@ def build_feedback(request):
     db.update_intent(intent["_id"], {"status": "declined", "missing_entities": missing_entities})
 
     print("training feedback", uuid, intent)
-    return make_simple_response("Okay! And is there anything else I missed?")
+    return make_simple_response("Okay! And is there anything else I missed?", suggestions=["Yes", "No"])
 
 
 def feedback_confirm(request):
@@ -105,7 +107,8 @@ def feedback_confirm(request):
     response_text += "  <br>Is that right?"
 
     response = make_card_response("Feedback confirmation", response_text, "Can you confirm your feedback then?",
-                                  beautify(response_text, words_to_highlight))
+                                  beautify(response_text, words_to_highlight),
+                                  suggestions=["Yes", "No"])
     return response
 
 

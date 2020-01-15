@@ -18,12 +18,13 @@ class Database:
             .format(db_user, db_pass))
         self.db = client.lumi
 
-    def insert_session(self, uuid):
+    def insert_session(self, uuid, live):
         """ Checks if session exists, otherwise creates it to record its messages """
         session = self.db.session.find_one({"uuid": uuid})
         if not session:
             session = {
                 "uuid": uuid,
+                "live": live,
                 "messages": [],
                 "createdAt": datetime.now(),
                 "updatedAt": datetime.now()

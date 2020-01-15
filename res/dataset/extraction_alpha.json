@@ -1,5 +1,35 @@
 {
-	"intents": [{
+	"intents": [
+		{
+			"text": "Hey Lumi please block traffic for all students",
+			"parts": [
+				{
+					"text": "Hey Lumi please "
+				},
+				{
+					"text": "block",
+					"entity_type": "@operation",
+					"value": "block"
+				},
+				{
+					"text": " "
+				},
+				{
+					"text": "traffic",
+					"entity_type": "@traffic",
+					"value": "all"
+				},
+				{
+					"text": " "
+				},
+				{
+					"text": "for all students",
+					"entity_type": "@target",
+					"value": "student"
+				}
+			]
+		},
+		{
 			"text": "From gateway to network add middlebox firewall",
 			"parts": [{
 					"text": "From gateway",
@@ -169,7 +199,7 @@
 				},
 				{
 					"text": " netflix",
-					"entity_type": "@destination",
+					"entity_type": "@service",
 					"value": "netflix"
 				},
 				{
@@ -177,7 +207,7 @@
 				},
 				{
 					"text": "on PUC",
-					"entity_type": "@origin",
+					"entity_type": "@target",
 					"value": "PUCRS"
 				}
 			]
@@ -318,10 +348,10 @@
 					"value": "traffic shaping"
 				},
 				{
-					"text": " for "
+					"text": " "
 				},
 				{
-					"text": "gateway",
+					"text": "for gateway",
 					"alias": "target",
 					"entity_type": "@target"
 				},
@@ -363,18 +393,18 @@
 					"entity_type": "@middlebox"
 				},
 				{
-					"text": " for "
+					"text": " "
 				},
 				{
-					"text": "at&t",
+					"text": "for att",
 					"alias": "target",
 					"entity_type": "@target"
 				},
 				{
-					"text": " and "
+					"text": " "
 				},
 				{
-					"text": "verizon",
+					"text": "and verizon",
 					"alias": "target",
 					"entity_type": "@target"
 				}
@@ -1152,7 +1182,7 @@
 					"value": "gaming"
 				},
 				{
-					"text": " traffic"
+					"text": " traffic "
 				},
 				{
 					"text": "in classrooms",
@@ -1223,11 +1253,14 @@
 					"text": " "
 				},
 				{
-					"text": "for faculty members",
+					"text": "for faculty",
 					"alias": "target",
 					"entity_type": "@target",
-					"value": "staff"
-				}
+					"value": "faculty"
+				},
+				{
+					"text": " members"
+				},
 			]
 		},
 		{
@@ -1397,21 +1430,21 @@
 			]
 		},
 		{
-			"text": "Prioritize Netflix traffic from 18:00 to midnight",
+			"text": "Block Netflix traffic from 18:00 to midnight",
 			"parts": [{
-					"text": "Prioritize",
-					"alias": "middlebox",
-					"entity_type": "@middlebox",
-					"value": "traffic shapping"
+					"text": "Block",
+					"alias": "operation",
+					"entity_type": "@operation",
+					"value": "block"
 				},
 				{
 					"text": " "
 				},
 				{
 					"text": "Netflix",
-					"alias": "target",
-					"entity_type": "@target",
-					"value": "staff"
+					"alias": "service",
+					"entity_type": "@service",
+					"value": "netflix"
 				},
 				{
 					"text": " traffic "
@@ -1419,7 +1452,8 @@
 				{
 					"text": "from 18:00",
 					"alias": "start",
-					"entity_type": "@start"
+					"entity_type": "@start",
+					"value": "18:00"
 				},
 				{
 					"text": " "
@@ -2013,6 +2047,9 @@
 					"value": "packet filter"
 				},
 				{
+					"text": " "
+				},
+				{
 					"text": "for guests",
 					"entity_type": "@target",
 					"value": "guests"
@@ -2216,7 +2253,7 @@
 					"value": "VoIP"
 				},
 				{
-					"text": " traffic"
+					"text": " traffic "
 				},
 				{
 					"text": "from 23:59",
@@ -2259,15 +2296,26 @@
 					"value": "gbps"
 				},
 				{
-					"text": "bandwidth limit",
+					"text": " "
+				},
+				{
+					"text": "bandwidth",
 					"entity_type": "@qos_metric",
 					"value": "bandwidth"
+				},
+				{
+					"text": " "
+				},
+				{
+					"text": "limit",
+					"entity_type": "@qos_constraint",
+					"value": "max"
 				},
 				{
 					"text": " for the traffic "
 				},
 				{
-					"text": " to DMZ",
+					"text": "to DMZ",
 					"entity_type": "@destination",
 					"value": "DMZ"
 				}

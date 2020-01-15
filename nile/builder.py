@@ -1,26 +1,42 @@
 """ Nile intent builder """
 
+from .exceptions import MissingTargetError, MissingOperationError
 
-def check_syntax(entities):
-    """
-        Check if entities extracted have the minimum syntax requirements to build a Nile intent.
-        Returns any error encoutered.
-    """
-    if "destination" not in entities:
-        if "group" not in entities and "targets" not in entities:
-            return "The intent needs a clear target."
 
-    return None
+def slot_filling(entities):
+    """ Given extracted entities, fills missing slots with some assumptions  """
+
+    if "origin" in entities and "destination" not in entities:
+        if "targets" not in entities:
+            entities["targets"] = [entities["origin"]]
+
+    if "origin" not in entities and "destination" in entities:
+        if "targets" not in entities:
+            entities["targets"] = [entities["destination"]]
+
+    if "origin" not in entities and "destination" not in entities:
+        if "targets" not in entities:
+            entities["targets"] = [{"location": "network"}]
+
+    if "operations" not in entities:
+        entities["operations"] = []
+        if "qos" in entities:
+            entities["operations"].append("set")
+
+        if "middleboxes" in entities:
+            entities["operations"].append("add")
+
+        if "service" in entities or "traffic" in entities or "protocol" in entities:
+            entities["operations"].append("allow")
+
+    return entities
 
 
 def build(entities):
     """ Build extracted entities into a Nile intent """
-
     print(entities)
 
-    error = check_syntax(entities)
-    if error:
-        raise ValueError(error)
+    entities = slot_filling(entities)
 
     intent = "define intent {}Intent:".format(entities["id"])
 
@@ -30,78 +46,82 @@ def build(entities):
         if isinstance(entities["destination"], str):
             intent += " to endpoint('{}')".format(entities["destination"])
 
-        if "service" in entities["origin"]:
-            intent += "from service('{}')".format(entities["origin"]["service"])
-        elif "location" in entities["origin"]:
+        if "location" in entities["origin"]:
             intent += "from endpoint('{}')".format(entities["origin"]["location"])
 
-        if "service" in entities["destination"]:
-            intent += "to service('{}')".format(entities["destination"]["service"])
-        elif "location" in entities["destination"]:
+        if "location" in entities["destination"]:
             intent += "to endpoint('{}')".format(entities["destination"]["location"])
-    # elif ("origin" in entities and "destination" not in entities) or ("origin" not in entities and "destination" in entities):
-    #     raise ValueError("Origin cannot be used without destination, and vice-versa.")
-    # ask for missing info
-
-    if "group" in entities:
-        intent += " for group('{}')".format(entities['group'])
-
-    if "middleboxes" in entities:
-        if "operation" in entities and ('add' in entities["operation"] or 'remove' in entities["operation"]):
-            intent += " {}".format(next((x for x in entities["operation"] if x == 'add' or x == 'remove'), "add"))
-        else:
-            intent += " add"
-        for middlebox in entities["middleboxes"]:
-            intent += " middlebox('{}'),".format(middlebox)
-        intent = intent.rstrip(',')
-
-    if "qos" in entities:
-        if "operation" in entities and ('set' in entities["operation"] or 'unset' in entities['operation']):
-            intent += " {}".format(next((x for x in entities["operation"] if x == 'set' or x == 'unset'), "add"))
-        else:
-            intent += " set"
-        for metric in entities["qos"]:
-            if "name" in metric and ("constraint" in metric and "value" in metric and "unit" in metric):
-                if metric['constraint']:
-                    intent += " {}('{}', '{}', '{}'),".format(metric['name'],
-                                                              metric['constraint'], metric['value'], metric['unit'])
-                else:
-                    intent += " {}('{}', '{}'),".format(metric['name'], metric['value'], metric['unit'])
-            elif "name" in metric and "value" in metric and metric['value'] == 'none':
-                intent += " {}('{}'),".format(metric['name'], metric['value'])
-            # else:
-            #     raise ValueError("Missing qos metric parameters.")
-            # ask for missing info
-        intent = intent.rstrip(',')
 
     if "targets" in entities:
-        if "operation" in entities and ('allow' in entities["operation"] or 'block' in entities['operation']):
-            intent += " {}".format(next((x for x in entities["operation"] if x == 'allow' or x == 'block'), "add"))
-        else:
-            intent += " for"
+        intent += " for"
 
         for target in entities["targets"]:
             if isinstance(target, str):
-                intent += " service('{}'),".format(target)
+                intent += " endpoint('{}'),".format(target)
             elif "service" in target:
-                intent += " service('{}'),".format(target['service'])
+                intent += " service('{}'),".format(target["service"])
             elif "protocol" in target:
-                intent += " protocol('{}'),".format(target['protocol'])
+                intent += " protocol('{}'),".format(target["protocol"])
             elif "traffic" in target:
-                intent += " traffic('{}'),".format(target['traffic'])
+                intent += " traffic('{}'),".format(target["traffic"])
             elif "location" in target:
-                intent += " endpoint('{}'),".format(target['location'])
+                intent += " endpoint('{}'),".format(target["location"])
+            elif "group" in target:
+                intent += " group('{}')".format(target["group"])
 
         intent = intent.rstrip(',')
 
-    # elif ("start" in entities and "end" not in entities) or ("start" not in entities and "end" in entities):
-    #     raise ValueError("Start cannot be used without end, and vice-versa.")
-    # ask for missing info
+    for operation in entities["operations"]:
+        if operation == "add" or operation == "remove":
+            intent += " {}".format(operation)
+
+            if "middleboxes" in entities:
+                for middlebox in entities["middleboxes"]:
+                    intent += " middlebox('{}'),".format(middlebox)
+                intent = intent.rstrip(',')
+
+            # if no parameters for the action were given, we remove the action
+            intent = intent.rstrip(operation)
+
+        if operation == "allow" or operation == "block":
+            intent += " {}".format(operation)
+
+            if "services" in entities:
+                for service in entities["services"]:
+                    intent += " service('{}'),".format(service)
+                intent = intent.rstrip(',')
+
+            if "traffics" in entities:
+                for traffic in entities["traffics"]:
+                    intent += " traffic('{}'),".format(traffic)
+                intent = intent.rstrip(',')
+
+            if "protocols" in entities:
+                for protocol in entities["protocols"]:
+                    intent += " protocol('{}'),".format(protocol)
+                intent = intent.rstrip(',')
+
+            # if no parameters for the action were given, we remove the action
+            intent = intent.rstrip(operation)
+
+        if operation == "set" or operation == "unset":
+            intent += " {}".format(operation)
+
+            if "qos" in entities:
+                for metric in entities["qos"]:
+                    if "name" in metric and "value" in metric and "unit" in metric:
+                        if 'constraint' in metric and metric['constraint']:
+                            intent += " {}('{}', '{}', '{}'),".format(metric["name"],
+                                                                      metric["constraint"], metric["value"], metric["unit"])
+                        else:
+                            intent += " {}('{}', '{}'),".format(metric["name"], metric["value"], metric["unit"])
+
+                intent = intent.rstrip(',')
+
+            # if no parameters for the action were given, we remove the action
+            intent = intent.rstrip(operation)
+
     if "start" in entities and "end" in entities:
-        intent += " start hour('{}:{}') end hour('{}:{}')".format(entities["start"].hour, entities["start"].minute,
-                                                                  entities["end"].hour, entities["end"].minute)
-    # elif ("start" in entities and "end" not in entities) or ("start" not in entities and "end" in entities):
-    #     raise ValueError("Start cannot be used without end, and vice-versa.")
-    # ask for missing info
+        intent += " start hour('{}') end hour('{}')".format(entities["start"], entities["end"])
 
     return intent

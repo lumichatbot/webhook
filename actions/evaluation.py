@@ -34,14 +34,14 @@ def training_callback(operation):
     """ callback indicating the training is done """
     global END_TRAINING
     while not operation.done():
-        print "Training"
-    print 'Training ended.'
+        print("Training")
+    print('Training ended.')
     END_TRAINING = time.time()
 
 
 def feedback():
     """ opens alpha dataset, splits 75-25 percent for train-test, then opens campi dataset to use as feedback """
-    print "FEEDBACK ",
+    print("FEEDBACK ",)
     global END_TRAINING
 
     diag = Dialogflow()
@@ -66,8 +66,8 @@ def feedback():
             intent.append(part)
         campi_intents.append(intent)
 
-    print "DATASET CASES ALPHA #", len(alpha_intents)
-    print "DATASET CASES CAMPI #", len(campi_intents)
+    print("DATASET CASES ALPHA #", len(alpha_intents))
+    print("DATASET CASES CAMPI #", len(campi_intents))
 
     diag.update_intent(INTENT_ID, alpha_intents, False)
     training_begin = diag.train_agent(training_callback)
@@ -76,30 +76,30 @@ def feedback():
     while True:
         if END_TRAINING:
             time_elapsed = (END_TRAINING - training_begin)
-            print "Training time: ", time_elapsed
+            print("Training time: ", time_elapsed)
             break
         time.sleep(60)
 
-    print "Testing..."
+    print("Testing...")
 
     results = []
     shuffle(campi_intents)
     for idx, feedback_case in enumerate(campi_intents):
-        print "intent", idx
+        print("intent", idx)
         result = diag.detect_intent_texts([feedback_case])[0]
         rec = recall(result)
         prec = precision(result)
         f1_sc = f1_score(result)
-        print result['text']
-        print 'recall: ', rec
-        print 'precision: ', prec
-        print 'f1_score: ', f1_sc
+        print(result['text'])
+        print('recall: ', rec)
+        print('precision: ', prec)
+        print('f1_score: ', f1_sc)
         results.append((idx, result['text'], result['recognized_entities'], result['tp'],
                         result['tn'], result['fp'], result['fn'], rec, prec, f1_sc))
 
         if result['fp'] != 0 or result['fn'] != 0:
             alpha_intents.append(feedback_case)
-            print "DATASET CASES ALPHA #", len(alpha_intents)
+            print("DATASET CASES ALPHA #", len(alpha_intents))
 
             diag.update_intent(INTENT_ID, alpha_intents, False)
             END_TRAINING = None
@@ -109,7 +109,7 @@ def feedback():
             while True:
                 if END_TRAINING:
                     time_elapsed = (END_TRAINING - training_begin)
-                    print "Training time: ", time_elapsed
+                    print("Training time: ", time_elapsed)
                     break
 
     with open(config.EXTRACTION_RESULTS_PATH.format('feedback'), 'wb') as csvfile:
@@ -120,9 +120,29 @@ def feedback():
             csv_writer.writerow([idx, intent, rec_entities, time_elapsed, tp, tn, fp, fn, rec, prec, f1_sc])
 
 
+def train(dtype):
+    """ opens specific dataset and trains agent with it """
+    print("DATASET ", dtype)
+    data = dataset.read('extraction', dtype)['intents']
+    intents = []
+    for case in data:
+        intent = []
+        for part in case['parts']:
+            if 'entity_type' in part and not 'alias' in part:
+                part['alias'] = part['entity_type'][1:]
+            intent.append(part)
+        intents.append(intent)
+
+    print("DATASET CASES #", len(intents))
+
+    diag = Dialogflow()
+    diag.update_intent(INTENT_ID, intents, False)
+    training_begin = diag.train_agent(training_callback)
+
+
 def run(dtype):
     """ opens specific dataset, splits 75-25 percent for train-test and runs extraction """
-    print "DATASET ", dtype
+    print("DATASET ", dtype)
     global END_TRAINING
     data = dataset.read('extraction', dtype)['intents']
     intents = []
@@ -134,7 +154,7 @@ def run(dtype):
             intent.append(part)
         intents.append(intent)
 
-    print "DATASET CASES #", len(intents)
+    print("DATASET CASES #", len(intents))
 
     n_samples = int(ceil(len(intents) * 0.75))
     training = sample(intents, n_samples)
@@ -148,11 +168,11 @@ def run(dtype):
     while True:
         if END_TRAINING:
             time_elapsed = (END_TRAINING - training_begin)
-            print "Training time: ", time_elapsed
+            print("Training time: ", time_elapsed)
             break
         # time.sleep(50)
 
-    print "Testing..."
+    print("Testing...")
 
     results = diag.detect_intent_texts(validation)
     with open(config.EXTRACTION_RESULTS_PATH.format(dtype), 'wb') as csvfile:
@@ -162,15 +182,16 @@ def run(dtype):
             rec = recall(result)
             prec = precision(result)
             f1_sc = f1_score(result)
-            print result['text']
-            print 'recall: ', rec
-            print 'precision: ', prec
-            print 'f1_score: ', f1_sc
+            print(result['text'])
+            print('recall: ', rec)
+            print('precision: ', prec)
+            print('f1_score: ', f1_sc)
             csv_writer.writerow([result['text'], result['recognized_entities'], time_elapsed, rec, prec, f1_sc])
 
 
 if __name__ == '__main__':
+    train('alpha')
     # run('alpha')
     # run('campi')
     # run('both')
-    feedback()
+    # feedback()
