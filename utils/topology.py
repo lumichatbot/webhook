@@ -177,7 +177,8 @@ def write(format='json'):
                     "hostname": "gateway.rs.edu",
                     "handles": [
                         "gateway",
-                        "internet"
+                        "internet",
+                        "network"
                     ]
                 }
             }
@@ -213,6 +214,106 @@ def write(format='json'):
                     host = make_node("host", "physical", l, DATASET_GROUPS[k - 1])
                     nodes.append(host)
                     links.append(make_link(edge_switch["id"], host["id"], 100))
+
+    topology["nodes"] = topology["nodes"] + nodes
+    topology["links"] = links
+
+    with open(TOPOLOGY_PATH, 'w') as topology_file:
+        json.dump(topology, topology_file, indent=4, sort_keys=True)
+
+
+def write_user_study(format='json'):
+    """ Creates campus topology in NetJSON for user study """
+
+    global SUBNET_ID
+
+    topology = {
+        "type": "NetworkGraph",
+        "protocol": "olsr",
+        "version": "0.6.6",
+        "revision": "5031a799fcbe17f61d57e387bc3806de",
+        "metric": "etx",
+        "router_id": "172.16.1.1",
+        "label": "Campus Network",
+        "nodes": [
+            {
+                "id": "19.16.1.1",
+                "label": "Gateway",
+                "properties": {
+                    "hostname": "gateway.rs.edu",
+                    "handles": [
+                        "gateway",
+                        "internet",
+                        "network"
+                    ]
+                }
+            }
+        ],
+        "links": []
+    }
+
+    nodes = []
+    links = []
+
+    dmz_switch = make_node("switch", "dmz", 1, "dmz")
+    nodes.append(dmz_switch)
+    links.append(make_link("19.16.1.1", dmz_switch["id"], 10000))
+
+    lan_switch = make_node("switch", "lan", 1, "lan")
+    nodes.append(lan_switch)
+    links.append(make_link("19.16.1.1", lan_switch["id"], 10000))
+
+    SUBNET_ID += 1
+
+    labs_switch = make_node("switch", "labs", 1, "laboratories")
+    nodes.append(labs_switch)
+    links.append(make_link(dmz_switch["id"], labs_switch["id"], 10000))
+
+    servers_switch = make_node("switch", "servers", 1, "server racks")
+    nodes.append(servers_switch)
+    links.append(make_link(dmz_switch["id"], servers_switch["id"], 10000))
+
+    SUBNET_ID += 1
+
+    guests_switch = make_node("switch", "guests", 1, "guests")
+    nodes.append(guests_switch)
+    links.append(make_link(lan_switch["id"], guests_switch["id"], 10000))
+
+    dorms_switch = make_node("switch", "dorms", 1, "dormitories")
+    nodes.append(dorms_switch)
+    links.append(make_link(lan_switch["id"], dorms_switch["id"], 10000))
+
+    SUBNET_ID += 1
+
+    for i in range(1, 11):
+        host = make_node("host", "physical", i, "professors")
+        nodes.append(host)
+        links.append(make_link(labs_switch["id"], host["id"], 1000))
+
+        host = make_node("host", "physical", i + 10, "students")
+        nodes.append(host)
+        links.append(make_link(labs_switch["id"], host["id"], 1000))
+
+    SUBNET_ID += 1
+
+    for i in range(1, 11):
+        host = make_node("host", "physical", i, "guest")
+        nodes.append(host)
+        links.append(make_link(guests_switch["id"], host["id"], 1000))
+
+    SUBNET_ID += 1
+
+    for i in range(1, 11):
+        host = make_node("host", "physical", i, "students")
+        nodes.append(host)
+        links.append(make_link(dorms_switch["id"], host["id"], 1000))
+
+    SUBNET_ID += 1
+
+    for mb in DATASET_MIDDLEBOXES:
+        host = make_node("middlebox", mb, 1, mb)
+        nodes.append(host)
+        links.append(make_link(servers_switch["id"], host["id"], 1000))
 
     topology["nodes"] = topology["nodes"] + nodes
     topology["links"] = links
@@ -366,4 +467,4 @@ def get_node_tree():
 
 
 if __name__ == "__main__":
-    write(format='json')
+    write_user_study(format='json')

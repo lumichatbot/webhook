@@ -45,6 +45,7 @@ def build_accepted(request):
 
     db = client.Database()
     intent = db.get_latest_intent(uuid)
+    print("LATEST INTENT", intent['_id'], intent['text'], intent['nile'])
     db.update_intent(intent["_id"], {"status": "confirmed"})
     contradiction = inspector.check(intent, uuid)
     if contradiction:

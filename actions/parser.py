@@ -55,6 +55,14 @@ def parse_entities(request):
     if "protocol" in parameters and parameters["protocol"]:
         entities["protocols"] = parameters["protocol"]
 
+    if "qos_unit" in parameters and ("qos_metric" not in parameters or ("qos_metric" in parameters and not parameters["qos_metric"])):
+        parameters["qos_metric"] = []
+        for unit in parameters["qos_unit"]:
+            if "ps" in unit:
+                parameters["qos_metric"].append("bandwidth")
+            else:
+                parameters["qos_metric"].append("quota")
+
     if "qos_metric" in parameters and parameters["qos_metric"] and "qos_value" in parameters and parameters["qos_value"]:
         entities["qos"] = []
         for i, (metric, value) in enumerate(zip(parameters["qos_metric"], parameters["qos_value"])):

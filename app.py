@@ -6,6 +6,7 @@ import json
 import os
 import traceback
 import requests
+import time
 
 from flask import Flask, make_response, request
 from flask_cors import CORS
@@ -16,7 +17,7 @@ from google.protobuf.json_format import MessageToJson
 
 from actions import ACTIONS, api
 from database import client
-from utils import timer
+from utils import timer, tasks
 
 install_aliases()
 
@@ -31,6 +32,43 @@ timer.set_interval(lambda: print(requests.get('https://lumi-webhook.herokuapp.co
 def home():
     """ Blank page to check if APIs are running """
     return "Lumi Webhook APIs"
+
+
+@app.route("/finish/<session>", methods=["GET"])
+def finish(session):
+    """
+        API to finish session and record end timestamp
+    """
+    print("Session: {}".format(session))
+    try:
+        db = client.Database()
+        res = db.finish_session(session)
+        if res:
+            res = "Session {} finished and recorded.".format(session)
+        else:
+            res = "Session {} does not exist or was already finished.".format(session)
+    except Exception as err:
+        traceback.print_exc()
+        res = "{}".format(err)
+
+    print("Response: {}".format(res))
+    return make_response(res)
+
+
+@app.route("/check/<session>/<task>", methods=["GET"])
+def check(session, task):
+    """
+        API to check if user has completed give task
+    """
+    print("Session: {} , Task: {}".format(session, task))
+    try:
+        res = tasks.check(session, int(task))
+    except Exception as err:
+        traceback.print_exc()
+        res = "{}".format(err)
+
+    print("Response: {}".format(res))
+    return make_response(json.dumps(res))
 
 
 @app.route("/webhook", methods=["POST"])
@@ -79,7 +117,7 @@ def gateway():
     """
     req = request.get_json(silent=True, force=True)
 
-    print("Request: {}".format(json.dumps(req, indent=4)))
+    # print("Request: {}".format(json.dumps(req, indent=4)))
     try:
         dialogflow = api.Dialogflow()
         session = req.get("session")
@@ -102,7 +140,7 @@ def gateway():
         res = "{}".format(err)
 
     res = MessageToJson(res)
-    print("Response: {}".format(json.dumps(res, indent=4)))
+    # print("Response: {}".format(json.dumps(res, indent=4)))
 
     response = make_response(res)
     response.headers["Content-Type"] = "application/json"

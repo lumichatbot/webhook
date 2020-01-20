@@ -76,12 +76,12 @@ class Dialogflow(object):
         query_input = dialogflow.types.QueryInput(text=text_input)
         response = client.detect_intent(session=session_path, query_input=query_input)
 
-        print('=' * 20)
-        print('Query text: {}'.format(response.query_result.query_text))
-        print('Detected intent: {} \n'.format(response.query_result.intent.display_name))
-        print('Fulfillment text: {}\n'.format(response.query_result.fulfillment_text))
-        print('Fulfillment messages: {}\n'.format(response.query_result.fulfillment_messages))
-        print('Query result: {}\n'.format(response.query_result))
+        # print('=' * 20)
+        # print('Query text: {}'.format(response.query_result.query_text))
+        # print('Detected intent: {} \n'.format(response.query_result.intent.display_name))
+        # print('Fulfillment text: {}\n'.format(response.query_result.fulfillment_text))
+        # print('Fulfillment messages: {}\n'.format(response.query_result.fulfillment_messages))
+        # print('Query result: {}\n'.format(response.query_result))
 
         return response
 
@@ -92,8 +92,6 @@ class Dialogflow(object):
         intent_id = self.get_intent_id(display_name)
         intent = self.get_intent(intent_id)
         training_phrases = self.get_training_phrases(training_phrases_parts)
-
-        print("intent", intent, training_phrases)
 
         intent.training_phrases.extend(training_phrases)
         update_mask = field_mask_pb2.FieldMask(paths=['training_phrases'])
@@ -214,7 +212,7 @@ class Dialogflow(object):
         response = client.update_intent(intent, language_code='en',
                                         update_mask=dialogflow.types.FieldMask(paths=['training_phrases']))
 
-        print('Intent {} updated'.format(intent_name))
+        # print('Intent {} updated'.format(intent_name))
 
     def create_intent(self, display_name, training_phrases_parts, message_texts):
         """Create an intent of the given intent type."""
@@ -248,7 +246,7 @@ class Dialogflow(object):
 
         response = intents_client.create_intent(parent, intent)
 
-        print('Intent created: {}'.format(response))
+        # print('Intent created: {}'.format(response))
 
     """
         EVALUATION

@@ -222,9 +222,9 @@ def qos(sentence, hypothesis):
         quota = result.group(1) if result else ""
         sentence_qos = {
             'name': 'quota',
-            'constraint': '',
-            'value': int(quota.split(',')[0].replace("'", "")) if quota else "",
-            'unit': quota.split(',')[1].replace("'", "") if quota else ""
+            'constraint': quota.split(',')[0].replace("'", "") if quota else "",
+            'value': int(quota.split(',')[1].replace("'", "")) if quota else "",
+            'unit': quota.split(',')[2].replace("'", "") if quota else ""
         }
 
     if 'bandwidth' in hypothesis:
@@ -241,9 +241,9 @@ def qos(sentence, hypothesis):
         quota = result.group(1) if result else ""
         hypothesis_qos = {
             'name': 'quota',
-            'constraint': '',
-            'value': int(quota.split(',')[0].replace("'", "")) if quota else "",
-            'unit': quota.split(',')[1].replace("'", "") if quota else ""
+            'constraint': quota.split(',')[0].replace("'", "") if quota else "",
+            'value': int(quota.split(',')[1].replace("'", "")) if quota else "",
+            'unit': quota.split(',')[2].replace("'", "") if quota else ""
         }
 
     if not sentence_qos or not hypothesis_qos:

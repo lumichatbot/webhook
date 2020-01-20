@@ -18,9 +18,9 @@ class Database:
             .format(db_user, db_pass))
         self.db = client.lumi
 
-    def insert_session(self, uuid, live):
+    def insert_session(self, uuid, live=False):
         """ Checks if session exists, otherwise creates it to record its messages """
-        session = self.db.session.find_one({"uuid": uuid})
+        session = self.db.sessions.find_one({"uuid": uuid})
         if not session:
             session = {
                 "uuid": uuid,
@@ -31,6 +31,13 @@ class Database:
             }
             return self.db.sessions.insert_one(session)
         return True
+
+    def finish_session(self, uuid):
+        """ Checks if session is active and finish it if it is """
+        session = self.db.sessions.find_one({"uuid": uuid})
+        if session and "finishedAt" not in session:
+            return self.db.sessions.update_one({"_id": session["_id"]}, {"$set": {"finishedAt": datetime.now()}})
+        return False
 
     def insert_message(self, uuid, text, response, df_intent):
         """ Inserts new message, and generated reponse and triggered Dialogflow intent, for a given session """
@@ -44,7 +51,7 @@ class Database:
         return self.db.sessions.update_one({"uuid": uuid}, {"$push": {"messages": data}, "$set": {"updatedAt": datetime.now()}})
 
     def get_latest_intent(self, uuid):
-        return self.db.intents.find_one({"session": uuid}, sort=[("createdAt", pymongo.DESCENDING)])
+        return self.db.intents.find_one({"session": uuid, "status": "pending"}, sort=[("createdAt", pymongo.DESCENDING)])
 
     def update_intent(self, id, new_values):
         new_values['updatedAt'] = datetime.now()
@@ -63,7 +70,7 @@ class Database:
         return self.db.intents.insert_one(data)
 
     def get_confirmed_intents(self, uuid):
-        return self.db.intents.find({"session": uuid, "status": "confirmed"})
+        return self.db.intents.find({"session": uuid, "status": {"$ne": "pending"}})
 
     def insert_contradiction(self, uuid, old_intent, new_intent, features, result):
         data = {

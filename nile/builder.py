@@ -26,7 +26,7 @@ def slot_filling(entities):
         if "middleboxes" in entities:
             entities["operations"].append("add")
 
-        if "service" in entities or "traffic" in entities or "protocol" in entities:
+        if "services" in entities or "traffics" in entities or "protocols" in entities:
             entities["operations"].append("allow")
 
     return entities
@@ -34,7 +34,7 @@ def slot_filling(entities):
 
 def build(entities):
     """ Build extracted entities into a Nile intent """
-    print(entities)
+    print("ENTITIES", entities)
 
     entities = slot_filling(entities)
 
@@ -67,7 +67,7 @@ def build(entities):
             elif "location" in target:
                 intent += " endpoint('{}'),".format(target["location"])
             elif "group" in target:
-                intent += " group('{}')".format(target["group"])
+                intent += " group('{}'),".format(target["group"])
 
         intent = intent.rstrip(',')
 

@@ -37,7 +37,7 @@ DATASET_SIZES = [100, 500, 1000, 2500, 5000, 10000]
 DATASET_ACTIONS_MBS = ['add', 'remove']
 DATASET_ACTIONS_ACL = ['allow', 'block']
 DATASET_ACTIONS_QOS = ['set', 'unset']
-DATASET_GROUPS = ['students', 'professors', 'dorms', 'labs']
+DATASET_GROUPS = ['students', 'professors', 'servers', 'guests', 'dorms', 'labs']
 DATASET_MIDDLEBOXES = ['firewall', 'dpi', 'ids', 'load-balancer', 'parental-control']
 DATASET_SERVICES = ['netflix', 'youtube', 'facebook', 'vimeo',
                     'amazon-prime', 'instagram', 'popcorn-time', 'stremio', 'bittorrent']
