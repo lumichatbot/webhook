@@ -45,13 +45,14 @@ def build_accepted(request):
 
     db = client.Database()
     intent = db.get_latest_intent(uuid)
-    print("LATEST INTENT", intent['_id'], intent['text'], intent['nile'])
     db.update_intent(intent["_id"], {"status": "confirmed"})
-    contradiction = inspector.check(intent, uuid)
-    if contradiction:
-        text = "The intent you described probably contradictions a previous one. Do you want to deploy it anyway or remove the old one?"
-        return make_card_response("Possible contradiction", text, text, beautify_intent(contradiction["nile"]),
-                                  suggestions=["Deploy it anyway", "Remove old one and deploy new", "Keep old one"])
+
+    # TODO: fix contradiction after user study
+    # contradiction = inspector.check(intent, uuid)
+    # if contradiction:
+    #     text = "The intent you described probably contradictions a previous one. Do you want to deploy it anyway or remove the old one?"
+    #     return make_card_response("Possible contradiction", text, text, beautify_intent(contradiction["nile"]),
+    #                               suggestions=["Deploy it anyway", "Remove old one and deploy new", "Keep old one"])
 
     merlin_program, compilation_time = compiler.compile(intent["nile"])
     if merlin_program:

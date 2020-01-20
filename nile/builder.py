@@ -56,17 +56,17 @@ def build(entities):
         intent += " for"
 
         for target in entities["targets"]:
-            if isinstance(target, str):
+            if isinstance(target, str) and target not in intent:
                 intent += " endpoint('{}'),".format(target)
-            elif "service" in target:
+            elif "service" in target and target["service"] not in intent:
                 intent += " service('{}'),".format(target["service"])
-            elif "protocol" in target:
+            elif "protocol" in target and target["protocol"] not in intent:
                 intent += " protocol('{}'),".format(target["protocol"])
-            elif "traffic" in target:
+            elif "traffic" in target and target["traffic"] not in intent:
                 intent += " traffic('{}'),".format(target["traffic"])
-            elif "location" in target:
+            elif "location" in target and target["location"] not in intent:
                 intent += " endpoint('{}'),".format(target["location"])
-            elif "group" in target:
+            elif "group" in target and target["group"] not in intent:
                 intent += " group('{}'),".format(target["group"])
 
         intent = intent.rstrip(',')
@@ -77,7 +77,8 @@ def build(entities):
 
             if "middleboxes" in entities:
                 for middlebox in entities["middleboxes"]:
-                    intent += " middlebox('{}'),".format(middlebox)
+                    if middlebox not in intent:
+                        intent += " middlebox('{}'),".format(middlebox)
                 intent = intent.rstrip(',')
 
             # if no parameters for the action were given, we remove the action
@@ -88,17 +89,20 @@ def build(entities):
 
             if "services" in entities:
                 for service in entities["services"]:
-                    intent += " service('{}'),".format(service)
+                    if service not in intent:
+                        intent += " service('{}'),".format(service)
                 intent = intent.rstrip(',')
 
             if "traffics" in entities:
                 for traffic in entities["traffics"]:
-                    intent += " traffic('{}'),".format(traffic)
+                    if traffic not in intent:
+                        intent += " traffic('{}'),".format(traffic)
                 intent = intent.rstrip(',')
 
             if "protocols" in entities:
                 for protocol in entities["protocols"]:
-                    intent += " protocol('{}'),".format(protocol)
+                    if protocol not in intent:
+                        intent += " protocol('{}'),".format(protocol)
                 intent = intent.rstrip(',')
 
             # if no parameters for the action were given, we remove the action

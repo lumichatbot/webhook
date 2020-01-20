@@ -185,7 +185,7 @@ def to_merlin(op_targets):
             if target['function'] == 'endpoint':
                 targets_ips.append(target['value'].replace("('", "").replace("')", ""))
             elif target['function'] == 'group':
-                targets_ips.append(topology.get_group_ip(target['value'].replace("('", "").replace("')", "")))
+                targets_ips.append(topology.get_ip_by_handle(target['value'].replace("('", "").replace("')", "")))
             elif target['function'] == 'service':
                 src_services.append(topology.get_service(target['value'].replace("('", "").replace("')", "")))
             elif target['function'] == 'traffic':

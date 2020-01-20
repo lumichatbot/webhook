@@ -82,6 +82,10 @@ DATASET_SERVICE_ASSOCIATIONS = {
     'bittorrent': {
         "protocol": ['udp'],
         "traffic": ['peer2peer', 'torrent']
+    },
+    'utorrent': {
+        "protocol": ['udp'],
+        "traffic": ['peer2peer', 'torrent']
     }
 }
 

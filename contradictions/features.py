@@ -33,36 +33,36 @@ def coreference(sentence, hypothesis):
 
     if 'from' in sentence and 'to' in sentence:
         result = from_pattern.search(sentence)
-        stn_origin = result.group(2) if result else ""
+        stn_origin = topology.get_ip_by_handle(result.group(2) if result else "")
         result = to_pattern.search(sentence)
-        stn_destination = result.group(2) if result else ""
+        stn_destination = topology.get_ip_by_handle(result.group(2) if result else "")
     elif 'for' in sentence:
         if 'for traffic' in sentence:
-            stn_destination = topology.get_group_ip('hosts')
+            stn_destination = topology.get_ip_by_handle('host')
             stn_origin = topology.get_node_tree().id
         else:
             result = group_pattern.search(sentence)
             group = result.group(2) if result else ""
             group_key = group if group in config.DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in config.DATASET_SYNONYMS.items() if group in synonyms), group)
-            stn_destination = topology.get_group_ip(group_key)
+            stn_destination = topology.get_ip_by_handle(group_key)
             stn_origin = topology.get_node_tree().id
 
     if 'from' in hypothesis and 'to' in hypothesis:
         result = from_pattern.search(hypothesis)
-        hyp_origin = result.group(2) if result else ""
+        hyp_origin = topology.get_ip_by_handle(result.group(2) if result else "")
         result = to_pattern.search(hypothesis)
-        hyp_destination = result.group(2) if result else ""
+        hyp_destination = topology.get_ip_by_handle(result.group(2) if result else "")
     elif 'for' in hypothesis:
         if 'for traffic' in hypothesis:
-            hyp_destination = topology.get_group_ip('hosts')
+            hyp_destination = topology.get_ip_by_handle('host')
             hyp_origin = topology.get_node_tree().id
         else:
             result = group_pattern.search(hypothesis)
             group = result.group(2) if result else ""
             group_key = group if group in config.DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in config.DATASET_SYNONYMS.items() if group in synonyms), group)
-            hyp_destination = topology.get_group_ip(group_key)
+            hyp_destination = topology.get_ip_by_handle(group_key)
             hyp_origin = topology.get_node_tree().id
 
     # print "PATHS", (stn_origin, stn_destination), (hyp_origin, hyp_destination)
@@ -168,36 +168,36 @@ def qos(sentence, hypothesis):
 
     if 'from' in sentence and 'to' in sentence:
         result = from_pattern.search(sentence)
-        stn_origin = result.group(2) if result else ""
+        stn_origin = topology.get_ip_by_handle(result.group(2) if result else "")
         result = to_pattern.search(sentence)
-        stn_destination = result.group(2) if result else ""
+        stn_destination = topology.get_ip_by_handle(result.group(2) if result else "")
     elif 'for' in sentence:
         if 'for traffic' in sentence:
-            stn_destination = topology.get_group_ip('hosts')
+            stn_destination = topology.get_ip_by_handle('host')
             stn_origin = topology.get_node_tree().id
         else:
             result = group_pattern.search(sentence)
             group = result.group(2) if result else ""
             group_key = group if group in config.DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in config.DATASET_SYNONYMS.items() if group in synonyms), group)
-            stn_destination = topology.get_group_ip(group_key)
+            stn_destination = topology.get_ip_by_handle(group_key)
             stn_origin = topology.get_node_tree().id
 
     if 'from' in hypothesis and 'to' in hypothesis:
         result = from_pattern.search(hypothesis)
-        hyp_origin = result.group(2) if result else ""
+        hyp_origin = topology.get_ip_by_handle(result.group(2) if result else "")
         result = to_pattern.search(hypothesis)
-        hyp_destination = result.group(2) if result else ""
+        hyp_destination = topology.get_ip_by_handle(result.group(2) if result else "")
     elif 'for' in hypothesis:
         if 'for traffic' in hypothesis:
-            hyp_destination = topology.get_group_ip('hosts')
+            hyp_destination = topology.get_ip_by_handle('host')
             hyp_origin = topology.get_node_tree().id
         else:
             result = group_pattern.search(hypothesis)
             group = result.group(2) if result else ""
             group_key = group if group in config.DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in config.DATASET_SYNONYMS.items() if group in synonyms), group)
-            hyp_destination = topology.get_group_ip(group_key)
+            hyp_destination = topology.get_ip_by_handle(group_key)
             hyp_origin = topology.get_node_tree().id
 
     sentence_path = (stn_origin, stn_destination)
@@ -290,36 +290,36 @@ def hierarchy(sentence, hypothesis):
 
     if 'from' in sentence and 'to' in sentence:
         result = from_pattern.search(sentence)
-        stn_origin = result.group(2) if result else ""
+        stn_origin = topology.get_ip_by_handle(result.group(2) if result else "")
         result = to_pattern.search(sentence)
-        stn_destination = result.group(2) if result else ""
+        stn_destination = topology.get_ip_by_handle(result.group(2) if result else "")
     elif 'for' in sentence:
         if 'for traffic' in sentence:
-            stn_destination = topology.get_group_ip('hosts')
+            stn_destination = topology.get_ip_by_handle('host')
             stn_origin = topology.get_node_tree().id
         else:
             result = group_pattern.search(sentence)
             group = result.group(2) if result else ""
             group_key = group if group in config.DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in config.DATASET_SYNONYMS.items() if group in synonyms), group)
-            stn_destination = topology.get_group_ip(group_key)
+            stn_destination = topology.get_ip_by_handle(group_key)
             stn_origin = topology.get_node_tree().id
 
     if 'from' in hypothesis and 'to' in hypothesis:
         result = from_pattern.search(hypothesis)
-        hyp_origin = result.group(2) if result else ""
+        hyp_origin = topology.get_ip_by_handle(result.group(2) if result else "")
         result = to_pattern.search(hypothesis)
-        hyp_destination = result.group(2) if result else ""
+        hyp_destination = topology.get_ip_by_handle(result.group(2) if result else "")
     elif 'for' in hypothesis:
         if 'for traffic' in hypothesis:
-            hyp_destination = topology.get_group_ip('hosts')
+            hyp_destination = topology.get_ip_by_handle('host')
             hyp_origin = topology.get_node_tree().id
         else:
             result = group_pattern.search(hypothesis)
             group = result.group(2) if result else ""
             group_key = group if group in config.DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in config.DATASET_SYNONYMS.items() if group in synonyms), group)
-            hyp_destination = topology.get_group_ip(group_key)
+            hyp_destination = topology.get_ip_by_handle(group_key)
             hyp_origin = topology.get_node_tree().id
 
     ancestor, descendent = False, False
@@ -342,36 +342,36 @@ def path_similarity(sentence, hypothesis):
 
     if 'from' in sentence and 'to' in sentence:
         result = from_pattern.search(sentence)
-        stn_origin = result.group(2) if result else ""
+        stn_origin = topology.get_ip_by_handle(result.group(2) if result else "")
         result = to_pattern.search(sentence)
-        stn_destination = result.group(2) if result else ""
+        stn_destination = topology.get_ip_by_handle(result.group(2) if result else "")
     elif 'for' in sentence:
         if 'for traffic' in sentence:
-            stn_destination = topology.get_group_ip('hosts')
+            stn_destination = topology.get_ip_by_handle('host')
             stn_origin = topology.get_node_tree().id
         else:
             result = group_pattern.search(sentence)
             group = result.group(2) if result else ""
             group_key = group if group in config.DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in config.DATASET_SYNONYMS.items() if group in synonyms), group)
-            stn_destination = topology.get_group_ip(group_key)
+            stn_destination = topology.get_ip_by_handle(group_key)
             stn_origin = topology.get_node_tree().id
 
     if 'from' in hypothesis and 'to' in hypothesis:
         result = from_pattern.search(hypothesis)
-        hyp_origin = result.group(2) if result else ""
+        hyp_origin = topology.get_ip_by_handle(result.group(2) if result else "")
         result = to_pattern.search(hypothesis)
-        hyp_destination = result.group(2) if result else ""
+        hyp_destination = topology.get_ip_by_handle(result.group(2) if result else "")
     elif 'for' in hypothesis:
         if 'for traffic' in hypothesis:
-            hyp_destination = topology.get_group_ip('hosts')
+            hyp_destination = topology.get_ip_by_handle('host')
             hyp_origin = topology.get_node_tree().id
         else:
             result = group_pattern.search(hypothesis)
             group = result.group(2) if result else ""
             group_key = group if group in config.DATASET_SYNONYMS else next(
                 (key for (key, synonyms) in config.DATASET_SYNONYMS.items() if group in synonyms), group)
-            hyp_destination = topology.get_group_ip(group_key)
+            hyp_destination = topology.get_ip_by_handle(group_key)
             hyp_origin = topology.get_node_tree().id
 
     # print "PATHS", (stn_origin, stn_destination), (hyp_origin, hyp_destination)

@@ -385,11 +385,14 @@ def get_common_path_list(path_a, path_b):
     return common_path
 
 
-def get_group_ip(group):
-    """ given a group, get the ip of the group switch """
+def get_ip_by_handle(handle):
+    """ given a handle, get the ip of the handle switch """
+    if "." in handle:  # check if handle is IP address
+        return handle
+
     root = get_node_tree()
-    group_node = findall(root, lambda node: next((True for x in node.properties['handles'] if x == group), False))
-    return group_node[0].id if group_node else None
+    handle_node = findall(root, lambda node: next((True for x in node.properties['handles'] if x == handle), False))
+    return handle_node[0].id if handle_node else None
 
 
 def get_service(service):
