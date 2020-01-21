@@ -10,7 +10,7 @@ from database import client
 
 from .parser import parse_entities, parse_feedback
 from .api import Dialogflow
-from .response import make_card_response, make_simple_response
+from .response import make_card_response, make_simple_response, reset_output_context
 from .beautifier import beautify, beautify_intent
 
 
@@ -73,13 +73,16 @@ def build_feedback(request):
     uuid = request.get("session").split("/")[-1]
     db = client.Database()
     intent = db.get_latest_intent(uuid)
-    print("INTENT", intent)
 
     feedback = parse_feedback(request)
-    print("FEEDBACK", feedback)
     entity_types = ["Location", "Group", "Middlebox", "Service", "Traffic"]
 
-    # slot-filling
+    query = request["queryResult"]["queryText"].lower()
+    if "cancel" in query or "start over" in query:
+        response = make_simple_response("Okay, cancelled. Please start over.")
+        return reset_output_context(request, response)
+
+        # slot-filling
     if "entity" not in feedback and "value" not in feedback:
         return make_simple_response("First of all, what entity did I miss?", suggestions=entity_types)
     elif "entity" not in feedback:
@@ -133,7 +136,7 @@ def feedback_confirm(request):
         if entity_key not in entities:
             entities[entity_key] = list(values.keys())
         else:
-            entities[entity_key].append(list(values.keys()))
+            entities[entity_key] += list(values.keys())
 
     try:
         nile = builder.build(entities)

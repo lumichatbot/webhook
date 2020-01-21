@@ -31,7 +31,10 @@ def slot_filling(entities):
     if "qos" in entities and "set" not in entities["operations"] and "unset" not in entities["operations"]:
         entities["operations"].append("set")
 
-    if entities["operations"] and not entities["targets"]:
+    if not entities["operations"]:
+        if "services" in entities or "traffics" in entities or "protocols" in entities:
+            entities["operations"].append("allow")
+    else:
         if "services" in entities:
             for service in entities["services"]:
                 entities["targets"].append({"service": service})
@@ -43,9 +46,6 @@ def slot_filling(entities):
         if "protocols" in entities:
             for protocol in entities["protocols"]:
                 entities["targets"].append({"protocol": protocol})
-    elif "allow" not in entities["operations"] and "block" not in entities["operations"]:
-        if "services" in entities or "traffics" in entities or "protocols" in entities:
-            entities["operations"].append("allow")
 
     if "origin" not in entities and "destination" not in entities and not entities["targets"]:
         entities["targets"].append({"location": "network"})

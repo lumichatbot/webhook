@@ -11,11 +11,10 @@ def beautify_intent(intent):
     """ Beautify Nile intent """
     beautified = deepcopy(intent)
     # regex_op = r"('[^'\\]*(?:\\.[^'\\]*)*')|\b{0}\b"
-    print("Beautify", intent)
-    regex_op = r"(\('[^'\\]*(?:\\.[^'\\]*)*'\))|\b{0}\b"
+    regex_op = r"('[^'\\]*(?:\\.[^'\\]*)*')|\b{0}\b"
     for word in config.NILE_OPERATIONS:
         beautified = re.sub(regex_op.format(word),
-                            lambda m: "(<font color=`blue`>{}</font>)".format(m.group(1).strip('()')) if m.group(1)
+                            lambda m: "<font color=`blue`>{}</font>".format(m.group(1)) if m.group(1)
                             else "  <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>{}</b> ".format(word), beautified)
     return beautified
 

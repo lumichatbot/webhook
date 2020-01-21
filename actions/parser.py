@@ -75,10 +75,14 @@ def parse_entities(request):
             if "qos_constraint" in parameters and parameters["qos_constraint"]:
                 if i < len(parameters["qos_constraint"]):
                     qos_metric["constraint"] = parameters["qos_constraint"][i]
+            else:
+                qos_metric["constraint"] = "max" if qos_metric["name"] == "bandwidth" else "download"
 
             if "qos_unit" in parameters and parameters["qos_unit"]:
                 if i < len(parameters["qos_unit"]):
                     qos_metric["unit"] = parameters["qos_unit"][i]
+            else:
+                qos_metric["constraint"] = "mbps" if qos_metric["name"] == "bandwidth" else "gb/wk"
 
             entities["qos"].append(qos_metric)
 

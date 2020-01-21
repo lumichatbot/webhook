@@ -75,6 +75,18 @@ def make_simple_response(text, suggestions=[]):
     return response
 
 
+def reset_output_context(request, response):
+    """ Reset output context to the input response and returns it """
+
+    response["outputContexts"] = []
+    output_contexts = request["queryResult"]["outputContexts"]
+    for out in output_contexts:
+        out["lifespanCount"] = 0
+        response["outputContexts"].append(out)
+
+    return response
+
+
 def add_output_context(response, session, output_context, output_params):
     """ Add output context to the input response and returns it """
 
