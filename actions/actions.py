@@ -70,21 +70,37 @@ def build_accepted(request):
 
 def build_feedback(request):
     """ Webhook action to receive feedback from user after rejecting built intent """
-
     uuid = request.get("session").split("/")[-1]
     db = client.Database()
     intent = db.get_latest_intent(uuid)
+    print("INTENT", intent)
+
     feedback = parse_feedback(request)
+    print("FEEDBACK", feedback)
+    entity_types = ["Location", "Group", "Middlebox", "Service", "Traffic"]
+
+    # slot-filling
+    if "entity" not in feedback and "value" not in feedback:
+        return make_simple_response("First of all, what entity did I miss?", suggestions=entity_types)
+    elif "entity" not in feedback:
+        return make_simple_response("What type of entity is '{}'?".format(feedback["value"]), suggestions=entity_types)
+    elif "value" not in feedback:
+        suggestions = []
+        for word in intent['text'].split():
+            entities = intent['entities'].values()
+            if word not in entities:
+                suggestions.append(word)
+        return make_simple_response("Great! And what word is a {}?".format(feedback["entity"]), suggestions=suggestions)
 
     missing_entities = {}
-    if "missing_entities" in intent:
-        missing_entities = intent["missing_entities"]
+    if "missingEntities" in intent:
+        missing_entities = intent["missingEntities"]
 
     if feedback["entity"] not in missing_entities:
         missing_entities[feedback["entity"]] = {}
     missing_entities[feedback["entity"]][feedback["value"]] = True
 
-    db.update_intent(intent["_id"], {"status": "declined", "missing_entities": missing_entities})
+    db.update_intent(intent["_id"], {"status": "declined", "missingEntities": missing_entities})
 
     print("training feedback", uuid, intent)
     return make_simple_response("Okay! And is there anything else I missed?", suggestions=["Yes", "No"])
@@ -97,33 +113,66 @@ def feedback_confirm(request):
     db = client.Database()
     intent = db.get_latest_intent(uuid)
 
-    words_to_highlight = []
-    response_text = "In the phrase '<b>{}</b>':".format(intent["text"])
+    print("INTENT CONFIRM", intent)
+    entities = intent['entities']
+    for entity, values in intent["missingEntities"].items():
+        entity_key = entity
+        if entity == "middlebox":
+            entity_key = "middleboxes"
+        elif entity == "service":
+            entity_key = "services"
+        elif entity == "traffic":
+            entity_key = "traffics"
+        elif entity == "protocol":
+            entity_key = "protocols"
+        elif entity == "operation":
+            entity_key = "operations"
+        elif entity == "location":
+            entity_key = "locations"
 
-    for entity, values in intent["missing_entities"].items():
-        response_text += "&nbsp;&nbsp;&nbsp;&nbsp;"
-        response_text += ", and ".join(value for value in values.keys())
-        response_text += "  <br>must be considered <b>{}</b>(s);<br>".format(entity)
-        words_to_highlight = values.keys()
+        if entity_key not in entities:
+            entities[entity_key] = list(values.keys())
+        else:
+            entities[entity_key].append(list(values.keys()))
 
-    response_text += "  <br>Is that right?"
+    try:
+        nile = builder.build(entities)
+        speech = "So, is this what you want then?"
+        response = make_card_response("Nile Intent", nile, speech, beautify_intent(nile),
+                                      suggestions=["Yes", "No"])
 
-    response = make_card_response("Feedback confirmation", response_text, "Can you confirm your feedback then?",
-                                  beautify(response_text, words_to_highlight),
-                                  suggestions=["Yes", "No"])
+        # tracking
+        db.update_intent(intent["_id"], {"status": "pending", "nileFeedback": nile})
+    except ValueError as err:
+        traceback.print_exc()
+        # TODO: use slot-filling to get the missing info
+        # TODO: use different exceptions to figure out whats missing
+        response = make_simple_response("{}".format(err))
+
     return response
+
+    # words_to_highlight = []
+    # response_text = "In the phrase '<b>{}</b>':".format(intent["text"])
+    # for entity, values in intent["missingEntities"].items():
+    #     response_text += "&nbsp;&nbsp;&nbsp;&nbsp;"
+    #     response_text += ", and ".join(value for value in values.keys())
+    #     response_text += "  <br>must be considered <b>{}</b>(s);<br>".format(entity)
+    #     words_to_highlight = values.keys()
+    # response_text += "  <br>Is that right?"
+    # response = make_card_response("Feedback confirmation", response_text, "Can you confirm your feedback then?",
+    #                               beautify(response_text, words_to_highlight),
+    #                               suggestions=["Yes", "No"])
+    # return response
 
 
 def feedback_train(request):
     """ Webhook action to train chatbot with feedback information """
-    global training_feedback
-
     uuid = request.get("session").split("/")[-1]
     db = client.Database()
     intent = db.get_latest_intent(uuid)
 
     dialogflow = Dialogflow()
-    for entity, values in intent["missing_entities"].items():
+    for entity, values in intent["missingEntities"].items():
         try:
             entity_type_id = dialogflow.get_entity_type_id(entity)
             for value in values.keys():
@@ -131,7 +180,12 @@ def feedback_train(request):
         except:
             traceback.print_exc()
 
-    return make_simple_response("Okay! Feedback received. Please start over.")
+    merlin_program, compilation_time = compiler.compile(intent["nileFeedback"])
+    if merlin_program:
+        db.update_intent(intent["_id"], {"status": "compiled", "merlin": merlin_program})
+        return make_simple_response("Okay! Feedback received. Intent compiled and deployed!")
+
+    return make_simple_response("Sorry. Something went wrong during deployment. :(")
 
 
 def error(request):

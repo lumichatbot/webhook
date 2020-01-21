@@ -6,28 +6,49 @@ from .exceptions import MissingTargetError, MissingOperationError
 def slot_filling(entities):
     """ Given extracted entities, fills missing slots with some assumptions  """
 
+    if "targets" not in entities:
+        entities["targets"] = []
+
     if "origin" in entities and "destination" not in entities:
-        if "targets" not in entities:
-            entities["targets"] = [entities["origin"]]
+        entities["targets"].append(entities["origin"])
 
     if "origin" not in entities and "destination" in entities:
-        if "targets" not in entities:
-            entities["targets"] = [entities["destination"]]
+        entities["targets"].append(entities["destination"])
 
-    if "origin" not in entities and "destination" not in entities:
-        if "targets" not in entities:
-            entities["targets"] = [{"location": "network"}]
+    if "locations" in entities:
+        for location in entities["locations"]:
+            entities["targets"].append({"location": location})
+
+    if "group" in entities:
+        entities["targets"].append({"group": entities["group"]})
 
     if "operations" not in entities:
         entities["operations"] = []
-        if "qos" in entities:
-            entities["operations"].append("set")
 
-        if "middleboxes" in entities:
-            entities["operations"].append("add")
+    if "middleboxes" in entities and "add" not in entities["operations"] and "remove" not in entities["operations"]:
+        entities["operations"].append("add")
 
+    if "qos" in entities and "set" not in entities["operations"] and "unset" not in entities["operations"]:
+        entities["operations"].append("set")
+
+    if entities["operations"] and not entities["targets"]:
+        if "services" in entities:
+            for service in entities["services"]:
+                entities["targets"].append({"service": service})
+
+        if "traffics" in entities:
+            for traffic in entities["traffics"]:
+                entities["targets"].append({"traffic": traffic})
+
+        if "protocols" in entities:
+            for protocol in entities["protocols"]:
+                entities["targets"].append({"protocol": protocol})
+    elif "allow" not in entities["operations"] and "block" not in entities["operations"]:
         if "services" in entities or "traffics" in entities or "protocols" in entities:
             entities["operations"].append("allow")
+
+    if "origin" not in entities and "destination" not in entities and not entities["targets"]:
+        entities["targets"].append({"location": "network"})
 
     return entities
 
@@ -37,6 +58,8 @@ def build(entities):
     print("ENTITIES", entities)
 
     entities = slot_filling(entities)
+
+    print("ENTITIES AFTER SLOT-FILLING", entities)
 
     intent = "define intent {}Intent:".format(entities["id"])
 

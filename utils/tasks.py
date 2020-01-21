@@ -7,7 +7,7 @@ def check_task(intents, keywords):
     """ Given intents and keywords, checks if one intent contains all given keyword """
     task_done = False
     for intent in intents:
-        nile = intent["nile"]
+        nile = intent["nileFeedback"] if "nileFeedback" in intent else intent['nile']
         if all(keyword in nile for keyword in keywords):
             task_done = True
             break

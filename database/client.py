@@ -51,7 +51,7 @@ class Database:
         return self.db.sessions.update_one({"uuid": uuid}, {"$push": {"messages": data}, "$set": {"updatedAt": datetime.now()}})
 
     def get_latest_intent(self, uuid):
-        return self.db.intents.find_one({"session": uuid, "status": "pending"}, sort=[("createdAt", pymongo.DESCENDING)])
+        return self.db.intents.find_one({"session": uuid}, sort=[("createdAt", pymongo.DESCENDING)])
 
     def update_intent(self, id, new_values):
         new_values['updatedAt'] = datetime.now()

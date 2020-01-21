@@ -102,10 +102,10 @@ def parse_feedback(request):
     parameters = result["parameters"]
 
     missing_entity = {}
-    if "entity" in parameters and "any" in parameters:
-        missing_entity = {
-            'entity': parameters["entity"],
-            'value': parameters["any"]
-        }
+    if "entity" in parameters and parameters["entity"]:
+        missing_entity["entity"] = parameters["entity"]
+
+    if "value" in parameters and parameters["value"]:
+        missing_entity["value"] = parameters["value"]
 
     return missing_entity
