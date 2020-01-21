@@ -6,13 +6,18 @@ from database import client
 def check_task(intents, keywords):
     """ Given intents and keywords, checks if one intent contains all given keyword """
     task_done = False
+    most_matches = []
     for intent in intents:
         nile = intent["nileFeedback"] if "nileFeedback" in intent else intent['nile']
         if all(keyword in nile for keyword in keywords):
             task_done = True
+            most_matches = keywords
             break
+        else:
+            matches = [keyword for keyword in keywords if keyword in nile]
+            most_matches = matches if len(matches) > len(most_matches) else most_matches
 
-    return task_done
+    return {'done': task_done, 'matches': most_matches, 'missing': list(set(keywords) - set(most_matches))}
 
 
 def check_task_one(intents):
@@ -39,10 +44,10 @@ def check_task_two(intents):
 
         Answer:
             define intent answer:
-                for traffic('peer2peer')
+                for traffic('torrent')
                 set bandwidth('max', '100', 'mbps')
     """
-    keywords = ["peer2peer", "set", "bandwidth", "max", "100", "mbps"]
+    keywords = ["torrent", "set", "bandwidth", "max", "100", "mbps"]
     return check_task(intents, keywords)
 
 
