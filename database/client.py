@@ -69,6 +69,9 @@ class Database:
         }
         return self.db.intents.insert_one(data)
 
+    def get_intents(self, uuid):
+        return self.db.intents.find({"session": uuid})
+
     def get_confirmed_intents(self, uuid):
         return self.db.intents.find({"session": uuid, "status": {"$ne": "pending"}})
 

@@ -98,7 +98,7 @@ def check_task_five(intents):
 def check(session, task):
     """Given Session UUID and Task number, check if user has completed it."""
     db = client.Database()
-    intents = db.get_confirmed_intents(session)
+    intents = db.get_intents(session)
     checker = {
         1: check_task_one,
         2: check_task_two,

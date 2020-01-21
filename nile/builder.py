@@ -75,7 +75,7 @@ def build(entities):
         if "location" in entities["destination"]:
             intent += "to endpoint('{}')".format(entities["destination"]["location"])
 
-    if "targets" in entities:
+    if "targets" in entities and entities["targets"]:
         intent += " for"
 
         for target in entities["targets"]:
