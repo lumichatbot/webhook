@@ -32,7 +32,7 @@ def check_task_one(intents):
                 for endpoint('labs')
                 add middlebox('deep inspection')
     """
-    keywords = ["labs", "add", "deep inspection"]
+    keywords = ["labs", "add", "dpi"]
     return check_task(intents, keywords)
 
 
@@ -62,7 +62,7 @@ def check_task_three(intents):
                 for endpoint('dorms')
                 set quota('download', '10', 'gb/wk')
     """
-    keywords = ["dorms", "set", "quota", "10", "gb/wk"]
+    keywords = ["dorms", "quota", "10", "gb/wk"]
     return check_task(intents, keywords)
 
 
@@ -96,7 +96,7 @@ def check_task_five(intents):
                 start hour('16:00')
                 end hour('19:00')
     """
-    keywords = ["server", "set", "bandwidth", "max", "5", "gbps", "start", "16:00", "end", "19:00"]
+    keywords = ["server", "bandwidth", "5", "gbps", "start", "16:00", "end", "19:00"]
     return check_task(intents, keywords)
 
 

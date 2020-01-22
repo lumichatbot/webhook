@@ -55,13 +55,14 @@ def parse_entities(request):
     if "protocol" in parameters and parameters["protocol"]:
         entities["protocols"] = parameters["protocol"]
 
-    if "qos_unit" in parameters and ("qos_metric" not in parameters or ("qos_metric" in parameters and not parameters["qos_metric"])):
-        parameters["qos_metric"] = []
-        for unit in parameters["qos_unit"]:
-            if "ps" in unit:
-                parameters["qos_metric"].append("bandwidth")
-            else:
-                parameters["qos_metric"].append("quota")
+    if "qos_unit" in parameters:
+        if "qos_metric" not in parameters or ("qos_metric" in parameters and not parameters["qos_metric"]):
+            parameters["qos_metric"] = []
+            for unit in parameters["qos_unit"]:
+                if "ps" in unit:
+                    parameters["qos_metric"].append("bandwidth")
+                else:
+                    parameters["qos_metric"].append("quota")
 
     if "qos_metric" in parameters and parameters["qos_metric"] and "qos_value" in parameters and parameters["qos_value"]:
         entities["qos"] = []
@@ -77,7 +78,7 @@ def parse_entities(request):
                     qos_metric["unit"] = parameters["qos_unit"][i]
                     if "ps" in qos_metric["unit"] and qos_metric["name"] != "bandwidth":
                         qos_metric["name"] = "bandwidth"
-                    else:
+                    elif "ps" not in qos_metric["unit"]:
                         qos_metric["name"] = "quota"
             else:
                 qos_metric["constraint"] = "mbps" if qos_metric["name"] == "bandwidth" else "gb/wk"
