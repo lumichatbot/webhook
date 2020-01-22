@@ -72,17 +72,32 @@ def parse_entities(request):
             if isinstance(value, dict):
                 qos_metric["value"] = value["number-integer"]
 
-            if "qos_constraint" in parameters and parameters["qos_constraint"]:
-                if i < len(parameters["qos_constraint"]):
-                    qos_metric["constraint"] = parameters["qos_constraint"][i]
-            else:
-                qos_metric["constraint"] = "max" if qos_metric["name"] == "bandwidth" else "download"
-
             if "qos_unit" in parameters and parameters["qos_unit"]:
                 if i < len(parameters["qos_unit"]):
                     qos_metric["unit"] = parameters["qos_unit"][i]
+                    if "ps" in qos_metric["unit"] and qos_metric["name"] != "bandwidth":
+                        qos_metric["name"] = "bandwidth"
+                    else:
+                        qos_metric["name"] = "quota"
             else:
                 qos_metric["constraint"] = "mbps" if qos_metric["name"] == "bandwidth" else "gb/wk"
+
+            if "qos_constraint" in parameters and parameters["qos_constraint"]:
+                if i < len(parameters["qos_constraint"]):
+                    constraint = parameters["qos_constraint"][i]
+                    print("Contraint", constraint)
+                    if qos_metric["name"] == "bandwidth":
+                        if constraint == "max" or constraint == "min":
+                            qos_metric["constraint"] = constraint
+                        else:
+                            qos_metric["constraint"] = "max"
+                    elif qos_metric["name"] == "quota":
+                        if constraint == "download" or constraint == "upload":
+                            qos_metric["constraint"] = constraint
+                        else:
+                            qos_metric["constraint"] = "download"
+            else:
+                qos_metric["constraint"] = "max" if qos_metric["name"] == "bandwidth" else "download"
 
             entities["qos"].append(qos_metric)
 

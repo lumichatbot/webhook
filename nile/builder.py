@@ -34,7 +34,7 @@ def slot_filling(entities):
     if not entities["operations"]:
         if "services" in entities or "traffics" in entities or "protocols" in entities:
             entities["operations"].append("allow")
-    else:
+    elif "allow" not in entities["operations"] and "block" not in entities["operations"]:
         if "services" in entities:
             for service in entities["services"]:
                 entities["targets"].append({"service": service})
