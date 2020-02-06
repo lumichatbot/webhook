@@ -1,6 +1,8 @@
 """ Nile intent builder """
 
-from .exceptions import MissingTargetError, MissingOperationError
+from datetime import datetime
+
+from nile.exceptions import MissingTargetError, MissingOperationError
 
 
 def slot_filling(entities):
@@ -55,11 +57,11 @@ def slot_filling(entities):
 
 def build(entities):
     """ Build extracted entities into a Nile intent """
-    print("ENTITIES", entities)
+    # print("ENTITIES", entities)
 
     entities = slot_filling(entities)
 
-    print("ENTITIES AFTER SLOT-FILLING", entities)
+    # print("ENTITIES AFTER SLOT-FILLING", entities)
 
     intent = "define intent {}Intent:".format(entities["id"])
 
@@ -149,6 +151,12 @@ def build(entities):
             intent = intent.rstrip(operation)
 
     if "start" in entities and "end" in entities:
+        if isinstance(entities["start"], datetime):
+            entities["start"] = '{}:{}'.format(entities["start"].hour, entities["start"].minute)
+
+        if isinstance(entities["end"], datetime):
+            entities["end"] = '{}:{}'.format(entities["end"].hour, entities["end"].minute)
+
         intent += " start hour('{}') end hour('{}')".format(entities["start"], entities["end"])
 
     return intent

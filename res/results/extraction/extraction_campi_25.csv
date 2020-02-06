@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Net2Phone is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.004483699798584,1.0,1.0,1.0
+AIM chat and file transfering is allowed by the University firewall,"@middlebox,@operation,@service,@service,@target,","@service,@service,@operation,@target,@middlebox,",1.004483699798584,1.0,1.0,1.0
+SSH is allowed by the University firewall,"@target,@middlebox,@operation,@protocol,","@protocol,@operation,@target,@middlebox,",1.004483699798584,1.0,1.0,1.0
+"You may not run any services (e.g., FTP services,listservers,P2P file sharing servers, publishing files via generic file services, etc.) via ResNet or NYURoam wireless networks","@operation,@protocol,@service,@service,@service,@service,@service,@target,","@operation,@protocol,@service,@traffic,@target,@target,",1.004483699798584,0.8,1.0,0.888888888888889
+The system will trigger an overuse notification if the average for either inbound or outbound usage exceeds 10 GB per week,"@middlebox,@qos_metric,@qos_metric,@qos_value,@target,@qos_unit,","@target,@middlebox,@qos_metric,@qos_metric,@qos_value,@qos_unit,",1.004483699798584,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@target,","@target,@operation,@qos_metric,",1.004483699798584,1.0,1.0,1.0
+ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function,"@middlebox,@service,@target,","@middlebox,@target,",1.004483699798584,1.0,0.6666666666666666,0.8
+Internet is limited to 3 Mbps per host,"@qos_value,@target,@qos_unit,@qos_metric,","@qos_metric,@qos_value,@qos_unit,@target,",1.004483699798584,1.0,1.0,1.0
+Sorenson Videophone 200 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.004483699798584,1.0,1.0,1.0
+IMAP and secure IMAP are allowed by the University firewall,"@target,@middlebox,@operation,@protocol,@protocol,","@protocol,@protocol,@operation,@target,@middlebox,",1.004483699798584,1.0,1.0,1.0
+Students have a quota of 5 GB per day The quota is reset at 6am,"@qos_unit,@qos_value,@target,@qos_constraint,","@target,@qos_constraint,@qos_value,@qos_unit,@hour,",1.004483699798584,0.8,1.0,0.888888888888889
+Students data limit is 100 GB per week,"@qos_unit,@qos_metric,@qos_value,@target,","@target,@qos_metric,@qos_value,@qos_unit,",1.004483699798584,1.0,1.0,1.0
+Mean Precision,0.9722222222222223
+Mean Recall,0.9666666666666668
+Mean F1,0.9694364851957976

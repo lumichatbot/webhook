@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+H323 video conferencing is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.414381980895996,1.0,1.0,1.0
+"The UVA More Secure Network uses a firewall, a network security device designed to help protect your computer from hackers and other malicious people on the Internet.","@middlebox,@middlebox,@qos_metric,@operation,@operation,@operation,@service,@target,","@target,@operation,@middlebox,",1.414381980895996,1.0,0.6,0.7499999999999999
+Sony Playstation 2 is allowed by the University firewall,"@middlebox,@operation,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.414381980895996,1.0,1.0,1.0
+"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@traffic,@traffic,@operation,@protocol,@protocol,@protocol,@protocol,@protocol,@service,@service,","@operation,@protocol,@protocol,@traffic,@protocol,@service,@protocol,@service,@target,@target,",1.414381980895996,0.8,1.0,0.888888888888889
+Students 10 GB a day download quotas are on 10 AM to Midnight,"@qos_constraint,@qos_unit,@end,@start,@qos_value,@target,","@target,@qos_value,@qos_unit,@qos_constraint,@qos_metric,@start,@end,",1.414381980895996,0.8571428571428571,1.0,0.923076923076923
+P2P application is separately capped at 30 Mbps for the entire campus,"@target,@qos_unit,@qos_metric,@traffic,@qos_value,","@traffic,@qos_constraint,@qos_value,@qos_unit,@target,",1.414381980895996,0.8,0.8,0.8000000000000002
+"When a total of 18 gigabytes of data is reached, the individual's bandwidth rate limit is set to 2 Mbps","@qos_metric,@qos_metric,@operation,@operation,@qos_value,@qos_value,@target,@qos_unit,@qos_unit,","@qos_value,@qos_unit,@qos_metric,@target,@qos_metric,@operation,@qos_value,@qos_unit,",1.414381980895996,1.0,1.0,1.0
+Telnet is allowed by the University firewall,"@middlebox,@operation,@protocol,@target,","@protocol,@operation,@target,@middlebox,",1.414381980895996,1.0,1.0,1.0
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@traffic,@operation,@target,@target,@middlebox,","@origin,@operation,@target,@traffic,@destination,",1.414381980895996,0.6,0.75,0.6666666666666665
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@qos_constraint,@qos_constraint,@qos_unit,@start,@qos_metric,@qos_value,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",1.414381980895996,0.8333333333333334,1.0,0.9090909090909091
+Sorenson Videophone 200 is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.414381980895996,1.0,1.0,1.0
+Everquest is blocked by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.414381980895996,1.0,1.0,1.0
+Mean Precision,0.9291666666666666
+Mean Recall,0.9075396825396825
+Mean F1,0.918225847106694

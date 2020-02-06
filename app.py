@@ -17,7 +17,8 @@ from google.protobuf.json_format import MessageToJson
 
 from actions import ACTIONS, api
 from database import client
-from utils import timer, tasks
+from utils import timer
+from study import tasks
 
 install_aliases()
 

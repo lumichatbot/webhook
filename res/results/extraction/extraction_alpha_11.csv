@@ -1,0 +1,41 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Add firewall from gateway to my house from 06:00 to 21:00,"@end,@middlebox,@start,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,@start,@end,",1.0810749530792236,1.0,1.0,1.0
+"Please Lumi, block streaming traffic for students and set a 10 Mbps bandwidth limit","@qos_metric,@traffic,@operation,@operation,@qos_value,@target,@qos_unit,","@operation,@traffic,@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.0810749530792236,1.0,1.0,1.0
+limit traffic to 5Gbps  Between internet and servers for 16:00 to 19:00,"@start,@traffic,@qos_value,@destination,@origin,@qos_constraint,@qos_unit,@end,","@qos_constraint,@traffic,@qos_value,@qos_unit,@origin,@destination,@start,@end,",1.0810749530792236,1.0,1.0,1.0
+limit the bandwidth to 5Gb for rack servers from 4 pm until 7 pm,"@end,@start,@qos_metric,@qos_value,@qos_constraint,@qos_unit,","@qos_constraint,@qos_metric,@qos_value,@qos_unit,@target,@start,@end,",1.0810749530792236,0.8571428571428571,1.0,0.923076923076923
+Add a firewall and address translation for att and verizon,"@middlebox,@middlebox,@operation,@service,@target,","@middlebox,@middlebox,@target,@target,",1.0810749530792236,1.0,0.5,0.6666666666666666
+set quota to 10 GB per week at servers,"@operation,@qos_value,@target,@qos_unit,@qos_metric,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",1.0810749530792236,1.0,1.0,1.0
+Permit gaming for PS4 from 13:00 to 18:00,"@end,@start,@traffic,@operation,","@operation,@traffic,@target,@start,@end,",1.0810749530792236,0.8,1.0,0.888888888888889
+limit the bandwidth rate of the server racks to 5 gbps from 4pm to 7pm,"@qos_value,@target,@qos_constraint,@qos_unit,@end,@start,@qos_metric,","@qos_constraint,@qos_metric,@target,@qos_value,@qos_unit,@start,@end,",1.0810749530792236,1.0,1.0,1.0
+Students can download up to 10 GB per week of data.,"@qos_metric,@qos_value,@target,@qos_constraint,@qos_unit,","@target,@qos_constraint,@qos_value,@qos_unit,@qos_metric,",1.0810749530792236,1.0,1.0,1.0
+"Hey Lumi, add DPI to the labs network","@middlebox,@operation,@target,","@operation,@middlebox,@target,",1.0810749530792236,1.0,1.0,1.0
+add shaping for gateway everyday from 18:00 to midnight,"@middlebox,@start,@target,@end,","@middlebox,@target,@start,@end,",1.0810749530792236,1.0,1.0,1.0
+Allow RTSP traffic in the LAN,"@target,@operation,@protocol,","@operation,@protocol,@target,",1.0810749530792236,1.0,1.0,1.0
+Reduce the download rate for faculty members to 20 Mbps,"@qos_metric,@qos_value,@target,@qos_unit,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.0810749530792236,0.8,1.0,0.888888888888889
+Between internet and servers limit traffic to 5Gbps start 16:00 finish 19:00,"@traffic,@qos_value,@destination,@origin,@qos_constraint,@qos_unit,@end,@start,","@origin,@destination,@qos_constraint,@traffic,@qos_value,@qos_unit,@start,@end,",1.0810749530792236,1.0,1.0,1.0
+Hey Lumi please block traffic for all students,"@traffic,@operation,@target,","@operation,@traffic,@target,",1.0810749530792236,1.0,1.0,1.0
+Email traffic is allowed for Staff members,"@operation,@service,@target,","@service,@operation,@target,",1.0810749530792236,1.0,1.0,1.0
+We provide a data plan quota for all staff of 10 GB per day,"@operation,@qos_value,@target,@qos_unit,@qos_metric,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.0810749530792236,1.0,1.0,1.0
+put a download quota for students of 10 gb per week,"@qos_value,@target,@qos_constraint,@qos_unit,@qos_metric,","@qos_constraint,@qos_metric,@target,@qos_value,@qos_unit,",1.0810749530792236,1.0,1.0,1.0
+Set 5gbps limit for servers during 4pm to 7pm,"@qos_unit,@end,@start,@operation,@qos_value,@target,@qos_constraint,","@operation,@qos_value,@qos_unit,@qos_constraint,@target,@start,@end,",1.0810749530792236,1.0,1.0,1.0
+add security from entry to backend,"@operation,@destination,@origin,@middlebox,","@operation,@middlebox,@origin,@destination,",1.0810749530792236,1.0,1.0,1.0
+add a firewall,"@middlebox,@operation,","@operation,@middlebox,",1.0810749530792236,1.0,1.0,1.0
+Dismiss all middleboxes from UFRGS to PUCRS,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.0810749530792236,1.0,1.0,1.0
+Set quota to 10 GB per week at dorms,"@qos_unit,@qos_metric,@operation,@qos_value,@target,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",1.0810749530792236,1.0,1.0,1.0
+Add inspection for the university from 22:00 to 12:00,"@end,@middlebox,@start,@operation,@target,","@operation,@middlebox,@target,@start,@end,",1.0810749530792236,1.0,1.0,1.0
+Students may use up to 10 GB of data weekly,"@qos_unit,@qos_metric,@qos_value,@target,","@target,@qos_metric,@qos_value,@qos_unit,",1.0810749530792236,1.0,1.0,1.0
+add dpi to labs network,"@middlebox,@operation,@destination,","@operation,@middlebox,@destination,@target,",1.0810749530792236,0.75,1.0,0.8571428571428571
+We provide a quota to all students of 1 GB/wk of usage.,"@qos_metric,@qos_value,@target,@qos_unit,","@qos_metric,@target,@qos_value,@qos_unit,",1.0810749530792236,1.0,1.0,1.0
+Setup a packet filter for guests traffic,"@middlebox,@operation,@target,","@operation,@middlebox,@target,",1.0810749530792236,1.0,1.0,1.0
+Prioritize VoIP traffic on the meeting room 23 from 13:00 to 14:00,"@end,@middlebox,@start,@traffic,@traffic,","@middlebox,@traffic,@target,@start,@end,",1.0810749530792236,0.8,1.0,0.888888888888889
+"hey lumi, please allow traffic only from professors","@traffic,@operation,@target,","@operation,@traffic,@target,",1.0810749530792236,1.0,1.0,1.0
+Increase the bandwidth consumption limit for professors to 100 Mbps,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.0810749530792236,1.0,1.0,1.0
+Add inspection for the university from 10pm to 12pm,"@operation,@target,@end,@middlebox,@start,","@operation,@middlebox,@target,@start,@end,",1.0810749530792236,1.0,1.0,1.0
+Please add traffic shaper between the internet and the dorms,"@destination,@origin,@middlebox,@operation,","@middlebox,@origin,@destination,",1.0810749530792236,1.0,0.75,0.8571428571428571
+set a 10 GB per week download quota for students in dorms,"@qos_metric,@operation,@qos_value,@target,@target,@qos_constraint,@qos_unit,","@operation,@qos_value,@qos_unit,@qos_constraint,@qos_metric,@target,@target,",1.0810749530792236,1.0,1.0,1.0
+Set users bandwidth to 500 kbps when the 100 Gb per month quota is reached,"@qos_metric,@qos_metric,@operation,@qos_value,@qos_value,@target,@qos_unit,@qos_unit,","@operation,@target,@qos_metric,@qos_value,@qos_unit,@qos_value,@qos_unit,@qos_metric,",1.0810749530792236,1.0,1.0,1.0
+Do not let Staff members access any social media,"@traffic,@operation,@target,","@operation,@target,@traffic,",1.0810749530792236,1.0,1.0,1.0
+Add intrusion detection and address translation for servers network,"@middlebox,@middlebox,@operation,@target,","@operation,@middlebox,@middlebox,@target,",1.0810749530792236,1.0,1.0,1.0
+Mean Precision,0.9797297297297297
+Mean Recall,0.9731660231660232
+Mean F1,0.9764368460987678

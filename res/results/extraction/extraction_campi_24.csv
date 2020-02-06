@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Net2Phone is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.026850938796997,1.0,1.0,1.0
+H323 video conferencing is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.026850938796997,1.0,1.0,1.0
+POP3 and secure POP are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.026850938796997,1.0,1.0,1.0
+Students have a quota of 5 GB per day The quota is reset at 6am,"@qos_value,@target,@qos_constraint,@qos_unit,","@target,@qos_constraint,@qos_value,@qos_unit,@hour,",1.026850938796997,0.8,1.0,0.888888888888889
+"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@traffic,@operation,@protocol,@protocol,@protocol,@protocol,@service,@service,","@operation,@protocol,@protocol,@traffic,@protocol,@service,@protocol,@service,@target,@target,",1.026850938796997,0.8,1.0,0.888888888888889
+These network security changes include blocking traffic from the Internet into the UW network over FTP,"@protocol,@origin,@operation,","@operation,@origin,@destination,@protocol,",1.026850938796997,0.75,1.0,0.8571428571428571
+The UC Davis network is continually scanned for prohibited activities and network threats.,"@middlebox,","@target,@middlebox,",1.026850938796997,0.5,1.0,0.6666666666666666
+Telnet is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.026850938796997,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@operation,@operation,@target,","@target,@operation,@qos_metric,",1.026850938796997,1.0,1.0,1.0
+"CIS restricts traffic that is known to cause damage to the network or hosts on it, such as NETBIOS","@operation,@service,@target,","@operation,@target,@service,",1.026850938796997,1.0,1.0,1.0
+"Elements of network security currently include the following four solutions: Network Border Infrastructure System, Intrusion Prevention System, Firewalls and Custom Unit Firewalls","@middlebox,@middlebox,@middlebox,@middlebox,@operation,","@target,@operation,@middlebox,@middlebox,@middlebox,@middlebox,",1.026850938796997,0.6666666666666666,1.0,0.8
+"You may not run any services (e.g., FTP services,listservers,P2P file sharing servers, publishing files via generic file services, etc.) via ResNet or NYURoam wireless networks","@service,@service,@service,@service,@service,@target,@operation,@protocol,","@operation,@protocol,@service,@traffic,@target,@target,",1.026850938796997,0.8,1.0,0.888888888888889
+Mean Precision,1.0
+Mean Recall,0.8597222222222222
+Mean F1,0.9245705750560119

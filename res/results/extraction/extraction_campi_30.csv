@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@protocol,@qos_value,@qos_constraint,@qos_constraint,@qos_unit,@middlebox,@qos_metric,@qos_metric,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",0.8614258766174316,0.6666666666666666,0.6666666666666666,0.6666666666666666
+All network traffic passing in or out of Brown's network is monitored by intrusion detection system for signs of compromises,"@middlebox,","@target,@middlebox,",0.8614258766174316,0.5,1.0,0.6666666666666666
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@target,","@target,@operation,@qos_metric,",0.8614258766174316,1.0,1.0,1.0
+Housing does not normally limit the amount of bandwidth,"@qos_metric,@operation,","@target,@operation,@qos_metric,",0.8614258766174316,0.6666666666666666,1.0,0.8
+"CIS restricts traffic that is known to cause damage to the network or hosts on it, such as NETBIOS","@operation,@service,@target,","@operation,@target,@service,",0.8614258766174316,1.0,1.0,1.0
+"MSN audio and video are not allowed by the University firewall, but the MSN chat, application sharing and file transferring are not blocked","@operation,@operation,@service,@service,@service,@service,@service,@target,@middlebox,","@service,@service,@operation,@target,@middlebox,@service,@service,@service,@operation,",0.8614258766174316,1.0,1.0,1.0
+Routers or anything else that does routing or NAT are prohibited from MITNet as they interfere with the operation of the network,"@target,@operation,@protocol,","@protocol,@operation,@target,",0.8614258766174316,1.0,1.0,1.0
+The UC Davis network is continually scanned for prohibited activities and network threats.,"@middlebox,","@target,@middlebox,",0.8614258766174316,0.5,1.0,0.6666666666666666
+"The network firewall does prevent some applications from working in their normal manner, for example, video and audio conferencing products that use the H.323","@operation,@service,@target,","@target,@operation,@service,",0.8614258766174316,1.0,1.0,1.0
+"When a total of 18 gigabytes of data is reached, the individual's bandwidth rate limit is set to 2 Mbps","@qos_metric,@qos_metric,@operation,@qos_value,@qos_value,@target,@qos_unit,@qos_unit,","@qos_value,@qos_unit,@qos_metric,@target,@qos_metric,@operation,@qos_value,@qos_unit,",0.8614258766174316,1.0,1.0,1.0
+Students have a quota of 5 GB per day The quota is reset at 6am,"@qos_value,@target,@qos_constraint,@qos_unit,","@target,@qos_constraint,@qos_value,@qos_unit,@hour,",0.8614258766174316,0.8,1.0,0.888888888888889
+"The UVA More Secure Network uses a firewall, a network security device designed to help protect your computer from hackers and other malicious people on the Internet.","@protocol,@protocol,@target,@middlebox,@operation,","@target,@operation,@middlebox,",0.8614258766174316,1.0,0.75,0.8571428571428571
+Mean Precision,0.9513888888888888
+Mean Recall,0.8444444444444444
+Mean F1,0.8947323193262868

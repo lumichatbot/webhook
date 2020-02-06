@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Quotas for students are 5000 Megabyte per hr download and 2000 Megabyte per hr upload,"@qos_value,@qos_value,@target,@qos_constraint,@qos_constraint,@qos_unit,@qos_metric,","@qos_metric,@target,@qos_value,@qos_unit,@qos_constraint,@qos_value,@qos_constraint,",1.1011879444122314,1.0,1.0,1.0
+Guests' network is rate-limited to 5 Mb/s per user,"@qos_unit,@qos_metric,@qos_value,@target,@target,","@target,@qos_metric,@qos_value,@qos_unit,",1.1011879444122314,1.0,1.0,1.0
+"You may not run any services (e.g., FTP services,listservers,P2P file sharing servers, publishing files via generic file services, etc.) via ResNet or NYURoam wireless networks","@traffic,@operation,@protocol,@service,@target,","@operation,@protocol,@service,@traffic,@target,@target,",1.1011879444122314,1.0,1.0,1.0
+These network security changes include blocking traffic from the Internet into the UW network over FTP,"@origin,@operation,@protocol,","@operation,@origin,@destination,@protocol,",1.1011879444122314,0.75,1.0,0.8571428571428571
+The system will trigger an overuse notification if the average for either inbound or outbound usage exceeds 10 GB per week,"@target,@qos_unit,@middlebox,@qos_metric,@qos_metric,@qos_value,","@target,@middlebox,@qos_metric,@qos_metric,@qos_value,@qos_unit,",1.1011879444122314,1.0,1.0,1.0
+Sorenson Videophone 200 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.1011879444122314,1.0,1.0,1.0
+Faculty members have 500 Gb per week of free network use,"@target,@qos_unit,@qos_value,","@target,@qos_value,@qos_unit,",1.1011879444122314,1.0,1.0,1.0
+HTTP and HTTPS are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.1011879444122314,1.0,1.0,1.0
+Battlenet is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.1011879444122314,1.0,1.0,1.0
+"The network firewall does prevent some applications from working in their normal manner, for example, video and audio conferencing products that use the H.323","@operation,@service,@target,","@target,@operation,@service,",1.1011879444122314,1.0,1.0,1.0
+Guests cannot run any file sharing/downloading program,"@service,@target,@operation,","@target,@operation,@service,",1.1011879444122314,1.0,1.0,1.0
+Net2Phone is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.1011879444122314,1.0,1.0,1.0
+Mean Precision,1.0
+Mean Recall,0.9791666666666666
+Mean F1,0.9894736842105264

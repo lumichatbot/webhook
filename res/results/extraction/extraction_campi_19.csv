@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+University Housing monitors only the amount of traffic,"@middlebox,","@target,@middlebox,",1.3125722408294678,0.5,1.0,0.6666666666666666
+The individual will have a 4 Mbps bandwidth rate limit,"@operation,@qos_value,@target,@qos_unit,@qos_metric,","@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.3125722408294678,1.0,1.0,1.0
+P2P application is separately capped at 30 Mbps for the entire campus,"@qos_value,@target,@qos_constraint,@qos_unit,@traffic,","@traffic,@qos_constraint,@qos_value,@qos_unit,@target,",1.3125722408294678,1.0,1.0,1.0
+Sony Playstation 2 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.3125722408294678,1.0,1.0,1.0
+IMAP and secure IMAP are allowed by the University firewall,"@operation,@protocol,@protocol,@target,@middlebox,","@protocol,@protocol,@operation,@target,@middlebox,",1.3125722408294678,1.0,1.0,1.0
+ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function,"@middlebox,@target,","@middlebox,@target,",1.3125722408294678,1.0,1.0,1.0
+PC-Telephone is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.3125722408294678,1.0,1.0,1.0
+SMTP is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.3125722408294678,1.0,1.0,1.0
+Routers or anything else that does routing or NAT are prohibited from MITNet as they interfere with the operation of the network,"@operation,@protocol,@service,@service,@service,@target,","@protocol,@operation,@target,",1.3125722408294678,1.0,0.75,0.8571428571428571
+"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@traffic,@operation,@protocol,@protocol,@protocol,@protocol,@service,@service,@target,","@operation,@protocol,@protocol,@traffic,@protocol,@service,@protocol,@service,@target,@target,",1.3125722408294678,1.0,1.0,1.0
+"MSN audio and video are not allowed by the University firewall, but the MSN chat, application sharing and file transferring are not blocked","@target,@middlebox,@operation,@operation,@service,@service,@service,@service,@service,","@service,@service,@operation,@target,@middlebox,@service,@service,@service,@operation,",1.3125722408294678,1.0,1.0,1.0
+"You may not run any services (e.g., FTP services,listservers,P2P file sharing servers, publishing files via generic file services, etc.) via ResNet or NYURoam wireless networks","@service,@target,@traffic,@operation,@protocol,","@operation,@protocol,@service,@traffic,@target,@target,",1.3125722408294678,1.0,1.0,1.0
+Mean Precision,0.9791666666666666
+Mean Recall,0.9583333333333334
+Mean F1,0.9686379928315413

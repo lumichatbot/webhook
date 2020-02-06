@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+HTTP and HTTPS are allowed by the University firewall,"@target,@middlebox,@operation,@protocol,@protocol,","@protocol,@protocol,@operation,@target,@middlebox,",1.002079963684082,1.0,1.0,1.0
+Telnet is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.002079963684082,1.0,1.0,1.0
+Routers or anything else that does routing or NAT are prohibited from MITNet as they interfere with the operation of the network,"@operation,@protocol,@target,","@protocol,@operation,@target,",1.002079963684082,1.0,1.0,1.0
+POP3 and secure POP are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.002079963684082,1.0,1.0,1.0
+Internet is limited to 3 Mbps per host,"@qos_unit,@qos_value,@target,@qos_constraint,","@qos_metric,@qos_value,@qos_unit,@target,",1.002079963684082,0.75,0.75,0.75
+Quotas for students are 5000 Megabyte per hr download and 2000 Megabyte per hr upload,"@qos_unit,@qos_unit,@qos_metric,@qos_value,@qos_value,@service,@target,@target,","@qos_metric,@target,@qos_value,@qos_unit,@qos_constraint,@qos_value,@qos_constraint,",1.002079963684082,0.8,0.8,0.8000000000000002
+CounterStrike server is blocked by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.002079963684082,1.0,1.0,1.0
+"The UVA More Secure Network uses a firewall, a network security device designed to help protect your computer from hackers and other malicious people on the Internet.","@middlebox,@operation,","@target,@operation,@middlebox,",1.002079963684082,0.6666666666666666,1.0,0.8
+These network security changes include blocking traffic from the Internet into the UW network over FTP,"@operation,@protocol,@origin,","@operation,@origin,@destination,@protocol,",1.002079963684082,0.75,1.0,0.8571428571428571
+The system passively monitors the network throughput when traffic is light,"@middlebox,@target,@qos_constraint,","@middlebox,@target,",1.002079963684082,1.0,0.6666666666666666,0.8
+"You may not run any services (e.g., FTP services,listservers,P2P file sharing servers, publishing files via generic file services, etc.) via ResNet or NYURoam wireless networks","@traffic,@operation,@protocol,@service,@target,","@operation,@protocol,@service,@traffic,@target,@target,",1.002079963684082,1.0,1.0,1.0
+SSH is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.002079963684082,1.0,1.0,1.0
+Mean Precision,0.9347222222222222
+Mean Recall,0.9138888888888889
+Mean F1,0.9241881626179147

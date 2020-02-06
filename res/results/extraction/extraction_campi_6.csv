@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+The ResNet cap is currently 200 gigabytes per each 7 day period of combined incoming and outgoing traffic,"@qos_value,@qos_constraint,@qos_unit,","@target,@qos_value,@qos_unit,@qos_unit,@qos_constraint,",1.0007638931274414,0.75,1.0,0.8571428571428571
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@traffic,@operation,@target,","@origin,@operation,@target,@traffic,@destination,",1.0007638931274414,0.6,1.0,0.7499999999999999
+Students data limit is 100 GB per week,"@qos_metric,@qos_value,@target,@qos_constraint,@qos_unit,","@target,@qos_metric,@qos_value,@qos_unit,",1.0007638931274414,1.0,0.8,0.888888888888889
+Students have 200 GB of Free monthly usage,"@qos_value,@target,@qos_unit,@qos_metric,","@target,@qos_value,@qos_unit,",1.0007638931274414,1.0,0.75,0.8571428571428571
+"When a total of 18 gigabytes of data is reached, the individual's bandwidth rate limit is set to 2 Mbps","@qos_metric,@qos_metric,@operation,@operation,@qos_value,@qos_value,@target,@qos_unit,@qos_unit,@qos_unit,","@qos_value,@qos_unit,@qos_metric,@target,@qos_metric,@operation,@qos_value,@qos_unit,",1.0007638931274414,1.0,1.0,1.0
+The individual will have a 4 Mbps bandwidth rate limit,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.0007638931274414,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@operation,@service,@target,@qos_constraint,","@target,@operation,@qos_metric,",1.0007638931274414,1.0,0.6,0.7499999999999999
+Housing does not normally limit the amount of bandwidth,"@operation,@qos_metric,","@target,@operation,@qos_metric,",1.0007638931274414,0.6666666666666666,1.0,0.8
+"No individual service or system running on the wired/wireless network should use more than 10 gigabytes of per day, regardless of whether it is inbound or outbound over the commodity network link","@qos_metric,@qos_value,@target,@qos_constraint,@qos_constraint,@qos_unit,","@target,@qos_metric,@qos_value,@qos_unit,@qos_constraint,@qos_constraint,",1.0007638931274414,1.0,1.0,1.0
+H323 video conferencing is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.0007638931274414,1.0,1.0,1.0
+POP3 and secure POP are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.0007638931274414,1.0,1.0,1.0
+HTTP and HTTPS are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.0007638931274414,1.0,1.0,1.0
+Mean Precision,0.9291666666666666
+Mean Recall,0.9180555555555555
+Mean F1,0.9235776942355889

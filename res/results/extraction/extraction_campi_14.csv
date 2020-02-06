@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+FTP and SFTP servers are allowed by the University firewall,"@target,@middlebox,@operation,@protocol,@protocol,","@protocol,@protocol,@operation,@target,@middlebox,",1.0537810325622559,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@target,","@target,@operation,@qos_metric,",1.0537810325622559,1.0,1.0,1.0
+Faculty members have 500 Gb per week of free network use,"@qos_value,@target,@qos_unit,","@target,@qos_value,@qos_unit,",1.0537810325622559,1.0,1.0,1.0
+Everquest is blocked by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.0537810325622559,1.0,1.0,1.0
+Students have 200 GB of Free monthly usage,"@qos_value,@target,@qos_unit,","@target,@qos_value,@qos_unit,",1.0537810325622559,1.0,1.0,1.0
+IMAP and secure IMAP are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.0537810325622559,1.0,1.0,1.0
+Net2Phone is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.0537810325622559,1.0,1.0,1.0
+"If a student is in obvious violations of copyright law by using a room's wired connection (ie ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs","@middlebox,@target,","@target,@middlebox,",1.0537810325622559,1.0,1.0,1.0
+"The network firewall does prevent some applications from working in their normal manner, for example, video and audio conferencing products that use the H.323","@operation,@service,@target,","@target,@operation,@service,",1.0537810325622559,1.0,1.0,1.0
+The individual will have a 4 Mbps bandwidth rate limit,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.0537810325622559,1.0,1.0,1.0
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@traffic,@operation,@target,","@origin,@operation,@target,@traffic,@destination,",1.0537810325622559,0.6,1.0,0.7499999999999999
+SMTP is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.0537810325622559,1.0,1.0,1.0
+Mean Precision,1.0
+Mean Recall,0.9666666666666667
+Mean F1,0.983050847457627

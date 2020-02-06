@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Everquest is blocked by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.041349172592163,1.0,1.0,1.0
+The UC Davis network is continually scanned for prohibited activities and network threats.,"@middlebox,","@target,@middlebox,",1.041349172592163,0.5,1.0,0.6666666666666666
+Sony Playstation 2 is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.041349172592163,1.0,1.0,1.0
+POP3 and secure POP are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.041349172592163,1.0,1.0,1.0
+ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function,"@service,@middlebox,","@middlebox,@target,",1.041349172592163,0.5,0.5,0.5
+University Housing monitors only the amount of traffic,"@middlebox,","@target,@middlebox,",1.041349172592163,0.5,1.0,0.6666666666666666
+Quotas for students are 5000 Megabyte per hr download and 2000 Megabyte per hr upload,"@qos_metric,@qos_value,@qos_value,@target,@qos_constraint,@qos_constraint,@qos_unit,","@qos_metric,@target,@qos_value,@qos_unit,@qos_constraint,@qos_value,@qos_constraint,",1.041349172592163,1.0,1.0,1.0
+CounterStrike server is blocked by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.041349172592163,1.0,1.0,1.0
+HTTP and HTTPS are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.041349172592163,1.0,1.0,1.0
+"If a student is in obvious violations of copyright law by using a room's wired connection (ie ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs","@middlebox,@target,","@target,@middlebox,",1.041349172592163,1.0,1.0,1.0
+Telnet is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.041349172592163,1.0,1.0,1.0
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@middlebox,@qos_metric,@qos_metric,@protocol,@qos_value,@qos_constraint,@qos_constraint,@qos_unit,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",1.041349172592163,0.6666666666666666,0.6666666666666666,0.6666666666666666
+Mean Precision,0.9305555555555555
+Mean Recall,0.8472222222222222
+Mean F1,0.8869357638888888

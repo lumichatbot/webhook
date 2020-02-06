@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Students 10 GB a day download quotas are on 10 AM to Midnight,"@target,@qos_constraint,@qos_unit,@end,@qos_metric,@start,@qos_value,","@target,@qos_value,@qos_unit,@qos_constraint,@qos_metric,@start,@end,",0.8726792335510254,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@target,@qos_metric,@operation,","@target,@operation,@qos_metric,",0.8726792335510254,1.0,1.0,1.0
+Telnet is allowed by the University firewall,"@middlebox,@operation,@protocol,@target,","@protocol,@operation,@target,@middlebox,",0.8726792335510254,1.0,1.0,1.0
+FTP and SFTP servers are allowed by the University firewall,"@operation,@protocol,@protocol,@target,@middlebox,","@protocol,@protocol,@operation,@target,@middlebox,",0.8726792335510254,1.0,1.0,1.0
+"When a total of 18 gigabytes of data is reached, the individual's bandwidth rate limit is set to 2 Mbps","@qos_unit,@qos_unit,@middlebox,@qos_metric,@operation,@qos_value,@qos_value,@target,","@qos_value,@qos_unit,@qos_metric,@target,@qos_metric,@operation,@qos_value,@qos_unit,",0.8726792335510254,1.0,0.8333333333333334,0.9090909090909091
+All network traffic passing in or out of Brown's network is monitored by intrusion detection system for signs of compromises,"@middlebox,","@target,@middlebox,",0.8726792335510254,0.5,1.0,0.6666666666666666
+"You may not run any services (e.g., FTP services,listservers,P2P file sharing servers, publishing files via generic file services, etc.) via ResNet or NYURoam wireless networks","@traffic,@operation,@protocol,@service,@target,","@operation,@protocol,@service,@traffic,@target,@target,",0.8726792335510254,1.0,1.0,1.0
+"No individual service or system running on the wired/wireless network should use more than 10 gigabytes of per day, regardless of whether it is inbound or outbound over the commodity network link","@qos_constraint,@qos_constraint,@qos_unit,@qos_metric,@qos_value,@target,","@target,@qos_metric,@qos_value,@qos_unit,@qos_constraint,@qos_constraint,",0.8726792335510254,1.0,1.0,1.0
+Routers or anything else that does routing or NAT are prohibited from MITNet as they interfere with the operation of the network,"@operation,@protocol,@target,","@protocol,@operation,@target,",0.8726792335510254,1.0,1.0,1.0
+Housing does not normally limit the amount of bandwidth,"@operation,@qos_metric,","@target,@operation,@qos_metric,",0.8726792335510254,0.6666666666666666,1.0,0.8
+"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@service,@service,@target,@traffic,@operation,@protocol,@protocol,@protocol,@protocol,","@operation,@protocol,@protocol,@traffic,@protocol,@service,@protocol,@service,@target,@target,",0.8726792335510254,1.0,1.0,1.0
+SMTP is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",0.8726792335510254,1.0,1.0,1.0
+Mean Precision,0.986111111111111
+Mean Recall,0.9305555555555555
+Mean F1,0.9575281803542672

@@ -4,7 +4,7 @@ import requests
 import traceback
 
 from nile import builder, compiler
-from contradictions import inspector
+from conflicts import inspector
 from utils import config
 from database import client
 

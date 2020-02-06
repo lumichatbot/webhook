@@ -1,0 +1,54 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+unblock traffic,"@traffic,@operation,","@operation,@traffic,",1.0091180801391602,1.0,1.0,1.0
+Students data limit is 100 GB per week,"@target,@qos_unit,@qos_metric,@qos_value,","@target,@qos_metric,@qos_value,@qos_unit,",1.0091180801391602,1.0,1.0,1.0
+Forward all the external traffic to DMZ,"@target,@operation,@target,@target,","@operation,@origin,@destination,",1.0091180801391602,0.3333333333333333,0.5,0.4
+"Lumi, block VoIP traffic from 00:00 to 06:00","@end,@start,@traffic,@operation,","@operation,@traffic,@start,@end,",1.0091180801391602,1.0,1.0,1.0
+Add a firewall and address translation for att and verizon,"@target,@target,@middlebox,@middlebox,","@middlebox,@middlebox,@target,@target,",1.0091180801391602,1.0,1.0,1.0
+Increase the bandwidth consumption limit for professors to 100 Mbps,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.0091180801391602,1.0,1.0,1.0
+please limit bandwidth to 5 Gigabits per second for the server racks everyday from 4 PM  to 7PM,"@qos_value,@target,@qos_constraint,@qos_unit,@end,@start,@qos_metric,","@qos_constraint,@qos_metric,@qos_value,@qos_unit,@target,@start,@end,",1.0091180801391602,1.0,1.0,1.0
+Let students access Facebook,"@operation,@service,@target,","@operation,@target,@service,",1.0091180801391602,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@target,","@target,@operation,@qos_metric,",1.0091180801391602,1.0,1.0,1.0
+inspect all internet traffic,"@operation,","@middlebox,@traffic,@target,",1.0091180801391602,0.0,0.0,0.0
+The system passively monitors the network throughput when traffic is light,"@middlebox,@target,","@middlebox,@target,",1.0091180801391602,1.0,1.0,1.0
+The system will trigger an overuse notification if the average for either inbound or outbound usage exceeds 10 GB per week,"@qos_metric,@qos_metric,@qos_value,@target,@qos_unit,@middlebox,","@target,@middlebox,@qos_metric,@qos_metric,@qos_value,@qos_unit,",1.0091180801391602,1.0,1.0,1.0
+Grant SSH access to professors,"@protocol,@target,@operation,","@operation,@protocol,@target,",1.0091180801391602,1.0,1.0,1.0
+Hey Lumi please block traffic for all students,"@target,@traffic,@operation,","@operation,@traffic,@target,",1.0091180801391602,1.0,1.0,1.0
+Email traffic is allowed for Staff members,"@operation,@service,@target,","@service,@operation,@target,",1.0091180801391602,1.0,1.0,1.0
+Add intrusion detection and address translation for servers network,"@middlebox,@middlebox,@operation,@target,","@operation,@middlebox,@middlebox,@target,",1.0091180801391602,1.0,1.0,1.0
+"hey Lumi, add dpi to labs","@middlebox,@operation,@target,","@operation,@middlebox,@target,",1.0091180801391602,1.0,1.0,1.0
+limit the bandwidth rate of the server racks to 5 gbps from 4pm to 7pm,"@qos_unit,@end,@start,@qos_metric,@qos_value,@target,@qos_constraint,","@qos_constraint,@qos_metric,@target,@qos_value,@qos_unit,@start,@end,",1.0091180801391602,1.0,1.0,1.0
+Remove nat for gateway everyday from 18:00 to midnight,"@target,@end,@middlebox,@start,@operation,","@operation,@middlebox,@target,@start,@end,",1.0091180801391602,1.0,1.0,1.0
+Define a quota of 10 GB per week for all students,"@qos_unit,@qos_metric,@operation,@qos_value,@target,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",1.0091180801391602,1.0,1.0,1.0
+set a 10 GB per week download quota for students in dorms,"@target,@target,@qos_constraint,@qos_unit,@qos_metric,@operation,@qos_value,","@operation,@qos_value,@qos_unit,@qos_constraint,@qos_metric,@target,@target,",1.0091180801391602,1.0,1.0,1.0
+block traffic of the server racks,"@traffic,@operation,@target,","@operation,@traffic,@target,",1.0091180801391602,1.0,1.0,1.0
+"MSN audio and video are not allowed by the University firewall, but the MSN chat, application sharing and file transferring are not blocked","@qos_unit,@middlebox,@traffic,@operation,@operation,@service,@service,@service,@service,@target,","@service,@service,@operation,@target,@middlebox,@service,@service,@service,@operation,",1.0091180801391602,1.0,0.6666666666666666,0.8
+The individual will have a 4 Mbps bandwidth rate limit,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.0091180801391602,1.0,1.0,1.0
+Guests cannot run any file sharing/downloading program,"@operation,@service,@target,","@target,@operation,@service,",1.0091180801391602,1.0,1.0,1.0
+Students have 200 GB of Free monthly usage,"@qos_value,@target,@qos_unit,","@target,@qos_value,@qos_unit,",1.0091180801391602,1.0,1.0,1.0
+block F2movies traffic for students in the labs,"@target,@target,@operation,@service,","@operation,@service,@target,@target,",1.0091180801391602,1.0,1.0,1.0
+block all traffic at Dorms location,"@traffic,@operation,@target,","@operation,@traffic,@target,",1.0091180801391602,1.0,1.0,1.0
+Block traffic from netflix,"@traffic,@operation,@target,","@operation,@target,",1.0091180801391602,1.0,0.6666666666666666,0.8
+Please make traffic coming from the Internet pass through a firewall.,"@middlebox,@operation,@origin,","@origin,@operation,@middlebox,",1.0091180801391602,1.0,1.0,1.0
+Add inspection for the university from 10pm to 12pm,"@target,@end,@middlebox,@start,","@operation,@middlebox,@target,@start,@end,",1.0091180801391602,0.8,1.0,0.888888888888889
+Allow RTSP traffic in the LAN,"@operation,@protocol,@target,","@operation,@protocol,@target,",1.0091180801391602,1.0,1.0,1.0
+Battlenet is allowed by the University firewall,"@service,@target,@middlebox,@operation,","@service,@operation,@target,@middlebox,",1.0091180801391602,1.0,1.0,1.0
+Telnet is allowed by the University firewall,"@middlebox,@operation,@protocol,@target,","@protocol,@operation,@target,@middlebox,",1.0091180801391602,1.0,1.0,1.0
+limit torrent traffic to 100 mbps,"@traffic,@qos_value,@qos_constraint,@qos_unit,","@qos_constraint,@traffic,@qos_value,@qos_unit,",1.0091180801391602,1.0,1.0,1.0
+please do not let any music streaming in the network,"@operation,@target,@traffic,","@operation,@traffic,@target,",1.0091180801391602,1.0,1.0,1.0
+"Lumi, prohibit access to internal campus computers from the internet","@operation,@origin,","@operation,@destination,@origin,",1.0091180801391602,0.6666666666666666,1.0,0.8
+for endpoint dorms set quota download 10 gb/wk,"@qos_constraint,@qos_unit,@qos_metric,@operation,@qos_value,","@target,@operation,@qos_metric,@qos_constraint,@qos_value,@qos_unit,",1.0091180801391602,0.8333333333333334,1.0,0.9090909090909091
+Set 5gbps limit for servers during 4pm to 7pm,"@qos_unit,@end,@start,@operation,@qos_value,@target,","@operation,@qos_value,@qos_unit,@qos_constraint,@target,@start,@end,",1.0091180801391602,0.8571428571428571,1.0,0.923076923076923
+Please add traffic shaper between the internet and the dorms,"@middlebox,@operation,@destination,@origin,","@middlebox,@origin,@destination,",1.0091180801391602,1.0,0.75,0.8571428571428571
+Grant SFTP access to all students from 08:00 to 17:00,"@operation,@protocol,@target,@end,@start,","@operation,@protocol,@target,@start,@end,",1.0091180801391602,1.0,1.0,1.0
+"Lumi, allow access to internal campus computers from the internet through SSH","@operation,@protocol,@origin,","@operation,@destination,@origin,@protocol,",1.0091180801391602,0.75,1.0,0.8571428571428571
+limit traffic to 5Gbps  Between internet and servers for 16:00 to 19:00,"@qos_unit,@end,@start,@traffic,@qos_value,@destination,@origin,@qos_constraint,","@qos_constraint,@traffic,@qos_value,@qos_unit,@origin,@destination,@start,@end,",1.0091180801391602,1.0,1.0,1.0
+limit torrent traffic for guests to 100 Mbps,"@qos_constraint,@qos_unit,@traffic,@qos_value,@target,","@qos_constraint,@traffic,@target,@qos_value,@qos_unit,",1.0091180801391602,1.0,1.0,1.0
+Make sure all traffic from the Internet to the labs is inspected by the DPI middlebox,"@middlebox,@traffic,@operation,@destination,@origin,","@traffic,@origin,@destination,@middlebox,@middlebox,",1.0091180801391602,1.0,0.8,0.888888888888889
+Add traffic monitor from PUC to UFRGS,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.0091180801391602,1.0,1.0,1.0
+unblock facebook,"@operation,@service,","@operation,@service,",1.0091180801391602,1.0,1.0,1.0
+Remove load balancing from gateway to database,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.0091180801391602,1.0,1.0,1.0
+From internet to Labs add DPI,"@operation,@destination,@origin,@middlebox,","@origin,@destination,@operation,@middlebox,",1.0091180801391602,1.0,1.0,1.0
+set torrent traffic from guests to 100 mbps,"@traffic,@operation,@qos_value,@target,@qos_unit,","@operation,@traffic,@target,@qos_value,@qos_unit,",1.0091180801391602,1.0,1.0,1.0
+Mean Precision,0.9476666666666667
+Mean Recall,0.9448095238095239
+Mean F1,0.9462359384697968

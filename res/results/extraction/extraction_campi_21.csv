@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+POP3 and secure POP are allowed by the University firewall,"@target,@middlebox,@operation,@protocol,@protocol,","@protocol,@protocol,@operation,@target,@middlebox,",1.2134809494018555,1.0,1.0,1.0
+HTTP and HTTPS are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.2134809494018555,1.0,1.0,1.0
+"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@target,@traffic,@operation,@protocol,@protocol,@protocol,@protocol,@service,@service,","@operation,@protocol,@protocol,@traffic,@protocol,@service,@protocol,@service,@target,@target,",1.2134809494018555,1.0,1.0,1.0
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@qos_metric,@qos_metric,@protocol,@protocol,@protocol,@qos_value,@qos_constraint,@qos_constraint,@qos_unit,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",1.2134809494018555,0.6666666666666666,0.8,0.7272727272727272
+P2P application is separately capped at 30 Mbps for the entire campus,"@traffic,@qos_value,@target,@qos_constraint,@qos_unit,","@traffic,@qos_constraint,@qos_value,@qos_unit,@target,",1.2134809494018555,1.0,1.0,1.0
+CounterStrike server is blocked by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.2134809494018555,1.0,1.0,1.0
+SSH is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.2134809494018555,1.0,1.0,1.0
+Internet is limited to 3 Mbps per host,"@qos_value,@target,@qos_constraint,@qos_unit,","@qos_metric,@qos_value,@qos_unit,@target,",1.2134809494018555,0.75,0.75,0.75
+Telnet is allowed by the University firewall,"@middlebox,@operation,@protocol,@target,","@protocol,@operation,@target,@middlebox,",1.2134809494018555,1.0,1.0,1.0
+"You may not run any services (e.g., FTP services,listservers,P2P file sharing servers, publishing files via generic file services, etc.) via ResNet or NYURoam wireless networks","@traffic,@operation,@protocol,@service,@target,","@operation,@protocol,@service,@traffic,@target,@target,",1.2134809494018555,1.0,1.0,1.0
+Net2Phone is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.2134809494018555,1.0,1.0,1.0
+The ResNet cap is currently 200 gigabytes per each 7 day period of combined incoming and outgoing traffic,"@qos_unit,@middlebox,@protocol,@qos_value,","@target,@qos_value,@qos_unit,@qos_unit,@qos_constraint,",1.2134809494018555,0.5,0.5,0.5
+Mean Precision,0.9208333333333334
+Mean Recall,0.9097222222222222
+Mean F1,0.9152440566514921

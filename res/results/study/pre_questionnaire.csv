@@ -1,0 +1,22 @@
+Timestamp,UUID,What region are you located in?,What is your current job?,How often do you configure networks to alter their behavior?,How much experience do you have configuring networks?,What technologies do you usually use when configuring a network behavior?,What types of configuration do you usually install in networks?,"How familiar are you with conversational interfaces (i.e. chatbots) such as Alexa, Siri and Cortana?"
+2020/01/22 3:14:47 PM EST,62ea8b3d-8ab9-4ba7-bdfa-1af64a616382,South America,R&D Project Manager,Occasionally,3,Command-line Interface (CLI);Graphical User Interface (GUI);Proprietary tools,Usage quotas;Firewall rules;Middlebox chaining,5
+2020/01/22 4:06:55 PM EST,a3953c60-fb9c-4dc9-83c5-dfe7eef7667a,South America,Student,Occasionally,2,Command-line Interface (CLI);P4;Graphical User Interface (GUI),Rate limiting;Firewall rules,2
+2020/01/22 4:11:39 PM EST,d0ae1bd8-631c-4eb8-8fa7-9fa829101d68,Europe,Researcher,Occasionally,3,Command-line Interface (CLI);OpenFlow;Graphical User Interface (GUI),Rate limiting;Traffic prioritization;Firewall rules;Traffic inspection rules;Middlebox chaining,4
+2020/01/22 5:35:00 PM EST,71fde6e4-c3c4-4c35-9f0c-06f2beb9ef7b,South America,Student,Occasionally,5,Graphical User Interface (GUI);Proprietary tools,Rate limiting;Firewall rules,4
+2020/01/23 6:59:01 AM EST,35daa98a-768a-4fc3-a41c-c685561fcd28,South America,Researcher,Often,5,Command-line Interface (CLI);P4;Proprietary tools,Rate limiting;Usage quotas;Firewall rules;Traffic inspection rules,3
+2020/01/23 8:01:31 AM EST,5ce926ff-7e71-41f7-acee-90165ddb254a,South America,Student,Occasionally,3,Command-line Interface (CLI);Graphical User Interface (GUI),Filter by mac address.,1
+2020/01/23 8:59:59 AM EST,e844ec55-c830-4385-b15d-d1ce5ab70979,South America,Assistant Professor,Occasionally,2,Command-line Interface (CLI),Traffic steering;Firewall rules,4
+2020/01/23 9:40:19 AM EST,1d695e18-63ed-4c16-af2b-99a2b9bfedeb,South America,Student,Sometimes,3,Command-line Interface (CLI);OpenFlow,Rate limiting;Traffic prioritization;Traffic steering;Middlebox chaining,4
+2020/01/23 11:42:15 AM EST,b160144c-9ebd-4a27-b902-59e773b7e044,South America,Student,Never,2,Command-line Interface (CLI),Firewall rules,3
+2020/01/23 7:36:22 PM EST,1bfa890f-9f29-4d21-a5b1-f6cc2e7875a3,North America,Student,Sometimes,3,Command-line Interface (CLI);P4,Firewall rules;Traffic inspection rules,3
+2020/01/23 10:38:12 PM EST,906e8722-7b88-404c-8db2-dd1e42e9ba0e,North America,Student,Often,4,Command-line Interface (CLI);OpenFlow;P4;Graphical User Interface (GUI),Traffic prioritization;Traffic steering;Firewall rules;Traffic inspection rules,2
+2020/01/24 2:33:36 AM EST,22849304-bf1c-4d60-bcb6-26ffedbc838c,Asia,Researcher,Sometimes,2,Command-line Interface (CLI),Traffic steering,4
+2020/01/24 6:53:31 AM EST,a85d847c-fbde-42c3-bbf7-41c76bb735bf,Europe,Researcher,Occasionally,2,Graphical User Interface (GUI),Traffic prioritization,3
+2020/01/27 12:50:24 AM EST,a9af87b6-d6f4-4c44-baee-fe9576655555,South America,Student,Never,1,P4,I don't install any,5
+2020/01/28 5:59:59 AM EST,89d0f8c2-7749-4f89-844d-f628bf64fd6c,South America,Network Manager,Often,4,Command-line Interface (CLI);Graphical User Interface (GUI);Proprietary tools,Rate limiting;Firewall rules,3
+2020/01/28 6:50:44 AM EST,292bbc17-d4c0-404d-9a59-0f1ba60a8b77,South America,Associate Professor,Often,5,"Command-line Interface (CLI);docker, ansible, django, jinja2, pyroute2, bird, openvpn",Traffic steering;virtualization,1
+2020/01/28 7:22:22 AM EST,6f393feb-4433-4405-9658-ed9de1a4d04f,South America,Student,Sometimes,3,Command-line Interface (CLI);Graphical User Interface (GUI),Rate limiting;Firewall rules,1
+2020/01/28 8:56:35 AM EST,02c373b6-0adb-44ee-b984-1ef4f725c90e,South America,Network Manager,Sometimes,4,Command-line Interface (CLI);Proprietary tools,"Rate limiting;Vlans, troubleshooting, interface negotiation and others layer 2 configurations.",2
+2020/01/28 2:25:25 PM EST,b108335c-ed0e-49d7-af7a-e8f6b63f4887,North America,Network Engineer,Occasionally,3,Command-line Interface (CLI);Graphical User Interface (GUI);Proprietary tools,Firewall rules;Traffic inspection rules,4
+2020/01/28 3:22:18 PM EST,2a2ddb6c-e9fe-40c8-a9fb-a922404e9658,North America,Student,Occasionally,3,Command-line Interface (CLI);P4,I don't install any,3
+2020/01/29 6:30:32 PM EST,869020e9-9e74-46c8-a4ad-54b2ae5e37db,South America,Student,Occasionally,3,Command-line Interface (CLI);OpenFlow;P4;Proprietary tools,Rate limiting;Traffic prioritization;Traffic steering;Traffic inspection rules,2

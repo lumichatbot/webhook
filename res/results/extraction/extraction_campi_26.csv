@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+The UC Davis network is continually scanned for prohibited activities and network threats.,"@middlebox,","@target,@middlebox,",0.9750549793243408,0.5,1.0,0.6666666666666666
+Telnet is allowed by the University firewall,"@target,@middlebox,@operation,@protocol,","@protocol,@operation,@target,@middlebox,",0.9750549793243408,1.0,1.0,1.0
+AIM chat and file transfering is allowed by the University firewall,"@middlebox,@operation,@service,@service,@target,","@service,@service,@operation,@target,@middlebox,",0.9750549793243408,1.0,1.0,1.0
+"No individual service or system running on the wired/wireless network should use more than 10 gigabytes of per day, regardless of whether it is inbound or outbound over the commodity network link","@target,@qos_constraint,@qos_constraint,@qos_unit,@qos_metric,@qos_value,","@target,@qos_metric,@qos_value,@qos_unit,@qos_constraint,@qos_constraint,",0.9750549793243408,1.0,1.0,1.0
+HTTP and HTTPS are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",0.9750549793243408,1.0,1.0,1.0
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@qos_unit,@qos_metric,@start,@protocol,@protocol,@qos_value,@service,@qos_constraint,@qos_constraint,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",0.9750549793243408,0.8333333333333334,0.7142857142857143,0.7692307692307692
+The individual will have a 4 Mbps bandwidth rate limit,"@qos_unit,@qos_metric,@operation,@qos_value,@target,","@target,@operation,@qos_value,@qos_unit,@qos_metric,",0.9750549793243408,1.0,1.0,1.0
+"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@traffic,@operation,@protocol,@protocol,@protocol,@protocol,@service,@service,@target,","@operation,@protocol,@protocol,@traffic,@protocol,@service,@protocol,@service,@target,@target,",0.9750549793243408,1.0,1.0,1.0
+Sorenson Videophone 200 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",0.9750549793243408,1.0,1.0,1.0
+These network security changes include blocking traffic from the Internet into the UW network over FTP,"@operation,@protocol,@origin,","@operation,@origin,@destination,@protocol,",0.9750549793243408,0.75,1.0,0.8571428571428571
+"CIS restricts traffic that is known to cause damage to the network or hosts on it, such as NETBIOS","@operation,@service,@target,","@operation,@target,@service,",0.9750549793243408,1.0,1.0,1.0
+Students have a quota of 5 GB per day The quota is reset at 6am,"@qos_value,@target,@qos_constraint,@qos_unit,","@target,@qos_constraint,@qos_value,@qos_unit,@hour,",0.9750549793243408,0.8,1.0,0.888888888888889
+Mean Precision,0.9761904761904763
+Mean Recall,0.9069444444444444
+Mean F1,0.9402943139114248

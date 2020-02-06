@@ -1,8 +1,33 @@
 """ plotter utils """
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
 from sklearn.metrics import auc, roc_curve
 from sklearn.model_selection import StratifiedKFold
+
+
+def plot_pie_chart(labels, sizes, filename=None):
+    plt.rcParams['font.family'] = 'serif'
+    plt.rcParams['font.sans-serif'] = 'Roboto-Light'
+    # print(fm.findSystemFonts(fontpaths=None, fontext='ttf'))
+
+    # prop = fm.FontProperties(fname=f.name)
+
+    colors = ["#dcedff", "#94b0da", "#8f91a2", "#505a5b", "#343f3e"]
+    # colors = ["#343f3e", "#505a5b",  "#8f91a2", "#94b0da", "#dcedff"]
+    fig1, ax1 = plt.subplots()
+    patches, texts, autotexts = ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
+                                        startangle=90, colors=colors, pctdistance=0.8)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    plt.setp(texts, size='medium')
+    plt.setp(autotexts, size="medium")
+
+    if filename:
+        plt.savefig(filename)
+        plt.close()
+    else:
+        plt.show()
 
 
 def precision_recall_curve(dataset_size, rates):
@@ -50,7 +75,7 @@ def plot_roc_curve(dataset_size, model_type, model, data, targets):
     plt.ylim([-0.05, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Receiver operating characteristic for {} wit dataset {}'.format(model_type, dataset_size))
+    plt.title('Receiver Operating Characteristic (ROC) for {} with dataset {}'.format(model_type, dataset_size))
     plt.legend(loc="lower right")
 
     return plt

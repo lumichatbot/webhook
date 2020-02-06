@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Sony Playstation 2 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.2495548725128174,1.0,1.0,1.0
+Students have a quota of 5 GB per day The quota is reset at 6am,"@qos_value,@target,@qos_constraint,@qos_unit,","@target,@qos_constraint,@qos_value,@qos_unit,@hour,",1.2495548725128174,0.8,1.0,0.888888888888889
+Internet is limited to 3 Mbps per host,"@qos_metric,@qos_value,@target,@qos_unit,","@qos_metric,@qos_value,@qos_unit,@target,",1.2495548725128174,1.0,1.0,1.0
+PC-Telephone is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.2495548725128174,1.0,1.0,1.0
+Students 10 GB a day download quotas are on 10 AM to Midnight,"@qos_metric,@start,@qos_value,@target,@qos_constraint,@qos_unit,@end,","@target,@qos_value,@qos_unit,@qos_constraint,@qos_metric,@start,@end,",1.2495548725128174,1.0,1.0,1.0
+P2P application is separately capped at 30 Mbps for the entire campus,"@traffic,@qos_value,@target,@qos_constraint,@qos_unit,","@traffic,@qos_constraint,@qos_value,@qos_unit,@target,",1.2495548725128174,1.0,1.0,1.0
+SSH is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.2495548725128174,1.0,1.0,1.0
+"Elements of network security currently include the following four solutions: Network Border Infrastructure System, Intrusion Prevention System, Firewalls and Custom Unit Firewalls","@middlebox,@middlebox,@middlebox,@middlebox,@operation,","@target,@operation,@middlebox,@middlebox,@middlebox,@middlebox,",1.2495548725128174,0.6666666666666666,1.0,0.8
+Telnet is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.2495548725128174,1.0,1.0,1.0
+H323 video conferencing is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.2495548725128174,1.0,1.0,1.0
+Faculty members have 500 Gb per week of free network use,"@qos_value,@target,@qos_unit,","@target,@qos_value,@qos_unit,",1.2495548725128174,1.0,1.0,1.0
+Housing does not normally limit the amount of bandwidth,"@qos_metric,@operation,","@target,@operation,@qos_metric,",1.2495548725128174,0.6666666666666666,1.0,0.8
+Mean Precision,1.0
+Mean Recall,0.9277777777777777
+Mean F1,0.962536023054755
