@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Students have 200 GB of Free monthly usage,"@qos_value,@target,@qos_unit,","@target,@qos_value,@qos_unit,",0.9921751022338867,1.0,1.0,1.0
+Sorenson Videophone 200 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",0.9921751022338867,1.0,1.0,1.0
+CounterStrike server is blocked by the University firewall,"@target,@middlebox,@operation,@service,","@service,@operation,@target,@middlebox,",0.9921751022338867,1.0,1.0,1.0
+Guests cannot run any file sharing/downloading program,"@middlebox,@operation,@service,@target,","@target,@operation,@service,",0.9921751022338867,1.0,0.75,0.8571428571428571
+SSH is allowed by the University firewall,"@middlebox,@operation,@protocol,@target,","@protocol,@operation,@target,@middlebox,",0.9921751022338867,1.0,1.0,1.0
+Sony Playstation 2 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",0.9921751022338867,1.0,1.0,1.0
+Everquest is blocked by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",0.9921751022338867,1.0,1.0,1.0
+Battlenet is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",0.9921751022338867,1.0,1.0,1.0
+Students 10 GB a day download quotas are on 10 AM to Midnight,"@qos_unit,@end,@qos_metric,@qos_value,@target,@qos_constraint,","@target,@qos_value,@qos_unit,@qos_constraint,@qos_metric,@start,@end,",0.9921751022338867,0.8571428571428571,1.0,0.923076923076923
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@target,@traffic,@operation,","@origin,@operation,@target,@traffic,@destination,",0.9921751022338867,0.6,1.0,0.7499999999999999
+These network security changes include blocking traffic from the Internet into the UW network over FTP,"@operation,@protocol,@origin,","@operation,@origin,@destination,@protocol,",0.9921751022338867,0.75,1.0,0.8571428571428571
+FTP and SFTP servers are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",0.9921751022338867,1.0,1.0,1.0
+Mean Precision,0.9791666666666666
+Mean Recall,0.9339285714285714
+Mean F1,0.9560127566894835

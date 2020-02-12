@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Students data limit is 100 GB per week,"@qos_metric,@qos_value,@target,@qos_unit,","@target,@qos_metric,@qos_value,@qos_unit,",1.247973918914795,1.0,1.0,1.0
+Faculty members have 500 Gb per week of free network use,"@qos_unit,@qos_value,@target,","@target,@qos_value,@qos_unit,",1.247973918914795,1.0,1.0,1.0
+ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function,"@middlebox,@service,@target,","@middlebox,@target,",1.247973918914795,1.0,0.6666666666666666,0.8
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@qos_metric,@start,@qos_value,@qos_constraint,@qos_constraint,@qos_unit,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",1.247973918914795,0.8333333333333334,1.0,0.9090909090909091
+The individual will have a 4 Mbps bandwidth rate limit,"@target,@qos_metric,@operation,@qos_value,","@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.247973918914795,0.8,1.0,0.888888888888889
+P2P application is separately capped at 30 Mbps for the entire campus,"@target,@qos_constraint,@qos_unit,@traffic,@qos_value,","@traffic,@qos_constraint,@qos_value,@qos_unit,@target,",1.247973918914795,1.0,1.0,1.0
+The system will trigger an overuse notification if the average for either inbound or outbound usage exceeds 10 GB per week,"@middlebox,@qos_metric,@qos_metric,@qos_value,@target,@qos_unit,","@target,@middlebox,@qos_metric,@qos_metric,@qos_value,@qos_unit,",1.247973918914795,1.0,1.0,1.0
+FTP and SFTP servers are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.247973918914795,1.0,1.0,1.0
+PC-Telephone is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.247973918914795,1.0,1.0,1.0
+"You may not run FTP, telnet, peer-to-peer, HTTP, IRC, DNS and mail servers on ResNet or UIC wireless-connected devices","@operation,@protocol,@protocol,@protocol,@protocol,@service,@service,@target,@traffic,","@operation,@protocol,@protocol,@traffic,@protocol,@service,@protocol,@service,@target,@target,",1.247973918914795,1.0,1.0,1.0
+Net2Phone is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.247973918914795,1.0,1.0,1.0
+Sorenson Videophone 200 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.247973918914795,1.0,1.0,1.0
+Mean Precision,0.9722222222222222
+Mean Recall,0.9694444444444444
+Mean F1,0.9708313463678271

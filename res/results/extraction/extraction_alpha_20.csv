@@ -1,0 +1,41 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Forward all the external traffic to DMZ,"@target,@operation,@target,@target,","@operation,@origin,@destination,",0.9527521133422852,0.3333333333333333,0.5,0.4
+Add inspection for the university from 22:00 to 12:00,"@end,@middlebox,@start,@target,","@operation,@middlebox,@target,@start,@end,",0.9527521133422852,0.8,1.0,0.888888888888889
+Staff is allowed to access ftp,"@operation,@protocol,@target,","@target,@operation,@protocol,",0.9527521133422852,1.0,1.0,1.0
+block all traffic at Dorms location,"@traffic,@operation,@target,","@operation,@traffic,@target,",0.9527521133422852,1.0,1.0,1.0
+Grant SFTP access to all students from 08:00 to 17:00,"@end,@start,@operation,@protocol,@target,","@operation,@protocol,@target,@start,@end,",0.9527521133422852,1.0,1.0,1.0
+"please lumi, define dorms quota to 10 gb per week","@qos_metric,@operation,@qos_value,@qos_unit,","@operation,@target,@qos_metric,@qos_value,@qos_unit,",0.9527521133422852,0.8,1.0,0.888888888888889
+From gateway to my network remove nat,"@destination,@origin,@middlebox,@operation,","@origin,@destination,@operation,@middlebox,",0.9527521133422852,1.0,1.0,1.0
+"Please, block netflix traffic on PUC","@operation,@service,@target,","@operation,@service,@target,",0.9527521133422852,1.0,1.0,1.0
+allow all traffic,"@traffic,@operation,","@operation,@traffic,",0.9527521133422852,1.0,1.0,1.0
+From dorms to internet add nat,"@operation,@destination,@origin,@middlebox,","@origin,@destination,@operation,@middlebox,",0.9527521133422852,1.0,1.0,1.0
+Limit students in the dorm to 10 GB per week,"@qos_value,@target,@target,@qos_constraint,@qos_unit,","@qos_constraint,@target,@target,@qos_value,@qos_unit,",0.9527521133422852,1.0,1.0,1.0
+please remove DPI from DMZ starting at 6am until 9pm,"@operation,@target,@end,@middlebox,@start,","@operation,@middlebox,@target,@start,@end,",0.9527521133422852,1.0,1.0,1.0
+Students may use up to 10 GB of data weekly,"@qos_metric,@qos_value,@target,@qos_unit,","@target,@qos_metric,@qos_value,@qos_unit,",0.9527521133422852,1.0,1.0,1.0
+Students cannot run file servers,"@operation,@service,@target,","@target,@operation,@service,",0.9527521133422852,1.0,1.0,1.0
+add security from entry to backend,"@destination,@origin,@middlebox,@operation,","@operation,@middlebox,@origin,@destination,",0.9527521133422852,1.0,1.0,1.0
+limit torrent traffic for guests to 100 Mbps,"@traffic,@qos_value,@target,@qos_constraint,@qos_unit,","@qos_constraint,@traffic,@target,@qos_value,@qos_unit,",0.9527521133422852,1.0,1.0,1.0
+Set quota to 10 GB per week dorms,"@qos_unit,@qos_metric,@operation,@qos_value,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",0.9527521133422852,0.8,1.0,0.888888888888889
+Limit rack servers to 5gbps during 5pm to 7pm,"@end,@start,@qos_value,@qos_constraint,@qos_unit,","@qos_constraint,@target,@qos_value,@qos_unit,@start,@end,",0.9527521133422852,0.8333333333333334,1.0,0.9090909090909091
+for endpoint dorms set quota download 10 gb/wk,"@qos_constraint,@qos_unit,@qos_metric,@operation,@qos_value,","@target,@operation,@qos_metric,@qos_constraint,@qos_value,@qos_unit,",0.9527521133422852,0.8333333333333334,1.0,0.9090909090909091
+All traffic from the Internet to the Labs has to go to DPI server and then goes to the Labs,"@traffic,@destination,@origin,@middlebox,","@traffic,@origin,@destination,@middlebox,",0.9527521133422852,1.0,1.0,1.0
+Add parental control from my house to internet,"@operation,@destination,@origin,@middlebox,","@operation,@middlebox,@origin,@destination,",0.9527521133422852,1.0,1.0,1.0
+Block torrent traffic for all students,"@traffic,@operation,@target,","@operation,@traffic,@target,",0.9527521133422852,1.0,1.0,1.0
+Allow access from computers to DMZ,"@operation,@destination,@origin,","@operation,@origin,@destination,",0.9527521133422852,1.0,1.0,1.0
+"Please Lumi, block streaming traffic for students and set a 10 Mbps bandwidth limit","@qos_metric,@traffic,@operation,@operation,@qos_value,@target,@qos_unit,","@operation,@traffic,@target,@operation,@qos_value,@qos_unit,@qos_metric,",0.9527521133422852,1.0,1.0,1.0
+Students should not use more than five gigabytes of bandwidth per week,"@target,@qos_unit,@qos_metric,@qos_value,","@target,@qos_metric,@qos_value,@qos_unit,",0.9527521133422852,1.0,1.0,1.0
+set quota to 10 GB per week at LAN,"@qos_value,@target,@qos_unit,@qos_metric,@operation,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",0.9527521133422852,1.0,1.0,1.0
+limit the bandwidth in server racks to 5gbps between 4pm and 7pm,"@qos_value,@target,@qos_constraint,@qos_unit,@end,@qos_metric,@start,","@qos_constraint,@qos_metric,@target,@qos_value,@qos_unit,@start,@end,",0.9527521133422852,1.0,1.0,1.0
+"Lumi, block VoIP traffic from 00:00 to 06:00","@end,@start,@operation,@protocol,","@operation,@traffic,@start,@end,",0.9527521133422852,0.75,0.75,0.75
+block all student traffic,"@traffic,@operation,@target,","@operation,@target,@traffic,",0.9527521133422852,1.0,1.0,1.0
+block all student traffic in the network,"@traffic,@operation,@target,@target,","@operation,@target,@traffic,@target,",0.9527521133422852,1.0,1.0,1.0
+set a maximum of 5 gbps to the servers from 4pm to 7pm,"@destination,@qos_constraint,@qos_unit,@end,@start,@operation,@qos_value,","@operation,@qos_constraint,@qos_value,@qos_unit,@destination,@start,@end,",0.9527521133422852,1.0,1.0,1.0
+We provide a data plan quota for all staff of 10 GB per day,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",0.9527521133422852,1.0,1.0,1.0
+Increase the bandwidth consumption limit for professors to 100 Mbps,"@operation,@qos_value,@target,@qos_unit,@qos_metric,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",0.9527521133422852,1.0,1.0,1.0
+torrent traffic must be allowed for guest but limited to 100 mbps,"@traffic,@operation,@qos_value,@target,@qos_constraint,@qos_unit,","@traffic,@operation,@target,@qos_constraint,@qos_value,@qos_unit,",0.9527521133422852,1.0,1.0,1.0
+From my house to PUCRS add middlebox dpi,"@operation,@destination,@origin,@middlebox,","@origin,@destination,@operation,@middlebox,",0.9527521133422852,1.0,1.0,1.0
+Do no let students access Netflix from the laboratories to the internet,"@operation,@service,@destination,@target,@origin,","@operation,@target,@service,@origin,@destination,",0.9527521133422852,1.0,1.0,1.0
+Between internet and servers limit traffic to 5Gbps start 16:00 finish 19:00,"@qos_value,@destination,@origin,@qos_constraint,@qos_unit,@end,@start,@traffic,","@origin,@destination,@qos_constraint,@traffic,@qos_value,@qos_unit,@start,@end,",0.9527521133422852,1.0,1.0,1.0
+Mean Precision,0.9797297297297297
+Mean Recall,0.95
+Mean F1,0.9646358543417367

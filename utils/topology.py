@@ -4,7 +4,7 @@ import json
 from io import StringIO
 from anytree import AnyNode, find_by_attr, findall, RenderTree
 
-from .config import *
+from utils.config import *
 
 IP_COUNTER = 2
 SUBNET_ID = 1
@@ -178,7 +178,10 @@ def write(format='json'):
                     "handles": [
                         "gateway",
                         "internet",
-                        "network"
+                        "network",
+                        "university",
+                        "wireless",
+                        "campus"
                     ]
                 }
             }
@@ -189,6 +192,7 @@ def write(format='json'):
     nodes = []
     links = []
 
+    group_offset = 1
     for i in range(1, 3):
         core_switch = make_node("switch", "core", i, "core")
         nodes.append(core_switch)
@@ -198,22 +202,27 @@ def write(format='json'):
             nodes.append(aggr_switch)
             links.append(make_link(core_switch["id"], aggr_switch["id"], 1000))
 
-            for k in range(1, 5):
+            for k in range(group_offset, group_offset + 2):
+                print(k)
                 SUBNET_ID += k
-                edge_switch = make_node("switch", "edge", k, DATASET_GROUPS[k - 1])
+                group_idx = (k - 1) % 6
+                group = DATASET_GROUPS[group_idx]
+                edge_switch = make_node("switch", "edge", k, group)
                 nodes.append(edge_switch)
                 links.append(make_link(aggr_switch["id"], edge_switch["id"], 100))
 
-                if k == 4:  # last switch
+                if group == 'servers':  # last switch
                     for mb in DATASET_MIDDLEBOXES:
                         host = make_node("middlebox", mb, 1, mb)
                         nodes.append(host)
                         links.append(make_link(edge_switch["id"], host["id"], 100))
+                else:
+                    for l in range(1, 11):
+                        host = make_node("host", "physical", l, group)
+                        nodes.append(host)
+                        links.append(make_link(edge_switch["id"], host["id"], 100))
 
-                for l in range(1, 11):
-                    host = make_node("host", "physical", l, DATASET_GROUPS[k - 1])
-                    nodes.append(host)
-                    links.append(make_link(edge_switch["id"], host["id"], 100))
+            group_offset += 2
 
     topology["nodes"] = topology["nodes"] + nodes
     topology["links"] = links
@@ -322,16 +331,21 @@ def write_user_study(format='json'):
         json.dump(topology, topology_file, indent=4, sort_keys=True)
 
 
-def read():
+def read(topology="campus"):
     """ Loads topology from file """
     global TOPOLOGY
     if TOPOLOGY:
         return TOPOLOGY
 
     TOPOLOGY = {}
-    with open(TOPOLOGY_PATH) as topology_file:
-        topology = json.load(topology_file)
-    return topology
+    path = TOPOLOGY_PATH
+    if topology == "campus":
+        path = TOPOLOGY_CAMPUS_PATH
+
+    with open(path) as topology_file:
+        TOPOLOGY = json.load(topology_file)
+
+    return TOPOLOGY
 
 
 def get_path_capacity(source, target):
@@ -346,6 +360,26 @@ def get_path_capacity(source, target):
 def get_common_path(path_a, path_b):
     """ given two paths, return common path source and target """
 
+    node_tree = get_node_tree()
+    source_a = find_by_attr(node_tree, name='id', value=path_a[0])
+    target_a = find_by_attr(node_tree, name='id', value=path_a[1])
+    source_b = find_by_attr(node_tree, name='id', value=path_b[0])
+    target_b = find_by_attr(node_tree, name='id', value=path_b[1])
+
+    source = source_a if source_a == source_b else None
+    target = None
+
+    for node_a, node_b in zip(target_a.path, target_b.path):
+        if node_a == node_b:
+            target = node_a
+        else:
+            break
+
+    return source.id, target.id
+
+
+def get_common_path_alt(path_a, path_b):
+    """ given two paths, return common path source and target """
     node_tree = get_node_tree()
     source_a = find_by_attr(node_tree, name='id', value=path_a[0])
     target_a = find_by_attr(node_tree, name='id', value=path_a[1])
@@ -409,24 +443,17 @@ def get_traffic_flow(traffic):
     return ('tcp', '5060')
 
 
-def is_ancestor(parent, child):
-    """ given two nodes, check if one is ancestor of the other """
-    root = get_node_tree()
-    child_node = find_by_attr(root, name='id', value=child)
-    ancestry = False
-    for node in child_node.ancestors:
-        ancestry = node.id == parent or ancestry
-
-    return ancestry
-
-
 def is_descendent(parent, child):
     """ given two nodes, check if one is ancestor of the other """
     root = get_node_tree()
-    parent_node = find_by_attr(root, name='id', value=parent)
+    parent_node = find_by_attr(root, name='id', value=get_ip_by_handle(parent))
+
     decendency = False
     for node in parent_node.descendants:
-        decendency = node.id == child or decendency
+        if "." in child:
+            decendency = node.id == child or decendency
+        else:
+            decendency = next((True for x in node.properties['handles'] if x == child), False) or decendency
 
     return decendency
 
@@ -470,4 +497,4 @@ def get_node_tree():
 
 
 if __name__ == "__main__":
-    write_user_study(format='json')
+    write(format='json')

@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function,"@target,@middlebox,","@middlebox,@target,",1.0849089622497559,1.0,1.0,1.0
+CounterStrike server is blocked by the University firewall,"@target,@middlebox,@operation,@service,","@service,@operation,@target,@middlebox,",1.0849089622497559,1.0,1.0,1.0
+University Housing monitors only the amount of traffic,"@middlebox,","@target,@middlebox,",1.0849089622497559,0.5,1.0,0.6666666666666666
+H323 video conferencing is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.0849089622497559,1.0,1.0,1.0
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@qos_constraint,@qos_constraint,@qos_unit,@start,@qos_metric,@qos_value,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",1.0849089622497559,0.8333333333333334,1.0,0.9090909090909091
+IMAP and secure IMAP are allowed by the University firewall,"@operation,@protocol,@protocol,@target,@middlebox,","@protocol,@protocol,@operation,@target,@middlebox,",1.0849089622497559,1.0,1.0,1.0
+The UC Davis network is continually scanned for prohibited activities and network threats.,"@traffic,@target,","@target,@middlebox,",1.0849089622497559,0.5,0.5,0.5
+HTTP and HTTPS are allowed by the University firewall,"@operation,@protocol,@protocol,@target,@middlebox,","@protocol,@protocol,@operation,@target,@middlebox,",1.0849089622497559,1.0,1.0,1.0
+All network traffic passing in or out of Brown's network is monitored by intrusion detection system for signs of compromises,"@middlebox,","@target,@middlebox,",1.0849089622497559,0.5,1.0,0.6666666666666666
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@operation,@service,@target,@target,","@origin,@operation,@target,@traffic,@destination,",1.0849089622497559,0.4,0.6666666666666666,0.5
+Internet is limited to 3 Mbps per host,"@qos_value,@target,@qos_unit,@qos_metric,","@qos_metric,@qos_value,@qos_unit,@target,",1.0849089622497559,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@target,","@target,@operation,@qos_metric,",1.0849089622497559,1.0,1.0,1.0
+Mean Precision,0.9305555555555555
+Mean Recall,0.8111111111111112
+Mean F1,0.8667375509480773

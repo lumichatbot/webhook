@@ -1,0 +1,41 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+add a firewall,"@middlebox,@operation,","@operation,@middlebox,",1.1418108940124512,1.0,1.0,1.0
+From dorms to internet add nat,"@operation,@destination,@origin,@middlebox,","@origin,@destination,@operation,@middlebox,",1.1418108940124512,1.0,1.0,1.0
+"please lumi, block f2movies traffic from internet to students labs","@operation,@service,@destination,@origin,","@operation,@service,@origin,@target,@target,",1.1418108940124512,0.75,0.75,0.75
+"Please, block netflix traffic on PUC","@operation,@service,@target,","@operation,@service,@target,",1.1418108940124512,1.0,1.0,1.0
+Grant SSH access to professors,"@operation,@protocol,@target,","@operation,@protocol,@target,",1.1418108940124512,1.0,1.0,1.0
+"Lumi, block VoIP traffic from 00:00 to 06:00","@end,@start,@traffic,@operation,","@operation,@traffic,@start,@end,",1.1418108940124512,1.0,1.0,1.0
+make tcp traffic pass through traffic shaper from 5pm to 8pm,"@end,@middlebox,@start,@traffic,@operation,@protocol,","@protocol,@traffic,@operation,@middlebox,@start,@end,",1.1418108940124512,1.0,1.0,1.0
+"Please, Lumi, block Youtube and all other streaming traffic","@traffic,@operation,@service,","@operation,@service,@traffic,",1.1418108940124512,1.0,1.0,1.0
+Add intrusion detection and address translation for servers network,"@target,@middlebox,@middlebox,@operation,","@operation,@middlebox,@middlebox,@target,",1.1418108940124512,1.0,1.0,1.0
+"Lumi, set to 10 kbps the upload rate for faculty","@qos_unit,@qos_metric,@operation,@qos_value,@target,","@operation,@qos_value,@qos_unit,@qos_metric,@target,",1.1418108940124512,1.0,1.0,1.0
+Students may use up to 10 GB of data weekly,"@qos_unit,@qos_metric,@qos_value,@target,","@target,@qos_metric,@qos_value,@qos_unit,",1.1418108940124512,1.0,1.0,1.0
+block F2movies traffic for students in the labs,"@operation,@service,@target,@target,","@operation,@service,@target,@target,",1.1418108940124512,1.0,1.0,1.0
+Allow RTSP traffic in the LAN,"@operation,@protocol,@target,","@operation,@protocol,@target,",1.1418108940124512,1.0,1.0,1.0
+Limit in 10 Mbps the download rate of dorms from internet,"@qos_value,@origin,@qos_constraint,@qos_unit,@qos_metric,","@qos_constraint,@qos_value,@qos_unit,@qos_metric,@destination,@origin,",1.1418108940124512,0.8333333333333334,1.0,0.9090909090909091
+please do not let any music streaming in the network,"@target,@traffic,@operation,","@operation,@traffic,@target,",1.1418108940124512,1.0,1.0,1.0
+Add monitor for the university from 4am to 10pm,"@end,@middlebox,@start,@operation,@target,","@operation,@middlebox,@target,@start,@end,",1.1418108940124512,1.0,1.0,1.0
+make sure all traffic to server racks is throttled to 1 gbps from 4pm to 9pm,"@start,@traffic,@qos_value,@destination,@qos_constraint,@qos_unit,@end,","@traffic,@destination,@qos_constraint,@qos_value,@qos_unit,@start,@end,",1.1418108940124512,1.0,1.0,1.0
+Set to 1 Gbps bandwidth limit for the traffic to DMZ,"@destination,@qos_constraint,@qos_unit,@qos_metric,@operation,@qos_value,","@operation,@qos_value,@qos_unit,@qos_metric,@qos_constraint,@destination,",1.1418108940124512,1.0,1.0,1.0
+Allow access from computers to DMZ,"@operation,@destination,@origin,","@operation,@origin,@destination,",1.1418108940124512,1.0,1.0,1.0
+Add a firewall and address translation for att and verizon,"@middlebox,@middlebox,@operation,@target,@target,","@middlebox,@middlebox,@target,@target,",1.1418108940124512,1.0,0.6666666666666666,0.8
+From university to internet add firewall,"@operation,@destination,@origin,@middlebox,","@origin,@destination,@operation,@middlebox,",1.1418108940124512,1.0,1.0,1.0
+From internet to Labs add DPI,"@destination,@origin,@middlebox,@operation,","@origin,@destination,@operation,@middlebox,",1.1418108940124512,1.0,1.0,1.0
+We provide a quota to all students of 1 GB per week of usage,"@qos_value,@target,@qos_unit,@qos_metric,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.1418108940124512,0.8,1.0,0.888888888888889
+Set 5gbps limit for servers during 4pm to 7pm,"@qos_unit,@end,@start,@operation,@qos_value,@target,@qos_constraint,","@operation,@qos_value,@qos_unit,@qos_constraint,@target,@start,@end,",1.1418108940124512,1.0,1.0,1.0
+Remove load balancing from gateway to database,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.1418108940124512,1.0,1.0,1.0
+"Lumi, setup a TCP accelerator between LAN and video server","@operation,@protocol,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.1418108940124512,0.75,0.75,0.75
+Block bittorrent for professors,"@service,@target,@operation,","@operation,@service,@target,",1.1418108940124512,1.0,1.0,1.0
+Add monitor for the university from 04:00 to 22:00,"@end,@middlebox,@start,@target,","@middlebox,@target,@start,@end,",1.1418108940124512,1.0,1.0,1.0
+All traffic from the Internet to the Labs has to go to DPI server and then goes to the Labs,"@destination,@origin,@qos_constraint,@middlebox,@middlebox,@traffic,","@traffic,@origin,@destination,@middlebox,",1.1418108940124512,1.0,0.8,0.888888888888889
+Block F2movies traffic from Internet to Labs,"@origin,@operation,@service,@destination,","@operation,@service,@origin,@destination,",1.1418108940124512,1.0,1.0,1.0
+block facebook,"@service,@operation,","@operation,@service,",1.1418108940124512,1.0,1.0,1.0
+From internet to Labs block F2movies,"@operation,@service,@destination,@origin,","@origin,@destination,@operation,@service,",1.1418108940124512,1.0,1.0,1.0
+"Lumi, block SIP traffic from 19:00 to 08:00 for dorms","@target,@end,@start,@operation,@protocol,","@operation,@protocol,@start,@end,@target,",1.1418108940124512,1.0,1.0,1.0
+Do not let Staff members access any social media,"@target,@traffic,@operation,","@operation,@target,@traffic,",1.1418108940124512,1.0,1.0,1.0
+block all student traffic in the network,"@traffic,@operation,@target,@target,","@operation,@target,@traffic,@target,",1.1418108940124512,1.0,1.0,1.0
+Balance traffic coming from gateway to application servers,"@middlebox,@destination,@origin,","@middlebox,@origin,@destination,",1.1418108940124512,1.0,1.0,1.0
+block all traffic at Dorms location,"@traffic,@operation,@target,","@operation,@traffic,@target,",1.1418108940124512,1.0,1.0,1.0
+Mean Precision,0.9720720720720721
+Mean Recall,0.9765765765765767
+Mean F1,0.9743191180084385

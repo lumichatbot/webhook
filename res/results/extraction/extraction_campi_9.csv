@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function,"@middlebox,@target,","@middlebox,@target,",0.9774537086486816,1.0,1.0,1.0
+POP3 and secure POP are allowed by the University firewall,"@operation,@protocol,@protocol,@target,@middlebox,","@protocol,@protocol,@operation,@target,@middlebox,",0.9774537086486816,1.0,1.0,1.0
+The system will trigger an overuse notification if the average for either inbound or outbound usage exceeds 10 GB per week,"@middlebox,@qos_metric,@qos_metric,@qos_value,@target,@qos_unit,","@target,@middlebox,@qos_metric,@qos_metric,@qos_value,@qos_unit,",0.9774537086486816,1.0,1.0,1.0
+Quotas for students are 5000 Megabyte per hr download and 2000 Megabyte per hr upload,"@qos_constraint,@qos_constraint,@qos_unit,@qos_metric,@qos_value,@qos_value,@target,","@qos_metric,@target,@qos_value,@qos_unit,@qos_constraint,@qos_value,@qos_constraint,",0.9774537086486816,1.0,1.0,1.0
+"The UVA More Secure Network uses a firewall, a network security device designed to help protect your computer from hackers and other malicious people on the Internet.","@operation,@middlebox,","@target,@operation,@middlebox,",0.9774537086486816,0.6666666666666666,1.0,0.8
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@operation,@target,@traffic,","@origin,@operation,@target,@traffic,@destination,",0.9774537086486816,0.6,1.0,0.7499999999999999
+"Elements of network security currently include the following four solutions: Network Border Infrastructure System, Intrusion Prevention System, Firewalls and Custom Unit Firewalls","@middlebox,@middlebox,@middlebox,@middlebox,@operation,","@target,@operation,@middlebox,@middlebox,@middlebox,@middlebox,",0.9774537086486816,0.6666666666666666,1.0,0.8
+Net2Phone is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",0.9774537086486816,1.0,1.0,1.0
+Guests cannot run any file sharing/downloading program,"@target,@operation,@service,","@target,@operation,@service,",0.9774537086486816,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@target,","@target,@operation,@qos_metric,",0.9774537086486816,1.0,1.0,1.0
+Students have a quota of 5 GB per day The quota is reset at 6am,"@qos_value,@target,@qos_constraint,@qos_unit,","@target,@qos_constraint,@qos_value,@qos_unit,@hour,",0.9774537086486816,0.8,1.0,0.888888888888889
+"The network firewall does prevent some applications from working in their normal manner, for example, video and audio conferencing products that use the H.323","@service,@service,@service,@service,@target,@middlebox,@middlebox,","@target,@operation,@service,",0.9774537086486816,0.6666666666666666,0.6666666666666666,0.6666666666666666
+Mean Precision,0.9722222222222222
+Mean Recall,0.8666666666666667
+Mean F1,0.916414904330312

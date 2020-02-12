@@ -1,0 +1,2688 @@
+{
+    "label": "Campus Network",
+    "links": [
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    10000,
+                    "mbps"
+                ]
+            },
+            "source": "19.16.1.1",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.1.2",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    1000,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.1.2",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.1.3",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.1.3",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.4",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.5",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.6",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.7",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.8",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.9",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.10",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.11",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.12",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.13",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.2.4",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.2.14",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.1.3",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.15",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.16",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.17",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.18",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.19",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.20",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.21",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.22",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.23",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.24",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.15",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.25",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    1000,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.1.2",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.4.26",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.26",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.27",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.28",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.29",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.30",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.31",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.32",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.33",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.34",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.35",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.36",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.37",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.7.27",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.7.38",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.4.26",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.39",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.40",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.41",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.42",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.43",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.44",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.45",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.46",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.47",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.48",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.39",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.49",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    10000,
+                    "mbps"
+                ]
+            },
+            "source": "19.16.1.1",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.50",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    1000,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.50",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.11.51",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.51",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.52",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.53",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.54",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.55",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.56",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.57",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.58",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.59",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.60",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.61",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.16.52",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.16.62",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.51",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.63",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.64",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.65",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.66",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.67",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.68",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.69",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.70",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.71",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.72",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.63",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.73",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    1000,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.11.50",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.22.74",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.74",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.75",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.76",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.77",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.78",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.79",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.80",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.81",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.82",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.83",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.84",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.29.75",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.29.85",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.22.74",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.86",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.87",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.88",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.89",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.90",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.91",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.92",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.93",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.94",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.95",
+            "target_id": null,
+            "target_port": 0
+        },
+        {
+            "cost": 1.0,
+            "properties": {
+                "capacity": [
+                    100,
+                    "mbps"
+                ]
+            },
+            "source": "172.16.37.86",
+            "source_id": null,
+            "source_port": 0,
+            "target": "172.16.37.96",
+            "target_id": null,
+            "target_port": 0
+        }
+    ],
+    "metric": "etx",
+    "nodes": [
+        {
+            "id": "19.16.1.1",
+            "label": "Gateway",
+            "properties": {
+                "handles": [
+                    "gateway",
+                    "internet",
+                    "network",
+                    "university",
+                    "wireless",
+                    "campus"
+                ],
+                "hostname": "gateway.rs.edu"
+            }
+        },
+        {
+            "id": "172.16.1.2",
+            "label": "switch core 1",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "core",
+                    "core"
+                ],
+                "hostname": "core1.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.1.3",
+            "label": "switch aggr 1",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "aggr",
+                    "aggregation"
+                ],
+                "hostname": "aggr1.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.2.4",
+            "label": "switch edge 1",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "edge",
+                    "students"
+                ],
+                "hostname": "edge1.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.2.5",
+            "label": "host physical 1",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical1.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.6",
+            "label": "host physical 2",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical2.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.7",
+            "label": "host physical 3",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical3.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.8",
+            "label": "host physical 4",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical4.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.9",
+            "label": "host physical 5",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical5.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.10",
+            "label": "host physical 6",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical6.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.11",
+            "label": "host physical 7",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical7.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.12",
+            "label": "host physical 8",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical8.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.13",
+            "label": "host physical 9",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical9.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.2.14",
+            "label": "host physical 10",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical10.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.15",
+            "label": "switch edge 2",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "edge",
+                    "professors"
+                ],
+                "hostname": "edge2.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.4.16",
+            "label": "host physical 1",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical1.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.17",
+            "label": "host physical 2",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical2.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.18",
+            "label": "host physical 3",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical3.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.19",
+            "label": "host physical 4",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical4.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.20",
+            "label": "host physical 5",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical5.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.21",
+            "label": "host physical 6",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical6.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.22",
+            "label": "host physical 7",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical7.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.23",
+            "label": "host physical 8",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical8.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.24",
+            "label": "host physical 9",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical9.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.25",
+            "label": "host physical 10",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical10.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.4.26",
+            "label": "switch aggr 2",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "aggr",
+                    "aggregation"
+                ],
+                "hostname": "aggr2.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.7.27",
+            "label": "switch edge 3",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "edge",
+                    "servers"
+                ],
+                "hostname": "edge3.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.7.28",
+            "label": "middlebox copyright monitoring 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "copyright monitoring",
+                    "copyright monitoring"
+                ],
+                "hostname": "copyright monitoring1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.29",
+            "label": "middlebox traffic monitor 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "traffic monitor",
+                    "traffic monitor"
+                ],
+                "hostname": "traffic monitor1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.30",
+            "label": "middlebox firewall 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "firewall",
+                    "firewall"
+                ],
+                "hostname": "firewall1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.31",
+            "label": "middlebox dpi 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "dpi",
+                    "dpi"
+                ],
+                "hostname": "dpi1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.32",
+            "label": "middlebox ids 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "ids",
+                    "ids"
+                ],
+                "hostname": "ids1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.33",
+            "label": "middlebox ips 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "ips",
+                    "ips"
+                ],
+                "hostname": "ips1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.34",
+            "label": "middlebox network border system 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "network border system",
+                    "network border system"
+                ],
+                "hostname": "network border system1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.35",
+            "label": "middlebox unit firewall 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "unit firewall",
+                    "unit firewall"
+                ],
+                "hostname": "unit firewall1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.36",
+            "label": "middlebox load balancer 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "load balancer",
+                    "load balancer"
+                ],
+                "hostname": "load balancer1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.37",
+            "label": "middlebox parental control 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "parental control",
+                    "parental control"
+                ],
+                "hostname": "parental control1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.7.38",
+            "label": "middlebox overuse notification 1",
+            "properties": {
+                "handles": [
+                    "middlebox",
+                    "overuse notification",
+                    "overuse notification"
+                ],
+                "hostname": "overuse notification1.cs.edu",
+                "name": "m0"
+            }
+        },
+        {
+            "id": "172.16.11.39",
+            "label": "switch edge 4",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "edge",
+                    "dorms"
+                ],
+                "hostname": "edge4.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.11.40",
+            "label": "host physical 1",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical1.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.41",
+            "label": "host physical 2",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical2.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.42",
+            "label": "host physical 3",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical3.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.43",
+            "label": "host physical 4",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical4.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.44",
+            "label": "host physical 5",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical5.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.45",
+            "label": "host physical 6",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical6.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.46",
+            "label": "host physical 7",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical7.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.47",
+            "label": "host physical 8",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical8.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.48",
+            "label": "host physical 9",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical9.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.49",
+            "label": "host physical 10",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "dorms"
+                ],
+                "hostname": "physical10.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.11.50",
+            "label": "switch core 2",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "core",
+                    "core"
+                ],
+                "hostname": "core2.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.11.51",
+            "label": "switch aggr 1",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "aggr",
+                    "aggregation"
+                ],
+                "hostname": "aggr1.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.16.52",
+            "label": "switch edge 5",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "edge",
+                    "guests"
+                ],
+                "hostname": "edge5.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.16.53",
+            "label": "host physical 1",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical1.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.54",
+            "label": "host physical 2",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical2.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.55",
+            "label": "host physical 3",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical3.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.56",
+            "label": "host physical 4",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical4.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.57",
+            "label": "host physical 5",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical5.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.58",
+            "label": "host physical 6",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical6.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.59",
+            "label": "host physical 7",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical7.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.60",
+            "label": "host physical 8",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical8.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.61",
+            "label": "host physical 9",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical9.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.16.62",
+            "label": "host physical 10",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "guests"
+                ],
+                "hostname": "physical10.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.63",
+            "label": "switch edge 6",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "edge",
+                    "labs"
+                ],
+                "hostname": "edge6.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.22.64",
+            "label": "host physical 1",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical1.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.65",
+            "label": "host physical 2",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical2.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.66",
+            "label": "host physical 3",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical3.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.67",
+            "label": "host physical 4",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical4.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.68",
+            "label": "host physical 5",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical5.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.69",
+            "label": "host physical 6",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical6.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.70",
+            "label": "host physical 7",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical7.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.71",
+            "label": "host physical 8",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical8.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.72",
+            "label": "host physical 9",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical9.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.73",
+            "label": "host physical 10",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "labs"
+                ],
+                "hostname": "physical10.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.22.74",
+            "label": "switch aggr 2",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "aggr",
+                    "aggregation"
+                ],
+                "hostname": "aggr2.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.29.75",
+            "label": "switch edge 7",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "edge",
+                    "students"
+                ],
+                "hostname": "edge7.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.29.76",
+            "label": "host physical 1",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical1.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.77",
+            "label": "host physical 2",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical2.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.78",
+            "label": "host physical 3",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical3.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.79",
+            "label": "host physical 4",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical4.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.80",
+            "label": "host physical 5",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical5.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.81",
+            "label": "host physical 6",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical6.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.82",
+            "label": "host physical 7",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical7.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.83",
+            "label": "host physical 8",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical8.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.84",
+            "label": "host physical 9",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical9.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.29.85",
+            "label": "host physical 10",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "students"
+                ],
+                "hostname": "physical10.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.86",
+            "label": "switch edge 8",
+            "properties": {
+                "handles": [
+                    "switch",
+                    "edge",
+                    "professors"
+                ],
+                "hostname": "edge8.cs.edu",
+                "name": "s0"
+            }
+        },
+        {
+            "id": "172.16.37.87",
+            "label": "host physical 1",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical1.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.88",
+            "label": "host physical 2",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical2.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.89",
+            "label": "host physical 3",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical3.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.90",
+            "label": "host physical 4",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical4.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.91",
+            "label": "host physical 5",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical5.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.92",
+            "label": "host physical 6",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical6.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.93",
+            "label": "host physical 7",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical7.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.94",
+            "label": "host physical 8",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical8.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.95",
+            "label": "host physical 9",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical9.cs.edu",
+                "name": "h0"
+            }
+        },
+        {
+            "id": "172.16.37.96",
+            "label": "host physical 10",
+            "properties": {
+                "handles": [
+                    "host",
+                    "physical",
+                    "professors"
+                ],
+                "hostname": "physical10.cs.edu",
+                "name": "h0"
+            }
+        }
+    ],
+    "protocol": "olsr",
+    "revision": "5031a799fcbe17f61d57e387bc3806de",
+    "router_id": "172.16.1.1",
+    "type": "NetworkGraph",
+    "version": "0.6.6"
+}

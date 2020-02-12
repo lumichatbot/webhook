@@ -4,7 +4,7 @@ from copy import deepcopy
 
 import re
 
-from nile import config
+from utils import config
 
 
 def beautify_intent(intent):

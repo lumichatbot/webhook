@@ -18,6 +18,10 @@ class Database:
             .format(db_user, db_pass))
         self.db = client.lumi
 
+    ########################################
+    ###########     SESSIONS     ###########
+    ########################################
+
     def insert_session(self, uuid, live=False):
         """ Checks if session exists, otherwise creates it to record its messages """
         session = self.db.sessions.find_one({"uuid": uuid})
@@ -39,6 +43,10 @@ class Database:
             return self.db.sessions.update_one({"_id": session["_id"]}, {"$set": {"finishedAt": datetime.now()}})
         return False
 
+    def get_sessions(self, filters={}):
+        """ Fetches sessions from database, applying given filters """
+        return self.db.sessions.find(filters)
+
     def insert_message(self, uuid, text, response, df_intent):
         """ Inserts new message, and generated reponse and triggered Dialogflow intent, for a given session """
         data = {
@@ -49,6 +57,10 @@ class Database:
             "updatedAt": datetime.now()
         }
         return self.db.sessions.update_one({"uuid": uuid}, {"$push": {"messages": data}, "$set": {"updatedAt": datetime.now()}})
+
+    #######################################
+    ###########     INTENTS     ###########
+    #######################################
 
     def get_latest_intent(self, uuid):
         return self.db.intents.find_one({"session": uuid}, sort=[("createdAt", pymongo.DESCENDING)])
@@ -75,7 +87,11 @@ class Database:
     def get_confirmed_intents(self, uuid):
         return self.db.intents.find({"session": uuid, "status": {"$ne": "pending"}})
 
-    def insert_contradiction(self, uuid, old_intent, new_intent, features, result):
+    #########################################
+    ###########     CONFLICTS     ###########
+    #########################################
+
+    def insert_conflict(self, uuid, old_intent, new_intent, features, result):
         data = {
             "session": uuid,
             "old_intent": old_intent,
@@ -85,4 +101,4 @@ class Database:
             "createdAt": datetime.now(),
             "updatedAt": datetime.now()
         }
-        return self.db.contradictions.insert_one(data)
+        return self.db.conflicts.insert_one(data)

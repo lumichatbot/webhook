@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+FTP and SFTP servers are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.23372220993042,1.0,1.0,1.0
+The system passively monitors the network throughput when traffic is light,"@middlebox,@target,","@middlebox,@target,",1.23372220993042,1.0,1.0,1.0
+SMTP is allowed by the University firewall,"@operation,@protocol,@target,@middlebox,","@protocol,@operation,@target,@middlebox,",1.23372220993042,1.0,1.0,1.0
+Guests cannot run any file sharing/downloading program,"@target,@operation,@service,","@target,@operation,@service,",1.23372220993042,1.0,1.0,1.0
+"If a student is in obvious violations of copyright law by using a room's wired connection (ie ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs","@target,@middlebox,","@target,@middlebox,",1.23372220993042,1.0,1.0,1.0
+AIM chat and file transfering is allowed by the University firewall,"@middlebox,@operation,@service,@service,@target,","@service,@service,@operation,@target,@middlebox,",1.23372220993042,1.0,1.0,1.0
+Sorenson Videophone 200 is allowed by the University firewall,"@operation,@service,@target,@middlebox,","@service,@operation,@target,@middlebox,",1.23372220993042,1.0,1.0,1.0
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@service,@qos_constraint,@qos_constraint,@qos_unit,@middlebox,@middlebox,@qos_metric,@protocol,@qos_value,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",1.23372220993042,0.6666666666666666,0.5714285714285714,0.6153846153846153
+Faculty members have 500 Gb per week of free network use,"@qos_value,@target,@qos_unit,","@target,@qos_value,@qos_unit,",1.23372220993042,1.0,1.0,1.0
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@target,@traffic,@operation,","@origin,@operation,@target,@traffic,@destination,",1.23372220993042,0.6,1.0,0.7499999999999999
+"The UVA More Secure Network uses a firewall, a network security device designed to help protect your computer from hackers and other malicious people on the Internet.","@middlebox,@operation,","@target,@operation,@middlebox,",1.23372220993042,0.6666666666666666,1.0,0.8
+"The network firewall does prevent some applications from working in their normal manner, for example, video and audio conferencing products that use the H.323","@middlebox,@service,@service,@service,","@target,@operation,@service,",1.23372220993042,0.3333333333333333,0.5,0.4
+Mean Precision,0.9226190476190476
+Mean Recall,0.8555555555555556
+Mean F1,0.8878226586327457

@@ -1,0 +1,54 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@traffic,@operation,@target,","@origin,@operation,@target,@traffic,@destination,",1.0535171031951904,0.6,1.0,0.7499999999999999
+set torrent traffic from guests to 100 mbps,"@traffic,@operation,@qos_value,@target,@qos_unit,","@operation,@traffic,@target,@qos_value,@qos_unit,",1.0535171031951904,1.0,1.0,1.0
+"Elements of network security currently include the following four solutions: Network Border Infrastructure System, Intrusion Prevention System, Firewalls and Custom Unit Firewalls","@middlebox,@middlebox,@middlebox,","@target,@operation,@middlebox,@middlebox,@middlebox,@middlebox,",1.0535171031951904,0.3333333333333333,1.0,0.5
+POP3 and secure POP are allowed by the University firewall,"@target,@middlebox,@operation,@protocol,@protocol,","@protocol,@protocol,@operation,@target,@middlebox,",1.0535171031951904,1.0,1.0,1.0
+block facebook,"@operation,@service,","@operation,@service,",1.0535171031951904,1.0,1.0,1.0
+block all student traffic,"@target,@traffic,@operation,","@operation,@target,@traffic,",1.0535171031951904,1.0,1.0,1.0
+Remove load balancing from gateway to database,"@origin,@middlebox,@operation,@destination,","@operation,@middlebox,@origin,@destination,",1.0535171031951904,1.0,1.0,1.0
+Please add traffic shaper between the internet and the dorms,"@middlebox,@destination,@origin,","@middlebox,@origin,@destination,",1.0535171031951904,1.0,1.0,1.0
+Telnet is allowed by the University firewall,"@middlebox,@operation,@protocol,@target,","@protocol,@operation,@target,@middlebox,",1.0535171031951904,1.0,1.0,1.0
+From my house to PUCRS add middlebox dpi,"@middlebox,@operation,@destination,@origin,","@origin,@destination,@operation,@middlebox,",1.0535171031951904,1.0,1.0,1.0
+"Block all incoming HTTP traffic, allow only HTTPS for all hosts","@operation,@operation,@protocol,@protocol,@target,","@operation,@protocol,@operation,@protocol,@target,",1.0535171031951904,1.0,1.0,1.0
+add security from entry to backend,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.0535171031951904,1.0,1.0,1.0
+prevent all f2movies traffic from reaching the students in the labs,"@service,@target,@target,@traffic,@operation,","@operation,@service,@target,@target,",1.0535171031951904,1.0,0.75,0.8571428571428571
+Students can download up to 10 GB per week of data.,"@qos_value,@target,@qos_constraint,@qos_unit,@qos_metric,","@target,@qos_constraint,@qos_value,@qos_unit,@qos_metric,",1.0535171031951904,1.0,1.0,1.0
+block all traffic at Dorms location,"@traffic,@operation,@target,","@operation,@traffic,@target,",1.0535171031951904,1.0,1.0,1.0
+Remove firewall from the university to my house,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.0535171031951904,1.0,1.0,1.0
+Dismiss all middleboxes from UFRGS to PUCRS,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.0535171031951904,1.0,1.0,1.0
+limit the bandwidth rate of the server racks to 5 gbps from 4pm to 7pm,"@qos_unit,@end,@qos_metric,@start,@qos_value,@target,@qos_constraint,","@qos_constraint,@qos_metric,@target,@qos_value,@qos_unit,@start,@end,",1.0535171031951904,1.0,1.0,1.0
+add dpi to labs network,"@middlebox,@operation,@target,","@operation,@middlebox,@destination,@target,",1.0535171031951904,0.75,1.0,0.8571428571428571
+"If a student is in obvious violations of copyright law by using a room's wired connection (ie ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs","@target,@middlebox,","@target,@middlebox,",1.0535171031951904,1.0,1.0,1.0
+"Lumi, block SIP traffic from 19:00 to 08:00 for dorms","@start,@operation,@protocol,@target,@end,","@operation,@protocol,@start,@end,@target,",1.0535171031951904,1.0,1.0,1.0
+Limit servers to 5gbps during 5pm to 7pm,"@start,@qos_value,@qos_constraint,@qos_unit,@end,","@qos_constraint,@target,@qos_value,@qos_unit,@start,@end,",1.0535171031951904,0.8333333333333334,1.0,0.9090909090909091
+"The UVA More Secure Network uses a firewall, a network security device designed to help protect your computer from hackers and other malicious people on the Internet.","@operation,@middlebox,","@target,@operation,@middlebox,",1.0535171031951904,0.6666666666666666,1.0,0.8
+block traffic of the server racks,"@traffic,@operation,@target,","@operation,@traffic,@target,",1.0535171031951904,1.0,1.0,1.0
+please remove DPI from DMZ starting at 6am until 9pm,"@end,@middlebox,@start,@operation,@target,","@operation,@middlebox,@target,@start,@end,",1.0535171031951904,1.0,1.0,1.0
+Please make traffic coming from the Internet pass through a firewall.,"@middlebox,@operation,@origin,","@origin,@operation,@middlebox,",1.0535171031951904,1.0,1.0,1.0
+"Lumi, allow access to internal campus computers from the internet through SSH","@operation,@protocol,@origin,","@operation,@destination,@origin,@protocol,",1.0535171031951904,0.75,1.0,0.8571428571428571
+Do not let Staff members access any social media,"@traffic,@operation,@target,","@operation,@target,@traffic,",1.0535171031951904,1.0,1.0,1.0
+From internet to Labs block F2movies,"@operation,@service,@destination,@origin,","@origin,@destination,@operation,@service,",1.0535171031951904,1.0,1.0,1.0
+unblock facebook traffic,"@operation,@service,","@operation,@service,",1.0535171031951904,1.0,1.0,1.0
+limit network usage of all students in the dorms to no more than 10 gb per seven days,"@qos_constraint,@qos_unit,@qos_metric,@qos_value,@target,@target,","@qos_constraint,@qos_metric,@target,@target,@qos_value,@qos_unit,",1.0535171031951904,1.0,1.0,1.0
+please limit bandwidth to 5 Gigabits per second for the server racks everyday from 4 PM  to 7PM,"@end,@qos_metric,@start,@qos_value,@target,@qos_constraint,@qos_unit,","@qos_constraint,@qos_metric,@qos_value,@qos_unit,@target,@start,@end,",1.0535171031951904,1.0,1.0,1.0
+From university to internet add firewall,"@middlebox,@operation,@destination,@origin,","@origin,@destination,@operation,@middlebox,",1.0535171031951904,1.0,1.0,1.0
+From dorms to internet add nat,"@operation,@destination,@origin,@middlebox,","@origin,@destination,@operation,@middlebox,",1.0535171031951904,1.0,1.0,1.0
+Housing does not normally limit the amount of bandwidth,"@qos_metric,@operation,","@target,@operation,@qos_metric,",1.0535171031951904,0.6666666666666666,1.0,0.8
+"Hey Lumi, add DPI to the labs network","@operation,@target,@middlebox,","@operation,@middlebox,@target,",1.0535171031951904,1.0,1.0,1.0
+"hey Lumi, add dpi to labs","@middlebox,@operation,@target,","@operation,@middlebox,@target,",1.0535171031951904,1.0,1.0,1.0
+"Please Lumi, block streaming traffic for students and set a 10 Mbps bandwidth limit","@operation,@operation,@qos_value,@target,@qos_constraint,@qos_unit,@qos_metric,@traffic,","@operation,@traffic,@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.0535171031951904,1.0,0.8571428571428571,0.923076923076923
+Forward all the external traffic to DMZ,"@target,@traffic,@target,@operation,","@operation,@origin,@destination,",1.0535171031951904,0.3333333333333333,0.3333333333333333,0.3333333333333333
+Block traffic from netflix,"@operation,@target,","@operation,@target,",1.0535171031951904,1.0,1.0,1.0
+The system passively monitors the network throughput when traffic is light,"@middlebox,@target,","@middlebox,@target,",1.0535171031951904,1.0,1.0,1.0
+P2P application is separately capped at 30 Mbps for the entire campus,"@qos_constraint,@qos_unit,@traffic,@qos_value,@target,","@traffic,@qos_constraint,@qos_value,@qos_unit,@target,",1.0535171031951904,1.0,1.0,1.0
+Add monitor for the university from 4am to 10pm,"@end,@middlebox,@start,@operation,@target,","@operation,@middlebox,@target,@start,@end,",1.0535171031951904,1.0,1.0,1.0
+Set users bandwidth to 500 kbps when the 100 Gb per month quota is reached,"@qos_unit,@qos_unit,@qos_metric,@qos_metric,@operation,@qos_value,@qos_value,@target,","@operation,@target,@qos_metric,@qos_value,@qos_unit,@qos_value,@qos_unit,@qos_metric,",1.0535171031951904,1.0,1.0,1.0
+Students cannot run file servers,"@operation,@service,@target,","@target,@operation,@service,",1.0535171031951904,1.0,1.0,1.0
+Let students access Facebook,"@operation,@service,@target,","@operation,@target,@service,",1.0535171031951904,1.0,1.0,1.0
+Add intrusion detection and address translation for servers network,"@middlebox,@middlebox,@operation,@target,","@operation,@middlebox,@middlebox,@target,",1.0535171031951904,1.0,1.0,1.0
+add shaping for gateway everyday from 18:00 to midnight,"@end,@middlebox,@start,@target,","@middlebox,@target,@start,@end,",1.0535171031951904,1.0,1.0,1.0
+Prioritize VoIP traffic on the meeting room 23 from 13:00 to 14:00,"@target,@end,@middlebox,@start,@traffic,","@middlebox,@traffic,@target,@start,@end,",1.0535171031951904,1.0,1.0,1.0
+"Lumi, please unblock all torrent traffic","@traffic,@traffic,@operation,","@operation,@traffic,",1.0535171031951904,1.0,1.0,1.0
+Mean Precision,0.9788095238095238
+Mean Recall,0.9386666666666668
+Mean F1,0.9583178947194145

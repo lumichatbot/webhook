@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Net2Phone is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.0027921199798584,1.0,1.0,1.0
+The ResNet cap is currently 200 gigabytes per each 7 day period of combined incoming and outgoing traffic,"@qos_value,@qos_constraint,@qos_constraint,@qos_unit,","@target,@qos_value,@qos_unit,@qos_unit,@qos_constraint,",1.0027921199798584,0.75,1.0,0.8571428571428571
+Internet is limited to 3 Mbps per host,"@qos_metric,@qos_value,@target,@qos_unit,","@qos_metric,@qos_value,@qos_unit,@target,",1.0027921199798584,1.0,1.0,1.0
+PC-Telephone is allowed by the University firewall,"@service,@target,@middlebox,@operation,","@service,@operation,@target,@middlebox,",1.0027921199798584,1.0,1.0,1.0
+FTP and SFTP servers are allowed by the University firewall,"@target,@middlebox,@operation,@protocol,@protocol,","@protocol,@protocol,@operation,@target,@middlebox,",1.0027921199798584,1.0,1.0,1.0
+Routers or anything else that does routing or NAT are prohibited from MITNet as they interfere with the operation of the network,"@operation,@operation,@protocol,@protocol,@protocol,@target,@origin,","@protocol,@operation,@target,",1.0027921199798584,1.0,0.75,0.8571428571428571
+All network traffic passing in or out of Brown's network is monitored by intrusion detection system for signs of compromises,"@middlebox,","@target,@middlebox,",1.0027921199798584,0.5,1.0,0.6666666666666666
+Sony Playstation 2 is allowed by the University firewall,"@service,@target,@middlebox,@operation,","@service,@operation,@target,@middlebox,",1.0027921199798584,1.0,1.0,1.0
+"CIS restricts traffic that is known to cause damage to the network or hosts on it, such as NETBIOS","@protocol,@service,@service,@service,@target,@target,","@operation,@target,@service,",1.0027921199798584,0.6666666666666666,0.6666666666666666,0.6666666666666666
+Faculty members have 500 Gb per week of free network use,"@qos_value,@target,@qos_unit,","@target,@qos_value,@qos_unit,",1.0027921199798584,1.0,1.0,1.0
+HTTP and HTTPS are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.0027921199798584,1.0,1.0,1.0
+Quotas for students are 5000 Megabyte per hr download and 2000 Megabyte per hr upload,"@target,@qos_constraint,@qos_constraint,@qos_unit,@qos_metric,@qos_value,@qos_value,","@qos_metric,@target,@qos_value,@qos_unit,@qos_constraint,@qos_value,@qos_constraint,",1.0027921199798584,1.0,1.0,1.0
+Mean Precision,0.9513888888888888
+Mean Recall,0.9097222222222223
+Mean F1,0.9300891376451079

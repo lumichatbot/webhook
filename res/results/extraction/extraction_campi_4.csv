@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+"If a student is in obvious violations of copyright law by using a room's wired connection (ie ResNet) to distribute copyrighted materials, the room's connection will be disabled, and the issue could be sent to Housing Student Judicial Affairs",,"@target,@middlebox,",1.1963739395141602,0.0,0.0,0.0
+"No individual service or system running on the wired/wireless network should use more than 10 gigabytes of per day, regardless of whether it is inbound or outbound over the commodity network link","@qos_constraint,@qos_constraint,@qos_unit,@qos_metric,@qos_value,@target,","@target,@qos_metric,@qos_value,@qos_unit,@qos_constraint,@qos_constraint,",1.1963739395141602,1.0,1.0,1.0
+FTP and SFTP servers are allowed by the University firewall,"@middlebox,@operation,@protocol,@protocol,@target,","@protocol,@protocol,@operation,@target,@middlebox,",1.1963739395141602,1.0,1.0,1.0
+The UC Davis network is continually scanned for prohibited activities and network threats.,,"@target,@middlebox,",1.1963739395141602,0.0,0.0,0.0
+University Housing monitors only the amount of traffic,"@middlebox,","@target,@middlebox,",1.1963739395141602,0.5,1.0,0.6666666666666666
+All network traffic passing in or out of Brown's network is monitored by intrusion detection system for signs of compromises,"@middlebox,","@target,@middlebox,",1.1963739395141602,0.5,1.0,0.6666666666666666
+AIM chat and file transfering is allowed by the University firewall,"@operation,@service,@service,@target,@middlebox,","@service,@service,@operation,@target,@middlebox,",1.1963739395141602,1.0,1.0,1.0
+"The UVA More Secure Network uses a firewall, a network security device designed to help protect your computer from hackers and other malicious people on the Internet.","@middlebox,@operation,","@target,@operation,@middlebox,",1.1963739395141602,0.6666666666666666,1.0,0.8
+ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function,"@middlebox,@target,","@middlebox,@target,",1.1963739395141602,1.0,1.0,1.0
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@target,@traffic,@operation,","@origin,@operation,@target,@traffic,@destination,",1.1963739395141602,0.6,1.0,0.7499999999999999
+Internet is limited to 3 Mbps per host,"@qos_metric,@qos_value,@target,@qos_unit,","@qos_metric,@qos_value,@qos_unit,@target,",1.1963739395141602,1.0,1.0,1.0
+"CIS restricts traffic that is known to cause damage to the network or hosts on it, such as NETBIOS","@operation,@service,@target,","@operation,@target,@service,",1.1963739395141602,1.0,1.0,1.0
+Mean Precision,0.8333333333333334
+Mean Recall,0.6888888888888888
+Mean F1,0.7542579075425789

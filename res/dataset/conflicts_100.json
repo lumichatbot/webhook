@@ -1,0 +1,627 @@
+{
+    "content": [{
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('dorms') set quota('any', '3', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('dorms') set quota('any', '1', 'gb/wk') start hour('10:40') end hour('17:40')",
+            "type": "time"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('dorms') set bandwidth('max', '60', 'mbps')",
+            "sentence": "define intent stnIntent: for group('network') set bandwidth('max', '80', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guest') block service('amazon prime video') traffic('H323 video conferencing')",
+            "sentence": "define intent stnIntent: for group('guests') allow service('MSN application sharing'), service('PC Telephone')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('non registered users') add middlebox('copyright monitoring'), middlebox('ids'), middlebox('overuse notification')",
+            "sentence": "define intent stnIntent: for group('guests') add middlebox('firewall'), middlebox('overuse notification'), middlebox('ips')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('students') set bandwidth('max', '40', 'mbps')",
+            "sentence": "define intent stnIntent: for group('students') set bandwidth('max', '20', 'mbps')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.16.52') block protocol('quic'), protocol('scp') start hour('16:30') end hour('17:20')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.16.52') allow service('MSN audio') protocol('scp') start hour('06:00') end hour('11:20')",
+            "type": "time"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guests') set bandwidth('min', '30', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.63') set bandwidth('max', '90', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: for group('students') allow service('facebook') traffic('social media')",
+            "sentence": "define intent stnIntent: for group('guests') set quota('download', '3', 'gb/wk')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('scholarly person') block service('Sony Playstation 2') traffic('H323 video conferencing')",
+            "sentence": "define intent stnIntent: for group('students') allow service('Net2Phone'), service('email')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('guest networks') set quota('any', '9', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('guests') set bandwidth('max', '70', 'mbps')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('students') set bandwidth('max', '70', 'mbps') start hour('10:40') end hour('14:00')",
+            "sentence": "define intent stnIntent: for group('students') set bandwidth('max', '70', 'mbps') start hour('08:20') end hour('19:20')",
+            "type": "time"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('guests') allow service('AIM chat') traffic('H323 video conferencing') add middlebox('firewall')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.51') allow service('amazon prime video'), service('Battlenet') add middlebox('firewall')",
+            "type": "negation"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.29.76') set quota('upload', '9', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.29.75') set quota('upload', '2', 'gb/wk')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('dorms') set bandwidth('min', '30', 'mbps') start hour('14:20') end hour('16:10')",
+            "sentence": "define intent stnIntent: for group('dorms') unset quota('download', '5', 'gb/wk') start hour('04:00') end hour('09:30')",
+            "type": "time"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guests') block traffic('social media') protocol('smtp')",
+            "sentence": "define intent stnIntent: for group('guests') allow service('file transfer'), service('MSN video')",
+            "type": "path"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('university') block service('facebook') traffic('any')",
+            "sentence": "define intent stnIntent: for group('network') block service('listserver') traffic('voip')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guests') set bandwidth('max', '20', 'mbps')",
+            "sentence": "define intent stnIntent: for group('guests') set bandwidth('min', '80', 'mbps')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.25') set bandwidth('max', '30', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.48') set quota('upload', '2', 'gb/wk')",
+            "type": "negation"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('educatee') remove middlebox('unit firewall'), middlebox('overuse notification'), middlebox('parental control')",
+            "sentence": "define intent stnIntent: for group('students') add middlebox('traffics monitor'), middlebox('unit firewall')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('dorms') set bandwidth('min', '40', 'mbps')",
+            "sentence": "define intent stnIntent: for group('dorms') unset quota('upload', '9', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('dpi'), middlebox('traffics monitor')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.15') add middlebox('dpi'), middlebox('ids'), middlebox('network border system')",
+            "type": "path"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('wireless') set quota('download', '7', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('network') set quota('upload', '7', 'gb/wk')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('dorms') set quota('upload', '8', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('dorms') set quota('any', '5', 'gb/wk')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('dorms') unset quota('upload', '8', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('dorms') set bandwidth('min', '70', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guest networks') remove middlebox('copyright monitoring')",
+            "sentence": "define intent stnIntent: for group('guests') add middlebox('copyright monitoring')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.49') block traffic('email')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.39') allow traffic('gaming'), traffic('voip')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.2') remove middlebox('load balancer'), middlebox('unit firewall') start hour('10:40') end hour('19:30')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.3') add middlebox('unit firewall'), middlebox('ids'), middlebox('copyright monitoring') start hour('09:10') end hour('19:40')",
+            "type": "time"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('network') set bandwidth('max', '60', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('19.16.1.1') unset quota('any', '6', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.11')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('guests') unset bandwidth('min', '30', 'mbps')",
+            "sentence": "define intent stnIntent: for group('guests') set quota('download', '1', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('dorms') block protocol('snmp'), protocol('ftp')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.26') allow traffic('gaming') protocol('snmp')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.27') set bandwidth('min', '80', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.2') set quota('any', '2', 'gb/wk')",
+            "type": "negation"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('dorms') set quota('download', '8', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('dorms') set quota('any', '6', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('students') remove middlebox('dpi')",
+            "sentence": "define intent stnIntent: for group('students') add middlebox('overuse notification')",
+            "type": "negation"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.16')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.15')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: for group('network') add middlebox('firewall')",
+            "sentence": "define intent stnIntent: for group('dorms') set quota('any', '7', 'gb/wk')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('network') set bandwidth('max', '70', 'mbps') start hour('11:30') end hour('15:20')",
+            "sentence": "define intent stnIntent: for group('network') set bandwidth('max', '80', 'mbps') start hour('11:20') end hour('14:00')",
+            "type": "time"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.7') set quota('any', '4', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') set quota('download', '4', 'gb/wk')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('network') block service('Everquest') traffic('email')",
+            "sentence": "define intent stnIntent: for group('network') allow service('NETBIOS') traffic('email')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('students') unset quota('any', '9', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('students') unset bandwidth('max', '70', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('network') remove middlebox('copyright monitoring')",
+            "sentence": "define intent stnIntent: for group('network') add middlebox('copyright monitoring')",
+            "type": "path"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.42') set quota('download', '6', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.39') set quota('download', '2', 'gb/wk')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.3') set quota('upload', '5', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.26') set quota('any', '1', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.45') add middlebox('unit firewall')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.39') add middlebox('ids')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guests') remove middlebox('parental control'), middlebox('overuse notification')",
+            "sentence": "define intent stnIntent: for group('guests') add middlebox('overuse notification'), middlebox('dpi')",
+            "type": "path"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('network') allow service('listserver') traffic('streaming') add middlebox('firewall')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('19.16.1.1') allow service('NETBIOS'), service('Everquest')",
+            "type": "negation"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.13') set bandwidth('max', '90', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.2.4') set bandwidth('min', '40', 'mbps')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.19') allow service('instagram') protocol('tcp')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.15') allow service('MSN video') protocol('udp')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('dorms') block traffic('video conference'), traffic('H323 video conferencing')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.16') allow traffic('video conference'), traffic('file sharing')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('dorms') set quota('upload', '9', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.3') unset bandwidth('min', '50', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.23') set bandwidth('max', '80', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.15') set bandwidth('min', '50', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('guests') block traffic('social media') protocol('icmp')",
+            "sentence": "define intent stnIntent: for group('guests') block traffic('gaming'), traffic('any') add middlebox('firewall')",
+            "type": "negation"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('residence hall') remove middlebox('ips'), middlebox('traffics monitor')",
+            "sentence": "define intent stnIntent: for group('dorms') add middlebox('ips'), middlebox('firewall')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.26') add middlebox('traffics monitor'), middlebox('parental control'), middlebox('unit firewall')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('19.16.1.1') set quota('upload', '8', 'gb/wk')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('network') set quota('upload', '3', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('network') set quota('any', '4', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('university') allow service('popcorn time') protocol('snmp')",
+            "sentence": "define intent stnIntent: for group('network') block service('facebook') traffic('gaming')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guests') block service('Sony Playstation 2') traffic('peer2peer')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.67') allow service('bittorrent')",
+            "type": "path"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: for group('network') allow service('MSN application sharing'), service('MSN audio')",
+            "sentence": "define intent stnIntent: for group('network') set quota('any', '2', 'gb/wk')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('network') block protocol('tcp'), protocol('secure IMAP')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('19.16.1.1') allow service('Net2Phone') traffic('gaming')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.16.52') set bandwidth('min', '50', 'mbps') start hour('15:00') end hour('16:20')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.93') set bandwidth('max', '40', 'mbps') start hour('03:40') end hour('09:10')",
+            "type": "time"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('network') set quota('any', '8', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('19.16.1.1') set quota('download', '2', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.68') block traffic('email') protocol('dns')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.63') block service('MSN video') traffic('any')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.40') block protocol('https'), protocol('nat')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.39') allow service('CounterStrike') traffic('social media')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('19.16.1.1') allow traffic('H323 video conferencing') protocol('POP3')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.26') add middlebox('network border system'), middlebox('firewall')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guest') block service('AIM chat') protocol('https')",
+            "sentence": "define intent stnIntent: for group('guests') allow service('Sony Playstation 2') traffic('video conference')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('student residence') set quota('upload', '3', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('dorms') set quota('any', '6', 'gb/wk')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.29.80') set bandwidth('max', '40', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.29.75') set bandwidth('max', '60', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: for group('network') add middlebox('unit firewall'), middlebox('overuse notification'), middlebox('parental control')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.27') set quota('any', '9', 'gb/wk')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('dorms') set quota('download', '7', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('dorms') set quota('any', '2', 'gb/wk')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('dorms') set bandwidth('max', '90', 'mbps')",
+            "sentence": "define intent stnIntent: for group('network') set bandwidth('max', '60', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.29.81') block service('popcorn time') traffic('torrent')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.29.75') allow service('Sony Playstation 2') traffic('torrent')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('visitors') remove middlebox('parental control'), middlebox('copyright monitoring')",
+            "sentence": "define intent stnIntent: for group('guests') remove middlebox('unit firewall')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('campus') block protocol('icmp'), protocol('tcp')",
+            "sentence": "define intent stnIntent: for group('network') allow traffic('any') protocol('http')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.16.62') remove middlebox('ids'), middlebox('ips'), middlebox('firewall')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.16.52') add middlebox('parental control'), middlebox('network border system')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.31') set bandwidth('min', '50', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.7.27') set bandwidth('min', '80', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.16.52') block service('MSN audio') traffic('email') start hour('14:20') end hour('15:30')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.74') allow service('MSN video') traffic('video conference') start hour('02:40') end hour('09:00')",
+            "type": "time"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.26') set quota('download', '2', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.3') set quota('any', '1', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('guests') block protocol('ftp'), protocol('https') start hour('14:00') end hour('18:20')",
+            "sentence": "define intent stnIntent: for group('guests') allow service('facebook') traffic('streaming') start hour('04:10') end hour('13:00')",
+            "type": "time"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.73') set quota('any', '1', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.63') set quota('download', '6', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: for group('network') allow service('instagram') traffic('any')",
+            "sentence": "define intent stnIntent: for group('guests') set bandwidth('min', '80', 'mbps')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('network') block traffic('video conference'), traffic('torrent')",
+            "sentence": "define intent stnIntent: for group('network') allow traffic('video conference'), traffic('file sharing')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('guest users') block traffic('voip') protocol('smtp')",
+            "sentence": "define intent stnIntent: for group('guests') allow service('amazon prime video'), service('facebook')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('network') set quota('download', '1', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('network') set quota('any', '7', 'gb/wk')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.40') block traffic('any'), traffic('torrent')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.39') block service('MSN application sharing'), service('Everquest')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('bookman') block protocol('http'), protocol('secure IMAP')",
+            "sentence": "define intent stnIntent: for group('students') allow service('AIM chat') protocol('nat')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.2') allow service('MSN video'), service('email')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.22.73') add middlebox('copyright monitoring'), middlebox('firewall')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('students') block protocol('snmp'), protocol('tcp')",
+            "sentence": "define intent stnIntent: for group('students') allow service('Sony Playstation 2') protocol('snmp')",
+            "type": "path"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('network') set bandwidth('max', '40', 'mbps')",
+            "sentence": "define intent stnIntent: for group('guests') set bandwidth('max', '30', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guest networks') block traffic('video conference') protocol('tcp')",
+            "sentence": "define intent stnIntent: for group('guests') allow traffic('email'), traffic('torrent')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('guest users') remove middlebox('traffics monitor'), middlebox('copyright monitoring')",
+            "sentence": "define intent stnIntent: for group('guests') add middlebox('ids'), middlebox('overuse notification'), middlebox('unit firewall')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.16.60') remove middlebox('unit firewall'), middlebox('dpi')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.16.52') add middlebox('dpi'), middlebox('unit firewall'), middlebox('overuse notification')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.51') set bandwidth('min', '40', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.29.75') set bandwidth('min', '50', 'mbps')",
+            "type": "negation"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('non registered users') set quota('download', '5', 'gb/wk')",
+            "sentence": "define intent stnIntent: for group('guests') set quota('any', '6', 'gb/wk')",
+            "type": "synonym"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.11.50') add middlebox('parental control'), middlebox('ids')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.89') set bandwidth('min', '80', 'mbps')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('guests') block traffic('gaming') protocol('ssh')",
+            "sentence": "define intent stnIntent: for group('guests') allow service('file transfer') protocol('dns')",
+            "type": "negation"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.18') allow protocol('udp'), protocol('ftp')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.4.15') block service('netflix') protocol('dns')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.96') set bandwidth('min', '40', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.86') set bandwidth('max', '60', 'mbps')",
+            "type": "hierarchical"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.37.91') add middlebox('ids'), middlebox('ips')",
+            "sentence": "define intent stnIntent: for group('network') set bandwidth('min', '30', 'mbps')",
+            "type": "path"
+        },
+        {
+            "conflict": 1,
+            "hypothesis": "define intent hypIntent: for group('dorms') set bandwidth('max', '70', 'mbps')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.2') set bandwidth('max', '40', 'mbps')",
+            "type": "qos"
+        },
+        {
+            "conflict": 0,
+            "hypothesis": "define intent hypIntent: for group('dorms') set quota('any', '2', 'gb/wk')",
+            "sentence": "define intent stnIntent: from endpoint('19.16.1.1') to endpoint('172.16.1.2') unset bandwidth('min', '10', 'mbps')",
+            "type": "qos"
+        }
+    ],
+    "summary": {
+        "conflict": {
+            "byType": {
+                "hierarchical": 8,
+                "negation": 10,
+                "path": 6,
+                "qos": 12,
+                "synonym": 10,
+                "time": 4
+            },
+            "count": 50
+        },
+        "entailment": {
+            "byType": {
+                "hierarchical": 9,
+                "negation": 7,
+                "path": 10,
+                "qos": 10,
+                "synonym": 9,
+                "time": 5
+            },
+            "count": 50
+        }
+    }
+}

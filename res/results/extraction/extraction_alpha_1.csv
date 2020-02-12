@@ -1,0 +1,41 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+ensure that all traffic from the Internet to the labs is carefully inspected by the Deep Packet Inspection middlebox,"@traffic,@destination,@origin,@middlebox,","@traffic,@origin,@destination,@middlebox,",1.174001932144165,1.0,1.0,1.0
+forward traffic for labs through the dpi,"@middlebox,@traffic,@operation,@operation,@target,","@operation,@traffic,@target,@middlebox,",1.174001932144165,1.0,1.0,1.0
+"hey lumi, please allow traffic only from professors","@target,@traffic,@operation,","@operation,@traffic,@target,",1.174001932144165,1.0,1.0,1.0
+unblock facebook,"@operation,@service,","@operation,@service,",1.174001932144165,1.0,1.0,1.0
+set quota to 10 GB per week at labs,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",1.174001932144165,1.0,1.0,1.0
+Remove firewall from the university to my house,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.174001932144165,1.0,1.0,1.0
+Block all traffic from HR to the backend servers,"@destination,@origin,@traffic,@operation,","@operation,@traffic,@origin,@destination,",1.174001932144165,1.0,1.0,1.0
+We provide a quota to all students of 1 GB per week of usage,"@target,@qos_unit,@qos_metric,@operation,@qos_value,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.174001932144165,1.0,1.0,1.0
+add a firewall,"@middlebox,@operation,","@operation,@middlebox,",1.174001932144165,1.0,1.0,1.0
+Lumi monitors the network traffic,"@target,@target,","@middlebox,@target,",1.174001932144165,0.5,1.0,0.6666666666666666
+please limit bandwidth to 5 Gigabits per second for the server racks everyday from 4 PM  to 7PM,"@traffic,@qos_value,@target,@qos_constraint,@qos_unit,@end,@start,","@qos_constraint,@qos_metric,@qos_value,@qos_unit,@target,@start,@end,",1.174001932144165,0.8571428571428571,0.8571428571428571,0.8571428571428571
+Set quota to 10 GB per week at dorms,"@operation,@qos_value,@target,@qos_unit,@qos_metric,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",1.174001932144165,1.0,1.0,1.0
+Add DPI middlebox into all traffic from Internet to the Labs,"@middlebox,@traffic,@operation,@destination,@origin,","@operation,@middlebox,@traffic,@origin,@destination,",1.174001932144165,1.0,1.0,1.0
+"Hey Lumi, add DPI to the labs network","@middlebox,@operation,@target,","@operation,@middlebox,@target,",1.174001932144165,1.0,1.0,1.0
+At endpoint Dorms set quota to 10 GB per week,"@qos_unit,@qos_metric,@traffic,@operation,@qos_value,","@target,@operation,@qos_metric,@qos_value,@qos_unit,",1.174001932144165,0.8,0.8,0.8000000000000002
+make tcp traffic pass through traffic shaper from 5pm to 8pm,"@traffic,@operation,@protocol,@end,@middlebox,@start,","@protocol,@traffic,@operation,@middlebox,@start,@end,",1.174001932144165,1.0,1.0,1.0
+block traffic of the server racks,"@traffic,@operation,@target,","@operation,@traffic,@target,",1.174001932144165,1.0,1.0,1.0
+Please make traffic coming from the Internet pass through a firewall.,"@middlebox,@operation,@origin,","@origin,@operation,@middlebox,",1.174001932144165,1.0,1.0,1.0
+Please allow social media for the HR department,"@target,@traffic,@operation,","@operation,@traffic,@target,",1.174001932144165,1.0,1.0,1.0
+Add monitor for the university from 04:00 to 22:00,"@target,@end,@middlebox,@start,","@middlebox,@target,@start,@end,",1.174001932144165,1.0,1.0,1.0
+"Lumi, block VoIP traffic from 00:00 to 06:00","@operation,@end,@start,@traffic,@traffic,","@operation,@traffic,@start,@end,",1.174001932144165,1.0,1.0,1.0
+Remove load balancing from gateway to database,"@operation,@destination,@origin,@middlebox,","@operation,@middlebox,@origin,@destination,",1.174001932144165,1.0,1.0,1.0
+Set to 1 Gbps bandwidth limit for the traffic to DMZ,"@traffic,@operation,@qos_value,@destination,@qos_constraint,@qos_unit,","@operation,@qos_value,@qos_unit,@qos_metric,@qos_constraint,@destination,",1.174001932144165,0.8333333333333334,0.8333333333333334,0.8333333333333334
+Add inspection for the university from 10pm to 12pm,"@target,@end,@middlebox,@start,","@operation,@middlebox,@target,@start,@end,",1.174001932144165,0.8,1.0,0.888888888888889
+Reduce the download rate for faculty members to 20 Mbps,"@qos_unit,@qos_metric,@operation,@qos_value,@target,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.174001932144165,1.0,1.0,1.0
+"Lumi, prohibit access to internal campus computers from the internet","@origin,@operation,","@operation,@destination,@origin,",1.174001932144165,0.6666666666666666,1.0,0.8
+Make sure all traffic from the Internet to the labs is inspected by the DPI middlebox,"@traffic,@destination,@origin,@middlebox,","@traffic,@origin,@destination,@middlebox,@middlebox,",1.174001932144165,1.0,1.0,1.0
+add security from entry to backend,"@destination,@origin,@middlebox,@operation,","@operation,@middlebox,@origin,@destination,",1.174001932144165,1.0,1.0,1.0
+Add parental control from my house to internet,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.174001932144165,1.0,1.0,1.0
+Students shall download no more than 1000000 MB per week,"@qos_constraint,@qos_unit,@qos_metric,@qos_value,","@group,@qos_constraint,@qos_metric,@qos_value,@qos_unit,",1.174001932144165,0.8,1.0,0.888888888888889
+Limit bandwidth usage to 50 mbps for professors.,"@qos_metric,@target,@qos_constraint,@qos_unit,","@qos_constraint,@qos_metric,@qos_value,@qos_unit,@target,",1.174001932144165,0.8,1.0,0.888888888888889
+From university to internet add firewall,"@middlebox,@operation,@destination,@origin,","@origin,@destination,@operation,@middlebox,",1.174001932144165,1.0,1.0,1.0
+limit traffic to 5Gbps  Between internet and servers for 16:00 to 19:00,"@start,@traffic,@qos_value,@destination,@origin,@qos_constraint,@qos_unit,@end,","@qos_constraint,@traffic,@qos_value,@qos_unit,@origin,@destination,@start,@end,",1.174001932144165,1.0,1.0,1.0
+Staff is allowed to access ftp,"@protocol,@target,@qos_constraint,","@target,@operation,@protocol,",1.174001932144165,0.6666666666666666,0.6666666666666666,0.6666666666666666
+please remove DPI from DMZ starting at 6am until 9pm,"@end,@middlebox,@start,@operation,@target,","@operation,@middlebox,@target,@start,@end,",1.174001932144165,1.0,1.0,1.0
+Set users bandwidth to 500 kbps when the 100 Gb per month quota is reached,"@qos_metric,@qos_metric,@operation,@qos_value,@qos_value,@service,@target,@qos_unit,@qos_unit,","@operation,@target,@qos_metric,@qos_value,@qos_unit,@qos_value,@qos_unit,@qos_metric,",1.174001932144165,1.0,0.8333333333333334,0.9090909090909091
+"Please, block netflix traffic on PUC","@operation,@service,@target,","@operation,@service,@target,",1.174001932144165,1.0,1.0,1.0
+Mean Precision,0.9727155727155726
+Mean Recall,0.9384813384813386
+Mean F1,0.9552918459585127

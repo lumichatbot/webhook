@@ -1,0 +1,41 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+Students can download up to 10 GB per week of data.,"@qos_value,@target,@target,@qos_constraint,@qos_unit,","@target,@qos_constraint,@qos_value,@qos_unit,@qos_metric,",1.0622661113739014,0.8,1.0,0.888888888888889
+Please allow social media for the HR department,"@operation,@target,@traffic,","@operation,@traffic,@target,",1.0622661113739014,1.0,1.0,1.0
+"Lumi, allow access to internal campus computers from the internet through SSH","@operation,@operation,@protocol,@origin,","@operation,@destination,@origin,@protocol,",1.0622661113739014,0.75,1.0,0.8571428571428571
+We provide a data plan quota for all staff of 10 GB per day,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.0622661113739014,1.0,1.0,1.0
+Remove nat for gateway everyday from 18:00 to midnight,"@middlebox,@start,@operation,@target,@end,","@operation,@middlebox,@target,@start,@end,",1.0622661113739014,1.0,1.0,1.0
+Allow access from computers to DMZ,"@operation,@destination,@origin,","@operation,@origin,@destination,",1.0622661113739014,1.0,1.0,1.0
+"Lumi, for the guest network, limit the traffic of torrent protocol to 100 mbps","@qos_constraint,@qos_unit,@qos_value,@target,@target,","@target,@qos_constraint,@target,@qos_value,@qos_unit,",1.0622661113739014,1.0,1.0,1.0
+inspect all internet traffic,"@traffic,@middlebox,","@middlebox,@traffic,@target,",1.0622661113739014,0.6666666666666666,1.0,0.8
+Add inspection for the university from 22:00 to 12:00,"@end,@middlebox,@start,@operation,@target,","@operation,@middlebox,@target,@start,@end,",1.0622661113739014,1.0,1.0,1.0
+Block traffic from netflix,"@target,@operation,","@operation,@target,",1.0622661113739014,1.0,1.0,1.0
+add a firewall,"@middlebox,@operation,","@operation,@middlebox,",1.0622661113739014,1.0,1.0,1.0
+From dorms to internet add nat,"@origin,@middlebox,@operation,@destination,","@origin,@destination,@operation,@middlebox,",1.0622661113739014,1.0,1.0,1.0
+"Hey Lumi, add DPI to the labs network","@target,@middlebox,@operation,","@operation,@middlebox,@target,",1.0622661113739014,1.0,1.0,1.0
+From gateway to my network remove nat,"@middlebox,@operation,@destination,@origin,","@origin,@destination,@operation,@middlebox,",1.0622661113739014,1.0,1.0,1.0
+Students should not use more than five gigabytes of bandwidth per week,"@target,@qos_unit,@qos_metric,@qos_value,","@target,@qos_metric,@qos_value,@qos_unit,",1.0622661113739014,1.0,1.0,1.0
+block F2movies traffic for students in the labs,"@operation,@service,@target,@target,","@operation,@service,@target,@target,",1.0622661113739014,1.0,1.0,1.0
+From internet to Labs add DPI,"@middlebox,@operation,@destination,@origin,","@origin,@destination,@operation,@middlebox,",1.0622661113739014,1.0,1.0,1.0
+"Lumi, please unblock all torrent traffic","@traffic,@operation,","@operation,@traffic,",1.0622661113739014,1.0,1.0,1.0
+Limit bandwidth usage to 50 mbps for professors.,"@qos_constraint,@qos_unit,@qos_metric,@qos_value,@target,","@qos_constraint,@qos_metric,@qos_value,@qos_unit,@target,",1.0622661113739014,1.0,1.0,1.0
+Block streaming traffic on UFRGS,"@traffic,@operation,@target,","@operation,@traffic,@target,",1.0622661113739014,1.0,1.0,1.0
+Reduce the download rate for faculty members to 20 Mbps,"@operation,@qos_value,@target,@qos_unit,@qos_metric,","@operation,@qos_metric,@target,@qos_value,@qos_unit,",1.0622661113739014,1.0,1.0,1.0
+Dismiss all rate limits and quotas for all hosts,"@qos_metric,@qos_metric,@operation,@target,","@operation,@qos_metric,@qos_metric,@target,",1.0622661113739014,1.0,1.0,1.0
+block all student traffic,"@target,@traffic,@operation,","@operation,@target,@traffic,",1.0622661113739014,1.0,1.0,1.0
+Set quota to 10 GB per week dorms,"@qos_unit,@qos_metric,@operation,@qos_value,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",1.0622661113739014,0.8,1.0,0.888888888888889
+Block streaming and gaming traffic in classrooms,"@traffic,@traffic,@operation,@target,","@operation,@traffic,@traffic,@target,",1.0622661113739014,1.0,1.0,1.0
+Add monitor for the university from 4am to 10pm,"@end,@middlebox,@start,@operation,@target,","@operation,@middlebox,@target,@start,@end,",1.0622661113739014,1.0,1.0,1.0
+Add parental control from my house to internet,"@middlebox,@operation,@destination,@origin,","@operation,@middlebox,@origin,@destination,",1.0622661113739014,1.0,1.0,1.0
+limit traffic to 5Gbps  Between internet and servers for 16:00 to 19:00,"@destination,@origin,@qos_constraint,@qos_unit,@end,@start,@traffic,@qos_value,","@qos_constraint,@traffic,@qos_value,@qos_unit,@origin,@destination,@start,@end,",1.0622661113739014,1.0,1.0,1.0
+"Block all incoming HTTP traffic, allow only HTTPS for all hosts","@operation,@operation,@protocol,@protocol,@target,","@operation,@protocol,@operation,@protocol,@target,",1.0622661113739014,1.0,1.0,1.0
+"Please Lumi, block streaming traffic for students and set a 10 Mbps bandwidth limit","@qos_metric,@traffic,@operation,@operation,@qos_value,@target,@qos_constraint,@qos_unit,","@operation,@traffic,@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.0622661113739014,1.0,0.8571428571428571,0.923076923076923
+Set quota to 10 GB per week at dorms,"@operation,@qos_value,@target,@qos_unit,@qos_metric,","@operation,@qos_metric,@qos_value,@qos_unit,@target,",1.0622661113739014,1.0,1.0,1.0
+Include parental control for PlayStation,"@middlebox,@operation,@target,","@operation,@middlebox,@target,",1.0622661113739014,1.0,1.0,1.0
+From university to internet add firewall,"@destination,@origin,@middlebox,@operation,","@origin,@destination,@operation,@middlebox,",1.0622661113739014,1.0,1.0,1.0
+Students shall download no more than 1000000 MB per week,"@qos_constraint,@qos_unit,@qos_metric,@qos_value,","@group,@qos_constraint,@qos_metric,@qos_value,@qos_unit,",1.0622661113739014,0.8,1.0,0.888888888888889
+Allow RTSP traffic in the LAN,"@operation,@protocol,@target,","@operation,@protocol,@target,",1.0622661113739014,1.0,1.0,1.0
+"hey Lumi, add dpi to labs","@target,@middlebox,@operation,","@operation,@middlebox,@target,",1.0622661113739014,1.0,1.0,1.0
+Add inspection for the university from 10pm to 12pm,"@end,@middlebox,@start,@operation,@target,","@operation,@middlebox,@target,@start,@end,",1.0622661113739014,1.0,1.0,1.0
+Mean Precision,0.9961389961389963
+Mean Recall,0.9680180180180179
+Mean F1,0.9818772020390472

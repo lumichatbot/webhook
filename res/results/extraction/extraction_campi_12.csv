@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@operation,@protocol,@protocol,@service,@target,","@origin,@operation,@target,@traffic,@destination,",1.16780424118042,0.4,0.5,0.4444444444444445
+"When a total of 18 gigabytes of data is reached, the individual's bandwidth rate limit is set to 2 Mbps","@qos_metric,@qos_metric,@operation,@qos_value,@qos_value,@target,@qos_unit,@qos_unit,","@qos_value,@qos_unit,@qos_metric,@target,@qos_metric,@operation,@qos_value,@qos_unit,",1.16780424118042,1.0,1.0,1.0
+Everquest is blocked by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.16780424118042,1.0,1.0,1.0
+Students 10 GB a day download quotas are on 10 AM to Midnight,"@qos_value,@target,@qos_constraint,@qos_unit,@end,@qos_metric,@start,","@target,@qos_value,@qos_unit,@qos_constraint,@qos_metric,@start,@end,",1.16780424118042,1.0,1.0,1.0
+SMTP is allowed by the University firewall,"@target,@middlebox,@operation,@protocol,","@protocol,@operation,@target,@middlebox,",1.16780424118042,1.0,1.0,1.0
+Sony Playstation 2 is allowed by the University firewall,"@target,@middlebox,@operation,@service,","@service,@operation,@target,@middlebox,",1.16780424118042,1.0,1.0,1.0
+"MSN audio and video are not allowed by the University firewall, but the MSN chat, application sharing and file transferring are not blocked","@middlebox,@operation,@operation,@service,@service,@service,@service,@service,@target,","@service,@service,@operation,@target,@middlebox,@service,@service,@service,@operation,",1.16780424118042,1.0,1.0,1.0
+Guests' network is rate-limited to 5 Mb/s per user,"@qos_unit,@qos_metric,@qos_value,","@target,@qos_metric,@qos_value,@qos_unit,",1.16780424118042,0.75,1.0,0.8571428571428571
+Routers or anything else that does routing or NAT are prohibited from MITNet as they interfere with the operation of the network,"@operation,@protocol,@target,","@protocol,@operation,@target,",1.16780424118042,1.0,1.0,1.0
+Telnet is allowed by the University firewall,"@protocol,@target,@middlebox,@operation,","@protocol,@operation,@target,@middlebox,",1.16780424118042,1.0,1.0,1.0
+Students data limit is 100 GB per week,"@target,@qos_unit,@qos_metric,@qos_value,","@target,@qos_metric,@qos_value,@qos_unit,",1.16780424118042,1.0,1.0,1.0
+Sorenson Videophone 200 is allowed by the University firewall,"@middlebox,@operation,@service,@target,","@service,@operation,@target,@middlebox,",1.16780424118042,1.0,1.0,1.0
+Mean Precision,0.9583333333333334
+Mean Recall,0.9291666666666667
+Mean F1,0.9435246504782928

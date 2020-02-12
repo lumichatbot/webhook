@@ -15,11 +15,11 @@ from google.protobuf.json_format import MessageToDict
 class Dialogflow(object):
     """ Client for Dialogflow API methods """
 
-    def __init__(self):
+    def __init__(self, evaluation=False):
         raw_credentials = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
         service_account_info = json.loads(raw_credentials)
         self.credentials = service_account.Credentials.from_service_account_info(service_account_info)
-        self.project_id = "nira-68681"
+        self.project_id = "lumieval-nkkjoi" if evaluation else "nira-68681"
         self.language_code = "en"
 
         self.entity_types_cache = []
@@ -200,7 +200,9 @@ class Dialogflow(object):
                 part = None
                 if 'entity_type' in training_phrases_part:
                     part = dialogflow.types.Intent.TrainingPhrase.Part(
-                        text=training_phrases_part['text'], entity_type=training_phrases_part['entity_type'], alias=training_phrases_part['alias'])
+                        text=training_phrases_part['text'],
+                        entity_type=training_phrases_part['entity_type'],
+                        alias=training_phrases_part['alias'] if 'alias' in training_phrases_part else "")
                 else:
                     part = dialogflow.types.Intent.TrainingPhrase.Part(
                         text=training_phrases_part['text'])
@@ -252,38 +254,6 @@ class Dialogflow(object):
         EVALUATION
     """
 
-    def create_set(self, entity):
-        result_set = set([])
-        if isinstance(entity, dict):
-            result_set = set(entity.values())
-        elif isinstance(entity, str) or isinstance(entity, unicode):
-            result_set = set([entity])
-        elif isinstance(entity, list):
-            result_set = set([])
-            for l in entity:
-                if isinstance(l, dict):
-                    result_set.union(set(l.values()))
-        return result_set
-
-    def get_diff_set(self, entity_a, entity_b):
-        diff_set = {}
-        for c in entity_a:
-            if c not in entity_b:
-                diff_set[c] = entity_a[c]
-            else:
-                t1 = self.create_set(entity_a[c])
-                t2 = self.create_set(entity_b[c])
-
-                diff = list(t1.difference(t2))
-                if c in diff_set:
-                    diff_set[c].append(diff)
-                else:
-                    diff_set[c] = diff
-        return diff_set
-
-    def get_diff_len(self, diff_set):
-        return sum([len(x) for x in diff_set.values()])
-
     def detect_intent_texts(self, intents, session_id=str(uuid.uuid4())):
         """
             Returns the result of detect intent with texts as inputs.
@@ -296,8 +266,8 @@ class Dialogflow(object):
         session = session_client.session_path(self.project_id, session_id)
 
         result = []
-
         for intent in intents:
+            time.sleep(10)
             text = ''.join([i['text'] for i in intent])
 
             text_input = dialogflow.types.TextInput(text=text, language_code=self.language_code)
@@ -311,23 +281,40 @@ class Dialogflow(object):
             recognized_entities = {}
 
             for part in intent:
-                if 'entity_type' in part:
-                    correct_entities[part['alias']] = part['text'].split()
+                if 'alias' in part:
+                    correct_entities[part['text']] = part['alias']
 
-            for part in query_result['parameters']:
-                if query_result['parameters'][part]:
-                    recognized_entities[part] = query_result['parameters'][part]
+            for entity, values in query_result['parameters'].items():
+                if values:
+                    if isinstance(values, dict):
+                        for tag, value in values.items():
+                            recognized_entities[value] = entity
+                    elif isinstance(values, list):
+                        for value in values:
+                            if isinstance(value, dict):
+                                for tag, v in value.items():
+                                    recognized_entities[v] = entity
+                            else:
+                                recognized_entities[value] = entity
 
-            false_negative = self.get_diff_set(correct_entities, recognized_entities)
-            false_positive = self.get_diff_set(recognized_entities, correct_entities)
+            # print("CORRECT ENTITIES", correct_entities)
+            # print("RECOGNIED ENTITIES", recognized_entities)
+
+            true_positives = list(set(correct_entities.values()) & set(recognized_entities.values()))
+            false_positives = list(set(recognized_entities.values()) - set(correct_entities.values()))
+            false_negatives = list(set(correct_entities.values()) - set(recognized_entities.values()))
+
+            # print("TRUE POSITIVES", true_positives)
+            # print("FALSE POSITIVES", false_positives)
+            # print("FALSE NEGATIVES", false_negatives)
 
             result.append({
                 'text': response.query_result.query_text,
-                'tp': self.get_diff_len(recognized_entities) - self.get_diff_len(false_positive),
-                'fp': self.get_diff_len(false_positive),
-                'tn': self.get_diff_len(query_result['parameters']) - self.get_diff_len(recognized_entities) - self.get_diff_len(false_negative),
-                'fn': self.get_diff_len(false_negative),
-                'recognized_entities': ''.join(['@{},'.format(ent) for ent in recognized_entities.keys()])
+                'tp': len(true_positives),
+                'fp': len(false_positives),
+                'fn': len(false_negatives),
+                'recognized_entities': ''.join(['@{},'.format(ent) for ent in recognized_entities.values()]),
+                'expected_entities': ''.join(['@{},'.format(ent) for ent in correct_entities.values()])
             })
 
             # print('Query text: {}'.format(response.query_result.query_text))

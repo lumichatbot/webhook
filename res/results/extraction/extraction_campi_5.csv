@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+SMTP is allowed by the University firewall,"@target,@middlebox,@operation,@protocol,","@protocol,@operation,@target,@middlebox,",1.2133450508117676,1.0,1.0,1.0
+Internet is limited to 3 Mbps per host,"@target,@qos_unit,@qos_metric,@qos_value,","@qos_metric,@qos_value,@qos_unit,@target,",1.2133450508117676,1.0,1.0,1.0
+P2P application is separately capped at 30 Mbps for the entire campus,"@target,@qos_constraint,@qos_unit,@traffic,@qos_value,","@traffic,@qos_constraint,@qos_value,@qos_unit,@target,",1.2133450508117676,1.0,1.0,1.0
+Routers or anything else that does routing or NAT are prohibited from MITNet as they interfere with the operation of the network,"@operation,@protocol,@target,","@protocol,@operation,@target,",1.2133450508117676,1.0,1.0,1.0
+"MSN audio and video are not allowed by the University firewall, but the MSN chat, application sharing and file transferring are not blocked","@middlebox,@operation,@operation,@service,@service,@service,@service,@service,@target,","@service,@service,@operation,@target,@middlebox,@service,@service,@service,@operation,",1.2133450508117676,1.0,1.0,1.0
+University Housing monitors only the amount of traffic,"@middlebox,@operation,","@target,@middlebox,",1.2133450508117676,0.5,0.5,0.5
+Faculty members have 500 Gb per week of free network use,"@qos_unit,@qos_value,@target,","@target,@qos_value,@qos_unit,",1.2133450508117676,1.0,1.0,1.0
+AIM chat and file transfering is allowed by the University firewall,"@operation,@service,@service,@target,@middlebox,","@service,@service,@operation,@target,@middlebox,",1.2133450508117676,1.0,1.0,1.0
+ACT/IT Infrastructure monitors traffic on the network for the purpose of maintaining proper network function,"@target,@middlebox,","@middlebox,@target,",1.2133450508117676,1.0,1.0,1.0
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@qos_value,@qos_constraint,@qos_constraint,@qos_unit,@qos_metric,@start,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",1.2133450508117676,0.8333333333333334,1.0,0.9090909090909091
+SSH is allowed by the University firewall,"@target,@middlebox,@operation,@protocol,","@protocol,@operation,@target,@middlebox,",1.2133450508117676,1.0,1.0,1.0
+The individual will have a 4 Mbps bandwidth rate limit,"@qos_metric,@operation,@qos_value,@target,@qos_unit,","@target,@operation,@qos_value,@qos_unit,@qos_metric,",1.2133450508117676,1.0,1.0,1.0
+Mean Precision,0.9583333333333334
+Mean Recall,0.9444444444444445
+Mean F1,0.951338199513382

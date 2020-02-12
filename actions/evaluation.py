@@ -3,31 +3,18 @@
 import time
 import csv
 
+from scipy.stats import sem, t
+from scipy import mean
+
 from random import sample, shuffle
-from math import ceil
+from math import ceil, floor
 
 from api import Dialogflow
-from utils import dataset, config
+from utils import dataset, config, metrics
 
 INTENT_ID = '64cdfdeb-18dd-4c76-be0a-4b55021ad1eb'
 
 END_TRAINING = None
-
-
-def recall(result):
-    """ calculates recall for given intent result """
-    return (float(result['tp']) / (result['tp'] + result['fn'])) if (result['tp'] + result['fn']) != 0 else 0.
-
-
-def precision(result):
-    """ calculates precision for given intent result """
-    return (float(result['tp']) / (result['tp'] + result['fp'])) if (result['tp'] + result['fp']) != 0 else 0.
-
-
-def f1_score(result):
-    """ calculates f1 score for given intent result """
-    denominator = precision(result) + recall(result)
-    return (2 * ((precision(result) * recall(result)) / denominator)) if denominator > 0. else 0.
 
 
 def training_callback(operation):
@@ -40,69 +27,36 @@ def training_callback(operation):
 
 
 def feedback():
-    """ opens alpha dataset, splits 75-25 percent for train-test, then opens campi dataset to use as feedback """
-    print("FEEDBACK ",)
+    """ opens alpha dataset, splits 75-25 percent for train-feedback """
+    print("FEEDBACK")
     global END_TRAINING
 
-    diag = Dialogflow()
-    alpha_data = dataset.read('extraction', 'alpha')['intents']
-    campi_data = dataset.read('extraction', 'campi')['intents']
+    diag = Dialogflow(evaluation=True)
+    all_data = dataset.read('extraction', 'both')['intents']
 
-    alpha_intents = []
-    for case in alpha_data:
+    all_intents = []
+    for case in all_data:
         intent = []
         for part in case['parts']:
-            if 'entity_type' in part and not 'alias' in part:
-                part['alias'] = part['entity_type'][1:]
             intent.append(part)
-        alpha_intents.append(intent)
+        all_intents.append(intent)
 
-    campi_intents = []
-    for case in campi_data:
-        intent = []
-        for part in case['parts']:
-            if 'entity_type' in part and not 'alias' in part:
-                part['alias'] = part['entity_type'][1:]
-            intent.append(part)
-        campi_intents.append(intent)
+    num_repeats = 1
 
-    print("DATASET CASES ALPHA #", len(alpha_intents))
-    print("DATASET CASES CAMPI #", len(campi_intents))
+    with open(config.EXTRACTION_RESULTS_PATH.format('feedback', 'single'), 'w') as csvfile:
+        csv_writer = csv.writer(csvfile, delimiter=',')
+        csv_writer.writerow(["repeat", "feedback_round", "text", "recognized_entities",
+                             "expected_entities", "tp", "fp", "fn", "recall", "precision", "f1_score"])
 
-    diag.update_intent(INTENT_ID, alpha_intents, False)
-    training_begin = diag.train_agent(training_callback)
+        for repeat in range(num_repeats):
+            n_samples = int(floor(len(all_intents) * 0.25))
+            training = sample(all_intents, n_samples)
+            feedback = sample(all_intents, len(all_intents) - n_samples)
 
-    time_elapsed = None
-    while True:
-        if END_TRAINING:
-            time_elapsed = (END_TRAINING - training_begin)
-            print("Training time: ", time_elapsed)
-            break
-        time.sleep(60)
+            print("DATASET CASES TRAIN #", len(training))
+            print("DATASET CASES FEEDBACK #", len(feedback))
 
-    print("Testing...")
-
-    results = []
-    shuffle(campi_intents)
-    for idx, feedback_case in enumerate(campi_intents):
-        print("intent", idx)
-        result = diag.detect_intent_texts([feedback_case])[0]
-        rec = recall(result)
-        prec = precision(result)
-        f1_sc = f1_score(result)
-        print(result['text'])
-        print('recall: ', rec)
-        print('precision: ', prec)
-        print('f1_score: ', f1_sc)
-        results.append((idx, result['text'], result['recognized_entities'], result['tp'],
-                        result['tn'], result['fp'], result['fn'], rec, prec, f1_sc))
-
-        if result['fp'] != 0 or result['fn'] != 0:
-            alpha_intents.append(feedback_case)
-            print("DATASET CASES ALPHA #", len(alpha_intents))
-
-            diag.update_intent(INTENT_ID, alpha_intents, False)
-            END_TRAINING = None
+            diag.update_intent(INTENT_ID, training, False)
             training_begin = diag.train_agent(training_callback)
 
             time_elapsed = None
@@ -111,13 +65,90 @@ def feedback():
                     time_elapsed = (END_TRAINING - training_begin)
                     print("Training time: ", time_elapsed)
                     break
+                time.sleep(60)
 
-    with open(config.EXTRACTION_RESULTS_PATH.format('feedback'), 'wb') as csvfile:
+            print("Testing...")
+
+            results = []
+            shuffle(feedback)
+            for idx, feedback_case in enumerate(feedback):
+                print("intent", idx)
+                result = diag.detect_intent_texts([feedback_case])[0]
+                rec = metrics.recall(result['tp'], result['fn'])
+                prec = metrics.precision(result['tp'], result['fp'])
+                f1_sc = metrics.f1_score(prec, rec)
+                print(result['text'])
+                print('recall: ', rec)
+                print('precision: ', prec)
+                print('f1_score: ', f1_sc)
+
+                csv_writer.writerow([repeat, idx, result['text'],
+                                     result['recognized_entities'], result['expected_entities'],
+                                     result['tp'], result['fp'], result['fn'], rec, prec, f1_sc])
+
+                if result['fp'] != 0 or result['fn'] != 0:
+                    training.append(feedback_case)
+                    print("DATASET CASES TRAIN #", len(training))
+
+                    diag.update_intent(INTENT_ID, training, False)
+                    END_TRAINING = None
+                    training_begin = diag.train_agent(training_callback)
+
+                    time_elapsed = None
+                    while True:
+                        if END_TRAINING:
+                            time_elapsed = (END_TRAINING - training_begin)
+                            print("Training time: ", time_elapsed)
+                            break
+                        time.sleep(60)
+
+            csv_writer.writerow(["DATASET CASES TRAIN #", len(training)])
+
+
+def mean_feedback():
+    """ Opens all executions file and calculates mean preicions and recall """
+    mean_precision = {}
+    mean_recall = {}
+    confidence_interval = {}
+
+    num_repeats = 30
+    confidence = 0.95
+    with open(config.EXTRACTION_RESULTS_PATH.format('feedback', 'all'), 'r') as csvfile:
+        all_feedback = csv.reader(csvfile, delimiter=',')
+        for row in all_feedback:
+            try:
+                repeat = int(row[0])
+                idx = int(row[1])
+                if idx not in mean_precision:
+                    mean_precision[idx] = []
+                    mean_recall[idx] = []
+
+                rec = float(row[8])
+                prec = float(row[9])
+                mean_precision[idx].append(prec)
+                mean_recall[idx].append(rec)
+            except:
+                print(row)
+
+    with open(config.EXTRACTION_RESULTS_PATH.format('feedback', 'mean'), 'w') as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=',')
-        csv_writer.writerow(["feedback_round", "text", "recognized_entities", "training_time",
-                             "tp", "tn", "fp", "fn", "recall", "precision", "f1_score"])
-        for (idx, intent, rec_entities, tp, tn, fp, fn, rec, prec, f1_sc) in results:
-            csv_writer.writerow([idx, intent, rec_entities, time_elapsed, tp, tn, fp, fn, rec, prec, f1_sc])
+        csv_writer.writerow(["idx", "mean_precision", "prec_ci_start", "prec_ci_end",
+                                    "mean_recall", "rec_ci_start", "rec_ci_end"])
+
+        for idx in range(len(mean_precision)):
+            prec_mean = mean(mean_precision[idx])
+            prec_std_err = sem(mean_precision[idx])
+            prec_h = prec_std_err * t.ppf((1 + confidence) / 2, num_repeats - 1)
+
+            rec_mean = mean(mean_recall[idx])
+            rec_std_err = sem(mean_recall[idx])
+            rec_h = rec_std_err * t.ppf((1 + confidence) / 2, num_repeats - 1)
+
+            csv_writer.writerow([idx, prec_mean, prec_mean - prec_h, min(prec_mean + prec_h, 1.0),
+                                 rec_mean, rec_mean - rec_h, min(rec_mean + rec_h, 1.0)])
+
+        print("MEAN PREC", mean_precision.values())
+        print("MEAN REC", mean_recall.values())
 
 
 def train(dtype):
@@ -135,7 +166,7 @@ def train(dtype):
 
     print("DATASET CASES #", len(intents))
 
-    diag = Dialogflow()
+    diag = Dialogflow(evaluation=True)
     diag.update_intent(INTENT_ID, intents, False)
     training_begin = diag.train_agent(training_callback)
 
@@ -149,49 +180,88 @@ def run(dtype):
     for case in data:
         intent = []
         for part in case['parts']:
-            if 'entity_type' in part and not 'alias' in part:
-                part['alias'] = part['entity_type'][1:]
             intent.append(part)
         intents.append(intent)
 
     print("DATASET CASES #", len(intents))
 
-    n_samples = int(ceil(len(intents) * 0.75))
-    training = sample(intents, n_samples)
-    validation = sample(intents, len(intents) - n_samples)
+    highest_precision = 0
+    highest_recall = 0
+    highest_f1 = 0
+    highest_try = 0
+    num_tries = 0
 
-    diag = Dialogflow()
-    diag.update_intent(INTENT_ID, training, False)
-    training_begin = diag.train_agent(training_callback)
+    while num_tries < 30:
+        num_tries += 1
+        END_TRAINING = None
 
-    time_elapsed = None
-    while True:
-        if END_TRAINING:
-            time_elapsed = (END_TRAINING - training_begin)
-            print("Training time: ", time_elapsed)
-            break
-        # time.sleep(50)
+        n_samples = int(ceil(len(intents) * 0.75))
+        training = sample(intents, n_samples)
+        validation = sample(intents, len(intents) - n_samples)
 
-    print("Testing...")
+        diag = Dialogflow(evaluation=True)
+        diag.update_intent(INTENT_ID, training, False)
+        training_begin = diag.train_agent(training_callback)
 
-    results = diag.detect_intent_texts(validation)
-    with open(config.EXTRACTION_RESULTS_PATH.format(dtype), 'wb') as csvfile:
-        csv_writer = csv.writer(csvfile, delimiter=',')
-        csv_writer.writerow(["text", "recognized_entities", "training_time", "recall", "precision", "f1_score"])
-        for result in results:
-            rec = recall(result)
-            prec = precision(result)
-            f1_sc = f1_score(result)
-            print(result['text'])
-            print('recall: ', rec)
-            print('precision: ', prec)
-            print('f1_score: ', f1_sc)
-            csv_writer.writerow([result['text'], result['recognized_entities'], time_elapsed, rec, prec, f1_sc])
+        time_elapsed = None
+        while True:
+            if END_TRAINING:
+                time_elapsed = (END_TRAINING - training_begin)
+                print("Training time: ", time_elapsed)
+                break
+            # time.sleep(50)
+
+        print("Testing...")
+        results = diag.detect_intent_texts(validation)
+        with open(config.EXTRACTION_RESULTS_PATH.format(dtype, num_tries), 'w') as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter=',')
+            csv_writer.writerow(["text", "recognized_entities", "expected_entities",
+                                 "training_time", "recall", "precision", "f1_score"])
+
+            mean_precision = 0
+            mean_recall = 0
+            num_entries = len(results)
+
+            for result in results:
+                rec = metrics.recall(result['tp'], result['fn'])
+                prec = metrics.precision(result['tp'], result['fp'])
+                f1_sc = metrics.f1_score(prec, rec)
+
+                mean_precision += prec
+                mean_recall += rec
+                print(result['text'])
+                print('recall: ', rec)
+                print('precision: ', prec)
+                print('f1_score: ', f1_sc)
+                csv_writer.writerow([result['text'], result['recognized_entities'],
+                                     result['expected_entities'], time_elapsed, rec, prec, f1_sc])
+
+            mean_precision /= num_entries
+            mean_recall /= num_entries
+            mean_f1 = metrics.f1_score(mean_precision, mean_recall)
+            csv_writer.writerow(["Mean Precision", mean_precision])
+            csv_writer.writerow(["Mean Recall", mean_recall])
+            csv_writer.writerow(["Mean F1", mean_f1])
+
+            print("Mean Precision", mean_precision)
+            print("Mean Recall", mean_recall)
+            print("Mean F1", mean_f1)
+
+            if mean_f1 > highest_f1:
+                highest_f1 = mean_f1
+                highest_precision = mean_precision
+                highest_recall = mean_recall
+                highest_try = num_tries
+
+    print("Highest Precision", highest_precision)
+    print("Highest Recall", highest_recall)
+    print("Highest F1", highest_f1)
+    print("Highest Try", highest_try)
 
 
 if __name__ == '__main__':
-    train('alpha')
     # run('alpha')
     # run('campi')
     # run('both')
-    # feedback()
+    feedback()
+    # mean_feedback()

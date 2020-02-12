@@ -1,0 +1,16 @@
+text,recognized_entities,expected_entities,training_time,recall,precision,f1_score
+AIM chat and file transfering is allowed by the University firewall,"@operation,@service,@service,@target,@middlebox,","@service,@service,@operation,@target,@middlebox,",0.9848690032958984,1.0,1.0,1.0
+"There is a 6 GB per 24-hour period upload or download data transfer limit starting at midnight of each day, on all of your combined traffic on ResNet and UIC wireless","@start,@qos_metric,@qos_value,@qos_constraint,@qos_constraint,@qos_unit,","@qos_value,@qos_unit,@qos_constraint,@qos_constraint,@qos_metric,@start,@target,@target,",0.9848690032958984,0.8333333333333334,1.0,0.9090909090909091
+"When a total of 18 gigabytes of data is reached, the individual's bandwidth rate limit is set to 2 Mbps","@target,@qos_unit,@qos_unit,@qos_metric,@qos_metric,@operation,@qos_value,@qos_value,","@qos_value,@qos_unit,@qos_metric,@target,@qos_metric,@operation,@qos_value,@qos_unit,",0.9848690032958984,1.0,1.0,1.0
+"Currently, the University of Illinois does not have any rate limits set in place","@qos_metric,@operation,@target,","@target,@operation,@qos_metric,",0.9848690032958984,1.0,1.0,1.0
+"You may not run any services (e.g., FTP services,listservers,P2P file sharing servers, publishing files via generic file services, etc.) via ResNet or NYURoam wireless networks","@operation,@protocol,@service,@target,@traffic,","@operation,@protocol,@service,@traffic,@target,@target,",0.9848690032958984,1.0,1.0,1.0
+"RHIT-OPEN will work in labs, classrooms and residence halls but does not allow the user to access the internal Rose-Hulman network","@traffic,@traffic,@operation,@protocol,@target,","@origin,@operation,@target,@traffic,@destination,",0.9848690032958984,0.6,0.75,0.6666666666666665
+Students have 200 GB of Free monthly usage,"@qos_value,@target,@qos_unit,","@target,@qos_value,@qos_unit,",0.9848690032958984,1.0,1.0,1.0
+Guests cannot run any file sharing/downloading program,"@operation,@service,@target,","@target,@operation,@service,",0.9848690032958984,1.0,1.0,1.0
+Everquest is blocked by the University firewall,"@target,@middlebox,@operation,@service,","@service,@operation,@target,@middlebox,",0.9848690032958984,1.0,1.0,1.0
+P2P application is separately capped at 30 Mbps for the entire campus,"@qos_unit,@traffic,@qos_value,@target,@qos_constraint,","@traffic,@qos_constraint,@qos_value,@qos_unit,@target,",0.9848690032958984,1.0,1.0,1.0
+Sorenson Videophone 200 is allowed by the University firewall,"@target,@middlebox,@operation,@service,","@service,@operation,@target,@middlebox,",0.9848690032958984,1.0,1.0,1.0
+Students have a quota of 5 GB per day The quota is reset at 6am,"@qos_value,@target,@qos_constraint,@qos_unit,","@target,@qos_constraint,@qos_value,@qos_unit,@hour,",0.9848690032958984,0.8,1.0,0.888888888888889
+Mean Precision,0.9791666666666666
+Mean Recall,0.9361111111111112
+Mean F1,0.9571549431955523
