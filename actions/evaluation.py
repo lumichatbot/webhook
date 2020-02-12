@@ -31,7 +31,7 @@ def feedback():
     print("FEEDBACK")
     global END_TRAINING
 
-    diag = Dialogflow()
+    diag = Dialogflow(evaluation=True)
     all_data = dataset.read('extraction', 'both')['intents']
 
     all_intents = []
@@ -166,7 +166,7 @@ def train(dtype):
 
     print("DATASET CASES #", len(intents))
 
-    diag = Dialogflow()
+    diag = Dialogflow(evaluation=True)
     diag.update_intent(INTENT_ID, intents, False)
     training_begin = diag.train_agent(training_callback)
 
@@ -199,7 +199,7 @@ def run(dtype):
         training = sample(intents, n_samples)
         validation = sample(intents, len(intents) - n_samples)
 
-        diag = Dialogflow()
+        diag = Dialogflow(evaluation=True)
         diag.update_intent(INTENT_ID, training, False)
         training_begin = diag.train_agent(training_callback)
 

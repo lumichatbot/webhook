@@ -344,15 +344,17 @@ def validate(dataset_size, model_type):
         data.append(get_features(case['sentence'], case['hypothesis']))
         targets.append(case['conflict'])
 
+    print("DATASET LOADED")
+
     model = ClassificationModel(model_type)
     scores = model.cross_validate(data, targets)
     print("scores", scores)
 
-    print("FIT TIME", scores['fit_time'])
-    print("VALIDATION TIME", scores['score_time'])
-    print("PRECISION", scores['test_precision_macro'])
-    print("RECALL", scores['test_recall_macro'])
-    print("F1 SCORE", scores['test_f1_macro'])
+    print("MEAN FIT TIME", np.mean(scores['fit_time']))
+    print("MEAN VALIDATION TIME", np.mean(scores['score_time']))
+    print("MEAN PRECISION", np.mean(scores['test_precision_macro']))
+    print("MEAN RECALL", np.mean(scores['test_recall_macro']))
+    print("MEAN F1 SCORE", np.mean(scores['test_f1_macro']))
     return scores['fit_time'], scores['score_time'], scores['test_precision_macro'], scores['test_recall_macro'], scores['test_f1_macro']
 
 
@@ -416,8 +418,9 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    # run()
     # test(100, 'forest')
     # train(1000, 'forest')
+    validate(10000, 'forest')
     # analyze_campus_policies_by_uni(10000)
     # analyze_campus_policies(10000)

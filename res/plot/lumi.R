@@ -406,9 +406,9 @@ data <- read.csv("/Users/asjacobs/workspace/lumi/webhook/res/results/extraction/
 m <- ggplot(data, aes(x=idx))
 m +
   #geom_bar(stat='identity', position='dodge') +
-  geom_point(aes(y = mean_recall, color = "Recall"), size = 2) +
+  geom_point(aes(y = mean_recall, color = "Recall"), size = 3) +
   geom_line(aes(y = mean_recall, color = "Recall"), size = 1) +
-  geom_errorbar(aes(ymin=rec_ci_start, ymax=rec_ci_end), colour="#343f3e", width=0.5, position=position_dodge(0.8)) +
+  geom_errorbar(aes(ymin=rec_ci_start, ymax=rec_ci_end), colour="#343f3e", width=0.8, size=0.8, position=position_dodge(0.8)) +
   #scale_x_continuous(limits = c(100,5000)) +
   scale_y_continuous(limits = c(0, 1), breaks=seq(0,1, by=0.2)) +
   xlab("# of the Test Sample") + ylab("Metric") +
@@ -436,7 +436,7 @@ m +
       title.hjust = 0.5
     ))+
   #scale_fill_manual("Colour", values = c("mean_test_mse" = , "mean_train_mse" = ), labels = c("SVM", "LogReg")) +
-  theme(text = element_text(colour="#343f3e", size=22, family="Roboto Light"),
+  theme(text = element_text(colour="#343f3e", size=28, family="Roboto Light"),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
@@ -445,7 +445,7 @@ m +
         axis.line.y = element_line(color = '#343f3e'),
         axis.line = element_line(colour = "#343f3e"),
         legend.position="top",
-        legend.text=element_text(size=22),
+        legend.text=element_text(size=28),
         legend.title=element_blank())
 
 
@@ -453,9 +453,9 @@ m +
 m <- ggplot(data, aes(x=idx))
 m +
   #geom_bar(stat='identity', position='dodge') +
-  geom_point(aes(y = mean_precision, color = "Precision"), size = 2) +
+  geom_point(aes(y = mean_precision, color = "Precision"), size = 3) +
   geom_line(aes(y = mean_precision, color = "Precision"), size = 1  ) +
-  geom_errorbar(aes(ymin=prec_ci_start, ymax=prec_ci_end), colour="#343f3e", width=0.5, position=position_dodge(0.8)) +
+  geom_errorbar(aes(ymin=prec_ci_start, ymax=prec_ci_end), colour="#343f3e", width=0.8, size=0.8, position=position_dodge(0.8)) +
   #scale_x_continuous(limits = c(100,5000)) +
   scale_y_continuous(limits = c(0, 1), breaks=seq(0,1, by=0.2)) +
   xlab("# of the Test Sample") + ylab("Metric") +
@@ -483,7 +483,7 @@ m +
       title.hjust = 0.5
     ))+
   #scale_fill_manual("Colour", values = c("mean_test_mse" = , "mean_train_mse" = ), labels = c("SVM", "LogReg")) +
-  theme(text = element_text(colour="#343f3e", size=22, family="Roboto Light"),
+  theme(text = element_text(colour="#343f3e", size=28, family="Roboto Light"),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
@@ -492,7 +492,7 @@ m +
         axis.line.y = element_line(color = '#343f3e'),
         axis.line = element_line(colour = "#343f3e"),
         legend.position="top",
-        legend.text=element_text(size=22),
+        legend.text=element_text(size=28),
         legend.title=element_blank())
 
 
@@ -501,13 +501,13 @@ data <- read.csv("/Users/asjacobs/workspace/lumi/webhook/res/results/extraction/
 m <- ggplot(data, aes(x=feedback_round))
 m +
   #geom_bar(stat='identity', position='dodge') +
-  geom_point(aes(y = precision, color = "Precision", shape = "Precision"), size = 2) +
-  geom_point(aes(y = recall, color = "Recall", shape = "Recall"), size = 2) +
-  geom_line(aes(y = precision, color = "Precision", linetype = "Precision"), size = 1  ) +
+  geom_point(aes(y = precision, color = "Precision", shape = "Precision"), size = 3) +
+  geom_point(aes(y = recall, color = "Recall", shape = "Recall"), size = 3) +
+  geom_line(aes(y = precision, color = "Precision", linetype = "Precision"), size = 1) +
   geom_line(aes(y = recall, color = "Recall", linetype = "Recall"), size =  1) +
   #geom_errorbar(aes(ymin=mean - se, ymax=mean + se), colour="black", width=0.1, position=position_dodge(0.8)) +
   #scale_x_continuous(limits = c(100,5000)) +
-  scale_y_continuous(limits = c(0, 1), breaks=seq(0,1, by=0.1)) +
+  scale_y_continuous(limits = c(0, 1), breaks=seq(0,1, by=0.2)) +
   xlab("# of Test Samples") + ylab("Metric") +
   scale_linetype_manual(
     name="Guide1",
@@ -533,7 +533,7 @@ m +
       title.hjust = 0.5
     ))+
   #scale_fill_manual("Colour", values = c("mean_test_mse" = , "mean_train_mse" = ), labels = c("SVM", "LogReg")) +
-  theme(text = element_text(colour="#343f3e", size=22, family="Roboto Light"),
+  theme(text = element_text(colour="#343f3e", size=28, family="Roboto Light"),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
@@ -542,5 +542,52 @@ m +
         axis.line.y = element_line(color = '#343f3e'),
         axis.line = element_line(colour = "#343f3e"),
         legend.position="top",
-        legend.text=element_text(size=22),
+        legend.text=element_text(size=28),
         legend.title=element_blank())
+
+
+m <- ggplot(data, aes(x=feedback_round))
+m +
+  #geom_bar(stat='identity', position='dodge') +
+  geom_point(aes(y = f1_score, color = "F1 Score", shape = "F1 Score"), size = 3) +
+  geom_line(aes(y = f1_score, color = "F1 Score", linetype = "F1 Score"), size = 1) +
+  #geom_errorbar(aes(ymin=mean - se, ymax=mean + se), colour="black", width=0.1, position=position_dodge(0.8)) +
+  #scale_x_continuous(limits = c(100,5000)) +
+  scale_y_continuous(limits = c(0, 1), breaks=seq(0,1, by=0.2)) +
+  xlab("# of Test Samples") + ylab("Metric") +
+  scale_linetype_manual(
+    name="Guide1",
+    values=c("dashed","solid"),
+    guide = guide_legend(
+      direction = "horizontal",
+      title.position = "top"
+    ))+
+  scale_color_manual(
+    name="Guide1",
+    values=c("#da9e94", "#da7c30"),
+    guide = guide_legend(
+      direction = "horizontal",
+      title.position = "top",
+      title.hjust = 0.5
+    ))+
+  scale_shape_manual(
+    name="Guide1",
+    values=c(15,16),
+    guide = guide_legend(
+      direction = "horizontal",
+      title.position = "top",
+      title.hjust = 0.5
+    ))+
+  #scale_fill_manual("Colour", values = c("mean_test_mse" = , "mean_train_mse" = ), labels = c("SVM", "LogReg")) +
+  theme(text = element_text(colour="#343f3e", size=28, family="Roboto Light"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        panel.border = element_blank(),
+        axis.line.x = element_line(color = '#343f3e'),
+        axis.line.y = element_line(color = '#343f3e'),
+        axis.line = element_line(colour = "#343f3e"),
+        legend.position="top",
+        legend.text=element_text(size=28),
+        legend.title=element_blank())
+

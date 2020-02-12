@@ -11,17 +11,15 @@ from google.oauth2 import service_account
 from google.protobuf import field_mask_pb2
 from google.protobuf.json_format import MessageToDict
 
-PROD = False
-
 
 class Dialogflow(object):
     """ Client for Dialogflow API methods """
 
-    def __init__(self):
+    def __init__(self, evaluation=False):
         raw_credentials = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
         service_account_info = json.loads(raw_credentials)
         self.credentials = service_account.Credentials.from_service_account_info(service_account_info)
-        self.project_id = "nira-68681" if PROD else "lumieval-nkkjoi"
+        self.project_id = "lumieval-nkkjoi" if evaluation else "nira-68681"
         self.language_code = "en"
 
         self.entity_types_cache = []

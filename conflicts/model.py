@@ -25,11 +25,11 @@ class ClassificationModel(object):
         self.model_type = model_type
 
         if model_type == 'svm':
-            clf = SVC(kernel='linear')
+            clf = SVC(kernel='linear', verbose=3)
         elif model_type == 'forest':
-            clf = RandomForestClassifier()
+            clf = RandomForestClassifier(verbose=3)
         else:
-            clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial')
+            clf = LogisticRegression(verbose=3, random_state=0, solver='lbfgs', multi_class='multinomial')
 
         self.model = make_pipeline(RobustScaler(), SelectFromModel(LinearSVC(penalty="l1", dual=False)), clf)
 

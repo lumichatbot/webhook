@@ -44,7 +44,7 @@ STUDY_FAMILIARITY_LEVELS = ["Unfamiliar", "Slightly Familiar",
 
 ######### DATASET ########
 
-DATASET_SIZES = [100, 1000, 5000, 10000]
+DATASET_SIZES = [100, 1000, 2500, 5000, 10000]
 DATASET_ACTIONS_MBS = ["add", "remove"]
 DATASET_ACTIONS_ACL = ["allow", "block"]
 DATASET_ACTIONS_QOS = ["set", "unset"]
