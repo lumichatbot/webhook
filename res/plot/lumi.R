@@ -508,7 +508,7 @@ m +
   #geom_errorbar(aes(ymin=mean - se, ymax=mean + se), colour="black", width=0.1, position=position_dodge(0.8)) +
   #scale_x_continuous(limits = c(100,5000)) +
   scale_y_continuous(limits = c(0, 1), breaks=seq(0,1, by=0.2)) +
-  xlab("# of Test Samples") + ylab("Metric") +
+  xlab("# of the Test Sample") + ylab("Metric") +
   scale_linetype_manual(
     name="Guide1",
     values=c("dashed","solid"),
@@ -554,7 +554,7 @@ m +
   #geom_errorbar(aes(ymin=mean - se, ymax=mean + se), colour="black", width=0.1, position=position_dodge(0.8)) +
   #scale_x_continuous(limits = c(100,5000)) +
   scale_y_continuous(limits = c(0, 1), breaks=seq(0,1, by=0.2)) +
-  xlab("# of Test Samples") + ylab("Metric") +
+  xlab("# of the Test Sample") + ylab("Metric") +
   scale_linetype_manual(
     name="Guide1",
     values=c("dashed","solid"),

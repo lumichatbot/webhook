@@ -32,7 +32,9 @@ CONFLICTS_RESULTS_PATH = ROOT + "/res/results/conflicts/conflicts_{}_{}.csv"
 COMPILATION_DATASET_PATH = ROOT + "/res/dataset/compilation.json"
 
 USER_STUDY_PLOTS_PATH = ROOT + "/res/results/study/study-{}.pdf"
+USER_STUDY_INTENTS_PATH = ROOT + "/res/results/study/intents_by_task.csv"
 USER_STUDY_QUESTIONNAIRE_PATH = ROOT + "/res/results/study/{}_questionnaire.csv"
+
 
 ######### USER STUDY ########
 

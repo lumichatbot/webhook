@@ -23,6 +23,7 @@ pymongo = "*"
 dnspython = "*"
 flask-cors = "*"
 gunicorn = "*"
+lumi-webhook = {editable = true,path = "."}
 
 [dev-packages]
 pylint = "*"

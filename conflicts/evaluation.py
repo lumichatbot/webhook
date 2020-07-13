@@ -7,8 +7,8 @@ import numpy as np
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 
-from features import get_features
-from model import ClassificationModel
+from .features import get_features
+from .model import ClassificationModel
 
 from utils import dataset, plotter, config, metrics
 
@@ -417,10 +417,81 @@ def run():
                                          score_time, precision, recall, f1_score])
 
 
+def export():
+    """ Process features and exports dataset """
+
+    dset = dataset.read('conflicts', 10000)
+    with open(config.CONFLICTS_RESULTS_PATH.format('export', '0'), 'w') as csvfile:
+        csv_writer = csv.writer(csvfile, delimiter=',')
+        csv_writer.writerow(['path_similarity',
+                             'qos',
+                             'time',
+                             'negation',
+                             'synonyms',
+                             'hierarchy_targets',
+                             'hierarchy_traffics',
+                             'endpoints',
+                             'num_endpoints',
+                             'services',
+                             'num_services',
+                             'groups',
+                             'num_groups',
+                             'traffics',
+                             'num_traffics',
+                             'protocols',
+                             'num_protocols',
+                             'middleboxes',
+                             'num_middleboxes',
+                             'conflict'])
+
+        for case in dset['content']:
+            (path_similarity,
+             qos,
+             time,
+             negation,
+             synonyms,
+             hierarchy_targets,
+             hierarchy_traffics,
+             endpoints,
+             num_endpoints,
+             services,
+             num_services,
+             groups,
+             num_groups,
+             traffics,
+             num_traffics,
+             protocols,
+             num_protocols,
+             middleboxes,
+             num_middleboxes) = get_features(case['sentence'], case['hypothesis'])
+
+            csv_writer.writerow([path_similarity,
+                                 qos,
+                                 time,
+                                 negation,
+                                 synonyms,
+                                 hierarchy_targets,
+                                 hierarchy_traffics,
+                                 endpoints,
+                                 num_endpoints,
+                                 services,
+                                 num_services,
+                                 groups,
+                                 num_groups,
+                                 traffics,
+                                 num_traffics,
+                                 protocols,
+                                 num_protocols,
+                                 middleboxes,
+                                 num_middleboxes,
+                                 case['conflict']])
+
+
 if __name__ == "__main__":
+    export()
     # run()
     # test(100, 'forest')
     # train(1000, 'forest')
-    validate(10000, 'forest')
+    # validate(10000, 'forest')
     # analyze_campus_policies_by_uni(10000)
     # analyze_campus_policies(10000)

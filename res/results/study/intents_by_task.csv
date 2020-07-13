@@ -1,0 +1,119 @@
+Task,Intent
+1,"please lumi, forward all internet traffic to the DPI then to labs"
+1,Inspect all internet traffic to the labs
+1,Send to DPI all traffic from Internet to Labs
+1,"Hey Lumi, drive the studants traffic to DPI and then to Labs"
+1,"Hey Lumi, drive the students's traffic to DPI and then to Labs"
+1,Inspect traffic from Internet to the lab pass throught a DPI
+1,"Redirect all traffic from labs, going trhogh DPI"
+1,inspect all traffic from LABS through DPI
+1,inspect all traffic from labs
+1,"hey lumi, please add a DPI to ensure students from the labs are not accessing suspicious applications"
+1,make traffic going to the labs pass through dpi
+1,Add DPI middlebox into all traffic from Internet to the Labs.
+1,Hi Lumi! Please route all traffic destined to Labs through DPI.
+1,Route all traffic destined to Labs through the DPI.
+1,Send internet traffic to labs through dpi
+1,"Lumi, inspect all traffic from the Internet to the student labs in the DPI"
+1,all incoming traffic to the labs must pass through a DPI
+1,inspect all traffic from the internet to the labs with DPI
+1,"Lumi, inspect traffic to labs using DPI"
+1,"Hey Lumi, all traffic from gateway to labs should be redirected to DPI"
+1,send user traffic to labs through dpi
+1,add dpi on labs
+1,make all traffic going to the lab go through the deep packet inspection
+1,route all traffic flowing from the internet to the labs through the DPI middlebox
+1,all traffic from the internet to the labs inspected by the DPI
+2,Set a 100 Mbps the bandwidth limit for Torrent traffic from Internet to Guests
+2,"hey Lumi, limit to 100 Mbps the torrent traffic to Guest"
+2,Limit to 100Mbps the torrent traffic
+2,Limit to 100 Mbps torrent traffic in the gateway
+2,limit torrent traffic to guests to 100 mbps
+2,Limit torrent traffic to guest users to 100 mbps.
+2,limit torrent traffic to 100mbps
+2,"hey lumi, please limit bandwidth for torrent traffic to 100 Mbps"
+2,"please, limit the torrent traffic to 100Mbps"
+2,Set bandwidth to 100 Mbps to Torrent traffic.
+2,Limit the torrent traffic to 100 Mbps.
+2,Limit guests to 100 mbps bandwidth for torrent traffice
+2,limit torrent traffic from gateway to 100Mbps
+2,"Lumi, limit the the torrent traffic to 100 Mbps"
+2,please limit the torrent bandwith of guests to 100mbps
+2,limit to 100 Mbps the bandwidth torrent traffic can consume
+2,"Lumi, for the guests network limit torrent traffic to 100MBps"
+2,Please limit the torrent traffic from gateway to guest to 100Mbps
+2,rate limit torrent 100mbps
+2,set torrent bandwidth to 100 Mbps
+2,limit guest torrent traffic to 100 Mbps
+2,limit torrent traffic to 100 Mbps
+2,"Hi Lumi, set torrent traffic bandwidth to limit 100 Mbps"
+3,"please lumi, define quota 100 gb per week to dorms"
+3,"please lumi, define quota to 10 gb per week to dorms"
+3,set a 10 GB per week download quota for dorms.
+3,Set 10 GB per week as download quota for the dorms
+3,"Hey Lumi, limit to 10 GB per week the download traffic of Dorms"
+3,set a 10 GB per week download quota for students in dorms
+3,Between internet and dorms set quota to 10 GB per week
+3,Limit the download quota to 10Gb per week in the dorms.
+3,limit dorms traffic 10gb per week
+3,"hi lumi, please set a maximum download quota of 10 GB per week for students in dorms"
+3,update network quota for dorms to 10GB/wk
+3,Set 10 GB/wk quota from Internet to the Dorms.
+3,Limit the traffic to Dorms to 10 GB per week.
+3,limit every outgoing link from dorms to 10GB per week
+3,"Lumi, limit students to 10gb/wk maximum download in dorms"
+3,traffic from dorms are allowed to download 10 gb per week
+3,set a 10 GB per week download quota for students in dorms
+3,"Lumi, limit the bandwidth to the dorms to 10GB per week"
+3,Please limit the download quota for dorms to 10GB per week
+3,student quota dorms 10gb week
+3,limit students in dorms to download 10 GB per week
+3,limit students in the dorms to 10GB/week data
+3,limit 10 GB per week download from Internet  to Dorms
+4,Block f2movies for students in labs
+4,Block F2movies traffic for students in Labs
+4,"Hey Lumi, block the F2movies traffic for all students in the labs"
+4,block F2movies traffic for students in the labs
+4,Between internet and labs block traffic from students to f2movies
+4,block the F2movies website for lab students
+4,block site F2movies traffic  for students in the labs
+4,block f2movies for students on the lab
+4,"hey lumi, please block F2movies traffic for students in the labs"
+4,block F2movies traffic for students in the labs
+4,Block F2movies traffic to students in Labs
+4,Block F2movies traffic for students in labs
+4,block F2Movies for students in labs
+4,"Lumi's, add a firewall and block F2movies traffic from students in labs"
+4,block all f2movies traffic on labs from students
+4,block F2movies traffic for students in the labs
+4,"Lumi, block all traffic to F2Movies for students on the Labs"
+4,"Hey Lumi, please block all traffic from f2movies to labs for students"
+4,block f2movies.com students labs
+4,block traffic from f2movies going to students in the labs
+4,block students in the labs from accessing F2movies
+4,block F2movies traffic for students in the labs.
+5,"please lumi, limit bandwidth to 5 gbps from 4pm to 7pm from internet to servers"
+5,set a 5 Gbps bandwidth limit for the server racks from 4PM to 7PM
+5,Set 5 GBps as bandwidth limit for the servers from 4pm to 7pm
+5,"Lumi, set a 5 Gbps limit for the Servers from 4PM to 7PM"
+5,set a 5 Gbps bandwidth limit for the server racks from 4PM to 7PM
+5,limit traffic to 5Gbps  Between internet and servers from 16:00 to 19:00
+5,set a 5 Gbps bandwidth limit for the server racks from 4PM to 7PM.
+5,please limit bandwidth to 5 Gigabits per second for the server racks everyday from 4 PM to 7 PM
+5,please limit bandwidth to 5 Gigabits per second for the server racks everyday from 4 PM to 7 PM
+5,please limit bandwidth to 5 Gigabits per second for the server racks everyday from 4 PM to 7 PM
+5,please limit bandwidth to 5 Gigabits per second for the server racks everyday from 4 PM to 7 PM
+5,set a 5Gbps bandwidth limit for the server racks from 4PM to 7PM
+5,Limit the traffic to server racks to 5 Gbps from 4 pm to 7 pm.
+5,limit bandwidth for server racks to 5Gbps from 4pm to 7pm
+5,Limit traffic from 4pm to 7pm up to 5Gbps in servers
+5,limit the bandwith from servers to 5 gbps from 4pm to 7pm
+5,set a 5 Gbps bandwidth limit for the server racks from 4PM to 7PM
+5,"Lumi, limit the bandwidth to the servers to 5Gbps from 4PM to 7PM"
+5,"Hey Lumi, please limit the bandwith from gateway to servers to 5Gbps from 4PM to 7PM"
+5,"Hey Lumi, please limit the bandwith from gateway to servers to 5Gbps everyday from 4:00PM to 7:00PM"
+5,"Hey Lumi, please limit the bandwith from gateway to servers to 5Gbps from 4:00PM to 7:00PM"
+5,rate limit servers 5gbps from 4pm to 7pm
+5,Limit bandwidth to 5 Gbps for the server racks from 4pm to 7pm
+5,limit the server racks bandwidth to 5 Gbps from 4pm to 7pm
+5,set a 5 Gbps bandwidth limit for the server racks from 4PM to 7PM.

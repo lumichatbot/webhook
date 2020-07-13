@@ -194,7 +194,9 @@ def feedback_count():
     db = client.Database()
 
     num_intents = 0
-    num_intents_accepted = 0
+    num_intents_accepted_right = 0
+    num_intents_accepted_wrong = 0
+    num_intents_pending = 0
     num_intents_rejected_no_feedback = 0
     num_intents_feedback = 0
     num_intents_feedback_accepted = 0
@@ -214,25 +216,30 @@ def feedback_count():
                         num_intents_rejected_no_feedback += 1
                 elif 'missingEntities' in intent and 'nileFeedback' in intent:
                     num_intents_feedback_accepted += 1
+                elif intent['status'] == 'compiled':
+                    if tasks.check_intent(intent):
+                        num_intents_accepted_right += 1
+                    else:
+                        num_intents_accepted_wrong += 1
                 else:
-                    num_intents_accepted += 1
+                    num_intents_pending += 1
 
     print("NUM INTENTS", num_intents)
-    print("CONFIRMED INTENTS", num_intents_accepted)
-    print("REJECTED INTENTS", num_intents_rejected_no_feedback)
-    print("FEEDBACK INTENTS", num_intents_feedback)
+    print("CONFIRMED INTENTS RIGHT", num_intents_accepted_right)
+    print("CONFIRMED INTENTS WRONG", num_intents_accepted_wrong)
+    print("PENDING INTENTS", num_intents_pending)
+    # print("REJECTED INTENTS", num_intents_rejected_no_feedback)
+    print("FEEDBACK REJECTED INTENTS", num_intents_feedback)
     print("FEEDBACK ACCEPTED INTENTS", num_intents_feedback_accepted)
 
-    plotter.plot_pie_chart(['Confirmed', 'Feedback Accepted', 'Feedback Rejected'],
-                           [num_intents_accepted, num_intents_feedback_accepted, num_intents_feedback],
+    plotter.plot_pie_chart(['Confirmed Intents (Right)', 'Confirmed Intents (Wrong)', 'Pending Intents', 'Feedback Accepted', 'Feedback Rejected'],
+                           [num_intents_accepted_right, num_intents_accepted_wrong, num_intents_pending,
+                               num_intents_feedback_accepted, num_intents_feedback],
                            config.USER_STUDY_PLOTS_PATH.format("feedback"))
 
 
 def usability():
     """ Computes user reponses on Lumi's usability """
-
-    db = client.Database()
-
     usability = {}
     comparison = {}
     opinion = {}
@@ -265,10 +272,117 @@ def usability():
                            config.USER_STUDY_PLOTS_PATH.format("opinion"))
 
 
+def usability_by_profile():
+    """ Computer usability responses based on user profiles """
+    sessions_by_exp = {}
+
+    usability_by_exp = {}
+    comparison_by_exp = {}
+    opinion_by_exp = {}
+
+    with open(config.USER_STUDY_QUESTIONNAIRE_PATH.format("pre")) as csvfile:
+        reader = csv.reader(csvfile, delimiter=',',)
+        next(reader)  # skip header
+        for row in reader:
+            uuid = row[1]
+            experience = config.STUDY_EXPERIENCE_LEVELS[int(row[5]) - 1]
+            sessions_by_exp[uuid] = experience
+
+    print(len(sessions_by_exp.values()))
+    with open(config.USER_STUDY_QUESTIONNAIRE_PATH.format("post")) as csvfile:
+        reader = csv.reader(csvfile, delimiter=',',)
+        next(reader)  # skip header
+        for row in reader:
+            uuid = row[1]
+
+            if uuid in sessions_by_exp:
+                experience = sessions_by_exp[uuid]
+                usability_score = config.STUDY_USABILITY_LEVELS[int(row[7]) - 1]
+                comparison_score = config.STUDY_COMPARIONS_LEVELS[int(row[8]) - 1]
+                opinion_choice = row[9]
+
+                exp_class = ""
+                if "beginner" == experience.lower() or "novice" == experience.lower():
+                    exp_class = "novice-beginner"
+                elif "proficient" == experience.lower() or "expert" == experience.lower():
+                    exp_class = "proficient-expert"
+                else:
+                    exp_class = experience.lower()
+
+                if exp_class not in usability_by_exp:
+                    usability_by_exp[exp_class] = {}
+
+                if usability_score not in usability_by_exp[exp_class]:
+                    usability_by_exp[exp_class][usability_score] = 0
+
+                usability_by_exp[exp_class][usability_score] += 1
+
+                if exp_class not in comparison_by_exp:
+                    comparison_by_exp[exp_class] = {}
+
+                if comparison_score not in comparison_by_exp[exp_class]:
+                    comparison_by_exp[exp_class][comparison_score] = 0
+
+                comparison_by_exp[exp_class][comparison_score] += 1
+
+                if exp_class not in opinion_by_exp:
+                    opinion_by_exp[exp_class] = {}
+
+                if opinion_choice not in opinion_by_exp[exp_class]:
+                    opinion_by_exp[exp_class][opinion_choice] = 0
+
+                opinion_by_exp[exp_class][opinion_choice] += 1
+
+    # for exp in opinion_by_exp.keys():
+    #     plotter.plot_pie_chart(usability_by_exp[exp].keys(), usability_by_exp[exp].values(),
+    #                            config.USER_STUDY_PLOTS_PATH.format("usability-{}".format(exp)))
+    #     plotter.plot_pie_chart(comparison_by_exp[exp].keys(), comparison_by_exp[exp].values(),
+    #                            config.USER_STUDY_PLOTS_PATH.format("comparison-{}".format(exp)))
+    #     plotter.plot_pie_chart(opinion_by_exp[exp].keys(), opinion_by_exp[exp].values(),
+    #                            config.USER_STUDY_PLOTS_PATH.format("opinion-{}".format(exp)))
+
+
+def save_intents_by_tasks():
+    """ Fetches intents from all users, divides them by task and save it to a csv  """
+
+    db = client.Database()
+
+    intents_by_task = {
+        0: [],
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        5: []
+    }
+
+    with open(config.USER_STUDY_QUESTIONNAIRE_PATH.format("post")) as csvfile:
+        reader = csv.reader(csvfile, delimiter=',',)
+        next(reader)  # skip header
+        for row in reader:
+            uuid = row[1]
+            session_intents = db.get_intents(uuid)
+
+            for intent in session_intents:
+                task_completed = tasks.check_intent(intent)
+                if task_completed > 0:
+                    intents_by_task[task_completed].append(intent['text'])
+
+    print("INTENTS", intents_by_task)
+
+    with open(config.USER_STUDY_INTENTS_PATH, 'w') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',')
+        writer.writerow(['Task', 'Intent'])
+        for (task, intents) in intents_by_task.items():
+            for intent in intents:
+                writer.writerow([task, intent])
+
+
 if __name__ == "__main__":
     # check_uuids()
     # check_intents()
     # user_profiles()
     # tasks_completed()
     # feedback_count()
-    usability()
+    # usability_by_profile()
+    save_intents_by_tasks()

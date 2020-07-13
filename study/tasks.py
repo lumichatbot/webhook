@@ -100,6 +100,23 @@ def check_task_five(intents):
     return check_task(intents, keywords)
 
 
+def check_intent(intent):
+    """ Given intent, check if it complete any of the five tasks """
+    task_completed = False
+    checker = {
+        1: check_task_one,
+        2: check_task_two,
+        3: check_task_three,
+        4: check_task_four,
+        5: check_task_five
+    }
+
+    for task in [1, 2, 3, 4, 5]:
+        task_completed += task if checker[task]([intent])['done'] else 0
+
+    return task_completed
+
+
 def check(session, task):
     """Given Session UUID and Task number, check if user has completed it."""
     db = client.Database()
