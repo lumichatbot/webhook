@@ -1,0 +1,7 @@
+{
+    "name": "Lumi Webhook",
+    "description": "Webhook for the Lumi chatbot.",
+    "stack": "container",
+    "repository": "https://github.com/lumichatbot/webhook",
+    "keywords": ["python", "webhook"]
+}

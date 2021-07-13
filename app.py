@@ -26,19 +26,21 @@ install_aliases()
 app = Flask(__name__)
 CORS(app)
 # keep alive for herokuapp
-timer.set_interval(lambda: print(requests.get('https://lumi-webhook.herokuapp.com')), 300)
+timer.set_interval(
+    lambda: print(requests.get("https://lumi-webhook.herokuapp.com")), 300
+)
 
 
 @app.route("/", methods=["GET"])
 def home():
-    """ Blank page to check if APIs are running """
+    """Blank page to check if APIs are running"""
     return "Lumi Webhook APIs"
 
 
 @app.route("/finish/<session>", methods=["GET"])
 def finish(session):
     """
-        API to finish session and record end timestamp
+    API to finish session and record end timestamp
     """
     print("Session: {}".format(session))
     try:
@@ -59,7 +61,7 @@ def finish(session):
 @app.route("/check/<session>/<task>", methods=["GET"])
 def check(session, task):
     """
-        API to check if user has completed give task
+    API to check if user has completed give task
     """
     print("Session: {} , Task: {}".format(session, task))
     try:
@@ -74,7 +76,7 @@ def check(session, task):
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
-    """ Dialogflow Webhook API """
+    """Dialogflow Webhook API"""
     req = request.get_json(silent=True, force=True)
 
     print("Request: {}".format(json.dumps(req, indent=4)))
@@ -82,7 +84,7 @@ def webhook():
         res = ACTIONS[req.get("queryResult").get("action")](req)
     except:
         traceback.print_exc()
-        res = ACTIONS['error'](req)
+        res = ACTIONS["error"](req)
 
     res = json.dumps(res, indent=4)
     print("Response: {}".format(json.dumps(res, indent=4)))
@@ -94,7 +96,7 @@ def webhook():
 
 @app.route("/agent", methods=["GET"])
 def agent():
-    """ Returns Dialogflow Agent information """
+    """Returns Dialogflow Agent information"""
     agent = api.Dialogflow().get_agent()
     response = make_response(MessageToJson(agent))
     response.headers["Content-Type"] = "application/json"
@@ -104,17 +106,17 @@ def agent():
 @app.route("/gateway", methods=["POST"])
 def gateway():
     """
-        Gateway for Dialogflow API
-        request = {
-            session: <uuid>,
-            live: <true/false>,
-            queryInput: {
-                text: {
-                    text: <text>,
-                    languageCode: 'en'
-                }
+    Gateway for Dialogflow API
+    request = {
+        session: <uuid>,
+        live: <true/false>,
+        queryInput: {
+            text: {
+                text: <text>,
+                languageCode: 'en'
             }
         }
+    }
     """
     req = request.get_json(silent=True, force=True)
 
@@ -123,7 +125,7 @@ def gateway():
         dialogflow = api.Dialogflow()
         session = req.get("session")
         live = req.get("live")
-        text = req.get("queryInput").get('text').get('text')
+        text = req.get("queryInput").get("text").get("text")
 
         res = dialogflow.detect_intent(text, session)
 
@@ -133,9 +135,13 @@ def gateway():
 
         query_result_text = res.query_result.fulfillment_text
         if res.query_result.fulfillment_messages:
-            query_result_text = ', '.join([MessageToString(x.text) for x in res.query_result.fulfillment_messages])
+            query_result_text = ", ".join(
+                [MessageToString(x.text) for x in res.query_result.fulfillment_messages]
+            )
 
-        db.insert_message(session, text, query_result_text, res.query_result.intent.display_name)
+        db.insert_message(
+            session, text, query_result_text, res.query_result.intent.display_name
+        )
     except Exception as err:
         traceback.print_exc()
         res = "{}".format(err)
@@ -149,7 +155,7 @@ def gateway():
 
 
 def init():
-    """ Initialize Flask server """
+    """Initialize Flask server"""
     print("Starting app on port %d" % 9000)
     app.run(debug=True, port=9000, host="0.0.0.0")
 
