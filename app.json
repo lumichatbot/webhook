@@ -1,7 +1,7 @@
 {
-  "name": "Lumi Webhook",
-  "description": "Webhook for the Lumi Dialogflow chatbot.",
-  "image": "heroku/python",
-  "repository": "https://github.com/lumichatbot/webhook",
-  "keywords": ["python", "webhook", "dialogflow"]
+    "name": "Lumi Webhook",
+    "description": "Webhook for the Lumi chatbot.",
+    "image": "heroku/python",
+    "repository": "https://github.com/lumichatbot/webhook",
+    "keywords": ["python", "webhook"]
 }
