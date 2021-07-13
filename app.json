@@ -1,6 +1,0 @@
-{
-    "name": "Lumi Webhook",
-    "description": "Webhook for the Lumi chatbot.",
-    "repository": "https://github.com/lumichatbot/webhook",
-    "keywords": ["python", "webhook"]
-}
