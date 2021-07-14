@@ -17,7 +17,6 @@ from google.protobuf.json_format import MessageToJson
 
 from actions import ACTIONS, api
 from database import client
-from utils import timer
 from study import tasks
 
 install_aliases()
@@ -25,10 +24,6 @@ install_aliases()
 # Flask app should start in global layout
 app = Flask(__name__)
 CORS(app)
-# keep alive for herokuapp
-timer.set_interval(
-    lambda: print(requests.get("https://lumi-webhook.herokuapp.com")), 300
-)
 
 
 @app.route("/", methods=["GET"])
@@ -82,7 +77,7 @@ def webhook():
     print("Request: {}".format(json.dumps(req, indent=4)))
     try:
         res = ACTIONS[req.get("queryResult").get("action")](req)
-    except:
+    except Exception:
         traceback.print_exc()
         res = ACTIONS["error"](req)
 
