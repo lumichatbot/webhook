@@ -6,23 +6,9 @@ authors = ["asjacobs92 <asjacobs92@inf.ufrgs.br>"]
 license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
-python = "^3.7"
-flask = "*"
-future = "*"
-dialogflow = "*"
-nltk = "*"
-spacy = "*"
-anytree = "*"
-msgpack = "*"
-scikit-learn = "*"
-matplotlib = "*"
-joblib = "*"
-numpy = "*"
-requests = "*"
-pymongo = "*"
-dnspython = "*"
-flask-cors = "*"
-gunicorn = "*"
+python = "==3.7"
+rasa = "^2.8.0"
+requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"

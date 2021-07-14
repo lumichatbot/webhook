@@ -1,22 +1,11 @@
-FROM python:3.7
+FROM rasa/rasa:latest-full
 
-# Environment variables
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONPATH /app
-
-# Project files and settings
-RUN apt-get update && apt-get autoremove -y
-RUN pip3 install -U pip setuptools poetry
+USER root
 
 RUN mkdir /app
 COPY . /app/
-
 WORKDIR /app
 
-RUN poetry config virtualenvs.create false
-RUN poetry install
-RUN python -m spacy download en_core_web_sm
-
-CMD gunicorn -w 2 app:app
+ENTRYPOINT ["rasa", "run", "actions", "--debug"]
 
 EXPOSE 80
