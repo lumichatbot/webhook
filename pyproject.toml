@@ -23,6 +23,7 @@ pymongo = "*"
 dnspython = "*"
 flask-cors = "*"
 gunicorn = "*"
+en-core-web-md = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-2.2.0/en_core_web_md-2.2.0.tar.gz"}
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
