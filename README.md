@@ -49,6 +49,13 @@ pipenv install
 pipenv shell
 ```
 
+## Running locally (inside virutalenv)
+
+```
+python app.py
+```
+
+
 ## Deployment
 
 TBD
