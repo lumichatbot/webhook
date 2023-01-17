@@ -20,10 +20,10 @@ Follow the steps below to install the required packages to run the project.
 sudo apt-get update && sudo apt-get install -y python3-pip python3-venv git
 ```
 
-2. Install Pipenv
+2. Install Poetry
 
 ```
-pip install pipenv
+pip install poetry
 ```
 
 ### Installing
@@ -40,13 +40,13 @@ git clone git@github.com:lumichatbot/webhook.git lumi-webhook
 
 ```
 cd lumi-webhook
-pipenv install
+poetry install
 ```
 
 2.  Activate project virtual environment
 
 ```
-pipenv shell
+poetry shell
 ```
 
 ## Running locally (inside virutalenv)

@@ -6,7 +6,7 @@ library(gtools)
 library(reshape2)
 library(gtools)
 
-data <- read.csv("/home/asjacobs/workspace/lumi-webhook/res/results/conflicts_summary_0.csv")
+data <- read.csv("/home/asjacobs/workspace/lumi-webhook/res/results/ambiguities_summary_0.csv")
 data$id <- as.character(data$dataset)
 data$num_id <- as.numeric(data$dataset)
 data[with(data, order(num_id)), ]

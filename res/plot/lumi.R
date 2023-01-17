@@ -7,7 +7,7 @@ library(reshape2)
 library(precrec)
 library(caret)
 
-data <- read.csv("/home/asjacobs/workspace/webhook/res/results/conflicts_summary_0.csv")
+data <- read.csv("/home/asjacobs/workspace/webhook/res/results/ambiguities_summary_0.csv")
 data$id <- as.character(data$dataset)
 data$num_id <- as.numeric(data$dataset)
 data[with(data, order(num_id)), ]
@@ -138,7 +138,7 @@ m +
 
 
 
-data <- read.csv("/home/asjacobs/workspace/webhook/res/results/conflicts_10000_forest.csv")
+data <- read.csv("/home/asjacobs/workspace/webhook/res/results/ambiguities_10000_forest.csv")
 
 negation = data[data$type == 'negation',]
 qos = data[data$type == 'qos',]
@@ -148,37 +148,37 @@ domain = data[data$type == 'domain',]
 synonym = data[data$type == 'synonym',]
 path = data[data$type == 'path',]
 
-precision(data = factor(data$prediction), reference = factor(data$conflict))
+precision(data = factor(data$prediction), reference = factor(data$amibiguity))
 
-precision(data = factor(negation$prediction), reference = factor(negation$conflict))
-precision(data = factor(qos$prediction), reference = factor(qos$conflict))
-precision(data = factor(hierarchy$prediction), reference = factor(hierarchy$conflict))
-precision(data = factor(time$prediction), reference = factor(time$conflict))
-precision(data = factor(domain$prediction), reference = factor(domain$conflict))
-precision(data = factor(synonym$prediction), reference = factor(synonym$conflict))
-precision(data = factor(path$prediction), reference = factor(path$conflict))
+precision(data = factor(negation$prediction), reference = factor(negation$amibiguity))
+precision(data = factor(qos$prediction), reference = factor(qos$amibiguity))
+precision(data = factor(hierarchy$prediction), reference = factor(hierarchy$amibiguity))
+precision(data = factor(time$prediction), reference = factor(time$amibiguity))
+precision(data = factor(domain$prediction), reference = factor(domain$amibiguity))
+precision(data = factor(synonym$prediction), reference = factor(synonym$amibiguity))
+precision(data = factor(path$prediction), reference = factor(path$amibiguity))
 
-recall(data = factor(data$prediction), reference = factor(data$conflict))
-
-
-recall(data = factor(negation$prediction), reference = factor(negation$conflict))
-recall(data = factor(qos$prediction), reference = factor(qos$conflict))
-recall(data = factor(hierarchy$prediction), reference = factor(hierarchy$conflict))
-recall(data = factor(time$prediction), reference = factor(time$conflict))
-recall(data = factor(domain$prediction), reference = factor(domain$conflict))
-recall(data = factor(synonym$prediction), reference = factor(synonym$conflict))
-recall(data = factor(path$prediction), reference = factor(path$conflict))
-
-F_meas(data = factor(data$prediction), reference = factor(data$conflict))
+recall(data = factor(data$prediction), reference = factor(data$amibiguity))
 
 
-F_meas(data = factor(negation$prediction), reference = factor(negation$conflict))
-F_meas(data = factor(qos$prediction), reference = factor(qos$conflict))
-F_meas(data = factor(hierarchy$prediction), reference = factor(hierarchy$conflict))
-F_meas(data = factor(time$prediction), reference = factor(time$conflict))
-F_meas(data = factor(domain$prediction), reference = factor(domain$conflict))
-F_meas(data = factor(synonym$prediction), reference = factor(synonym$conflict))
-F_meas(data = factor(path$prediction), reference = factor(path$conflict))
+recall(data = factor(negation$prediction), reference = factor(negation$amibiguity))
+recall(data = factor(qos$prediction), reference = factor(qos$amibiguity))
+recall(data = factor(hierarchy$prediction), reference = factor(hierarchy$amibiguity))
+recall(data = factor(time$prediction), reference = factor(time$amibiguity))
+recall(data = factor(domain$prediction), reference = factor(domain$amibiguity))
+recall(data = factor(synonym$prediction), reference = factor(synonym$amibiguity))
+recall(data = factor(path$prediction), reference = factor(path$amibiguity))
+
+F_meas(data = factor(data$prediction), reference = factor(data$amibiguity))
+
+
+F_meas(data = factor(negation$prediction), reference = factor(negation$amibiguity))
+F_meas(data = factor(qos$prediction), reference = factor(qos$amibiguity))
+F_meas(data = factor(hierarchy$prediction), reference = factor(hierarchy$amibiguity))
+F_meas(data = factor(time$prediction), reference = factor(time$amibiguity))
+F_meas(data = factor(domain$prediction), reference = factor(domain$amibiguity))
+F_meas(data = factor(synonym$prediction), reference = factor(synonym$amibiguity))
+F_meas(data = factor(path$prediction), reference = factor(path$amibiguity))
 
 
 

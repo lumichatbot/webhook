@@ -3,10 +3,8 @@
 from __future__ import print_function
 
 import json
-import os
 import traceback
 import requests
-import time
 
 from flask import Flask, make_response, request
 from flask_cors import CORS
@@ -15,10 +13,11 @@ from future.standard_library import install_aliases
 from google.protobuf.text_format import MessageToString
 from google.protobuf.json_format import MessageToJson
 
-from actions import ACTIONS, api
-from database import client
-from utils import timer
-from study import tasks
+from src.actions import api
+from src.actions.actions import ACTIONS
+from src.database import client
+from src.utils import timer
+from src.study import tasks
 
 install_aliases()
 
