@@ -13,6 +13,7 @@ def check(new_intent, session):
     model = ClassificationModel("forest")
     contradictory = None
     if model.load(TRAINED_MODEL_SIZE):
+        print("MODEL LOADED")
         db = client.Database()
         confirmed_intents = db.get_confirmed_intents(session)
         print("intent", confirmed_intents)

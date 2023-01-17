@@ -53,6 +53,7 @@ def build_accepted(request):
     db.update_intent(intent["_id"], {"status": "confirmed"})
 
     # TODO: fix amibiguity  after user study
+    print("CHECKING FOR AMBIGUITY")
     amibiguity = inspector.check(intent, uuid)
     if amibiguity:
         text = """
