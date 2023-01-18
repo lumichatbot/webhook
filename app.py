@@ -81,7 +81,7 @@ def webhook():
     print("Request: {}".format(json.dumps(req, indent=4)))
     try:
         res = ACTIONS[req.get("queryResult").get("action")](req)
-    except:
+    except Exception:
         traceback.print_exc()
         res = ACTIONS["error"](req)
 
