@@ -46,6 +46,7 @@ def build_nile_intent(request):
 
 def build_accepted(request):
     """Webhook action to deploy Nile intent after user confirmation"""
+    print("BUILD ACCEPTED!")
     uuid = request.get("session").split("/")[-1]
 
     db = client.Database()
