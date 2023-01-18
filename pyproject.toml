@@ -25,6 +25,7 @@ flask-cors = "*"
 gunicorn = "*"
 en-core-web-md = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-2.2.0/en_core_web_md-2.2.0.tar.gz"}
 rootpath = "^0.1.1"
+charset-normalizer = "^3.0.1"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
