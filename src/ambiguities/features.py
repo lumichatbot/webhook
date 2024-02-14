@@ -22,7 +22,7 @@ from nltk.corpus import wordnet
 from ..utils import config, topology
 
 nltk.download("wordnet")
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_md")
 
 
 def negation(sentence, hypothesis):

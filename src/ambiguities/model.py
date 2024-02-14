@@ -1,4 +1,5 @@
 """ Classification Model """
+
 import os
 import traceback
 
@@ -23,12 +24,18 @@ class ClassificationModel(object):
         self.model_type = model_type
 
         if model_type == "svm":
-            clf = SVC(kernel="linear", verbose=3)
+            clf = SVC(
+                kernel="linear",
+                random_state=0,
+            )
         elif model_type == "forest":
-            clf = RandomForestClassifier(verbose=3)
+            clf = RandomForestClassifier(n_jobs=8, random_state=0)
         else:
             clf = LogisticRegression(
-                verbose=3, random_state=0, solver="lbfgs", multi_class="multinomial"
+                random_state=0,
+                solver="lbfgs",
+                multi_class="multinomial",
+                n_jobs=8,
             )
 
         self.model = make_pipeline(
@@ -37,8 +44,9 @@ class ClassificationModel(object):
 
     def train(self, features, targets, dataset_size):
         """trains the model with given features and expected targets"""
-        print("BEGGINING TRAINING")
+        print("BEGINNING TRAINING")
         if not self.load(dataset_size):
+            print("TRAINED MODEL NOT FOUND. TRAINING NEW MODEL...")
             self.model.fit(features, targets)
 
         if self.model_type == "svm" or self.model_type == "log":
@@ -83,7 +91,7 @@ class ClassificationModel(object):
         return train_sizes, train_scores, test_scores
 
     def predict(self, features):
-        """given an array of input features, predicts if case is a amibiguity or not"""
+        """given an array of input features, predicts if case is a ambiguity or not"""
         return self.model.predict(features)
 
     def load(self, dataset_size):

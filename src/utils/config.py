@@ -1,11 +1,12 @@
 """ Configurations and constansts for webhook module """
-import rootpath
+
+from pathlib import Path
 
 ########## DEPLOYER ##########
 DEPLOY_URL = "http://localhost:5000/deploy"
 
 ########## PATH ###########
-ROOT = rootpath.detect()
+ROOT = str(Path(__file__).parent.parent.parent)
 
 MODEL_WEIGHTS_PATH = ROOT + "/res/weights/{}_{}.joblib"
 
@@ -20,6 +21,10 @@ EXTRACTION_RESULTS_PATH = ROOT + "/res/results/extraction/extraction_{}_{}.csv"
 AMBIGUITIES_DATASET_PATH = ROOT + "/res/dataset/ambiguities_{}.json"
 AMBIGUITIES_CAMPI_DATASET_PATH = ROOT + "/res/dataset/ambiguities_{}_{}.json"
 AMBIGUITIES_RESULTS_PATH = ROOT + "/res/results/ambiguities/ambiguities_{}_{}.csv"
+PREDICTION_TIME_RESULTS_PATH = (
+    ROOT + "/res/results/ambiguities/prediction_time_{}_{}.csv"
+)
+TRAINING_TIME_RESULTS_PATH = ROOT + "/res/results/ambiguities/training_time_{}.csv"
 
 COMPILATION_DATASET_PATH = ROOT + "/res/dataset/compilation.json"
 

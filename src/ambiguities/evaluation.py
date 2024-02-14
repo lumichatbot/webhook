@@ -1,11 +1,13 @@
 """ Evaluation of Ambiguities module """
 
+import os
 import csv
 import time
-import rootpath
+import psutil
 import numpy as np
 
 
+from threading import Thread
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 
@@ -13,6 +15,20 @@ from .features import get_features
 from .model import ClassificationModel
 
 from ..utils import dataset, plotter, config, metrics
+
+
+class ThreadWithReturnValue(Thread):
+    def __init__(self, group=None, target=None, name=None, args=(), kwargs={}):
+        Thread.__init__(self, group, target, name, args, kwargs)
+        self._return = None
+
+    def run(self):
+        if self._target is not None:
+            self._return = self._target(*self._args, **self._kwargs)
+
+    def join(self, *args):
+        Thread.join(self, *args)
+        return self._return
 
 
 def analyze_campus_policies_by_uni(model_size):
@@ -110,7 +126,9 @@ def analyze_campus_policies_by_uni(model_size):
             )
 
         with open(
-            config.AMBIGUITIES_RESULTS_PATH.format("campi", "uni"), "w"
+            config.AMBIGUITIES_RESULTS_PATH.format("campi", "uni"),
+            "w",
+            encoding="UTF-8",
         ) as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=",")
             csv_writer.writerow(
@@ -156,7 +174,9 @@ def analyze_campus_policies_by_uni(model_size):
         summary["f1"] = metrics.f1_score(summary["precision"], summary["recall"])
 
         with open(
-            config.AMBIGUITIES_RESULTS_PATH.format("campi", "uni_summary"), "w"
+            config.AMBIGUITIES_RESULTS_PATH.format("campi", "uni_summary"),
+            "w",
+            encoding="UTF-8",
         ) as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=",")
             csv_writer.writerow(
@@ -264,10 +284,12 @@ def analyze_campus_policies(model_size):
     model = ClassificationModel("forest")
     if model.load(model_size):
         for case in campi_by_uni_dset:
+            start_time = time.time()
             features_vector = get_features(
                 case["sentence"]["nile"], case["hypothesis"]["nile"]
             )
             prediction = model.predict([features_vector])[0]
+            prediction_time = time.time() - start_time
             if prediction == case["amibiguity"]:
                 summary["tp" if prediction == 1 else "tn"] += 1
                 summary_by_type[case["type"]]["tp" if prediction == 1 else "tn"] += 1
@@ -289,11 +311,14 @@ def analyze_campus_policies(model_size):
                     case["amibiguity"],
                     features_vector,
                     prediction,
+                    prediction_time,
                 )
             )
 
         with open(
-            config.AMBIGUITIES_RESULTS_PATH.format("campi", "all"), "w"
+            config.AMBIGUITIES_RESULTS_PATH.format("campi", "all"),
+            "w",
+            encoding="UTF-8",
         ) as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=",")
             csv_writer.writerow(
@@ -308,6 +333,7 @@ def analyze_campus_policies(model_size):
                     "amibiguity",
                     "features",
                     "prediction",
+                    "prediction time",
                 ]
             )
             for (
@@ -321,6 +347,7 @@ def analyze_campus_policies(model_size):
                 amibiguity,
                 features,
                 prediction,
+                prediction_time,
             ) in results:
                 csv_writer.writerow(
                     [
@@ -334,6 +361,7 @@ def analyze_campus_policies(model_size):
                         amibiguity,
                         features,
                         prediction,
+                        prediction_time,
                     ]
                 )
 
@@ -342,7 +370,9 @@ def analyze_campus_policies(model_size):
         summary["f1"] = metrics.f1_score(summary["precision"], summary["recall"])
 
         with open(
-            config.AMBIGUITIES_RESULTS_PATH.format("campi", "all_summary"), "w"
+            config.AMBIGUITIES_RESULTS_PATH.format("campi", "all_summary"),
+            "w",
+            encoding="UTF-8",
         ) as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=",")
             csv_writer.writerow(
@@ -384,32 +414,84 @@ def analyze_campus_policies(model_size):
         print("Problem loading model")
 
 
+def measure_cpu_memory_usage():
+    """measures cpu and memory usage"""
+    print("MEASURE CPU MEMORY USAGE")
+    global running
+
+    running = True
+
+    cpu_results = []
+    proc_cpu_results = []
+    memory_results = []
+    proc_memory_results = []
+    process = psutil.Process(os.getpid())
+
+    while running:
+        cpu_usage = psutil.cpu_percent(interval=1)
+        memory_usage = psutil.virtual_memory().percent
+        proc_cpu_usage = process.cpu_percent(interval=1)
+        proc_mem_usage = process.memory_percent()
+
+        cpu_results.append(cpu_usage)
+        memory_results.append(memory_usage)
+        proc_cpu_results.append(proc_cpu_usage)
+        proc_memory_results.append(proc_mem_usage)
+
+    return cpu_results, memory_results, proc_cpu_results, proc_memory_results
+
+
 def train(dataset_size, model_type):
     """opens fit dataset and trains SVM/LogReg/Forest model with it, then tests it"""
     print("MODEL TRAIN", dataset_size, model_type)
 
+    stats = {
+        "training_time": 0,
+        "cpu_usage": [],
+        "memory_usage": [],
+    }
+
     dset = dataset.read("ambiguities", dataset_size)
-    data, targets = [], []
-    for case in dset["content"]:
-        data.append(case)
-        targets.append(case["amibiguity"])
-
+    targets = []
     feature_vector = []
-    with open(f"{rootpath.detect()}/res/training.csv", "w") as csvfile:
-        csv_writer = csv.writer(csvfile, delimiter=",")
-        csv_writer.writerow(["sentence", "hypothesis", "features", "amibiguity"])
+    for case in dset["content"]:
+        targets.append(case["amibiguity"])
+        features = get_features(case["sentence"], case["hypothesis"])
+        feature_vector.append(features)
 
-        for idx, case in enumerate(data):
-            features = get_features(case["sentence"], case["hypothesis"])
-            feature_vector.append(features)
-            # print(feature_vector[idx], targets[idx])
-            csv_writer.writerow(
-                [case["sentence"], case["hypothesis"], features, targets[idx]]
-            )
+    # with open(f"{config.ROOT}/res/training.csv", "w", encoding="UTF-8") as csvfile:
+    # csv_writer = csv.writer(csvfile, delimiter=",")
+    # csv_writer.writerow(["sentence", "hypothesis", "features", "amibiguity"])
+    #     for case in data:
+    #         features = get_features(case["sentence"], case["hypothesis"])
+    #         feature_vector.append(features)
+    #     print(feature_vector[idx], targets[idx])
+    #     csv_writer.writerow(
+    #     [case["sentence"], case["hypothesis"], features, targets[idx]]
+    #     )
+
+    global running
+
+    running = True
 
     model = ClassificationModel(model_type)
+    t = ThreadWithReturnValue(target=measure_cpu_memory_usage)
+    t.start()
+    train_start = time.time()
+
     model.train(feature_vector, targets, dataset_size)
+
+    running = False
+    (cpu_results, mem_results, proc_cpu_results, proc_mem_results) = t.join()
+    stats["training_time"] = time.time() - train_start
+    stats["cpu_usage"] = cpu_results
+    stats["memory_usage"] = mem_results
+    stats["proc_cpu_usage"] = proc_cpu_results
+    stats["proc_memory_usage"] = proc_mem_results
+
     model.save(dataset_size)
+
+    return stats
 
 
 def test(dataset_size, model_type):
@@ -441,13 +523,15 @@ def test(dataset_size, model_type):
     test_results = model.test(test_data)
 
     with open(
-        config.AMBIGUITIES_RESULTS_PATH.format(dataset_size, model_type), "w"
+        config.AMBIGUITIES_RESULTS_PATH.format(dataset_size, model_type),
+        "w",
+        encoding="UTF-8",
     ) as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=",")
         csv_writer.writerow(
             ["hypothesis", "sentence", "type", "amibiguity", "features", "prediction"]
         )
-        for (test_case, result, features) in zip(test_cases, test_results, test_data):
+        for test_case, result, features in zip(test_cases, test_results, test_data):
             csv_writer.writerow(
                 [
                     test_case["hypothesis"],
@@ -513,13 +597,15 @@ def learning_curve(dataset_size, model_type):
     model = ClassificationModel(model_type)
     train_sizes, train_scores, test_scores = model.learning_curve(data, targets)
     with open(
-        config.LEARNING_CURVE_PATH.format(dataset_size, model_type), "w"
+        config.LEARNING_CURVE_PATH.format(dataset_size, model_type),
+        "w",
+        encoding="UTF-8",
     ) as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=",")
         csv_writer.writerow(
             ["model", "dataset_size", "train_size", "train_mse", "test_mse"]
         )
-        for (train_size, train_score, test_score) in zip(
+        for train_size, train_score, test_score in zip(
             train_sizes, train_scores, test_scores
         ):
             csv_writer.writerow(
@@ -527,8 +613,8 @@ def learning_curve(dataset_size, model_type):
                     model_type,
                     dataset_size,
                     train_size,
-                    ",".join(np.char.mod("%f", train_score)),
-                    ",".join(np.char.mod("%f", test_score)),
+                    ";".join(np.char.mod("%f", train_score)),
+                    ";".join(np.char.mod("%f", test_score)),
                 ]
             )
 
@@ -556,7 +642,9 @@ def roc_curve(dataset_size):
 
 def run():
     """runs tests with each model"""
-    with open(config.AMBIGUITIES_RESULTS_PATH.format("summary", "0"), "w") as csvfile:
+    with open(
+        config.AMBIGUITIES_RESULTS_PATH.format("summary", "0"), "w", encoding="UTF-8"
+    ) as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=",")
         csv_writer.writerow(
             [
@@ -613,7 +701,9 @@ def export():
     """Process features and exports dataset"""
 
     dset = dataset.read("ambiguities", 10000)
-    with open(config.AMBIGUITIES_RESULTS_PATH.format("export", "0"), "w") as csvfile:
+    with open(
+        config.AMBIGUITIES_RESULTS_PATH.format("export", "0"), "w", encoding="UTF-8"
+    ) as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=",")
         csv_writer.writerow(
             [
@@ -689,13 +779,281 @@ def export():
             )
 
 
+def analyze_training_time(dataset_sizes=[100, 1000, 5000, 10000]):
+    """
+    Runs tests with the each model, for each new intent in the campi dataset,
+    to measure training time, cpu and memory usage.
+    """
+    print("MODEL TRAINING")
+    results = []
+    for model_type in ["svm", "log", "forest"]:
+        print("MODEL TRAIN", model_type)
+        for dataset_size in dataset_sizes:
+            print("DATASET SIZE", dataset_size)
+
+            print(f"STARTING TESTS FOR MODEL {model_type} SIZE {dataset_size}.")
+            stats = train(dataset_size, model_type)
+            results.append(
+                (
+                    model_type,
+                    dataset_size,
+                    stats["training_time"],
+                    ";".join(np.char.mod("%f", stats["cpu_usage"])),
+                    ";".join(np.char.mod("%f", stats["memory_usage"])),
+                    ";".join(np.char.mod("%f", stats["proc_cpu_usage"])),
+                    ";".join(np.char.mod("%f", stats["proc_memory_usage"])),
+                )
+            )
+
+    print(FINISHED TESTS. WRITING RESULTS TO FILE...")
+    with open(
+        config.TRAINING_TIME_RESULTS_PATH.format("campi"), "a", encoding="UTF-8"
+    ) as csvfile:
+        csv_writer = csv.writer(csvfile, delimiter=",")
+        csv_writer.writerow(
+            [
+                "dataset",
+                "model",
+                "training time",
+                "cpu usage",
+                "memory usage",
+                "proc cpu usage",
+                "proc memory usage",
+            ]
+        )
+
+        for (
+            dataset_size,
+            model_type,
+            training_time,
+            cpu_usage,
+            memory_usage,
+            proc_cpu_usage,
+            proc_memory_usage,
+        ) in results:
+            csv_writer.writerow(
+                [
+                    model_type,
+                    dataset_size,
+                    training_time,
+                    cpu_usage,
+                    memory_usage,
+                    proc_cpu_usage,
+                    proc_memory_usage,
+                ]
+            )
+
+
+def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
+    """runs tests with the each model, for each new intent in the campi dataset, to measure prediction time"""
+    print("MODEL TEST USING CAMPI DATASET")
+    campi_dset = dataset.read("extraction", "campi")["intents"]
+    results = []
+    deploy_intent_results = []
+    deployed_intents = []
+    process = psutil.Process(os.getpid())
+
+    for model_type in ["svm", "log", "forest"]:
+        print("MODEL TEST", model_type)
+        model = ClassificationModel(model_type)
+        for model_size in model_sizes:
+            print("MODEL SIZE", model_size)
+            if not model.load(model_size):
+                print("Problem loading model.", model_type, model_size)
+                continue
+
+            print(f"STARTING TESTS FOR MODEL {model_type} SIZE {model_size}.")
+            for case in campi_dset:
+                n_ambiguities = 0
+                deploy_intent_start = time.time()
+                for intent in deployed_intents:
+                    # avoid testing the same intent
+                    if intent["nile"] != case["nile"]:
+                        cpu_usage = psutil.cpu_percent(interval=1)
+                        memory_usage = psutil.virtual_memory().percent
+                        proc_cpu_usage = process.cpu_percent(interval=1)
+                        proc_mem_usage = process.memory_percent()
+
+                        start_time = time.time()
+                        features_vector = get_features(case["nile"], case["nile"])
+                        prediction = model.predict([features_vector])[0]
+                        prediction_time = time.time() - start_time
+                        if prediction == 1:
+                            n_ambiguities += 1
+
+                        # print(
+                        #     features_vector,
+                        #     prediction,
+                        #     prediction_time,
+                        # )
+                        results.append(
+                            (
+                                model_type,
+                                model_size,
+                                case["university"],
+                                intent["university"],
+                                case["text"],
+                                intent["text"],
+                                case["nile"],
+                                intent["nile"],
+                                features_vector,
+                                prediction,
+                                prediction_time,
+                                cpu_usage,
+                                memory_usage,
+                                proc_cpu_usage,
+                                proc_mem_usage,
+                            )
+                        )
+
+                cpu_usage = psutil.cpu_percent(interval=1)
+                memory_usage = psutil.virtual_memory().percent
+                proc_cpu_usage = process.cpu_percent(interval=1)
+                proc_mem_usage = process.memory_percent()
+
+                deploy_time = time.time() - deploy_intent_start
+                deployed_intents.append(case)
+                deploy_intent_results.append(
+                    (
+                        model_type,
+                        model_size,
+                        case["university"],
+                        case["text"],
+                        case["nile"],
+                        n_ambiguities,
+                        deploy_time,
+                        cpu_usage,
+                        memory_usage,
+                        proc_cpu_usage,
+                        proc_mem_usage,
+                    )
+                )
+
+        print("FINISHED TESTS. WRITING RESULTS TO FILE...")
+        with open(
+            config.PREDICTION_TIME_RESULTS_PATH.format("campi", "all"),
+            "a",
+            encoding="UTF-8",
+        ) as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter=",")
+            csv_writer.writerow(
+                [
+                    "model",
+                    "dataset",
+                    "sentence university",
+                    "hypothesis university",
+                    "sentence text",
+                    "hypothesis text",
+                    "sentence nile",
+                    "hypothesis nile",
+                    "features",
+                    "prediction",
+                    "prediction time",
+                    "cpu usage",
+                    "memory usage",
+                    "proc cpu usage",
+                    "proc memory usage",
+                ]
+            )
+            for (
+                model_type,
+                model_size,
+                stn_uni,
+                hyp_uni,
+                stn_text,
+                hyp_text,
+                stn_nile,
+                hyp_nile,
+                features,
+                prediction,
+                prediction_time,
+                cpu_usage,
+                memory_usage,
+                proc_cpu_usage,
+                proc_mem_usage,
+            ) in results:
+                csv_writer.writerow(
+                    [
+                        model_type,
+                        model_size,
+                        stn_uni,
+                        hyp_uni,
+                        stn_text,
+                        hyp_text,
+                        stn_nile,
+                        hyp_nile,
+                        features,
+                        prediction,
+                        prediction_time,
+                        cpu_usage,
+                        memory_usage,
+                        proc_cpu_usage,
+                        proc_mem_usage,
+                    ]
+                )
+
+        with open(
+            config.PREDICTION_TIME_RESULTS_PATH.format("campi", "deploy"),
+            "a",
+            encoding="UTF-8",
+        ) as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter=",")
+            csv_writer.writerow(
+                [
+                    "model",
+                    "dataset",
+                    "sentence university",
+                    "sentence text",
+                    "sentence nile",
+                    "n ambiguities",
+                    "deploy time",
+                    "cpu usage",
+                    "memory usage",
+                    "proc cpu usage",
+                    "proc memory usage",
+                ]
+            )
+            for (
+                model_type,
+                model_size,
+                stn_uni,
+                stn_text,
+                stn_nile,
+                n_ambiguities,
+                deploy_time,
+                cpu_usage,
+                memory_usage,
+                proc_cpu_usage,
+                proc_mem_usage,
+            ) in deploy_intent_results:
+                csv_writer.writerow(
+                    [
+                        model_type,
+                        model_size,
+                        stn_uni,
+                        stn_text,
+                        stn_nile,
+                        n_ambiguities,
+                        deploy_time,
+                        cpu_usage,
+                        memory_usage,
+                        proc_cpu_usage,
+                        proc_mem_usage,
+                    ]
+                )
+
+
 if __name__ == "__main__":
     # export()
     # run()
     # test(100, 'forest')
-    train(1000, "forest")
-    train(5000, "forest")
-    train(10000, "forest")
+    # train(1000, "forest")
+    # train(5000, "forest")
+    # train(10000, "forest")
+    # train(10000, "svm")
+    # train(10000, "log")
     # validate(10000, 'forest')
     # analyze_campus_policies_by_uni(10000)
     # analyze_campus_policies(10000)
+    analyze_training_time(dataset_sizes=[100])
+    analyze_prediction_time(model_sizes=[100])

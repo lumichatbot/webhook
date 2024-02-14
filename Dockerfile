@@ -15,7 +15,7 @@ WORKDIR /app
 
 RUN poetry config virtualenvs.create false
 RUN poetry install
-RUN python -m spacy download en_core_web_sm
+RUN python -m spacy download en_core_web_md
 
 CMD gunicorn -w 2 app:app
 
