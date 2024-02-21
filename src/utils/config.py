@@ -24,6 +24,9 @@ AMBIGUITIES_RESULTS_PATH = ROOT + "/res/results/ambiguities/ambiguities_{}_{}.cs
 PREDICTION_TIME_RESULTS_PATH = (
     ROOT + "/res/results/ambiguities/prediction_time_{}_{}.csv"
 )
+PREDICTION_USAGE_RESULTS_PATH = (
+    ROOT + "/res/results/ambiguities/prediction_usage_{}_{}.csv"
+)
 TRAINING_TIME_RESULTS_PATH = ROOT + "/res/results/ambiguities/training_time_{}.csv"
 
 COMPILATION_DATASET_PATH = ROOT + "/res/dataset/compilation.json"

@@ -10,7 +10,6 @@
     7 Similarity (endpoints, services, groups, traffic, protocol and middleboxes, bandwidths, quotas)
 """
 
-
 from datetime import datetime
 
 import re
@@ -21,14 +20,14 @@ from nltk.corpus import wordnet
 
 from ..utils import config, topology
 
-nltk.download("wordnet")
+# nltk.download("wordnet")
 nlp = spacy.load("en_core_web_md")
 
 
 def negation(sentence, hypothesis):
     """Inspects the presence of negation in sentence and hypothesis"""
     negation_score = 0
-    for (act, neg) in config.NILE_ACTIONS_NEGATION.items():
+    for act, neg in config.NILE_ACTIONS_NEGATION.items():
         if (act in sentence and neg in hypothesis) or (
             neg in sentence and act in hypothesis
         ):
@@ -206,12 +205,12 @@ def qos(sentence, hypothesis):
         for bandwidth in results:
             qos = {
                 "name": "bandwidth",
-                "constraint": bandwidth.split(",")[0].replace("'", "")
-                if bandwidth
-                else "",
-                "value": int(bandwidth.split(",")[1].replace("'", ""))
-                if bandwidth
-                else "",
+                "constraint": (
+                    bandwidth.split(",")[0].replace("'", "") if bandwidth else ""
+                ),
+                "value": (
+                    int(bandwidth.split(",")[1].replace("'", "")) if bandwidth else ""
+                ),
                 "unit": bandwidth.split(",")[2].replace("'", "") if bandwidth else "",
             }
             sentence_qos.append(qos)
@@ -232,12 +231,12 @@ def qos(sentence, hypothesis):
         for bandwidth in results:
             qos = {
                 "name": "bandwidth",
-                "constraint": bandwidth.split(",")[0].replace("'", "")
-                if bandwidth
-                else "",
-                "value": int(bandwidth.split(",")[1].replace("'", ""))
-                if bandwidth
-                else "",
+                "constraint": (
+                    bandwidth.split(",")[0].replace("'", "") if bandwidth else ""
+                ),
+                "value": (
+                    int(bandwidth.split(",")[1].replace("'", "")) if bandwidth else ""
+                ),
                 "unit": bandwidth.split(",")[2].replace("'", "") if bandwidth else "",
             }
             hypothesis_qos.append(qos)

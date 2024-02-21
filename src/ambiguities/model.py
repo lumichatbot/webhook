@@ -27,6 +27,7 @@ class ClassificationModel(object):
             clf = SVC(
                 kernel="linear",
                 random_state=0,
+                # max_iter=100000,
             )
         elif model_type == "forest":
             clf = RandomForestClassifier(n_jobs=8, random_state=0)
@@ -36,6 +37,7 @@ class ClassificationModel(object):
                 solver="lbfgs",
                 multi_class="multinomial",
                 n_jobs=8,
+                max_iter=100000,
             )
 
         self.model = make_pipeline(
@@ -45,9 +47,14 @@ class ClassificationModel(object):
     def train(self, features, targets, dataset_size):
         """trains the model with given features and expected targets"""
         print("BEGINNING TRAINING")
-        if not self.load(dataset_size):
-            print("TRAINED MODEL NOT FOUND. TRAINING NEW MODEL...")
-            self.model.fit(features, targets)
+        print(f"Features: {len(features)}")
+        print(f"Targets: {len(targets)}")
+        print(f"Dataset size: {dataset_size}")
+        print(f"Model type: {self.model_type}")
+        print(f"Model: {self.model}")
+        # if not self.load(dataset_size):
+        print("TRAINED MODEL NOT FOUND. TRAINING NEW MODEL...")
+        self.model.fit(features, targets)
 
         if self.model_type == "svm" or self.model_type == "log":
             print("FEATURES", self.model_type, self.model.steps[2][1].coef_)

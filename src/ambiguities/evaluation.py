@@ -432,6 +432,10 @@ def measure_cpu_memory_usage():
         memory_usage = psutil.virtual_memory().percent
         proc_cpu_usage = process.cpu_percent(interval=1)
         proc_mem_usage = process.memory_percent()
+        print("CPU USAGE THREAD", cpu_usage)
+        print("MEMORY USAGE THREAD", memory_usage)
+        print("PROC CPU USAGE THREAD", proc_cpu_usage)
+        print("PROC MEMORY USAGE THREAD", proc_mem_usage)
 
         cpu_results.append(cpu_usage)
         memory_results.append(memory_usage)
@@ -441,7 +445,7 @@ def measure_cpu_memory_usage():
     return cpu_results, memory_results, proc_cpu_results, proc_memory_results
 
 
-def train(dataset_size, model_type):
+def train(X, y, dataset_size, model_type, read=False, save=False):
     """opens fit dataset and trains SVM/LogReg/Forest model with it, then tests it"""
     print("MODEL TRAIN", dataset_size, model_type)
 
@@ -451,13 +455,12 @@ def train(dataset_size, model_type):
         "memory_usage": [],
     }
 
-    dset = dataset.read("ambiguities", dataset_size)
-    targets = []
-    feature_vector = []
-    for case in dset["content"]:
-        targets.append(case["amibiguity"])
-        features = get_features(case["sentence"], case["hypothesis"])
-        feature_vector.append(features)
+    if read:
+        dset = dataset.read("ambiguities", dataset_size)
+        X, y = [], []
+        for case in dset["content"]:
+            X.append(get_features(case["sentence"], case["hypothesis"]))
+            y.append(case["amibiguity"])
 
     # with open(f"{config.ROOT}/res/training.csv", "w", encoding="UTF-8") as csvfile:
     # csv_writer = csv.writer(csvfile, delimiter=",")
@@ -470,26 +473,37 @@ def train(dataset_size, model_type):
     #     [case["sentence"], case["hypothesis"], features, targets[idx]]
     #     )
 
-    global running
+    # global running
 
-    running = True
+    # running = True
 
     model = ClassificationModel(model_type)
-    t = ThreadWithReturnValue(target=measure_cpu_memory_usage)
-    t.start()
+    # t = ThreadWithReturnValue(target=measure_cpu_memory_usage)
+    # t.start()
     train_start = time.time()
 
-    model.train(feature_vector, targets, dataset_size)
+    model.train(X, y, dataset_size)
 
-    running = False
-    (cpu_results, mem_results, proc_cpu_results, proc_mem_results) = t.join()
+    # running = False
+    # (cpu_results, mem_results, proc_cpu_results, proc_mem_results) = t.join()
+    # print("CPU USAGE", cpu_results)
+    # print("MEMORY USAGE", mem_results)
+    # print("PROC CPU USAGE", proc_cpu_results)
+    # print("PROC MEMORY USAGE", proc_mem_results)
+
     stats["training_time"] = time.time() - train_start
-    stats["cpu_usage"] = cpu_results
-    stats["memory_usage"] = mem_results
-    stats["proc_cpu_usage"] = proc_cpu_results
-    stats["proc_memory_usage"] = proc_mem_results
+    # stats["cpu_usage"] = cpu_results
+    # stats["memory_usage"] = mem_results
+    # stats["proc_cpu_usage"] = proc_cpu_results
+    # stats["proc_memory_usage"] = proc_mem_results
 
-    model.save(dataset_size)
+    stats["cpu_usage"] = []
+    stats["memory_usage"] = []
+    stats["proc_cpu_usage"] = []
+    stats["proc_memory_usage"] = []
+
+    if save:
+        model.save(dataset_size)
 
     return stats
 
@@ -786,32 +800,43 @@ def analyze_training_time(dataset_sizes=[100, 1000, 5000, 10000]):
     """
     print("MODEL TRAINING")
     results = []
-    for model_type in ["svm", "log", "forest"]:
-        print("MODEL TRAIN", model_type)
-        for dataset_size in dataset_sizes:
-            print("DATASET SIZE", dataset_size)
 
-            print(f"STARTING TESTS FOR MODEL {model_type} SIZE {dataset_size}.")
-            stats = train(dataset_size, model_type)
-            results.append(
-                (
-                    model_type,
-                    dataset_size,
-                    stats["training_time"],
-                    ";".join(np.char.mod("%f", stats["cpu_usage"])),
-                    ";".join(np.char.mod("%f", stats["memory_usage"])),
-                    ";".join(np.char.mod("%f", stats["proc_cpu_usage"])),
-                    ";".join(np.char.mod("%f", stats["proc_memory_usage"])),
+    for dataset_size in dataset_sizes:
+        print("READING DATASET SIZE", dataset_size)
+        dset = dataset.read("ambiguities", dataset_size)
+        X, y = [], []
+        for case in dset["content"]:
+            X.append(get_features(case["sentence"], case["hypothesis"]))
+            y.append(case["amibiguity"])
+
+        for i in range(30):
+            # for model_type in ["svm", "log", "forest"]:
+            for model_type in ["log", "forest"]:
+                print("MODEL TRAIN", model_type)
+                print(f"STARTING TESTS FOR MODEL {model_type} SIZE {dataset_size}.")
+                stats = train(X, y, dataset_size, model_type, read=False, save=False)
+                print(stats)
+                results.append(
+                    (
+                        i,
+                        model_type,
+                        dataset_size,
+                        stats["training_time"],
+                        ";".join(np.char.mod("%f", stats["cpu_usage"])),
+                        ";".join(np.char.mod("%f", stats["memory_usage"])),
+                        ";".join(np.char.mod("%f", stats["proc_cpu_usage"])),
+                        ";".join(np.char.mod("%f", stats["proc_memory_usage"])),
+                    )
                 )
-            )
 
-    print(FINISHED TESTS. WRITING RESULTS TO FILE...")
+    print("FINISHED TESTS. WRITING RESULTS TO FILE...")
     with open(
         config.TRAINING_TIME_RESULTS_PATH.format("campi"), "a", encoding="UTF-8"
     ) as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=",")
         csv_writer.writerow(
             [
+                "iteration",
                 "dataset",
                 "model",
                 "training time",
@@ -823,6 +848,7 @@ def analyze_training_time(dataset_sizes=[100, 1000, 5000, 10000]):
         )
 
         for (
+            iteration,
             dataset_size,
             model_type,
             training_time,
@@ -833,6 +859,7 @@ def analyze_training_time(dataset_sizes=[100, 1000, 5000, 10000]):
         ) in results:
             csv_writer.writerow(
                 [
+                    iteration,
                     model_type,
                     dataset_size,
                     training_time,
@@ -848,86 +875,85 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
     """runs tests with the each model, for each new intent in the campi dataset, to measure prediction time"""
     print("MODEL TEST USING CAMPI DATASET")
     campi_dset = dataset.read("extraction", "campi")["intents"]
+    computed_features = {}
+    for intent in campi_dset:
+        for other_intent in campi_dset:
+            if intent["nile"] != other_intent["nile"]:
+                key = hash(intent["nile"] + other_intent["nile"])
+                computed_features[key] = get_features(
+                    intent["nile"], other_intent["nile"]
+                )
+
     results = []
     deploy_intent_results = []
-    deployed_intents = []
-    process = psutil.Process(os.getpid())
 
-    for model_type in ["svm", "log", "forest"]:
-        print("MODEL TEST", model_type)
-        model = ClassificationModel(model_type)
-        for model_size in model_sizes:
-            print("MODEL SIZE", model_size)
-            if not model.load(model_size):
-                print("Problem loading model.", model_type, model_size)
-                continue
+    for i in range(30):
+        for model_type in ["svm", "log", "forest"]:
+            print("MODEL TEST", model_type)
+            model = ClassificationModel(model_type)
+            for model_size in model_sizes:
+                print("MODEL SIZE", model_size)
+                if not model.load(model_size):
+                    print("Problem loading model.", model_type, model_size)
+                    continue
 
-            print(f"STARTING TESTS FOR MODEL {model_type} SIZE {model_size}.")
-            for case in campi_dset:
-                n_ambiguities = 0
-                deploy_intent_start = time.time()
-                for intent in deployed_intents:
-                    # avoid testing the same intent
-                    if intent["nile"] != case["nile"]:
-                        cpu_usage = psutil.cpu_percent(interval=1)
-                        memory_usage = psutil.virtual_memory().percent
-                        proc_cpu_usage = process.cpu_percent(interval=1)
-                        proc_mem_usage = process.memory_percent()
+                print(f"STARTING TESTS FOR MODEL {model_type} SIZE {model_size}.")
 
-                        start_time = time.time()
-                        features_vector = get_features(case["nile"], case["nile"])
-                        prediction = model.predict([features_vector])[0]
-                        prediction_time = time.time() - start_time
-                        if prediction == 1:
-                            n_ambiguities += 1
+                deployed_intents = []
+                for case in campi_dset:
+                    n_ambiguities = 0
+                    deploy_intent_start = time.time()
+                    print(f"NUMBER OF DEPLOYED INTENTS: {len(deployed_intents)}")
 
-                        # print(
-                        #     features_vector,
-                        #     prediction,
-                        #     prediction_time,
-                        # )
-                        results.append(
-                            (
-                                model_type,
-                                model_size,
-                                case["university"],
-                                intent["university"],
-                                case["text"],
-                                intent["text"],
-                                case["nile"],
-                                intent["nile"],
-                                features_vector,
-                                prediction,
-                                prediction_time,
-                                cpu_usage,
-                                memory_usage,
-                                proc_cpu_usage,
-                                proc_mem_usage,
+                    for intent in deployed_intents:
+                        # avoid testing the same intent
+                        if intent["nile"] != case["nile"]:
+                            start_time = time.time()
+                            key = hash(case["nile"] + intent["nile"])
+                            features_vector = computed_features.get(key, None)
+                            if features_vector is None:
+                                print("INTENT FEATURES NOT FOUND. COMPUTING...")
+                                features_vector = get_features(
+                                    case["nile"], intent["nile"]
+                                )
+                                computed_features[key] = features_vector
+
+                            prediction = model.predict([features_vector])[0]
+                            prediction_time = time.time() - start_time
+                            if prediction == 1:
+                                n_ambiguities += 1
+
+                            results.append(
+                                (
+                                    i,
+                                    model_type,
+                                    model_size,
+                                    case["university"],
+                                    intent["university"],
+                                    case["text"],
+                                    intent["text"],
+                                    case["nile"],
+                                    intent["nile"],
+                                    features_vector,
+                                    prediction,
+                                    prediction_time,
+                                )
                             )
+
+                    deploy_time = time.time() - deploy_intent_start
+                    deployed_intents.append(case)
+                    deploy_intent_results.append(
+                        (
+                            i,
+                            model_type,
+                            model_size,
+                            case["university"],
+                            case["text"],
+                            case["nile"],
+                            n_ambiguities,
+                            deploy_time,
                         )
-
-                cpu_usage = psutil.cpu_percent(interval=1)
-                memory_usage = psutil.virtual_memory().percent
-                proc_cpu_usage = process.cpu_percent(interval=1)
-                proc_mem_usage = process.memory_percent()
-
-                deploy_time = time.time() - deploy_intent_start
-                deployed_intents.append(case)
-                deploy_intent_results.append(
-                    (
-                        model_type,
-                        model_size,
-                        case["university"],
-                        case["text"],
-                        case["nile"],
-                        n_ambiguities,
-                        deploy_time,
-                        cpu_usage,
-                        memory_usage,
-                        proc_cpu_usage,
-                        proc_mem_usage,
                     )
-                )
 
         print("FINISHED TESTS. WRITING RESULTS TO FILE...")
         with open(
@@ -938,6 +964,7 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
             csv_writer = csv.writer(csvfile, delimiter=",")
             csv_writer.writerow(
                 [
+                    "iteration",
                     "model",
                     "dataset",
                     "sentence university",
@@ -949,13 +976,10 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
                     "features",
                     "prediction",
                     "prediction time",
-                    "cpu usage",
-                    "memory usage",
-                    "proc cpu usage",
-                    "proc memory usage",
                 ]
             )
             for (
+                iteration,
                 model_type,
                 model_size,
                 stn_uni,
@@ -967,13 +991,10 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
                 features,
                 prediction,
                 prediction_time,
-                cpu_usage,
-                memory_usage,
-                proc_cpu_usage,
-                proc_mem_usage,
             ) in results:
                 csv_writer.writerow(
                     [
+                        iteration,
                         model_type,
                         model_size,
                         stn_uni,
@@ -985,10 +1006,6 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
                         features,
                         prediction,
                         prediction_time,
-                        cpu_usage,
-                        memory_usage,
-                        proc_cpu_usage,
-                        proc_mem_usage,
                     ]
                 )
 
@@ -1000,6 +1017,142 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
             csv_writer = csv.writer(csvfile, delimiter=",")
             csv_writer.writerow(
                 [
+                    "iteration",
+                    "model",
+                    "dataset",
+                    "sentence university",
+                    "sentence text",
+                    "sentence nile",
+                    "n ambiguities",
+                    "deploy time",
+                ]
+            )
+            for (
+                iteration,
+                model_type,
+                model_size,
+                stn_uni,
+                stn_text,
+                stn_nile,
+                n_ambiguities,
+                deploy_time,
+            ) in deploy_intent_results:
+                csv_writer.writerow(
+                    [
+                        iteration,
+                        model_type,
+                        model_size,
+                        stn_uni,
+                        stn_text,
+                        stn_nile,
+                        n_ambiguities,
+                        deploy_time,
+                    ]
+                )
+
+
+def analyze_prediction_cpu_mem_usage(model_sizes=[100, 1000, 5000, 10000]):
+    """
+    runs tests with the each model, for each new intent in the campi dataset
+    to measure cpu and memory usage during prediction
+    """
+    print("MODEL TEST USING CAMPI DATASET")
+    campi_dset = dataset.read("extraction", "campi")["intents"]
+    computed_features = {}
+    for intent in campi_dset:
+        for other_intent in campi_dset:
+            if intent["nile"] != other_intent["nile"]:
+                key = hash(intent["nile"] + other_intent["nile"])
+                computed_features[key] = get_features(
+                    intent["nile"], other_intent["nile"]
+                )
+
+    global running
+
+    results = []
+
+    for i in range(30):
+        for model_type in ["svm", "log", "forest"]:
+            print("MODEL TEST", model_type)
+            model = ClassificationModel(model_type)
+            for model_size in model_sizes:
+                print("MODEL SIZE", model_size)
+                if not model.load(model_size):
+                    print("Problem loading model.", model_type, model_size)
+                    continue
+
+                print(f"STARTING TESTS FOR MODEL {model_type} SIZE {model_size}.")
+
+                deployed_intents = []
+                for case in campi_dset:
+                    n_ambiguities = 0
+                    running = True
+                    overall_t = ThreadWithReturnValue(target=measure_cpu_memory_usage)
+                    overall_t.start()
+
+                    deploy_intent_start = time.time()
+                    print(f"NUMBER OF DEPLOYED INTENTS: {len(deployed_intents)}")
+
+                    for intent in deployed_intents:
+                        # avoid testing the same intent
+                        if intent["nile"] != case["nile"]:
+                            key = hash(case["nile"] + intent["nile"])
+                            features_vector = computed_features.get(key, None)
+                            if features_vector is None:
+                                print("INTENT FEATURES NOT FOUND. COMPUTING...")
+                                features_vector = get_features(
+                                    case["nile"], intent["nile"]
+                                )
+                                computed_features[key] = features_vector
+
+                            prediction = model.predict([features_vector])[0]
+                            if prediction == 1:
+                                n_ambiguities += 1
+
+                    running = False
+                    (
+                        cpu_results,
+                        mem_results,
+                        proc_cpu_results,
+                        proc_mem_results,
+                    ) = overall_t.join()
+                    deploy_time = time.time() - deploy_intent_start
+
+                    print("DEPLOY TIME", deploy_time)
+                    print("CPU USAGE", cpu_results)
+                    print("MEMORY USAGE", mem_results)
+                    print("PROC CPU USAGE", proc_cpu_results)
+                    print("PROC MEMORY USAGE", proc_mem_results)
+
+                    deployed_intents.append(case)
+                    results.append(
+                        (
+                            i,
+                            model_type,
+                            model_size,
+                            case["university"],
+                            case["text"],
+                            case["nile"],
+                            n_ambiguities,
+                            deploy_time,
+                            cpu_results,
+                            mem_results,
+                            proc_cpu_results,
+                            proc_mem_results,
+                        )
+                    )
+
+        print("FINISHED TESTS. WRITING RESULTS TO FILE...")
+
+        with open(
+            config.PREDICTION_USAGE_RESULTS_PATH.format("campi", "deploy"),
+            "a",
+            encoding="UTF-8",
+        ) as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter=",")
+            csv_writer.writerow(
+                [
+                    "iteration",
                     "model",
                     "dataset",
                     "sentence university",
@@ -1014,6 +1167,7 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
                 ]
             )
             for (
+                iteration,
                 model_type,
                 model_size,
                 stn_uni,
@@ -1021,13 +1175,14 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
                 stn_nile,
                 n_ambiguities,
                 deploy_time,
-                cpu_usage,
-                memory_usage,
-                proc_cpu_usage,
-                proc_mem_usage,
-            ) in deploy_intent_results:
+                cpu_results,
+                mem_results,
+                proc_cpu_results,
+                proc_mem_results,
+            ) in results:
                 csv_writer.writerow(
                     [
+                        iteration,
                         model_type,
                         model_size,
                         stn_uni,
@@ -1035,10 +1190,10 @@ def analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000]):
                         stn_nile,
                         n_ambiguities,
                         deploy_time,
-                        cpu_usage,
-                        memory_usage,
-                        proc_cpu_usage,
-                        proc_mem_usage,
+                        ";".join(np.char.mod("%f", cpu_results)),
+                        ";".join(np.char.mod("%f", mem_results)),
+                        ";".join(np.char.mod("%f", proc_cpu_results)),
+                        ";".join(np.char.mod("%f", proc_mem_results)),
                     ]
                 )
 
@@ -1055,5 +1210,6 @@ if __name__ == "__main__":
     # validate(10000, 'forest')
     # analyze_campus_policies_by_uni(10000)
     # analyze_campus_policies(10000)
-    analyze_training_time(dataset_sizes=[100])
-    analyze_prediction_time(model_sizes=[100])
+    analyze_training_time(dataset_sizes=[10000])
+    # analyze_prediction_time(model_sizes=[100, 1000, 5000, 10000])
+    # analyze_prediction_cpu_mem_usage(model_sizes=[100, 1000, 5000, 10000])
