@@ -27,7 +27,10 @@ PREDICTION_TIME_RESULTS_PATH = (
 PREDICTION_USAGE_RESULTS_PATH = (
     ROOT + "/res/results/ambiguities/prediction_usage_{}_{}.csv"
 )
-TRAINING_TIME_RESULTS_PATH = ROOT + "/res/results/ambiguities/training_time_{}.csv"
+TRAINING_RESULTS_PATH = ROOT + "/res/results/ambiguities/training_{}_{}.csv"
+DEPLOY_RESULTS_PATH = ROOT + "/res/results/ambiguities/prediction_{}_{}_deploy.csv"
+TRAINING_PLOTS_PATH = ROOT + "/res/plot/training_{}.pdf"
+DEPLOY_PLOTS_PATH = ROOT + "/res/plot/deploy_{}.pdf"
 
 COMPILATION_DATASET_PATH = ROOT + "/res/dataset/compilation.json"
 

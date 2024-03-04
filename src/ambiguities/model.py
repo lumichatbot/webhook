@@ -52,9 +52,9 @@ class ClassificationModel(object):
         print(f"Dataset size: {dataset_size}")
         print(f"Model type: {self.model_type}")
         print(f"Model: {self.model}")
-        # if not self.load(dataset_size):
-        print("TRAINED MODEL NOT FOUND. TRAINING NEW MODEL...")
-        self.model.fit(features, targets)
+        if not self.load(dataset_size):
+            print("TRAINED MODEL NOT FOUND. TRAINING NEW MODEL...")
+            self.model.fit(features, targets)
 
         if self.model_type == "svm" or self.model_type == "log":
             print("FEATURES", self.model_type, self.model.steps[2][1].coef_)
